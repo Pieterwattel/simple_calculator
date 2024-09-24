@@ -1,0 +1,14 @@
+div,
+span {
+    border: 3px solid brown;
+    padding: 5px;
+}
+
+#btnsFrameMain {
+    display: flex;
+    flex:1;
+}
+
+#btnEquals {
+}
+

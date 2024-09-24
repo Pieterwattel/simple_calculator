@@ -6,11 +6,13 @@ numbers 0 - 9
 =
 C CE
 ANS
-* - + /
 
 - give each of the containers in html an ID and a class
 
 - place these on the left side of the calculator
+
+- do the same for * - + /
+place them on the right side
 
 - make a display with two nested displays, entryDisplay and ansDisplay
 
