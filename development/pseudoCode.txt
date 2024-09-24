@@ -1,0 +1,50 @@
+- part 1:
+make it so that when you press numbers they are added to num1, but when you press an operator they are added to num2
+
+- make the calculator containers in  css and html, one for the previous result, and one for the current calculation.
+numbers 0 - 9
+=
+C CE
+ANS
+* - + /
+
+- give each of the containers in html an ID and a class
+
+- place these on the left side of the calculator
+
+- make a display with two nested displays, entryDisplay and ansDisplay
+
+- divide the JS file into the following categories:
+	- variable declarations
+		* node declarations		
+			- numbers
+			- operators
+			- others
+		* other global variables
+	- functions
+		* utility functions
+		* controller functions
+	- DOM generation
+		- node creation
+		- listeners
+---------------------------------------------------
+
+- connect all the buttons to listeners and variables
+
+- make object variables called num1, num2, operator, and, currentNum.
+
+make it so that when you press numbers, that they keep concatenating to num1, and that then currentNum is displayed
+
+- make a variable called testVar, which is num1 + operator + num2
+
+- make a function called switchNum, which toggles the other num variable as = currentNum
+
+- make a function called operator, which, for now, invokes switchNum when an operator is pressed
+
+- remove all the operator containers
+
+- make an object called "operators" with the following properties:
+	id:
+	textcontent:
+
+make a loop that creates and appends the operators to the right side of the calculator, and gives them all the class "operator" and gives them IDs and textcontent based on the previous object, and gives them listeners that refer to function${id}

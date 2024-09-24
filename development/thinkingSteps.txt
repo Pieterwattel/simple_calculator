@@ -88,7 +88,7 @@ make it able to handle errors
 
 - make a function called errorCheckEquals, errorCheckOperator, errorCheckNumber which will contain all the checks for each.
 
-- make functions that check for error-inducing behavior.
+- make functions that check for error-inducing behavior, add them to the controller functions to first check for errors
 	
 	- operator:
 		* was the operator pressed without any previous content?
