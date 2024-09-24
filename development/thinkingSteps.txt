@@ -1,0 +1,126 @@
+- part 1:
+make it so that when you press numbers they are added to num1, but when you press an operator they are added to num2
+
+- make the calculator containers in  css and html, one for the previous result, and one for the current calculation.
+numbers 0 - 9
++ - * /
+=
+C CE
+ANS
+
+- give each of the containers in html an ID and a class
+
+- divide the JS file into the following categories:
+	- variable declarations
+		* node declarations		
+			- numbers
+			- operators
+			- others
+		* other global variables
+	- functions
+		* utility functions
+		* controller functions
+	- DOM generation
+		- node creation
+		- listeners
+---------------------------------------------------
+
+- connect all the buttons to listeners and variables
+
+- make object variables called num1, num2, operator, and, currentNum.
+
+make it so that when you press numbers, that they keep concatenating to num1, and that then currentNum is displayed
+
+- make a variable called testVar, which is num1 + operator + num2
+
+- make a function called switchNum, which toggles the other num variable as = currentNum
+
+- make a function called operator, which, for now, invokes switchNum when an operator is pressed
+
+- version 1.1:
+make num1, operator, num2 always displayed on the display
+
+- make a function called updateDisplay, which makes the textcontent of the display be:
+num1 " " operator " " num2
+
+add to the 
+
+
+- part 2:
+make a calculator that works with 2 variables and an operator, which log in the console.
+make the calculator able to do 2 + 2 = 4
+
+- let the function "operator" take the operator as a parameter, and calls the corresponding operator function. see if you can just log the function name by calling it with different parameters
+
+- make functions for:
+add
+subtract
+multiply
+divide
+
+at the end of every operator function, change ans to the result
+
+	* they save the result in variable ans
+
+- write an calcSimpleAnswer function, that just has to work with "num_operator_num"
+
+- write a function called clearEntry
+
+- connect clearEntry to calcAnswer
+
+- write function displayResult, which displays ans
+
+
+extra: add a C button to clear all variables
+add CE to clear num1, num2, currentNum variables
+
+- part 3: add the ans
+up until now the ans has been displayed only as a console log.
+display it underneath the calculation, in a slightly different color
+
+at the end of every operator function, change ans to the result
+
+if ans is pressed let currentnum
+
+
+- part 4:
+make it able to handle errors
+
+- make a function called errorCheckEquals, errorCheckOperator, errorCheckNumber which will contain all the checks for each.
+
+- make functions that check for error-inducing behavior.
+	
+	- operator:
+		* was the operator pressed without any previous content?
+			- is there a previous ans, fill in ANS, otherwise
+			- remove the operator
+		* are there 2 operators and a num1 and num2?
+			- calculate the previous result already
+		* is there only num1, change the operator value
+		* are num1, num2, and operator all not empty? run calcAnswer()
+	- equals:
+		* is there any content on the screen, if not, return 0
+		* is there only a number on the screen, then return the number
+	- number:
+		* is the total length of the calculation bigger than the screen 			length, don't allow the new number
+
+- make a function called errorCheck calcAnswer
+	
+
+
+
+
+style the calculator exactly like an oldschool calculator, with some shine on the keys
+and a slight curve on the sides
+
+-------
+
+make it so that you can do a calculation
+
+
+screen should always display:
+
+array[2] - operator - array[3]
+
+array[1]
+
