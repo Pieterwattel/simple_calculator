@@ -72,16 +72,26 @@ let ans = ""
 
 let testVar = num1 + operator + num2
 
+
 //#endregion
 //#endregion
 //#region   > Functions 
 //#region       >> Utility Functions
-function logId (e = "unknown"){
+function logId (e){
     console.log(`hi! is seems that the ${e.target.id} item was clicked`)
 }
 
-function getId (e) {
+function getId (e){
     return e.target.id
+}
+
+function logNum (e){
+    console.log(`hi! is seems that the ${e.target.id.replace('btn', "")} item was clicked`)
+}
+
+
+function getNum (e){
+    return e.target.id.replace('btn', "")
 }
 
 
@@ -104,7 +114,7 @@ btnFrameFunc.childNodes.forEach(child => {
 });
 
 btnFrameNum.childNodes.forEach(child => {
-    child.addEventListener("click", logId);
+    child.addEventListener("click", getNum);
 });
 
 dynamicBtnFrame.childNodes.forEach(child => {

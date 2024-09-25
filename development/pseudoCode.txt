@@ -37,16 +37,19 @@ display
 
 - make object variables called num1, num2, operator, and, currentNum.
 
-make it so that when you press numbers, that they keep concatenating to num1, and that then currentNum is displayed
+make it so that when you press numbers, that they keep concatenating to num1, which is continually displayed
 	- get a log that displays the ID of the button that was pressed
 		- make a function that triggers when any button is pressed
 		- make a function called getBtnId and put it in that function
+		
+	make a log that gives the value of each number
 			
 		
 
 - make a variable called testVar, which is num1 + operator + num2
 
-- make a function called switchNum, which toggles the other num variable as = currentNum
+- make a function called switchNum, which switches between currentNum = num1 and
+currentNum = num2
 
 - make a function called operator, which, for now, invokes switchNum when an operator is pressed
 
