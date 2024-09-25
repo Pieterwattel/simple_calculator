@@ -3,68 +3,86 @@
 >>>INDEX<<<
 ===========
 
-> VARIABLE DECLARATIONS
-    >> NODE DECLARATIONS		
-        >>> NUMBERS
-        >>> OPERATORS
-        >>> OTHER NODE DECLARATION
-    >> OTHER GLOBAL VARIABLES
-> FUNCTIONS
-    >> UTILITY FUNCTIONS
-    >> CONTROLLER FUNCTIONS
-> DOM GENERATION
-    >> NODE CREATION
-    >> LISTENERS
+> Variable Declarations
+    >> Node Declarations		
+        >>> Numbers
+        >>> Operators
+        >>> Functional
+    >> Other Global Variables
+> Functions
+    >> Utility Functions
+    >> Controller Functions
+> Dom Generation
+    >> Node Creation
+    >> Listeners
 */
 
-//> VARIABLE DECLARATIONS
-//#region
-//    >> NODE DECLARATIONS	
-//#region
-//        >>> NUMBERS
-//#region
+//#region   > Variable Declarations
+//#region       >> Node Declarations	
+//#region           >>> Numbers
+const numBtns = {}
+for (let i = 9; i >= 0; i--){
+    numBtns[i] = document.getElementById(`btn${i}`);
+}
+//#endregion
+//#region           >>> Operators
+
+const btnAdd      = document.getElementById(`btnAdd`)
+const btnSubtract = document.getElementById(`btnSubtract`)
+const btnMultiply = document.getElementById(`btnMultiply`)
+const btnDivide   = document.getElementById(`btnDivide`)
+
 
 
 //#endregion
-//        >>> OPERATORS
-//#region
-
-
-//#endregion
-//        >>> OTHER NODE DECLARATIONS
-//#region
-
+//#region           >>> Other Button Declarations
+const btnEquals      = document.getElementById(`btnEquals`)
+const btnAns = document.getElementById(`btnAns`)
+const btnClear = document.getElementById(`btnClear`)
+const btnClearEntry   = document.getElementById(`btnClearEntry`)
 
 //#endregion
-//#endregion
-//    >> OTHER GLOBAL VARIABLES
-//#region
+//#region           >>> Other Node Declarations
+const contentBase = document.getElementById(`contentBase`)
+    const calculatorFrame = document.getElementById(`calculatorFrame`)
 
+        const displayFrame = document.getElementById(`displayFrame`)
+            const displayTop = document.getElementById(`displayTop`)
+            const displayBottom = document.getElementById(`displayBottom`)
 
-//#endregion
-//#endregion
-//> FUNCTIONS
-//#region
-//    >> UTILITY FUNCTIONS
-//#region
+        const btnsFrameMain = document.getElementById(`btnsFrameMain`)
+            const staticBtnFrame = document.getElementById(`staticBtnFrame`)
+                const btnFrameFunc = document.getElementById(`btnFrameFunc`)
+                const btnFrameNum = document.getElementById(`btnFrameNum`)
 
+            const dynamicBtnFrame = document.getElementById(`dynamicBtnFrame`)
 
-//#endregion
-//    >> CONTROLLER FUNCTIONS
-//#region
+//dynamicBtnFrame.style.backgroundColor= "rebeccapurple";
 
 
 //#endregion
 //#endregion
-//> DOM GENERATION
-//#region
-//    >> NODE CREATION
-//#region
+//#region       >> Other Global Variables
 
 
 //#endregion
-//    >> LISTENERS
-//#region
+//#endregion
+//#region   > Functions 
+//#region       >> Utility Functions
+
+
+//#endregion
+//#region       >> Controller Functions
+
+
+//#endregion
+//#endregion
+//#region   > Dom Generation
+//#region       >> NODE CREATION
+
+
+//#endregion
+//#region       >> LISTENERS
 
 
 //#endregion
