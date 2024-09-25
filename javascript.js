@@ -64,7 +64,9 @@ const contentBase = document.getElementById(`contentBase`)
 //#endregion
 //#region       >> Other Global Variables
 
-// variables that hold calculation data
+// variables that hold calculation data:
+let currentNum = ""
+
 let num1 = ""
 let num2 = ""
 let operator = ""
