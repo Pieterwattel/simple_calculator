@@ -70,6 +70,8 @@ let num2 = ""
 let operator = ""
 let ans = ""
 
+let testVar = num1 + operator + num2
+
 //#endregion
 //#endregion
 //#region   > Functions 
@@ -81,6 +83,8 @@ function logId (e = "unknown"){
 function getId (e) {
     return e.target.id
 }
+
+
 
 //#endregion
 //#region       >> Controller Functions
