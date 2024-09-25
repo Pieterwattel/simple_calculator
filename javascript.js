@@ -60,11 +60,11 @@ const contentBase = document.getElementById(`contentBase`)
 
 //#endregion
 //#endregion
-//#region       >> Other Global Variables
+//#region       >> Global Variables
 
 // variables that hold calculation data:
-let num1 = "num1"
-let num2 = "num2"
+let num1 = ""
+let num2 = ""
 let operator = ""
 let ans = ""
 
@@ -96,9 +96,8 @@ function getNum (e){
     return e.target.id.replace('btn', "")
 }
 
-function concatCurrentNum (e){
-    let newNum = getNum(e)
-    return currentNum.concat(newNum)
+function concatCurrentNum (num){
+    currentNum = currentNum.concat(num)
 }
 
 function switchCurrentNum (){
@@ -111,7 +110,16 @@ function switchCurrentNum (){
     }
 }
 
+function updateNum () {
+    if (numSwitchFlag == true){
+        num1 = currentNum
+    } else if (numSwitchFlag == false){
+        num2 = currentNum
+    }
+}
+
 function updateDisplay (){
+    updateNum()
     console.log (num1 + " " + operator + " " + num2)
 }
 
@@ -119,16 +127,18 @@ function updateDisplay (){
 //#endregion
 //#region       >> Controller Functions
 function operatorPress () {
-    switchCurrentNum()
-    updateDisplay ()
+    switchCurrentNum();
+    updateDisplay ();
 }
 
-function numberPress () {
-    updateDisplay ()
+function numberPress (e) {
+    let newNum = getNum(e);
+    concatCurrentNum (newNum);
+    updateDisplay ();
 }
 
 function functionPress () {
-    updateDisplay ()
+    updateDisplay ();
 }
 
 //#endregion
