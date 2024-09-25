@@ -31,7 +31,9 @@ place them on the right side
 		- listeners
 ---------------------------------------------------
 
-- connect all the buttons to listeners and variables
+- connect to listeners and variables:
+buttons
+display
 
 - make object variables called num1, num2, operator, and, currentNum.
 

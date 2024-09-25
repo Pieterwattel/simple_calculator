@@ -35,14 +35,14 @@ const btnDivide   = document.getElementById(`btnDivide`)
 
 
 //#endregion
-//#region           >>> Other Button Declarations
+//#region           >>> Other Buttons
 const btnEquals      = document.getElementById(`btnEquals`)
 const btnAns = document.getElementById(`btnAns`)
 const btnClear = document.getElementById(`btnClear`)
 const btnClearEntry   = document.getElementById(`btnClearEntry`)
 
 //#endregion
-//#region           >>> Other Node Declarations
+//#region           >>> Containers
 const contentBase = document.getElementById(`contentBase`)
     const calculatorFrame = document.getElementById(`calculatorFrame`)
 
@@ -64,6 +64,11 @@ const contentBase = document.getElementById(`contentBase`)
 //#endregion
 //#region       >> Other Global Variables
 
+// variables that hold calculation data
+let num1 = ""
+let num2 = ""
+let operator = ""
+let ans = ""
 
 //#endregion
 //#endregion
