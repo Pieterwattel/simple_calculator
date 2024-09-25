@@ -44,6 +44,10 @@ make it so that when you press numbers, that they keep concatenating to num1, wh
 		
 	make a log that gives the value of each number
 
+
+- make a function called switchCurrentNum, which switches between currentNum = num1 and
+currentNum = num2
+
 make a function that takes event, and first retrieves the value, and then concatenates that to num1
 
 make it so that you can use currentNum instead of num1
@@ -51,9 +55,6 @@ make it so that you can use currentNum instead of num1
 		
 
 - make a variable called testVar, which is num1 + operator + num2
-
-- make a function called switchNum, which switches between currentNum = num1 and
-currentNum = num2
 
 - make a function called operator, which, for now, invokes switchNum when an operator is pressed
 

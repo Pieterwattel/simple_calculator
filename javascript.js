@@ -63,12 +63,14 @@ const contentBase = document.getElementById(`contentBase`)
 //#region       >> Other Global Variables
 
 // variables that hold calculation data:
-let num1 = ""
-let num2 = ""
+let num1 = "num1"
+let num2 = "num2"
 let operator = ""
 let ans = ""
 
-let currentNum
+let currentNum = num1
+
+numSwitchFlag = true
 
 let testVar = num1 + operator + num2
 
@@ -94,15 +96,24 @@ function getNum (e){
     return e.target.id.replace('btn', "")
 }
 
+function concatCurrentNum (e){
+    let newNum = getNum(e)
+    return currentNum.concat(newNum)
+}
+
+function switchCurrentNum (){
+    if (numSwitchFlag == true){
+        currentNum = num2
+        numSwitchFlag = false
+    } else if (numSwitchFlag == false){
+        currentNum = num1
+        numSwitchFlag = true
+    }
+}
 
 
 //#endregion
 //#region       >> Controller Functions
-function concatCurrentNum (e){
-    let newNum = getNum(e)
-    console.log(currentNum.concat(newNum))
-    
-}
 
 //#endregion
 //#endregion
