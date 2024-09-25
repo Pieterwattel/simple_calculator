@@ -32,8 +32,6 @@ const btnSubtract = document.getElementById(`btnSubtract`)
 const btnMultiply = document.getElementById(`btnMultiply`)
 const btnDivide   = document.getElementById(`btnDivide`)
 
-
-
 //#endregion
 //#region           >>> Other Buttons
 const btnEquals      = document.getElementById(`btnEquals`)
@@ -76,7 +74,13 @@ let ans = ""
 //#endregion
 //#region   > Functions 
 //#region       >> Utility Functions
+function logId (e = "unknown"){
+    console.log(`hi! is seems that the ${e.target.id} item was clicked`)
+}
 
+function getId (e) {
+    return e.target.id
+}
 
 //#endregion
 //#region       >> Controller Functions
@@ -91,6 +95,17 @@ let ans = ""
 //#endregion
 //#region       >> LISTENERS
 
+btnFrameFunc.childNodes.forEach(child => {
+    child.addEventListener("click", logId);
+});
+
+btnFrameNum.childNodes.forEach(child => {
+    child.addEventListener("click", logId);
+});
+
+dynamicBtnFrame.childNodes.forEach(child => {
+    child.addEventListener("click", logId);
+});
 
 //#endregion
 //#endregion
