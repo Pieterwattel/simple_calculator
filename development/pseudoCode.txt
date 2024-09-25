@@ -52,9 +52,9 @@ currentNum = num2
 make it so that you can use currentNum instead of num1
 			
 
-- make a function called operator, which, for now, invokes switchCurrentNum when an operator is pressed		
+- make a function called operator, which, for now, invokes switchCurrentNum when an operator is pressed
 
-- add 
+add the different operators
 
 - make a variable called testDisplay, which is num1 + operator + num2
 - make a function called updateDisplay, which is
