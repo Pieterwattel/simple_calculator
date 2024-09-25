@@ -48,15 +48,20 @@ make it so that when you press numbers, that they keep concatenating to num1, wh
 - make a function called switchCurrentNum, which switches between currentNum = num1 and
 currentNum = num2
 
-make a function that takes event, and first retrieves the value, and then concatenates that to num1
 
 make it so that you can use currentNum instead of num1
 			
-		
 
-- make a variable called testVar, which is num1 + operator + num2
+- make a function called operator, which, for now, invokes switchCurrentNum when an operator is pressed		
 
-- make a function called operator, which, for now, invokes switchNum when an operator is pressed
+- add 
+
+- make a variable called testDisplay, which is num1 + operator + num2
+- make a function called updateDisplay, which is
+num1 + operator + num2
+
+make a function called addSpaces, which checks if operator and num2 are empty. If not, it adds an extra space.
+
 
 - remove all the operator containers
 

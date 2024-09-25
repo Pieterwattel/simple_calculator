@@ -111,9 +111,25 @@ function switchCurrentNum (){
     }
 }
 
+function updateDisplay (){
+    console.log (num1 + " " + operator + " " + num2)
+}
+
 
 //#endregion
 //#region       >> Controller Functions
+function operatorPress () {
+    switchCurrentNum()
+    updateDisplay ()
+}
+
+function numberPress () {
+    updateDisplay ()
+}
+
+function functionPress () {
+    updateDisplay ()
+}
 
 //#endregion
 //#endregion
@@ -125,15 +141,15 @@ function switchCurrentNum (){
 //#region       >> LISTENERS
 
 btnFrameFunc.childNodes.forEach(child => {
-    child.addEventListener("click", logId);
+    child.addEventListener("click", functionPress);
 });
 
 btnFrameNum.childNodes.forEach(child => {
-    child.addEventListener("click", concatCurrentNum);
+    child.addEventListener("click", numberPress);
 });
 
 dynamicBtnFrame.childNodes.forEach(child => {
-    child.addEventListener("click", logId);
+    child.addEventListener("click", operatorPress);
 });
 
 //#endregion
