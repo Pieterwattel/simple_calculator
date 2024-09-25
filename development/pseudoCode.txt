@@ -43,6 +43,10 @@ make it so that when you press numbers, that they keep concatenating to num1, wh
 		- make a function called getBtnId and put it in that function
 		
 	make a log that gives the value of each number
+
+make a function that takes event, and first retrieves the value, and then concatenates that to num1
+
+make it so that you can use currentNum instead of num1
 			
 		
 

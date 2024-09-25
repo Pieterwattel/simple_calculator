@@ -63,12 +63,12 @@ const contentBase = document.getElementById(`contentBase`)
 //#region       >> Other Global Variables
 
 // variables that hold calculation data:
-let currentNum = ""
-
 let num1 = ""
 let num2 = ""
 let operator = ""
 let ans = ""
+
+let currentNum
 
 let testVar = num1 + operator + num2
 
@@ -98,7 +98,11 @@ function getNum (e){
 
 //#endregion
 //#region       >> Controller Functions
-
+function concatCurrentNum (e){
+    let newNum = getNum(e)
+    console.log(currentNum.concat(newNum))
+    
+}
 
 //#endregion
 //#endregion
@@ -114,7 +118,7 @@ btnFrameFunc.childNodes.forEach(child => {
 });
 
 btnFrameNum.childNodes.forEach(child => {
-    child.addEventListener("click", getNum);
+    child.addEventListener("click", concatCurrentNum);
 });
 
 dynamicBtnFrame.childNodes.forEach(child => {
