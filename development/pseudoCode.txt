@@ -87,6 +87,7 @@ at the end of every calculate function, change the first ans to the result
 
 - add the ANS variable to displayResult
 
+- make a getfunction entry for the other function buttons
 - write a function called clearEntry
 	*changes num1, num2 and operator into ""
 

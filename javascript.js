@@ -92,8 +92,8 @@ let otherBtns = [
     sign: '=' ,   
     },
     {
-    id: 'btnAns' ,
-    sign: 'ANS',   
+    id: 'btnans' ,
+    sign: 'ans',   
     } ,
     {
     id: 'btnClear' ,
@@ -122,7 +122,7 @@ otherBtns.forEach ((prop) => {
 let num1 = ""
 let num2 = ""
 let operator = ""
-const ANS = []
+let ans = ""
 
 let displayNum1 = ""
 let displayNum2 = ""
@@ -189,32 +189,52 @@ function getFunction(e){
         calculate(num1, operator, num2)
         displayAns()
         break;
-        
+        case "ans": 
+        break;
+
+        case "C": 
+        num1 = ""
+        num2 = ""
+        operator = ""
+        ans = ""
+        break;
+
+        case "CE": 
+        clearEntry()
+        break;
+
         default: 
-        console.log("other function pressed : " + operator)
+        alert ("Unknown function button presseds")
     }
+}
+
+function clearEntry(){
+    num1 = ""
+    num2 = ""
+    operator = ""
+    updateDisplay()
 }
 
 function calculate (value1, operator, value2){
     switch (operator){
         case (operatorObject[0].sign):
 //          addition
-            ANS.unshift(value1 + value2)
+            ans = (value1 + value2)
             break;
 
         case (operatorObject[1].sign):
 //          subtraction
-            ANS.unshift(value1 - value2)
+            ans = (value1 - value2)
             break;
 
         case (operatorObject[2].sign):
 //          multiplication
-            ANS.unshift(value1 * value2)
+            ans = (value1 * value2)
             break;
 
         case (operatorObject[4].sign):
 //          division
-            ANS.unshift(value1 / value2)
+            ans = (value1 / value2)
             break;
 
         default:
@@ -227,7 +247,7 @@ function displayEntry(){
 }
 
 function displayAns(){
-    displayBottom.textContent = ANS[0]
+    displayBottom.textContent = ans
 }
 
 //#endregion

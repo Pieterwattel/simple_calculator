@@ -128,3 +128,8 @@ array[1]
 bonus:
 take away as many global variables as possible
 make everything const of possible
+
+error fixing:
+make C not delete ANS entries again and again, on the currently displayed result.
+maybe if ANS[0] == displayBottom.textContent  remove first element?
+make sure the that ANS only displays the current calculated value
