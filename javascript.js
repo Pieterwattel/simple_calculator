@@ -173,15 +173,27 @@ function addSpaces(){
 }
 
 function calculate (value1, operator, value2){
-    console.log("-x-x-x-calculating...-x-x-x-")
-}
+    switch (operator.trim()){
+        case (operatorObject[0].sign):
+            console.log("plus")
+            break;
 
-function updateDisplay (){
-    updateNum()
-    addSpaces()
-    console.log (num1 + operator + num2)
-}
+        case (operatorObject[1].sign):
+            console.log("subtract")
+            break;
 
+        case (operatorObject[2].sign):
+            console.log("multiply")
+            break;
+
+        case (operatorObject[4].sign):
+            console.log("divide")
+            break;
+
+        default:
+            console.log(operator + " not working yet " + operatorObject[0].sign)
+    }
+}
 
 //#endregion
 //#region       >> Controller Functions
@@ -208,6 +220,14 @@ function functionPress (e) {
     }
     updateDisplay ();
 }
+
+
+function updateDisplay (){
+    updateNum()
+    addSpaces()
+    console.log (num1 + operator + num2)
+}
+
 
 //#endregion
 //#endregion
