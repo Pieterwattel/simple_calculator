@@ -210,6 +210,14 @@ function calculate (value1, operator, value2){
     }
 }
 
+function displayEntry(){
+    displayTop.textContent = displayNum1 + displayOperator + displayNum2
+}
+
+function displayAns(){
+    displayBottom.textContent = ANS[0]
+}
+
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
@@ -229,6 +237,7 @@ function functionPress (e) {
     switch (e.target.textContent){
         case "=": 
         calculate(num1, operator, num2)
+        displayAns()
         break;
         
         default: 
@@ -239,7 +248,8 @@ function functionPress (e) {
 function updateDisplay (){
     updateNum()
     addSpaces()
-    console.log (displayNum1 + displayOperator + displayNum2)
+    displayEntry()
+    displayAns()
 }
 
 

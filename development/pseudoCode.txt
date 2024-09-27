@@ -80,6 +80,9 @@ divide
 
 make ans into an array.
 
+put the calculation into the displayTop
+put the ANS in the displayBottom
+
 at the end of every calculate function, change the first ans to the result
 
 - add the ANS variable to displayResult
