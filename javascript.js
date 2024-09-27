@@ -75,11 +75,10 @@ let operatorObject = [
     } ,
 ]
 
-console.log(operatorObject.length)
-
 operatorObject.forEach ((prop) => {
     let btn = document.createElement("button")
     btnFrameOperator.appendChild(btn)
+    btn.setAttribute("id" , prop.id)
     btn.textContent = prop.sign
 })
 
@@ -168,7 +167,8 @@ function updateDisplay (){
 
 //#endregion
 //#region       >> Controller Functions
-function operatorPress () {
+function operatorPress (e) {
+    console.log(getId(e))
     switchCurrentNum();
     updateDisplay ();
 }
