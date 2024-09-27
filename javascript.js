@@ -163,9 +163,19 @@ function updateNum () {
     }
 }
 
+function addSpaces(){
+    if (num1 != "" && num1[num1.length-1] != " "){
+        num1 += " "
+    }
+    if (operator != "" && operator[operator.length-1] != " "){
+        operator += " "
+    }
+}
+
 function updateDisplay (){
     updateNum()
-    console.log (num1 + " " + operator + " " + num2)
+    addSpaces()
+    console.log (num1 + operator + num2)
 }
 
 
