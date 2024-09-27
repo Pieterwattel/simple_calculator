@@ -183,7 +183,6 @@ function updateDisplay (){
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
-    console.log(getId(e))
     switchCurrentNum();
     updateDisplay ();
 }
