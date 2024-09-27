@@ -178,9 +178,21 @@ function addSpaces(){
     }
 }
 
-function makeNumber(value){
+function makeEntryNumber(value){
     num1 = parseInt(num1)
     num2 = parseInt(num2)
+}
+
+function getFunction(e){
+    switch (e.target.textContent){
+        case "=": 
+        calculate(num1, operator, num2)
+        displayAns()
+        break;
+        
+        default: 
+        console.log("other function pressed : " + operator)
+    }
 }
 
 function calculate (value1, operator, value2){
@@ -233,16 +245,9 @@ function numberPress (e) {
 }
 
 function functionPress (e) {
-    makeNumber()
-    switch (e.target.textContent){
-        case "=": 
-        calculate(num1, operator, num2)
-        displayAns()
-        break;
-        
-        default: 
-        console.log("other function pressed : " + operator)
-    }}
+    makeEntryNumber()
+    getFunction(e)
+}
 
 
 function updateDisplay (){
