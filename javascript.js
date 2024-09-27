@@ -128,8 +128,6 @@ let currentNum = num1
 
 numSwitchFlag = true
 
-let testDisplay = num1 + operator + num2
-
 
 //#endregion
 //#endregion
@@ -145,11 +143,6 @@ function getId (e){
 
 function logNum (e){
     console.log(`hi! is seems that the ${e.target.id.replace('btn', "")} item was clicked`)
-}
-
-
-function getNum (e){
-    return e.target.id.replace('btn', "")
 }
 
 function switchCurrentNum (){
@@ -180,11 +173,12 @@ function updateDisplay (){
 //#region       >> Controller Functions
 function operatorPress (e) {
     switchCurrentNum();
+    operator = e.target.textContent
     updateDisplay ();
 }
 
 function numberPress (e) {
-    let newNum = getNum(e);
+    let newNum = e.target.id.replace('btn', "")
     currentNum = currentNum.concat(newNum)
     updateDisplay ();
 }
