@@ -124,3 +124,7 @@ array[2] - operator - array[3]
 
 array[1]
 
+
+bonus:
+take away as many global variables as possible
+make everything const of possible

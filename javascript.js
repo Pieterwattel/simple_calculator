@@ -93,7 +93,7 @@ let otherBtns = [
     },
     {
     id: 'btnAns' ,
-    sign: 'Ans',   
+    sign: 'ANS',   
     } ,
     {
     id: 'btnClear' ,
@@ -122,7 +122,7 @@ otherBtns.forEach ((prop) => {
 let num1 = ""
 let num2 = ""
 let operator = ""
-let ans = ""
+const ANS = []
 
 let displayNum1 = ""
 let displayNum2 = ""
@@ -178,26 +178,31 @@ function addSpaces(){
     }
 }
 
+function makeNumber(value){
+    num1 = parseInt(num1)
+    num2 = parseInt(num2)
+}
+
 function calculate (value1, operator, value2){
     switch (operator){
         case (operatorObject[0].sign):
 //          addition
-            ans = value1 + value2
+            ANS.unshift(value1 + value2)
             break;
 
         case (operatorObject[1].sign):
 //          subtraction
-            ans = value1 - value2
+            ANS.unshift(value1 - value2)
             break;
 
         case (operatorObject[2].sign):
 //          multiplication
-            ans = value1 * value2
+            ANS.unshift(value1 * value2)
             break;
 
         case (operatorObject[4].sign):
 //          division
-            ans = value1 / value2
+            ANS.unshift(value1 / value2)
             break;
 
         default:
@@ -220,6 +225,7 @@ function numberPress (e) {
 }
 
 function functionPress (e) {
+    makeNumber()
     switch (e.target.textContent){
         case "=": 
         calculate(num1, operator, num2)
