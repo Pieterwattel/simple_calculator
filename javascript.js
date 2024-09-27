@@ -128,7 +128,7 @@ let currentNum = num1
 
 numSwitchFlag = true
 
-let testVar = num1 + operator + num2
+let testDisplay = num1 + operator + num2
 
 
 //#endregion
@@ -150,10 +150,6 @@ function logNum (e){
 
 function getNum (e){
     return e.target.id.replace('btn', "")
-}
-
-function concatCurrentNum (num){
-    currentNum = currentNum.concat(num)
 }
 
 function switchCurrentNum (){
@@ -189,7 +185,7 @@ function operatorPress (e) {
 
 function numberPress (e) {
     let newNum = getNum(e);
-    concatCurrentNum (newNum);
+    currentNum = currentNum.concat(newNum)
     updateDisplay ();
 }
 
