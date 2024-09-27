@@ -188,15 +188,14 @@ function getFunction(e){
         case "=": 
         calculate(num1, operator, num2)
         displayAns()
+        switchCurrentNum();
         break;
+
         case "ans": 
         break;
 
         case "C": 
-        num1 = ""
-        num2 = ""
-        operator = ""
-        ans = ""
+        clearAll()
         break;
 
         case "CE": 
@@ -213,6 +212,15 @@ function clearEntry(){
     num2 = ""
     operator = ""
     currentNum = ""
+    updateDisplay()
+}
+
+function clearAll(){
+    num1 = ""
+    num2 = ""
+    operator = ""
+    currentNum = ""
+    ans = ""
     updateDisplay()
 }
 
@@ -233,7 +241,7 @@ function calculate (value1, operator, value2){
             ans = (value1 * value2)
             break;
 
-        case (operatorObject[4].sign):
+        case (operatorObject[3].sign):
 //          division
             ans = (value1 / value2)
             break;
