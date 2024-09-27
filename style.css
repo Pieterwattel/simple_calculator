@@ -1,11 +1,26 @@
+* {
+    background-color: black;
+    color: white;
+}
+
 div,
 span {
     border: 3px solid brown;
     padding: 5px;
 }
 
+#body {
+    padding: 0px;
+    margin: 0px;
+}
+
 #btnsFrameMain {
     display: flex;
     flex:1;
+}
+
+#contentBase {
+    height: 98.3vh;
+    border-radius: 40px;
 }
 

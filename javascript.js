@@ -18,28 +18,7 @@
 */
 
 //#region   > Variable Declarations
-//#region       >> Node Declarations	
-//#region           >>> Numbers
-const numBtns = {}
-for (let i = 9; i >= 0; i--){
-    numBtns[i] = document.getElementById(`btn${i}`);
-}
-//#endregion
-//#region           >>> Operators
-
-const btnAdd      = document.getElementById(`btnAdd`)
-const btnSubtract = document.getElementById(`btnSubtract`)
-const btnMultiply = document.getElementById(`btnMultiply`)
-const btnDivide   = document.getElementById(`btnDivide`)
-
-//#endregion
-//#region           >>> Other Buttons
-const btnEquals      = document.getElementById(`btnEquals`)
-const btnAns = document.getElementById(`btnAns`)
-const btnClear = document.getElementById(`btnClear`)
-const btnClearEntry   = document.getElementById(`btnClearEntry`)
-
-//#endregion
+//#region       >> Node Declarations
 //#region           >>> Containers
 const contentBase = document.getElementById(`contentBase`)
     const calculatorFrame = document.getElementById(`calculatorFrame`)
@@ -53,10 +32,73 @@ const contentBase = document.getElementById(`contentBase`)
                 const btnFrameFunc = document.getElementById(`btnFrameFunc`)
                 const btnFrameNum = document.getElementById(`btnFrameNum`)
 
-            const dynamicBtnFrame = document.getElementById(`dynamicBtnFrame`)
+            const btnFrameOperator = document.getElementById(`btnFrameOperator`)
 
-//dynamicBtnFrame.style.backgroundColor= "rebeccapurple";
+//btnFrameOperator.style.backgroundColor= "rebeccapurple";
 
+
+//#endregion	
+//#region           >>> Numbers
+const numBtns = {}
+for (let i = 9; i >= 0; i--){
+    numBtns[i] = document.getElementById(`btn${i}`);
+}
+//#endregion
+//#region           >>> Operators
+/*
+const btnAdd      = document.getElementById(`btnAdd`)
+const btnSubtract = document.getElementById(`btnSubtract`)
+const btnMultiply = document.getElementById(`btnMultiply`)
+const btnDivide   = document.getElementById(`btnDivide`)
+*/
+
+let operatorObject = [
+    {
+    name: 'Add' ,
+    id: 'btnAdd' ,
+    sign: '+' ,   
+    },
+    {
+    name: 'Subtract' ,
+    id: 'btnSubtract' ,
+    sign: '-',   
+    } ,
+    {
+    name: 'Multiply' ,
+    id: 'btnMultiply' ,
+    sign: '*',   
+    } ,
+    {
+    name: 'Divide' ,
+    id: 'btnDivide' ,
+    sign: '/',   
+    } ,
+]
+
+console.log(operatorObject.length)
+
+operatorObject.forEach ((prop) => {
+    let btn = document.createElement("button")
+    btnFrameOperator.appendChild(btn)
+    btn.textContent = prop.sign
+})
+
+
+// empty operator, for later additions
+/*
+    {
+    name: '' ,
+    id: '' ,
+    value: '',   
+    } ,
+*/
+
+//#endregion
+//#region           >>> Other Buttons
+const btnEquals      = document.getElementById(`btnEquals`)
+const btnAns = document.getElementById(`btnAns`)
+const btnClear = document.getElementById(`btnClear`)
+const btnClearEntry   = document.getElementById(`btnClearEntry`)
 
 //#endregion
 //#endregion
@@ -158,7 +200,7 @@ btnFrameNum.childNodes.forEach(child => {
     child.addEventListener("click", numberPress);
 });
 
-dynamicBtnFrame.childNodes.forEach(child => {
+btnFrameOperator.childNodes.forEach(child => {
     child.addEventListener("click", operatorPress);
 });
 

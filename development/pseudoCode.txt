@@ -52,6 +52,12 @@ currentNum = num2
 make it so that you can use currentNum instead of num1
 			
 
+make an object with the operators
+
+make the operators appear on the DOM
+
+make the ID of the pressed operator appear
+
 - make a function called operator, which, for now, invokes switchCurrentNum when an operator is pressed
 
 add the different operators
