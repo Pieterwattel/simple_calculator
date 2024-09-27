@@ -18,7 +18,7 @@
 */
 
 //#region   > Variable Declarations
-//#region       >> Node Declarations
+//#region       >> Node declaration / generation
 //#region           >>> Containers
 const contentBase = document.getElementById(`contentBase`)
     const calculatorFrame = document.getElementById(`calculatorFrame`)
@@ -45,31 +45,21 @@ for (let i = 9; i >= 0; i--){
 }
 //#endregion
 //#region           >>> Operators
-/*
-const btnAdd      = document.getElementById(`btnAdd`)
-const btnSubtract = document.getElementById(`btnSubtract`)
-const btnMultiply = document.getElementById(`btnMultiply`)
-const btnDivide   = document.getElementById(`btnDivide`)
-*/
 
 let operatorObject = [
     {
-    name: 'Add' ,
     id: 'btnAdd' ,
     sign: '+' ,   
     },
     {
-    name: 'Subtract' ,
     id: 'btnSubtract' ,
     sign: '-',   
     } ,
     {
-    name: 'Multiply' ,
     id: 'btnMultiply' ,
     sign: '*',   
     } ,
     {
-    name: 'Divide' ,
     id: 'btnDivide' ,
     sign: '/',   
     } ,
@@ -79,6 +69,7 @@ operatorObject.forEach ((prop) => {
     let btn = document.createElement("button")
     btnFrameOperator.appendChild(btn)
     btn.setAttribute("id" , prop.id)
+    btn.classList.add("btn")
     btn.textContent = prop.sign
 })
 
@@ -94,10 +85,34 @@ operatorObject.forEach ((prop) => {
 
 //#endregion
 //#region           >>> Other Buttons
-const btnEquals      = document.getElementById(`btnEquals`)
-const btnAns = document.getElementById(`btnAns`)
-const btnClear = document.getElementById(`btnClear`)
-const btnClearEntry   = document.getElementById(`btnClearEntry`)
+
+let otherBtns = [
+    {
+    id: 'btnEquals' ,
+    sign: '=' ,   
+    },
+    {
+    id: 'btnAns' ,
+    sign: 'Ans',   
+    } ,
+    {
+    id: 'btnClear' ,
+    sign: 'C',   
+    } ,
+    {
+    id: 'btnClearEntry' ,
+    sign: 'CE',   
+    } ,
+]
+
+otherBtns.forEach ((prop) => {
+    let btn = document.createElement("button")
+    btnFrameFunc.appendChild(btn)
+    btn.setAttribute("id" , prop.id)
+    btn.classList.add("btn")
+    btn.textContent = prop.sign
+})
+
 
 //#endregion
 //#endregion
@@ -186,10 +201,6 @@ function functionPress () {
 //#endregion
 //#endregion
 //#region   > Dom Generation
-//#region       >> NODE CREATION
-
-
-//#endregion
 //#region       >> LISTENERS
 
 btnFrameFunc.childNodes.forEach(child => {
