@@ -172,6 +172,10 @@ function addSpaces(){
     }
 }
 
+function calculate (value1, operator, value2){
+    console.log("-x-x-x-calculating...-x-x-x-")
+}
+
 function updateDisplay (){
     updateNum()
     addSpaces()
@@ -193,7 +197,15 @@ function numberPress (e) {
     updateDisplay ();
 }
 
-function functionPress () {
+function functionPress (e) {
+    switch (e.target.textContent){
+        case "=": 
+        calculate(num1, operator, num2)
+        break;
+        
+        default: 
+        console.log("other function pressed : " + operator)
+    }
     updateDisplay ();
 }
 

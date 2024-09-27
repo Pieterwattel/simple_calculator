@@ -62,17 +62,32 @@ make the ID of the pressed operator appear
 
 add the different operators
 
-- make a variable called testDisplay, which is num1 + operator + num2
-- make a function called updateDisplay, which is
-num1 + operator + num2
-
 make a function called addSpaces, which checks if operator and num2 are empty. If not, it adds an extra space.
 
+- part 2:
+make a calculator that works with 2 variables and an operator, which log in the console.
+make the calculator able to do 2 + 2 = 4
 
-- remove all the operator containers
+make a function calculate (), which runs when the operator = is pressed
 
-- make an object called "operators" with the following properties:
-	id:
-	textcontent:
+- let the function "calculate" take the operator, num1 and num2 as a parameters, and calls the corresponding operator function. see if you can just log the function name by calling it with different parameters
 
-make a loop that creates and appends the operators to the right side of the calculator, and gives them all the class "operator" and gives them IDs and textcontent based on the previous object, and gives them listeners that refer to function${id}
+- make functions for:
+add
+subtract
+multiply
+divide
+
+make ans into an array.
+
+at the end of every calculate function, change the first ans to the result
+
+- add the ANS variable to displayResult
+
+- write a function called clearEntry
+	*changes num1, num2 and operator into ""
+
+- connect clearEntry at the end of calculate, so the values will be empty again.
+
+make a clearAll function,
+let num1, num2, operator & ans = ""
