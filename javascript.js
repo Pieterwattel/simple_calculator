@@ -164,12 +164,12 @@ function updateNum () {
     } else if (numSwitchFlag == false){
         num2 = currentNum
     }
-}
-
-function addSpaces(){
     displayNum1 = num1
     displayOperator = operator
     displayNum2 = num2
+}
+
+function addSpaces(){
     if (displayNum1 != "" && displayNum1[displayNum1.length-1] != " "){
         displayNum1 += " "
     }
@@ -212,6 +212,7 @@ function clearEntry(){
     num1 = ""
     num2 = ""
     operator = ""
+    currentNum = ""
     updateDisplay()
 }
 
