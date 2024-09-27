@@ -179,21 +179,25 @@ function addSpaces(){
 }
 
 function calculate (value1, operator, value2){
-    switch (operator.trim()){
+    switch (operator){
         case (operatorObject[0].sign):
-            console.log("plus")
+//          addition
+            ans = value1 + value2
             break;
 
         case (operatorObject[1].sign):
-            console.log("subtract")
+//          subtraction
+            ans = value1 - value2
             break;
 
         case (operatorObject[2].sign):
-            console.log("multiply")
+//          multiplication
+            ans = value1 * value2
             break;
 
         case (operatorObject[4].sign):
-            console.log("divide")
+//          division
+            ans = value1 / value2
             break;
 
         default:
