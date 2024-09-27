@@ -124,6 +124,9 @@ let num2 = ""
 let operator = ""
 let ans = ""
 
+let displayNum1 = ""
+let displayNum2 = ""
+
 let currentNum = num1
 
 numSwitchFlag = true
@@ -164,11 +167,14 @@ function updateNum () {
 }
 
 function addSpaces(){
-    if (num1 != "" && num1[num1.length-1] != " "){
-        num1 += " "
+    displayNum1 = num1
+    displayOperator = operator
+    displayNum2 = num2
+    if (displayNum1 != "" && displayNum1[displayNum1.length-1] != " "){
+        displayNum1 += " "
     }
-    if (operator != "" && operator[operator.length-1] != " "){
-        operator += " "
+    if (displayOperator != "" && displayOperator[displayOperator.length-1] != " "){
+        displayOperator += " "
     }
 }
 
@@ -217,15 +223,13 @@ function functionPress (e) {
         
         default: 
         console.log("other function pressed : " + operator)
-    }
-    updateDisplay ();
-}
+    }}
 
 
 function updateDisplay (){
     updateNum()
     addSpaces()
-    console.log (num1 + operator + num2)
+    console.log (displayNum1 + displayOperator + displayNum2)
 }
 
 
