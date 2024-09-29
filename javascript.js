@@ -178,9 +178,8 @@ function addSpaces(){
     }
 }
 
-function makeEntryNumber(value){
-    num1 = parseInt(num1)
-    num2 = parseInt(num2)
+function makeNumber(value){
+    return parseFloat(value)    
 }
 
 function getFunction(e){
@@ -274,7 +273,8 @@ function numberPress (e) {
 }
 
 function functionPress (e) {
-    makeEntryNumber()
+    num1 = makeNumber(num1)
+    num2 = makeNumber(num2)
     getFunction(e)
 }
 
