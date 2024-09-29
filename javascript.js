@@ -295,6 +295,17 @@ function displayAns(){
     displayBottom.textContent = ans
 }
 
+function numberOrOperator (value) {
+    if (Number(parseFloat(value)) || value == "."){
+        console.log ( "number" )
+    } else if (operatorObject.some(element => element.sign === value)) {
+        return ( "operator" )
+    } else {
+        console.log(`symbol "${value}" is no operator or number in numberOrOperator()`)
+        return ("error")
+    }
+}
+
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
@@ -325,9 +336,11 @@ function updateDisplay (){
 }
 
 function calculate(){
-    let userInputArray = userInput.split(" ")
+    let userInputArray = userInput.replace(/ /g,"")
     console.log(userInputArray)
 }
+
+
 
 //#endregion
 //#endregion
