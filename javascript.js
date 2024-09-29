@@ -124,7 +124,8 @@ let num2 = ""
 let operator = ""
 let ans = ""
 
-let userInput = ""
+let userInput = "0 + 1 * 2 / 3"
+updateDisplay()
 
 let displayNum1 = ""
 let displayNum2 = ""
@@ -251,10 +252,26 @@ function makeOperatorString (operator){
             break;
 
         default:
-            console.log(operator + " not working yet " + operatorObject[0].sign)
+            console.log("operator: " + operator + ", not working yet in operatorString()")
     }
     clearEntry()
 }
+
+function separateStringSymbols (string){
+    let i = string.length
+    let j = 0
+    while (j < i){
+        makeInputArray(string.charAt(j))
+        j++
+    }
+}
+
+makeInputArray(symbol){
+    
+}
+
+
+
 
 /*
 function calculate (value1, operator, value2){
@@ -336,7 +353,8 @@ function updateDisplay (){
 }
 
 function calculate(){
-    let userInputArray = userInput.replace(/ /g,"")
+    let userInputArray = separateStringSymbols(userInput.replace(/ /g,""))
+
     console.log(userInputArray)
 }
 
