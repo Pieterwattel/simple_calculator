@@ -124,6 +124,8 @@ let num2 = ""
 let operator = ""
 let ans = ""
 
+let userInput = ""
+
 let displayNum1 = ""
 let displayNum2 = ""
 
@@ -158,6 +160,7 @@ function switchCurrentNum (){
     }
 }
 
+/*
 function updateNum () {
     if (numSwitchFlag == true){
         num1 = currentNum
@@ -168,7 +171,9 @@ function updateNum () {
     displayOperator = operator
     displayNum2 = num2
 }
+*/
 
+/*
 function addSpaces(){
     if (displayNum1 != "" && displayNum1[displayNum1.length-1] != " "){
         displayNum1 += " "
@@ -177,6 +182,7 @@ function addSpaces(){
         displayOperator += " "
     }
 }
+*/
 
 function makeNumber(value){
     return parseFloat(value)    
@@ -203,12 +209,12 @@ function getFunction(e){
         break;
 
         default: 
-        alert ("Unknown function button presseds")
+        alert ("Unknown function button pressed")
     }
 }
 
 function runAns (){
-    
+
 }
 
 function clearAll(){
@@ -253,10 +259,12 @@ function calculate (value1, operator, value2){
         default:
             console.log(operator + " not working yet " + operatorObject[0].sign)
     }
+    clearEntry()
 }
 
+
 function displayEntry(){
-    displayTop.textContent = displayNum1 + displayOperator + displayNum2
+    displayTop.textContent = userInput
 }
 
 function displayAns(){
@@ -285,8 +293,8 @@ function functionPress (e) {
 
 
 function updateDisplay (){
-    updateNum()
-    addSpaces()
+//    updateNum()
+//    addSpaces()
     displayEntry()
     displayAns()
 }
