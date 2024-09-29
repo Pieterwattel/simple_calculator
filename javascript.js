@@ -274,14 +274,14 @@ function displayAns(){
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
-    switchCurrentNum();
+//    switchCurrentNum();
     operator = e.target.textContent
     updateDisplay ();
 }
 
 function numberPress (e) {
     let newNum = e.target.id.replace('btn', "")
-    currentNum = currentNum.concat(newNum)
+    userInput = userInput.concat(newNum)
     updateDisplay ();
 }
 
