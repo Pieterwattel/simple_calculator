@@ -256,6 +256,7 @@ function makeOperatorString (operator){
     clearEntry()
 }
 
+/*
 function calculate (value1, operator, value2){
     switch (operator){
         case (operatorObject[0].sign):
@@ -283,6 +284,7 @@ function calculate (value1, operator, value2){
     }
     clearEntry()
 }
+    */
 
 
 function displayEntry(){
@@ -322,6 +324,10 @@ function updateDisplay (){
     displayAns()
 }
 
+function calculate(){
+    let userInputArray = userInput.split(" ")
+    console.log(userInputArray)
+}
 
 //#endregion
 //#endregion
