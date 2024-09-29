@@ -191,6 +191,7 @@ function getFunction(e){
         break;
 
         case "ans": 
+        runAns()
         break;
 
         case "C": 
@@ -206,12 +207,8 @@ function getFunction(e){
     }
 }
 
-function clearEntry(){
-    num1 = ""
-    num2 = ""
-    operator = ""
-    currentNum = ""
-    updateDisplay()
+function runAns (){
+    
 }
 
 function clearAll(){
@@ -220,6 +217,14 @@ function clearAll(){
     operator = ""
     currentNum = ""
     ans = ""
+    updateDisplay()
+}
+
+function clearEntry(){
+    num1 = ""
+    num2 = ""
+    operator = ""
+    currentNum = ""
     updateDisplay()
 }
 
