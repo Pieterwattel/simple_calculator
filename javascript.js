@@ -234,6 +234,34 @@ function clearEntry(){
     updateDisplay()
 }
 
+function makeOperatorString (operator){
+    switch (operator){
+        case (operatorObject[0].sign):
+//          addition
+            return " " + operator + " "
+            break;
+
+        case (operatorObject[1].sign):
+//          subtraction
+            return " " + operator + " "
+            break;
+
+        case (operatorObject[2].sign):
+//          multiplication
+            return " " + operator + " "
+            break;
+
+        case (operatorObject[3].sign):
+//          division
+            return " " + operator + " "
+            break;
+
+        default:
+            console.log(operator + " not working yet " + operatorObject[0].sign)
+    }
+    clearEntry()
+}
+
 function calculate (value1, operator, value2){
     switch (operator){
         case (operatorObject[0].sign):
@@ -275,13 +303,14 @@ function displayAns(){
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    operator = e.target.textContent
+    let operatorString = makeOperatorString(e.target.textContent)
+    userInput += operatorString
     updateDisplay ();
 }
 
 function numberPress (e) {
     let newNum = e.target.id.replace('btn', "")
-    userInput = userInput.concat(newNum)
+    userInput += newNum
     updateDisplay ();
 }
 
