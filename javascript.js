@@ -266,8 +266,18 @@ function separateStringSymbols (string){
     }
 }
 
-makeInputArray(symbol){
-    
+function makeInputArray(symbol){
+    let result = numberOrOperator(symbol)
+    if (result == "number"){
+        console.log(symbol + " was a number")
+    } else if (result == "operator"){
+        console.log(symbol + " was an operator")
+    } else if (result == "error"){
+        alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
+             I am vewwy sowwy (◞‸ ◟)💧`)
+    } else {
+        console.log("value falls outside makeInoputArray() if statement options")
+    }
 }
 
 
@@ -314,12 +324,12 @@ function displayAns(){
 
 function numberOrOperator (value) {
     if (Number(parseFloat(value)) || value == "."){
-        console.log ( "number" )
+       return "number"
     } else if (operatorObject.some(element => element.sign === value)) {
-        return ( "operator" )
+        return "operator"
     } else {
         console.log(`symbol "${value}" is no operator or number in numberOrOperator()`)
-        return ("error")
+        return "invalid"
     }
 }
 
