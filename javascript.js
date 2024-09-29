@@ -218,19 +218,13 @@ function runAns (){
 }
 
 function clearAll(){
-    num1 = ""
-    num2 = ""
-    operator = ""
-    currentNum = ""
+    userInput = ""
     ans = ""
     updateDisplay()
 }
 
 function clearEntry(){
-    num1 = ""
-    num2 = ""
-    operator = ""
-    currentNum = ""
+    userInput = ""
     updateDisplay()
 }
 
@@ -285,7 +279,7 @@ function calculate (value1, operator, value2){
             break;
 
         default:
-            console.log(operator + " not working yet " + operatorObject[0].sign)
+            console.log(operator + " with value" + operatorObject[0].sign + " not working yet")
     }
     clearEntry()
 }
