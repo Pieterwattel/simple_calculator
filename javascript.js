@@ -314,23 +314,23 @@ function evaluateStringSymbols (string){
         value = string.charAt(j)
         nextValue = string.charAt(j+1)
         makeInputArray(previousValue, value, nextValue)
-        console.log("evaluateString value was: " + value)
         j++
     }
 
     // small script to also add the very last value to inputArray[]
-    if (numberOrOperator(string.charAt(j-1)) == "number" ){
+    if (numberOrOperator(previousValue, value, nextValue) == "number" ){
         inputArray.push(currentElement)
-    } else if (numberOrOperator(string.charAt(j-1)) == "operator" ){
+    } else if (numberOrOperator(previousValue, value, nextValue) == "operator" ){
         inputArray.push(string.charAt(j-1))
     }
 }
 
-function numberOrOperator (value) {
+function numberOrOperator (previousValue, value,  nextValue) {
     let returnValue = ""
 
     // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0"){
+        console.log(`value "${value}" is a number`)
        returnValue = "number"
     }
 
@@ -349,12 +349,12 @@ function numberOrOperator (value) {
     return returnValue
 }
 
-function makeInputArray(symbol){    
-    result = numberOrOperator(symbol)
+function makeInputArray(previousValue, value, nextValue){    
+    result = numberOrOperator(previousValue, value, nextValue)
 
 // check of the value if it is a number.
     if (result == "number"){
-        currentElement += symbol
+        currentElement += value
 
 // then check if it is an operator, using the previous and next value to evaluate that
     } else if (result[0] == "operator"){
