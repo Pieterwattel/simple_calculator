@@ -351,15 +351,14 @@ function numberOrOperator (previousValue, value,  nextValue) {
 
 function makeInputArray(previousValue, value, nextValue){    
     result = numberOrOperator(previousValue, value, nextValue)
-
 // check of the value if it is a number.
     if (result == "number"){
         currentElement += value
 
 // then check if it is an operator, using the previous and next value to evaluate that
-    } else if (result[0] == "operator"){
+    } else if (typeof result == "object"){
         inputArray.push(currentElement)
-        inputArray.push(result[1])
+        inputArray.push(result)
         currentElement = ""
 
     } else if (result == "error"){
@@ -373,7 +372,7 @@ function makeInputArray(previousValue, value, nextValue){
 }
 
 function checkOperator (previousValue, value, nextValue){
-    return ["operator", operatorObject[0]]
+    return operatorObject[0]
 }
 
 //#endregion
