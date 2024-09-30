@@ -49,19 +49,23 @@ for (let i = 9; i >= 0; i--){
 let operatorObject = [
     {
     id: 'btnAdd' ,
-    sign: '+' ,   
+    sign: '+' ,  
+    precendence: 5 , 
     },
     {
     id: 'btnSubtract' ,
     sign: '-',   
+    precendence: 5 , 
     } ,
     {
     id: 'btnMultiply' ,
     sign: '*',   
+    precendence: 4 , 
     } ,
     {
     id: 'btnDivide' ,
     sign: '/',   
+    precendence: 4 ,
     } ,
 ]
 
@@ -119,21 +123,16 @@ otherBtns.forEach ((prop) => {
 //#region       >> Global Variables
 
 // variables that hold calculation data:
-let num1 = ""
-let num2 = ""
 let operator = ""
 let ans = ""
 
-let userInput = "13 + 067 * 2 / 37390"
+let userInput = "1 - 1 * 2"
 updateDisplay()
 
 let currentElement = ""
 let inputArray = []
 
-let displayNum1 = ""
-let displayNum2 = ""
-
-let currentNum = num1
+let currentNum = ""
 
 numSwitchFlag = true
 
@@ -154,6 +153,7 @@ function logNum (e){
     console.log(`hi! is seems that the ${e.target.id.replace('btn', "")} item was clicked`)
 }
 
+/*
 function switchCurrentNum (){
     if (numSwitchFlag == true){
         currentNum = num2
@@ -163,6 +163,7 @@ function switchCurrentNum (){
         numSwitchFlag = true
     }
 }
+*/
 
 /*
 function updateNum () {
@@ -195,9 +196,8 @@ function makeNumber(value){
 function getFunction(e){
     switch (e.target.textContent){
         case "=": 
-        calculate(num1, operator, num2)
+        calculate()
         displayAns()
-        switchCurrentNum();
         break;
 
         case "ans": 
@@ -300,11 +300,21 @@ function displayAns(){
     displayBottom.textContent = ans
 }
 
-function separateStringSymbols (string){
+function evaluateStringSymbols (string){
+    
+// 3 values that can be given, to evaluate the context of a symbol
+    let previousValue =- ""
+    let value = ""
+    let nextValue = ""
+
     let i = string.length
     let j = 0
     while (j < i){
-        makeInputArray(string.charAt(j))
+        previousValue = string.charAt(j-1)
+        value = string.charAt(j)
+        nextValue = string.charAt(j+1)
+        makeInputArray(previousValue, value, nextValue)
+        console.log("evaluateString value was: " + value)
         j++
     }
 
@@ -339,16 +349,23 @@ function numberOrOperator (value) {
     return returnValue
 }
 
-function makeInputArray(symbol){
-    console.log(symbol)
+function makeInputArray(symbol){    
     result = numberOrOperator(symbol)
+
+// check of the value if it is a number.
     if (result == "number"){
         currentElement += symbol
 
+// then check if it is an operator, using the previous and next value to evaluate that
     } else if (result[0] == "operator"){
         inputArray.push(currentElement)
         inputArray.push(result[1])
         currentElement = ""
+
+// if it then is not an operator, it might still be a number, because it is a negative number.
+
+    } else if (symbol == "-"){
+        currentElement += symbol
     } else if (result == "error"){
         alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
@@ -375,8 +392,6 @@ function numberPress (e) {
 }
 
 function functionPress (e) {
-    num1 = makeNumber(num1)
-    num2 = makeNumber(num2)
     getFunction(e)
 }
 
@@ -389,8 +404,7 @@ function updateDisplay (){
 }
 
 function calculate(){
-    separateStringSymbols(userInput.replace(/ /g,""))
-
+    evaluateStringSymbols(userInput.replace(/ /g,""))
     console.log(inputArray)
 }
 
