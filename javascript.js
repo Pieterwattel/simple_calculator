@@ -126,7 +126,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 - 1 x 2"
+let userInput = "-1 - 1 x -2"
 updateDisplay()
 
 let currentElement = ""
@@ -381,14 +381,13 @@ function checkOperator (previousValue, value, nextValue){
 
         case (operatorObject[1].sign.includes(value)):
 //          subtraction
-/*
             if (previousValue == "" || 
-                typeof previousValue == "object"||
-                undefined){
+                !Number(previousValue)){
                 return "number"
             } else {
-*/
+
             return operatorObject[1]
+            }
             break;
 
         case (operatorObject[2].sign.includes(value)):
