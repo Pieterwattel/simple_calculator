@@ -74,7 +74,7 @@ operatorObject.forEach ((prop) => {
     btnFrameOperator.appendChild(btn)
     btn.setAttribute("id" , prop.id)
     btn.classList.add("btn")
-    btn.textContent = prop.sign
+    btn.textContent = prop.sign[0]
 })
 
 
@@ -234,22 +234,22 @@ function clearEntry(){
 
 function makeOperatorString (operator){
     switch (operator){
-        case (operatorObject[0].sign):
+        case (operatorObject[0].sign[0]):
 //          addition
             return " " + operator + " "
             break;
 
-        case (operatorObject[1].sign):
+        case (operatorObject[1].sign[0]):
 //          subtraction
             return " " + operator + " "
             break;
 
-        case (operatorObject[2].sign):
+        case (operatorObject[2].sign[0]):
 //          multiplication
             return " " + operator + " "
             break;
 
-        case (operatorObject[3].sign):
+        case (operatorObject[3].sign[0]):
 //          division
             return " " + operator + " "
             break;
@@ -373,7 +373,6 @@ function makeInputArray(previousValue, value, nextValue){
 }
 
 function checkOperator (previousValue, value, nextValue){
-    console.log(value)
     switch (true){
         case (operatorObject[0].sign.includes(value)):
 //          addition
