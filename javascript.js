@@ -124,8 +124,11 @@ let num2 = ""
 let operator = ""
 let ans = ""
 
-let userInput = "0 + 1 * 2 / 3"
+let userInput = "13 + 067 * 2 / 37390"
 updateDisplay()
+
+let currentElement = ""
+let inputArray = []
 
 let displayNum1 = ""
 let displayNum2 = ""
@@ -257,31 +260,6 @@ function makeOperatorString (operator){
     clearEntry()
 }
 
-function separateStringSymbols (string){
-    let i = string.length
-    let j = 0
-    while (j < i){
-        makeInputArray(string.charAt(j))
-        j++
-    }
-}
-
-function makeInputArray(symbol){
-    let result = numberOrOperator(symbol)
-    if (result == "number"){
-        console.log(symbol + " was a number")
-    } else if (result == "operator"){
-        console.log(symbol + " was an operator")
-    } else if (result == "error"){
-        alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
-             I am vewwy sowwy (◞‸ ◟)💧`)
-    } else {
-        console.log("value falls outside makeInoputArray() if statement options")
-    }
-}
-
-
-
 
 /*
 function calculate (value1, operator, value2){
@@ -322,14 +300,51 @@ function displayAns(){
     displayBottom.textContent = ans
 }
 
+function separateStringSymbols (string){
+    let i = string.length
+    let j = 0
+    while (j < i){
+        makeInputArray(string.charAt(j))
+        j++
+    }
+
+    // small script to also add the very last value to inputArray[]
+    if (numberOrOperator(string.charAt(j-1)) == "number" ){
+        inputArray.push(currentElement)
+    } else if (numberOrOperator(string.charAt(j-1)) == "operator" ){
+        inputArray.push(string.charAt(j-1))
+    }
+}
+
 function numberOrOperator (value) {
-    if (Number(parseFloat(value)) || value == "."){
+    if (Number(parseFloat(value)) || value == "." || value == "0"){
        return "number"
     } else if (operatorObject.some(element => element.sign === value)) {
         return "operator"
     } else {
         console.log(`symbol "${value}" is no operator or number in numberOrOperator()`)
         return "invalid"
+    }
+}
+
+function makeInputArray(symbol){
+
+    result = numberOrOperator(symbol)
+    if (result == "number"){
+        currentElement += symbol
+
+    } else if (result == "operator"){
+        inputArray.push(currentElement)
+        inputArray.push(symbol)
+        currentElement = ""
+
+    } else if (result == "error"){
+        alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
+             I am vewwy sowwy (◞‸ ◟)💧`)
+
+    } else {
+        console.log("value falls outside makeInputArray() if statement options")
+
     }
 }
 
@@ -363,9 +378,9 @@ function updateDisplay (){
 }
 
 function calculate(){
-    let userInputArray = separateStringSymbols(userInput.replace(/ /g,""))
+    separateStringSymbols(userInput.replace(/ /g,""))
 
-    console.log(userInputArray)
+    console.log(inputArray)
 }
 
 
