@@ -59,7 +59,7 @@ let operatorObject = [
     } ,
     {
     id: 'btnMultiply' ,
-    sign: '*',   
+    sign: ['*', 'x'],   
     precendence: 4 , 
     } ,
     {
@@ -126,7 +126,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 - 1 * 2"
+let userInput = "1 - 1 x 2"
 updateDisplay()
 
 let currentElement = ""
@@ -330,13 +330,13 @@ function numberOrOperator (previousValue, value,  nextValue) {
 
     // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0"){
-        console.log(`value "${value}" is a number`)
+//        console.log(`value "${value}" is a number`)
        returnValue = "number"
     }
 
     // check if value is operator, returns array [operator,  arrayIndex()]
     operatorObject.forEach(element => {
-        if (element.sign == value){
+        if (element.sign.includes(value)){
             returnValue = checkOperator(previousValue, value, nextValue)
         }
     })
@@ -373,13 +373,14 @@ function makeInputArray(previousValue, value, nextValue){
 }
 
 function checkOperator (previousValue, value, nextValue){
-    switch (value){
-        case (operatorObject[0].sign):
+    console.log(value)
+    switch (true){
+        case (operatorObject[0].sign.includes(value)):
 //          addition
             return operatorObject[0]
             break;
 
-        case (operatorObject[1].sign):
+        case (operatorObject[1].sign.includes(value)):
 //          subtraction
 /*
             if (previousValue == "" || 
@@ -391,14 +392,14 @@ function checkOperator (previousValue, value, nextValue){
             return operatorObject[1]
             break;
 
-        case (operatorObject[2].sign):
+        case (operatorObject[2].sign.includes(value)):
 //          multiplication
-            return operatorObject[3]
+            return operatorObject[2]
             break;
 
-        case (operatorObject[3].sign):
+        case (operatorObject[3].sign.includes(value)):
 //          division
-            return operatorObject[4]
+            return operatorObject[3]
             break;
 
         default:
