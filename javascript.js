@@ -342,7 +342,8 @@ function numberOrOperator (previousValue, value,  nextValue) {
     })
 
     //value was not a number nor known operator
-    if  (returnValue == ""){
+    if  (returnValue == "error"){
+        console.log(`value "${value}" was no operator or number`)
         returnValue = "error"
     }
 
@@ -362,7 +363,7 @@ function makeInputArray(previousValue, value, nextValue){
         currentElement = ""
 
     } else if (result == "error"){
-        alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
+        alert (`${value} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
 
     } else {
@@ -372,7 +373,37 @@ function makeInputArray(previousValue, value, nextValue){
 }
 
 function checkOperator (previousValue, value, nextValue){
-    return operatorObject[0]
+    switch (value){
+        case (operatorObject[0].sign):
+//          addition
+            return operatorObject[0]
+            break;
+
+        case (operatorObject[1].sign):
+//          subtraction
+/*
+            if (previousValue == "" || 
+                typeof previousValue == "object"||
+                undefined){
+                return "number"
+            } else {
+*/
+            return operatorObject[1]
+            break;
+
+        case (operatorObject[2].sign):
+//          multiplication
+            return operatorObject[3]
+            break;
+
+        case (operatorObject[3].sign):
+//          division
+            return operatorObject[4]
+            break;
+
+        default:
+            return "error"
+    }
 }
 
 //#endregion
