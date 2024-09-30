@@ -317,27 +317,38 @@ function separateStringSymbols (string){
 }
 
 function numberOrOperator (value) {
+    let returnValue = ""
+
+    // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0"){
-       return "number"
-    } else if (operatorObject.some(element => element.sign === value)) {
-        return "operator"
-    } else {
-        console.log(`symbol "${value}" is no operator or number in numberOrOperator()`)
-        return "invalid"
+       returnValue = "number"
     }
+
+    // check if value is operator, returns array [operator,  arrayIndex()]
+    operatorObject.forEach(element => {
+        if (element.sign == value){
+            returnValue = ["operator", element]
+        }
+    })
+
+    //value was not a number nor known operator
+    if  (returnValue == ""){
+        returnValue = "error"
+    }
+
+    return returnValue
 }
 
 function makeInputArray(symbol){
-
+    console.log(symbol)
     result = numberOrOperator(symbol)
     if (result == "number"){
         currentElement += symbol
 
-    } else if (result == "operator"){
+    } else if (result[0] == "operator"){
         inputArray.push(currentElement)
-        inputArray.push(symbol)
+        inputArray.push(result[1])
         currentElement = ""
-
     } else if (result == "error"){
         alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
