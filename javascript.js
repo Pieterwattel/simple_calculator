@@ -337,7 +337,7 @@ function numberOrOperator (previousValue, value,  nextValue) {
     // check if value is operator, returns array [operator,  arrayIndex()]
     operatorObject.forEach(element => {
         if (element.sign == value){
-            returnValue = ["operator", element]
+            returnValue = checkOperator(previousValue, value, nextValue)
         }
     })
 
@@ -362,10 +362,6 @@ function makeInputArray(previousValue, value, nextValue){
         inputArray.push(result[1])
         currentElement = ""
 
-// if it then is not an operator, it might still be a number, because it is a negative number.
-
-    } else if (symbol == "-"){
-        currentElement += symbol
     } else if (result == "error"){
         alert (`${symbol} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
@@ -374,6 +370,10 @@ function makeInputArray(previousValue, value, nextValue){
         console.log("value falls outside makeInputArray() if statement options")
 
     }
+}
+
+function checkOperator (previousValue, value, nextValue){
+    return ["operator", operatorObject[0]]
 }
 
 //#endregion
