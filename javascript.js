@@ -126,7 +126,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "-1 - 1 x -2"
+let userInput = "1 - 1 x 2"
 updateDisplay()
 
 let currentElement = ""
@@ -405,6 +405,55 @@ function checkOperator (previousValue, value, nextValue){
     }
 }
 
+function calculateInOrder(array){
+
+    for (let i = 0; i < 6 ; i++){
+        array.forEach((element, index) => {
+            if (element.precendence == i){
+                doCalculation(element, index)
+//                console.log(i)
+//                console.log(element)
+            }
+        });
+    }
+}
+
+function doCalculation (operator, index){
+    let previousValue = inputArray[index-1]
+    let nextValue = inputArray[index+1]
+    switch (true){
+        case (operatorObject[0].sign.includes(value)):
+//          addition
+            
+            break;
+
+        case (operatorObject[1].sign.includes(value)):
+//          subtraction
+            if (previousValue == "" || 
+                !Number(previousValue)){
+                return "number"
+            } else {
+
+            return operatorObject[1]
+            }
+            break;
+
+        case (operatorObject[2].sign.includes(value)):
+//          multiplication
+            return operatorObject[2]
+            break;
+
+        case (operatorObject[3].sign.includes(value)):
+//          division
+            return operatorObject[3]
+            break;
+
+        default:
+            return "error"
+    }
+}
+
+
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
@@ -434,7 +483,7 @@ function updateDisplay (){
 
 function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
-    console.log(inputArray)
+    calculateInOrder(inputArray)
 }
 
 
