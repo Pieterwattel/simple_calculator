@@ -126,7 +126,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 + 2 + 4"
+let userInput = ""
 //1 - 1 x 2
 updateDisplay()
 
@@ -380,7 +380,7 @@ function checkOperator (previousValue, value, nextValue){
             return operatorObject[0]
             break;
 
-        case (operatorObject[1].sign.includes(opSymbol)):
+        case (operatorObject[1].sign.includes(value)):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
@@ -391,12 +391,12 @@ function checkOperator (previousValue, value, nextValue){
             }
             break;
 
-        case (operatorObject[2].sign.includes(opSymbol)):
+        case (operatorObject[2].sign.includes(value)):
 //          multiplication
             return operatorObject[2]
             break;
 
-        case (operatorObject[3].sign.includes(opSymbol)):
+        case (operatorObject[3].sign.includes(value)):
 //          division
             return operatorObject[3]
             break;
@@ -407,12 +407,25 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
+    let repeat = false
     array.some((element, index) => {
         if (typeof element == "object" && element.precedence == i){
             doCalculation(element, index)
+            calculateInOrder(array, i)
+            repeat = true
+            return true
         }
     })
 
+    if (repeat){
+        calculateInOrder(array, i)
+    } else if (i < 6){
+        i++
+        calculateInOrder(array, i)
+    } else if (i == 1){
+        return array
+    }
+}
     /*
         array.forEach((element, index) => {
             if (typeof element == "object"){
@@ -423,7 +436,7 @@ function calculateInOrder(array, i){
             }
         });
     */
-}
+
 
 function doCalculation (operator, index){
     let opSymbol = operator.sign
@@ -499,7 +512,9 @@ let editArray = []
 function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
     editArray = JSON.parse(JSON.stringify(inputArray));
-    calculateInOrder(editArray, 5)
+    calculateInOrder(editArray, 1)
+    ans = editArray
+    console.log(ans)
 }
 
 
