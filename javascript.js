@@ -50,22 +50,22 @@ let operatorObject = [
     {
     id: 'btnAdd' ,
     sign: '+' ,  
-    precendence: 5 , 
+    precedence: 5 , 
     },
     {
     id: 'btnSubtract' ,
     sign: '-',   
-    precendence: 5 , 
+    precedence: 5 , 
     } ,
     {
     id: 'btnMultiply' ,
     sign: ['*', 'x'],   
-    precendence: 4 , 
+    precedence: 4 , 
     } ,
     {
     id: 'btnDivide' ,
     sign: '/',   
-    precendence: 4 ,
+    precedence: 4 ,
     } ,
 ]
 
@@ -126,7 +126,8 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 - 1 x 2"
+let userInput = "1 + 2 + 4"
+//1 - 1 x 2
 updateDisplay()
 
 let currentElement = ""
@@ -379,7 +380,7 @@ function checkOperator (previousValue, value, nextValue){
             return operatorObject[0]
             break;
 
-        case (operatorObject[1].sign.includes(value)):
+        case (operatorObject[1].sign.includes(opSymbol)):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
@@ -390,12 +391,12 @@ function checkOperator (previousValue, value, nextValue){
             }
             break;
 
-        case (operatorObject[2].sign.includes(value)):
+        case (operatorObject[2].sign.includes(opSymbol)):
 //          multiplication
             return operatorObject[2]
             break;
 
-        case (operatorObject[3].sign.includes(value)):
+        case (operatorObject[3].sign.includes(opSymbol)):
 //          division
             return operatorObject[3]
             break;
@@ -405,45 +406,57 @@ function checkOperator (previousValue, value, nextValue){
     }
 }
 
-function calculateInOrder(array){
+function calculateInOrder(array, i){
+    array.some((element, index) => {
+        if (typeof element == "object" && element.precedence == i){
+            doCalculation(element, index)
+        }
+    })
 
-    for (let i = 0; i < 6 ; i++){
+    /*
         array.forEach((element, index) => {
-            if (element.precendence == i){
-                doCalculation(element, index)
-//                console.log(i)
-//                console.log(element)
+            if (typeof element == "object"){
+                if (element.precedence == i){
+                    doCalculation(element, index)
+
+                }
             }
         });
-    }
+    */
 }
 
 function doCalculation (operator, index){
-    let previousValue = inputArray[index-1]
-    let nextValue = inputArray[index+1]
+    let opSymbol = operator.sign
+    let result = ""
+    let previousValue = editArray[index-1]
+    let nextValue = editArray[index+1]
+    console.log(`doCalculation run with operator: ${operator.sign}, previousValue: ${previousValue}, nextValue: ${nextValue}`)
+
     switch (true){
-        case (operatorObject[0].sign.includes(value)):
+        case (operatorObject[0].sign.includes(opSymbol)):
 //          addition
-            
+                result = +previousValue + +nextValue
+                
+                editArray.splice(index-1, 3, result)
             break;
 
-        case (operatorObject[1].sign.includes(value)):
+        case (operatorObject[1].sign.includes(opSymbol)):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
-                return "number"
+                return "numbdocalcuer"
             } else {
 
             return operatorObject[1]
             }
             break;
 
-        case (operatorObject[2].sign.includes(value)):
+        case (operatorObject[2].sign.includes(opSymbol)):
 //          multiplication
             return operatorObject[2]
             break;
 
-        case (operatorObject[3].sign.includes(value)):
+        case (operatorObject[3].sign.includes(opSymbol)):
 //          division
             return operatorObject[3]
             break;
@@ -481,9 +494,12 @@ function updateDisplay (){
     displayAns()
 }
 
+let editArray = []
+
 function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
-    calculateInOrder(inputArray)
+    editArray = JSON.parse(JSON.stringify(inputArray));
+    calculateInOrder(editArray, 5)
 }
 
 
