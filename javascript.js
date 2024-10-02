@@ -472,34 +472,34 @@ function doCalculation (operator, index){
     }
 }
 
-function doubleOperators (element){
-    console.log(element)
-    /*
-    switch (operator){
-        case (symbolObject[0].sign):
+function doubleOperators (
+    prePreviousElement, 
+    previousElement, 
+    currentElement, 
+    nextElement, 
+    nextNextElement,
+    index){
+    switch (true){
+        case (symbolObject[0].sign === currentElement.sign):
 //          addition
-            ans = (value1 + value2)
+            console.log(currentElement)
             break;
 
-        case (symbolObject[1].sign):
+        case (symbolObject[1].sign == currentElement.sign):
 //          subtraction
-            ans = (value1 - value2)
             break;
 
-        case (symbolObject[2].sign):
+        case (symbolObject[2].sign == currentElement.sign):
 //          multiplication
-            ans = (value1 * value2)
             break;
 
-        case (symbolObject[3].sign):
+        case (symbolObject[3].sign == currentElement.sign):
 //          division
-            ans = (value1 / value2)
             break;
 
         default:
-            console.log(operator + " with value" + symbolObject[0].sign + " not working yet")
-
-        }*/
+            alert ("doubleOperators() error")
+    }
 }
 
 
@@ -544,11 +544,22 @@ function calculate(){
 function checkForErrors (array ) {
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
-        let currentElement = array[i]
+        let prePreviousElement = array[i-2]
         let previousElement = array[i-1]
+        let currentElement = array[i]
         let nextElement = array[i+1]
+        let nextNextElement = array[i+2]
         let index = i
-        
+        if (typeof currentElement == "object") {
+            doubleOperators(
+                prePreviousElement, 
+                previousElement, 
+                currentElement, 
+                nextElement, 
+                nextNextElement,
+                index
+            )
+        }
     }
 }
 
