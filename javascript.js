@@ -44,32 +44,36 @@ for (let i = 9; i >= 0; i--){
     numBtns[i] = document.getElementById(`btn${i}`);
 }
 //#endregion
-//#region           >>> Operators
+//#region           >>> Calculation Symbols
 
-let operatorObject = [
+let symbolObject = [
     {
     id: 'btnAdd' ,
     sign: '+' ,  
     precedence: 5 , 
+    category: "operator"
     },
     {
     id: 'btnSubtract' ,
     sign: '-',   
     precedence: 5 , 
+    category : "operator"
     } ,
     {
     id: 'btnMultiply' ,
     sign: ['*', 'x'],   
     precedence: 4 , 
+    category: "operator"
     } ,
     {
     id: 'btnDivide' ,
     sign: '/',   
     precedence: 4 ,
+    category: "operator"
     } ,
 ]
 
-operatorObject.forEach ((prop) => {
+symbolObject.forEach ((prop) => {
     let btn = document.createElement("button")
     btnFrameOperator.appendChild(btn)
     btn.setAttribute("id" , prop.id)
@@ -126,7 +130,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = ""
+let userInput = "1 + 2 + 4"
 //1 - 1 x 2
 updateDisplay()
 
@@ -235,22 +239,22 @@ function clearEntry(){
 
 function makeOperatorString (operator){
     switch (operator){
-        case (operatorObject[0].sign[0]):
+        case (symbolObject[0].sign[0]):
 //          addition
             return " " + operator + " "
             break;
 
-        case (operatorObject[1].sign[0]):
+        case (symbolObject[1].sign[0]):
 //          subtraction
             return " " + operator + " "
             break;
 
-        case (operatorObject[2].sign[0]):
+        case (symbolObject[2].sign[0]):
 //          multiplication
             return " " + operator + " "
             break;
 
-        case (operatorObject[3].sign[0]):
+        case (symbolObject[3].sign[0]):
 //          division
             return " " + operator + " "
             break;
@@ -265,28 +269,28 @@ function makeOperatorString (operator){
 /*
 function calculate (value1, operator, value2){
     switch (operator){
-        case (operatorObject[0].sign):
+        case (symbolObject[0].sign):
 //          addition
             ans = (value1 + value2)
             break;
 
-        case (operatorObject[1].sign):
+        case (symbolObject[1].sign):
 //          subtraction
             ans = (value1 - value2)
             break;
 
-        case (operatorObject[2].sign):
+        case (symbolObject[2].sign):
 //          multiplication
             ans = (value1 * value2)
             break;
 
-        case (operatorObject[3].sign):
+        case (symbolObject[3].sign):
 //          division
             ans = (value1 / value2)
             break;
 
         default:
-            console.log(operator + " with value" + operatorObject[0].sign + " not working yet")
+            console.log(operator + " with value" + symbolObject[0].sign + " not working yet")
     }
     clearEntry()
 }
@@ -336,7 +340,7 @@ function numberOrOperator (previousValue, value,  nextValue) {
     }
 
     // check if value is operator, returns array [operator,  arrayIndex()]
-    operatorObject.forEach(element => {
+    symbolObject.forEach(element => {
         if (element.sign.includes(value)){
             returnValue = checkOperator(previousValue, value, nextValue)
         }
@@ -375,30 +379,30 @@ function makeInputArray(previousValue, value, nextValue){
 
 function checkOperator (previousValue, value, nextValue){
     switch (true){
-        case (operatorObject[0].sign.includes(value)):
+        case (symbolObject[0].sign.includes(value)):
 //          addition
-            return operatorObject[0]
+            return symbolObject[0]
             break;
 
-        case (operatorObject[1].sign.includes(value)):
+        case (symbolObject[1].sign.includes(value)):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
                 return "number"
             } else {
 
-            return operatorObject[1]
+            return symbolObject[1]
             }
             break;
 
-        case (operatorObject[2].sign.includes(value)):
+        case (symbolObject[2].sign.includes(value)):
 //          multiplication
-            return operatorObject[2]
+            return symbolObject[2]
             break;
 
-        case (operatorObject[3].sign.includes(value)):
+        case (symbolObject[3].sign.includes(value)):
 //          division
-            return operatorObject[3]
+            return symbolObject[3]
             break;
 
         default:
@@ -446,32 +450,32 @@ function doCalculation (operator, index){
     console.log(`doCalculation run with operator: ${operator.sign}, previousValue: ${previousValue}, nextValue: ${nextValue}`)
 
     switch (true){
-        case (operatorObject[0].sign.includes(opSymbol)):
+        case (symbolObject[0].sign.includes(opSymbol)):
 //          addition
                 result = +previousValue + +nextValue
                 
                 editArray.splice(index-1, 3, result)
             break;
 
-        case (operatorObject[1].sign.includes(opSymbol)):
+        case (symbolObject[1].sign.includes(opSymbol)):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
                 return "numbdocalcuer"
             } else {
 
-            return operatorObject[1]
+            return symbolObject[1]
             }
             break;
 
-        case (operatorObject[2].sign.includes(opSymbol)):
+        case (symbolObject[2].sign.includes(opSymbol)):
 //          multiplication
-            return operatorObject[2]
+            return symbolObject[2]
             break;
 
-        case (operatorObject[3].sign.includes(opSymbol)):
+        case (symbolObject[3].sign.includes(opSymbol)):
 //          division
-            return operatorObject[3]
+            return symbolObject[3]
             break;
 
         default:
