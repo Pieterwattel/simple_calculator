@@ -430,17 +430,6 @@ function calculateInOrder(array, i){
         return array
     }
 }
-    /*
-        array.forEach((element, index) => {
-            if (typeof element == "object"){
-                if (element.precedence == i){
-                    doCalculation(element, index)
-
-                }
-            }
-        });
-    */
-
 
 function doCalculation (operator, index){
     let opSymbol = operator.sign
@@ -483,6 +472,36 @@ function doCalculation (operator, index){
     }
 }
 
+function doubleOperators (element){
+    console.log(element)
+    /*
+    switch (operator){
+        case (symbolObject[0].sign):
+//          addition
+            ans = (value1 + value2)
+            break;
+
+        case (symbolObject[1].sign):
+//          subtraction
+            ans = (value1 - value2)
+            break;
+
+        case (symbolObject[2].sign):
+//          multiplication
+            ans = (value1 * value2)
+            break;
+
+        case (symbolObject[3].sign):
+//          division
+            ans = (value1 / value2)
+            break;
+
+        default:
+            console.log(operator + " with value" + symbolObject[0].sign + " not working yet")
+
+        }*/
+}
+
 
 //#endregion
 //#region       >> Controller Functions
@@ -516,9 +535,17 @@ let editArray = []
 function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
     editArray = JSON.parse(JSON.stringify(inputArray));
+    checkForErrors(editArray)
     calculateInOrder(editArray, 1)
     ans = editArray
     console.log(ans)
+}
+
+function checkForErrors (array ) {
+    let j = array.length -1
+    for (let i = 0 ; i <= j ; i++){
+        console.log(array[i])
+    }
 }
 
 
