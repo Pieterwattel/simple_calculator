@@ -544,7 +544,11 @@ function calculate(){
 function checkForErrors (array ) {
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
-        console.log(array[i])
+        let currentElement = array[i]
+        let previousElement = array[i-1]
+        let nextElement = array[i+1]
+        let index = i
+        
     }
 }
 
