@@ -130,7 +130,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 + 2 + 4"
+let userInput = "1 + + 2  + + 4"
 //1 - 1 x 2
 updateDisplay()
 
@@ -363,7 +363,9 @@ function makeInputArray(previousValue, value, nextValue){
 
 // then check if it is an operator, using the previous and next value to evaluate that
     } else if (typeof result == "object"){
-        inputArray.push(currentElement)
+        if (currentElement != ""){
+            inputArray.push(currentElement)
+        }
         inputArray.push(result)
         currentElement = ""
 
@@ -375,6 +377,7 @@ function makeInputArray(previousValue, value, nextValue){
         console.log("value falls outside makeInputArray() if statement options")
 
     }
+    console.log(inputArray)
 }
 
 function checkOperator (previousValue, value, nextValue){
@@ -479,10 +482,13 @@ function doubleOperators (
     nextElement, 
     nextNextElement,
     index){
+        console.log (index, currentElement)
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
-            console.log(currentElement)
+            if (editArray[index -1].category == "operator"){
+                alert("operator found!!")
+            }
             break;
 
         case (symbolObject[1].sign == currentElement.sign):
@@ -541,7 +547,7 @@ function calculate(){
     console.log(ans)
 }
 
-function checkForErrors (array ) {
+function checkForErrors (array) {
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
         let prePreviousElement = array[i-2]
