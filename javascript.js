@@ -130,7 +130,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 + + 2  + + 4"
+let userInput = ""
 //1 - 1 x 2
 updateDisplay()
 
@@ -223,7 +223,7 @@ function getFunction(e){
 }
 
 function runAns (){
-
+    displayTop.textContent += ans
 }
 
 function clearAll(){
@@ -569,6 +569,7 @@ function updateDisplay (){
 let editArray = []
 
 function calculate(){
+    userInput = displayTop.textContent
     evaluateStringSymbols(userInput.replace(/ /g,""))
     editArray = structuredClone(inputArray);
     checkForErrors(editArray)
@@ -576,7 +577,6 @@ function calculate(){
     calculateInOrder(editArray, 1)
 
     ans = editArray
-    
 }
 
 function checkForErrors (array) {
