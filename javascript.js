@@ -470,7 +470,7 @@ function doCalculation (operator, index){
 //          addition
                 result = +previousValue + +nextValue
                
-                editArray.splice(index, 3, result)
+                editArray.splice(index-1, 3, result)
                 
 
             break;
