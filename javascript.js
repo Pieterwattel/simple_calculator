@@ -508,16 +508,16 @@ function doubleOperators (
     currentElement, 
     nextElement, 
     nextNextElement,
-    index){
-
+    index,
+    array){
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
 
             if (previousElement.category == "operator"){
-                currentElement = ""
-
+                array.splice(index, 1)
             }
+            console.log(previousElement, currentElement)
             break;
 
         case (symbolObject[1].sign == currentElement.sign):
@@ -580,7 +580,7 @@ function calculate(){
 }
 
 function checkForErrors (array) {
-    /*
+    
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
         let prePreviousElement = array[i-2]
@@ -596,11 +596,12 @@ function checkForErrors (array) {
                 currentElement, 
                 nextElement, 
                 nextNextElement,
-                index
+                index,
+                array
             )
         }
     }
-        */
+        
 }
 
 
