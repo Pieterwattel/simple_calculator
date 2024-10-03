@@ -377,7 +377,6 @@ function makeInputArray(previousValue, value, nextValue){
         console.log("value falls outside makeInputArray() if statement options")
 
     }
-    console.log(inputArray)
 }
 
 function checkOperator (previousValue, value, nextValue){
@@ -414,39 +413,66 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
-    let repeat = false
+    console.log("calcinOrder accessed")
+let operationFound = false
+// find an element with following arguments: the element and the index
     array.some((element, index) => {
+// if the element is an object and precedence is (i) do:
         if (typeof element == "object" && element.precedence == i){
+//log the argument
+            console.log(element)
+// do a calculation, (find the operator that the object is, 
+//use the values around of the array to get the answer, and splice the unneeded values.
             doCalculation(element, index)
-            calculateInOrder(array, i)
-            repeat = true
+
+// end the function when the calculation was done
+            operationFound = true
             return true
         }
+// if no operators of this precedence were found, check a lower precedence value
+        return false
     })
 
+    if (operationFound) {
+        calculateInOrder(array,i)
+    } else if(i < 7){
+        calculateInOrder (array, i+1)
+    } 
+    
+    if (array.length == 1){
+        return array
+    }
+
+}
+/*
     if (repeat){
         calculateInOrder(array, i)
     } else if (i < 6){
         i++
         calculateInOrder(array, i)
     } else if (i == 1){
+        repeat = false
         return array
     }
-}
+*/
 
 function doCalculation (operator, index){
+    console.log("doCalculation was accessed")
     let opSymbol = operator.sign
     let result = ""
     let previousValue = editArray[index-1]
     let nextValue = editArray[index+1]
     console.log(`doCalculation run with operator: ${operator.sign}, previousValue: ${previousValue}, nextValue: ${nextValue}`)
 
+
     switch (true){
         case (symbolObject[0].sign.includes(opSymbol)):
 //          addition
                 result = +previousValue + +nextValue
+               
+                editArray.splice(index, 3, result)
                 
-                editArray.splice(index-1, 3, result)
+
             break;
 
         case (symbolObject[1].sign.includes(opSymbol)):
@@ -473,6 +499,7 @@ function doCalculation (operator, index){
         default:
             return "error"
     }
+            
 }
 
 function doubleOperators (
@@ -482,12 +509,14 @@ function doubleOperators (
     nextElement, 
     nextNextElement,
     index){
-        console.log (index, currentElement)
+
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
-            if (editArray[index -1].category == "operator"){
-                alert("operator found!!")
+
+            if (previousElement.category == "operator"){
+                currentElement = ""
+
             }
             break;
 
@@ -506,6 +535,7 @@ function doubleOperators (
         default:
             alert ("doubleOperators() error")
     }
+            
 }
 
 
@@ -540,14 +570,17 @@ let editArray = []
 
 function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
-    editArray = JSON.parse(JSON.stringify(inputArray));
+    editArray = structuredClone(inputArray);
     checkForErrors(editArray)
+    console.log(editArray)
     calculateInOrder(editArray, 1)
+
     ans = editArray
-    console.log(ans)
+    
 }
 
 function checkForErrors (array) {
+    /*
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
         let prePreviousElement = array[i-2]
@@ -567,6 +600,7 @@ function checkForErrors (array) {
             )
         }
     }
+        */
 }
 
 
