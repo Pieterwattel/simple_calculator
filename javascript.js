@@ -130,8 +130,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = ""
-//1 - 1 x 2
+let userInput = "1 + 2"
 updateDisplay()
 
 let currentElement = ""
@@ -140,8 +139,6 @@ let inputArray = []
 let currentNum = ""
 
 let errorCheckIteration = 0
-
-numSwitchFlag = true
 
 
 //#endregion
@@ -211,7 +208,7 @@ function getFunction(e){
         break;
 
         case "C": 
-        clearAll()
+        clearDisplay()
         break;
 
         case "CE": 
@@ -228,16 +225,21 @@ function runEquals (){
     inputArray.length = 0
     calculate()
     displayAns()
-//    emptyAfterAns()
-
+    inputArray = []
+    editArray = []
+    currentElement = ""
     clearEntry()
+}
+
+function clearAllValues(){
+    ans = ""
 }
 
 function runAns (){
     displayTop.textContent += ans
 }
 
-function clearAll(){
+function clearDisplay(){
     userInput = ""
     ans = ""
     updateDisplay()
@@ -322,7 +324,6 @@ function evaluateStringSymbols (string){
     let previousValue =- ""
     let value = ""
     let nextValue = ""
-
     let i = string.length
     let j = 0
     while (j < i){
@@ -338,7 +339,9 @@ function evaluateStringSymbols (string){
         inputArray.push(currentElement)
     } else if (numberOrOperator(previousValue, value, nextValue) == "operator" ){
         inputArray.push(string.charAt(j-1))
+
     }
+
 }
 
 function numberOrOperator (previousValue, value,  nextValue) {
@@ -370,6 +373,8 @@ function makeInputArray(previousValue, value, nextValue){
     result = numberOrOperator(previousValue, value, nextValue)
 // check of the value if it is a number.
     if (result == "number"){
+//        console.log("value is" + value)
+//        console.log("currentElement is" + currentElement)        
         currentElement += value
 
 // then check if it is an operator, using the previous and next value to evaluate that
@@ -473,8 +478,6 @@ function doCalculation (operator, index){
     let result = ""
     let previousValue = editArray[index-1]
     let nextValue = editArray[index+1]
-    console.log(`doCalculation run with operator: ${operator.sign}, previousValue: ${previousValue}, nextValue: ${nextValue}`)
-
 
     switch (true){
         case (symbolObject[0].sign.includes(opSymbol)):
@@ -529,7 +532,6 @@ function doubleOperators (
                 array.splice(index, 1)
                 errorCheckIteration--
             }
-            console.log(previousElement, currentElement)
             break;
 
         case (symbolObject[1].sign == currentElement.sign):
@@ -585,7 +587,6 @@ function calculate(){
     evaluateStringSymbols(userInput.replace(/ /g,""))
     editArray = structuredClone(inputArray);
     checkForErrors(editArray)
-    console.log(editArray)
     calculateInOrder(editArray, 1)
 
     ans = editArray
