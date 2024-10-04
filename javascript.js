@@ -139,6 +139,8 @@ let inputArray = []
 
 let currentNum = ""
 
+let errorCheckIteration = 0
+
 numSwitchFlag = true
 
 
@@ -201,8 +203,7 @@ function makeNumber(value){
 function getFunction(e){
     switch (e.target.textContent){
         case "=": 
-        calculate()
-        displayAns()
+        runEquals()
         break;
 
         case "ans": 
@@ -220,6 +221,16 @@ function getFunction(e){
         default: 
         alert ("Unknown function button pressed")
     }
+}
+
+function runEquals (){
+    ans = ""
+    inputArray.length = 0
+    calculate()
+    displayAns()
+//    emptyAfterAns()
+
+    clearEntry()
 }
 
 function runAns (){
@@ -516,6 +527,7 @@ function doubleOperators (
 
             if (previousElement.category == "operator"){
                 array.splice(index, 1)
+                errorCheckIteration--
             }
             console.log(previousElement, currentElement)
             break;
@@ -583,6 +595,7 @@ function checkForErrors (array) {
     
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
+        errorCheckIteration = i
         let prePreviousElement = array[i-2]
         let previousElement = array[i-1]
         let currentElement = array[i]
@@ -600,6 +613,9 @@ function checkForErrors (array) {
                 array
             )
         }
+        // if any adjustments in index number need be made,
+        // they can be changed in the error checks, and implemented here
+        i = errorCheckIteration
     }
         
 }
