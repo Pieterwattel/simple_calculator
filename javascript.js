@@ -34,8 +34,6 @@ const contentBase = document.getElementById(`contentBase`)
 
             const btnFrameOperator = document.getElementById(`btnFrameOperator`)
 
-//btnFrameOperator.style.backgroundColor= "rebeccapurple";
-
 
 //#endregion	
 //#region           >>> Numbers
@@ -89,7 +87,14 @@ symbolObject.forEach ((prop) => {
     id: '' ,
     value: '',   
     } ,
+
+//to add an operator:
+add the operator to the operatorObject + different ways that it can be written
+write a way to check for this operator in the checkOperator()
+add the calculation in the doCalculation function
+think about possible errors, and add these in checkForErrors()
 */
+
 
 //#endregion
 //#region           >>> Other Buttons
@@ -157,41 +162,6 @@ function logNum (e){
     console.log(`hi! is seems that the ${e.target.id.replace('btn', "")} item was clicked`)
 }
 
-/*
-function switchCurrentNum (){
-    if (numSwitchFlag == true){
-        currentNum = num2
-        numSwitchFlag = false
-    } else if (numSwitchFlag == false){
-        currentNum = num1
-        numSwitchFlag = true
-    }
-}
-*/
-
-/*
-function updateNum () {
-    if (numSwitchFlag == true){
-        num1 = currentNum
-    } else if (numSwitchFlag == false){
-        num2 = currentNum
-    }
-    displayNum1 = num1
-    displayOperator = operator
-    displayNum2 = num2
-}
-*/
-
-/*
-function addSpaces(){
-    if (displayNum1 != "" && displayNum1[displayNum1.length-1] != " "){
-        displayNum1 += " "
-    }
-    if (displayOperator != "" && displayOperator[displayOperator.length-1] != " "){
-        displayOperator += " "
-    }
-}
-*/
 
 function makeNumber(value){
     return parseFloat(value)    
@@ -277,38 +247,6 @@ function makeOperatorString (operator){
     }
     clearEntry()
 }
-
-
-/*
-function calculate (value1, operator, value2){
-    switch (operator){
-        case (symbolObject[0].sign):
-//          addition
-            ans = (value1 + value2)
-            break;
-
-        case (symbolObject[1].sign):
-//          subtraction
-            ans = (value1 - value2)
-            break;
-
-        case (symbolObject[2].sign):
-//          multiplication
-            ans = (value1 * value2)
-            break;
-
-        case (symbolObject[3].sign):
-//          division
-            ans = (value1 / value2)
-            break;
-
-        default:
-            console.log(operator + " with value" + symbolObject[0].sign + " not working yet")
-    }
-    clearEntry()
-}
-    */
-
 
 function displayEntry(){
     displayTop.textContent = userInput
@@ -429,14 +367,11 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
-    console.log("calcinOrder accessed")
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
 // if the element is an object and precedence is (i) do:
         if (typeof element == "object" && element.precedence == i){
-//log the argument
-            console.log(element)
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
             doCalculation(element, index)
@@ -460,17 +395,6 @@ let operationFound = false
     }
 
 }
-/*
-    if (repeat){
-        calculateInOrder(array, i)
-    } else if (i < 6){
-        i++
-        calculateInOrder(array, i)
-    } else if (i == 1){
-        repeat = false
-        return array
-    }
-*/
 
 function doCalculation (operator, index){
     console.log("doCalculation was accessed")
