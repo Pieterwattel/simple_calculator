@@ -273,16 +273,16 @@ function evaluateStringSymbols (string){
     }
 
     // small script to also add the very last value to inputArray[]
-    if (numberOrOperator(previousValue, value, nextValue) == "number" ){
+    if (numberOrSymbol(previousValue, value, nextValue) == "number" ){
         inputArray.push(currentElement)
-    } else if (numberOrOperator(previousValue, value, nextValue) == "operator" ){
+    } else if (numberOrSymbol(previousValue, value, nextValue) == "operator" ){
         inputArray.push(string.charAt(j-1))
 
     }
 
 }
 
-function numberOrOperator (previousValue, value,  nextValue) {
+function numberOrSymbol (previousValue, value,  nextValue) {
     let returnValue = ""
 
     // check if value is number, returns string "number"
@@ -308,7 +308,7 @@ function numberOrOperator (previousValue, value,  nextValue) {
 }
 
 function makeInputArray(previousValue, value, nextValue){    
-    result = numberOrOperator(previousValue, value, nextValue)
+    result = numberOrSymbol(previousValue, value, nextValue)
 // check of the value if it is a number.
     if (result == "number"){
 //        console.log("value is" + value)
