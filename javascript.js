@@ -374,7 +374,7 @@ let operationFound = false
         if (typeof element == "object" && element.precedence == i){
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
-            doCalculation(element, index)
+            doCalculation(element, index, array)
 
 // end the function when the calculation was done
             operationFound = true
@@ -396,19 +396,19 @@ let operationFound = false
 
 }
 
-function doCalculation (operator, index){
+function doCalculation (operator, index, array){
     console.log("doCalculation was accessed")
     let opSymbol = operator.sign
     let result = ""
-    let previousValue = editArray[index-1]
-    let nextValue = editArray[index+1]
+    let previousValue = array[index-1]
+    let nextValue = array[index+1]
 
     switch (true){
         case (symbolObject[0].sign.includes(opSymbol)):
 //          addition
                 result = +previousValue + +nextValue
                
-                editArray.splice(index-1, 3, result)
+                array.splice(index-1, 3, result)
                 
 
             break;
