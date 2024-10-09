@@ -482,6 +482,7 @@ function doubleOperators (
 function operatorPress (e) {
 //    switchCurrentNum();
     let operatorString = makeOperatorString(e.target.textContent)
+    userInput = displayTop.textContent
     userInput += operatorString
     updateDisplay ();
 }
