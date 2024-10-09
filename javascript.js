@@ -67,7 +67,19 @@ let symbolObject = [
     id: 'btnDivide' ,
     sign: '/',   
     precedence: 4 ,
-    category: "operator"
+    category: 'operator'
+    } ,
+    {
+    id: 'bracketOpen' ,
+    sign: '(',   
+    precedence:  2,
+    category: 'bracket'
+    } ,
+    {
+    id: 'bracketClose' ,
+    sign: ')',   
+    precedence:  2,
+    category: 'bracket'
     } ,
 ]
 
@@ -83,9 +95,10 @@ symbolObject.forEach ((prop) => {
 // empty operator, for later additions
 /*
     {
-    name: '' ,
     id: '' ,
-    value: '',   
+    sign: '',   
+    precedence:  ,
+    category: ''
     } ,
 
 //to add an operator:
