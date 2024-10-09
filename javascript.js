@@ -193,8 +193,8 @@ function getFunction(e){
 function runEquals (){
     ans = ""
     inputArray.length = 0
-    makeStringArray(displayTop.textContent)
-    calculate()
+    array = makeStringArray(displayTop.textContent)
+    calculate(array)
     displayAns()
     inputArray = []
     editArray = []
@@ -280,7 +280,7 @@ function evaluateStringSymbols (string){
         inputArray.push(string.charAt(j-1))
 
     }
-
+    return inputArray
 }
 
 function numberOrSymbol (previousValue, value,  nextValue) {
@@ -398,7 +398,6 @@ let operationFound = false
 }
 
 function doCalculation (operator, index, array){
-    console.log("doCalculation was accessed")
     let opSymbol = operator.sign
     let result = ""
     let previousValue = array[index-1]
@@ -513,12 +512,11 @@ function makeStringArray(string){
     return result
 }
 
-function calculate(){
-    editArray = structuredClone(inputArray);
-    checkForErrors(editArray)
-    calculateInOrder(editArray, 1)
+function calculate(array){
+    checkForErrors(array)
+    calculateInOrder(array, 1)
 
-    ans = editArray
+    ans = array
 }
 
 function checkForErrors (array) {
