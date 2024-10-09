@@ -193,6 +193,7 @@ function getFunction(e){
 function runEquals (){
     ans = ""
     inputArray.length = 0
+    makeStringArray(displayTop.textContent)
     calculate()
     displayAns()
     inputArray = []
@@ -507,9 +508,12 @@ function updateDisplay (){
 
 let editArray = []
 
+function makeStringArray(string){
+    result = evaluateStringSymbols(string.replace(/ /g,""))
+    return result
+}
+
 function calculate(){
-    userInput = displayTop.textContent
-    evaluateStringSymbols(userInput.replace(/ /g,""))
     editArray = structuredClone(inputArray);
     checkForErrors(editArray)
     calculateInOrder(editArray, 1)
