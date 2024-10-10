@@ -234,30 +234,41 @@ function clearEntry(){
     updateDisplay()
 }
 
-function makeOperatorString (operator){
-    switch (operator){
+function makeSymbolString (symbol){
+    switch (symbol){
         case (symbolObject[0].sign[0]):
 //          addition
-            return " " + operator + " "
+            return " " + symbol + " "
             break;
 
         case (symbolObject[1].sign[0]):
 //          subtraction
-            return " " + operator + " "
+            return " " + symbol + " "
             break;
 
         case (symbolObject[2].sign[0]):
 //          multiplication
-            return " " + operator + " "
+            return " " + symbol + " "
             break;
 
         case (symbolObject[3].sign[0]):
 //          division
-            return " " + operator + " "
+            return " " + symbol + " "
+            break;
+
+        case (symbolObject[4].sign[0]):
+//          bracketOpen
+            return symbol
+            break;
+
+        case (symbolObject[5].sign[0]):
+//          bracketClose
+            return symbol
             break;
 
         default:
-            console.log("operator: " + operator + ", not working yet in operatorString()")
+            console.log("operator: " + symbol + ", not added yet in operatorString()")
+            return symbol
     }
     clearEntry()
 }
@@ -545,7 +556,7 @@ function doubleOperators (
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    let operatorString = makeOperatorString(e.target.textContent)
+    let operatorString = makeSymbolString(e.target.textContent)
     userInput = displayTop.textContent
     userInput += operatorString
     updateDisplay ();
