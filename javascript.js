@@ -207,8 +207,11 @@ function runEquals (){
     ans = ""
     inputArray.length = 0
     array = makeStringArray(displayTop.textContent)
+    console.log("runEquals1")
     calculate(array)
+    console.log("runEquals2")
     displayAns()
+    console.log("runEquals3")
     inputArray = []
     editArray = []
     currentElement = ""
@@ -271,6 +274,7 @@ function displayAns(){
 }
 
 function evaluateStringSymbols (string){
+    console.log("evaluateStringSymbols")
     
 // 3 values that can be given, to evaluate the context of a symbol
     let previousValue =- ""
@@ -297,6 +301,7 @@ function evaluateStringSymbols (string){
 }
 
 function numberOrSymbol (previousValue, value,  nextValue) {
+    console.log("numberOrSymbol")
     let returnValue = ""
 
     // check if value is number, returns string "number"
@@ -321,7 +326,8 @@ function numberOrSymbol (previousValue, value,  nextValue) {
     return returnValue
 }
 
-function makeInputArray(previousValue, value, nextValue){    
+function makeInputArray(previousValue, value, nextValue){  
+    console.log("makeInputArray")  
     result = numberOrSymbol(previousValue, value, nextValue)
 // check of the value if it is a number.
     if (result == "number"){
@@ -375,12 +381,43 @@ function checkOperator (previousValue, value, nextValue){
             return symbolObject[3]
             break;
 
+        case (symbolObject[4].sign.includes(value)):
+//          bracketOpen
+            return symbolObject[4]
+            break;
+
+        case (symbolObject[5].sign.includes(value)):
+//          bracketOpen
+            return symbolObject[5]
+            break;     
+               
+        case (symbolObject[6].sign.includes(value)):
+//          ..
+            return symbolObject[6]
+            break;               
+
+        case (symbolObject[7].sign.includes(value)):
+//          ..
+            return symbolObject[7]
+            break;            
+
+        case (symbolObject[8].sign.includes(value)):
+        //          ..
+            return symbolObject[8]
+            break;            
+
+        case (symbolObject[9].sign.includes(value)):
+//          ..
+            return symbolObject[9]
+            break;
+
         default:
             return "error"
     }
 }
 
 function calculateInOrder(array, i){
+    console.log("calculateInOrder")
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -397,11 +434,13 @@ let operationFound = false
 // if no operators of this precedence were found, check a lower precedence value
         return false
     })
+    console.log(`i is value: ${i}`)
 
     if (operationFound) {
         calculateInOrder(array,i)
     } else if(i < 7){
-        calculateInOrder (array, i+1)
+        i++
+        calculateInOrder (array, i)
     } 
     
     if (array.length == 1){
@@ -410,8 +449,9 @@ let operationFound = false
 
 }
 
-function doCalculation (operator, index, array){
-    let opSymbol = operator.sign
+function doCalculation (symbol, index, array){
+    console.log("doCalculation")
+    let opSymbol = symbol.sign
     let result = ""
     let previousValue = array[index-1]
     let nextValue = array[index+1]
@@ -447,8 +487,25 @@ function doCalculation (operator, index, array){
             return symbolObject[3]
             break;
 
+        case (symbolObject[4].sign.includes(opSymbol)):
+//          bracketOpen
+//            return symbolObject[4]
+            array.splice(index, 1)
+            return ""
+            break;
+
+        case (symbolObject[5].sign.includes(opSymbol)):
+//          bracketClose
+//          return symbolObject[5]
+            array.splice(index, 1)
+            return ""
+console.log(symbolObject[5])
+            break;
+                                                
+
         default:
-            return "error"
+            console.log(`doCalculation symbol "${operator}" unknown, ERROR`)
+            array.splice(index, 1)
     }
             
 }
@@ -461,6 +518,7 @@ function doubleOperators (
     nextNextElement,
     index,
     array){
+    console.log("doubleOperators")
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
@@ -526,6 +584,7 @@ function makeStringArray(string){
 }
 
 function calculate(array){
+    console.log("calculate")
     checkForErrors(array)
     calculateInOrder(array, 1)
 
@@ -533,6 +592,7 @@ function calculate(array){
 }
 
 function checkForErrors (array) {
+    console.log("checkForErrors")
     
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
