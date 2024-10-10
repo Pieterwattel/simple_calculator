@@ -207,12 +207,15 @@ function runEquals (){
     ans = ""
     inputArray.length = 0
     array = makeStringArray(displayTop.textContent)
-    calculate(array)
-    displayAns()
-    inputArray = []
-    editArray = []
-    currentElement = ""
-    clearEntry()
+    // if there are no errors, run the rest of the function
+    if (!checkForErrors(array)){
+        calculate(array)
+        displayAns()
+        inputArray = []
+        editArray = []
+        currentElement = ""
+        clearEntry()
+    }
 }
 
 function clearAllValues(){
@@ -588,14 +591,14 @@ function makeStringArray(string){
 }
 
 function calculate(array){
-    checkForErrors(array)
     calculateInOrder(array, 1)
-
     ans = array
 }
 
 function checkForErrors (array) {
-    
+    // there is no value return for no error, but if there is an error found, isError will be true
+    // this will stop the rest of calculation
+    let isError = false
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
         errorCheckIteration = i
@@ -605,7 +608,7 @@ function checkForErrors (array) {
         let nextElement = array[i+1]
         let nextNextElement = array[i+2]
         let index = i
-        if (typeof currentElement == "object") {
+        if (currentElement.category == "operator") {
             doubleOperators(
                 prePreviousElement, 
                 previousElement, 
@@ -620,9 +623,24 @@ function checkForErrors (array) {
         // they can be changed in the error checks, and implemented here
         i = errorCheckIteration
     }
-        
+
+    isError = unEqualBracketAmount(array)
+    
+    return isError
 }
 
+function unEqualBracketAmount(array){
+    let openBracketAmount = (() =>{
+        return array.filter(x => x.id=="bracketOpen").length
+    })(array)
+    let closedBracketAmount = ((array) =>{
+        return array.filter(x => x.id=="bracketClose").length
+    })(array)
+    if (openBracketAmount != closedBracketAmount){
+        alert ("ERROR: unequal amount of brackets!")
+        return true
+    }
+}
 
 
 //#endregion
