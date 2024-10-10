@@ -47,7 +47,7 @@ for (let i = 9; i >= 0; i--){
 let symbolObject = [
     {
     id: 'btnAdd' ,
-    sign: '+' ,  
+    sign: ['+'] ,  
     precedence: 5 , 
     category: "operator"
     },
@@ -207,11 +207,8 @@ function runEquals (){
     ans = ""
     inputArray.length = 0
     array = makeStringArray(displayTop.textContent)
-    console.log("runEquals1")
     calculate(array)
-    console.log("runEquals2")
     displayAns()
-    console.log("runEquals3")
     inputArray = []
     editArray = []
     currentElement = ""
@@ -301,7 +298,6 @@ function evaluateStringSymbols (string){
 }
 
 function numberOrSymbol (previousValue, value,  nextValue) {
-    console.log("numberOrSymbol")
     let returnValue = ""
 
     // check if value is number, returns string "number"
@@ -326,8 +322,7 @@ function numberOrSymbol (previousValue, value,  nextValue) {
     return returnValue
 }
 
-function makeInputArray(previousValue, value, nextValue){  
-    console.log("makeInputArray")  
+function makeInputArray(previousValue, value, nextValue){
     result = numberOrSymbol(previousValue, value, nextValue)
 // check of the value if it is a number.
     if (result == "number"){
@@ -417,7 +412,6 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
-    console.log("calculateInOrder")
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -425,6 +419,7 @@ let operationFound = false
         if (typeof element == "object" && element.precedence == i){
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
+            console.log(`element is ${element.sign}`)
             doCalculation(element, index, array)
 
 // end the function when the calculation was done
@@ -450,8 +445,7 @@ let operationFound = false
 }
 
 function doCalculation (symbol, index, array){
-    console.log("doCalculation")
-    let opSymbol = symbol.sign
+    let opSymbol = symbol.sign[0]
     let result = ""
     let previousValue = array[index-1]
     let nextValue = array[index+1]
@@ -504,7 +498,7 @@ console.log(symbolObject[5])
                                                 
 
         default:
-            console.log(`doCalculation symbol "${operator}" unknown, ERROR`)
+            console.log(`doCalculation symbol "${symbol.sign}" unknown, thus was removed. ERROR`)
             array.splice(index, 1)
     }
             
@@ -518,7 +512,6 @@ function doubleOperators (
     nextNextElement,
     index,
     array){
-    console.log("doubleOperators")
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
@@ -584,7 +577,6 @@ function makeStringArray(string){
 }
 
 function calculate(array){
-    console.log("calculate")
     checkForErrors(array)
     calculateInOrder(array, 1)
 
@@ -592,7 +584,6 @@ function calculate(array){
 }
 
 function checkForErrors (array) {
-    console.log("checkForErrors")
     
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
