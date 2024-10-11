@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "(1 + 2)"
+let userInput = "2 + 3 + 4"
 updateDisplay()
 
 let currentElement = ""
@@ -209,10 +209,9 @@ function runEquals (){
     array = makeStringArray(displayTop.textContent)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
-        calculate(array)
-        displayAns()
+        ans = calculate(array)
+        displayAns(ans)
         inputArray = []
-        editArray = []
         currentElement = ""
         clearEntry()
     }
@@ -280,7 +279,7 @@ function displayEntry(){
     displayTop.textContent = userInput
 }
 
-function displayAns(){
+function displayAns(ans){
     displayBottom.textContent = ans
 }
 
@@ -425,6 +424,7 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
+    console.log(`calculateInOrder, index: ${i}`)
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -432,27 +432,26 @@ let operationFound = false
         if (typeof element == "object" && element.precedence == i){
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
-            doCalculation(element, index, array)
+console.log(element)
+            array = doCalculation(element, index, array)
             console.log(`iteration is: ${i}`)
 // end the function when the calculation was done
             operationFound = true
-        }
-// if no operators of this precedence were found, check a lower precedence value
-        operationFound = false
+        } 
+// if no operators of this precedence were found, operationfound stays false
     })
 
     if (operationFound) {
         calculateInOrder(array,i)
-    } else if(i < 7){
+    } else if(i < 8){
         i++
         calculateInOrder (array, i)
-    } 
-    
-    if (array.length == 1){
-        return array
+    } else if (i >= 8){
+    console.log(array)
+    return array
     }
-
 }
+
 
 function doCalculation (symbol, index, array){
     let result = ""
@@ -466,7 +465,7 @@ function doCalculation (symbol, index, array){
                 result = +previousValue + +nextValue
                
                 array.splice(index-1, 3, result)
-                return
+                return array
 
             break;
 
@@ -474,21 +473,20 @@ function doCalculation (symbol, index, array){
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
-                return "numbdocalcuer"
+                return array
             } else {
-
-            return symbolObject[1]
+                return array
             }
             break;
 
         case (symbol == symbolObject[2]):
 //          multiplication
-            return symbolObject[2]
+            return array
             break;
 
         case (symbol == symbolObject[3]):
 //          division
-            return symbolObject[3]
+            return array
             break;
 
         case (symbol == symbolObject[4]):
@@ -508,6 +506,7 @@ function doCalculation (symbol, index, array){
         default:
             console.log(`doCalculation symbol "${symbol.sign}" unknown, thus was removed. ERROR`)
             array.splice(index, 1)
+            return array
     }         
 }
 
@@ -527,22 +526,27 @@ function doubleOperators (
                 array.splice(index, 1)
                 errorCheckIteration--
             }
+            return array
             break;
 
         case (symbolObject[1].sign == currentElement.sign):
 //          subtraction
+            return array
             break;
 
         case (symbolObject[2].sign == currentElement.sign):
 //          multiplication
+            return array
             break;
 
         case (symbolObject[3].sign == currentElement.sign):
 //          division
+            return array
             break;
 
         default:
             alert ("doubleOperators() error")
+            return array
     }
             
 }
@@ -576,7 +580,6 @@ function updateDisplay (){
     displayAns()
 }
 
-let editArray = []
 
 function makeStringArray(string){
     result = evaluateStringSymbols(string.replace(/ /g,""))
@@ -584,13 +587,18 @@ function makeStringArray(string){
 }
 
 function calculate(array){
-    calculateInOrder(array, 1)
-    ans = array
+    console.log(`calculate, array: ${array}`)
+    let ans1 = calculateInOrder(array, 1)
+    console.log(ans1)
+    return ans1
 }
 
 function checkForErrors (array) {
-    // there is no value return for no error, but if there is an error found, isError will be true
-    // this will stop the rest of calculation
+/* 
+but if there is an error found that will not be solved, isError will be true
+this will stop the rest of calculation
+*/
+
     let isError = false
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
