@@ -209,7 +209,7 @@ function runEquals (){
     array = makeStringArray(displayTop.textContent)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
-        ans = calculate(array)
+        ans = calculate(array.flat())
         displayAns(ans)
         inputArray = []
         currentElement = ""
@@ -280,6 +280,7 @@ function displayEntry(){
 }
 
 function displayAns(ans){
+    console.log(ans)
     displayBottom.textContent = ans
 }
 
@@ -424,7 +425,6 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
-    console.log(`calculateInOrder, index: ${i}`)
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -432,9 +432,7 @@ let operationFound = false
         if (typeof element == "object" && element.precedence == i){
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
-console.log(element)
             array = doCalculation(element, index, array)
-            console.log(`iteration is: ${i}`)
 // end the function when the calculation was done
             operationFound = true
         } 
@@ -442,13 +440,15 @@ console.log(element)
     })
 
     if (operationFound) {
-        calculateInOrder(array,i)
+        return calculateInOrder(array,i)
     } else if(i < 8){
         i++
-        calculateInOrder (array, i)
+        return calculateInOrder (array, i)
     } else if (i >= 8){
-    console.log(array)
-    return array
+        return array
+    } else {
+        console.log("calculateInOrder ERROR")
+        return array
     }
 }
 
@@ -587,10 +587,7 @@ function makeStringArray(string){
 }
 
 function calculate(array){
-    console.log(`calculate, array: ${array}`)
-    let ans1 = calculateInOrder(array, 1)
-    console.log(ans1)
-    return ans1
+    return calculateInOrder(array, 1)
 }
 
 function checkForErrors (array) {
