@@ -281,7 +281,6 @@ function displayEntry(){
 }
 
 function displayAns(){
-    console.log("displayAns")
     displayBottom.textContent = ans
 }
 
@@ -426,7 +425,6 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
-    console.log("calculateInOrder")
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -437,7 +435,6 @@ let operationFound = false
             doCalculation(element, index, array)
             console.log(`iteration is: ${i}`)
 // end the function when the calculation was done
-            console.log(array)
             operationFound = true
         }
 // if no operators of this precedence were found, check a lower precedence value
@@ -458,23 +455,22 @@ let operationFound = false
 }
 
 function doCalculation (symbol, index, array){
-    console.log("doCalculation")
-    let opSymbol = symbol.sign[0]
     let result = ""
     let previousValue = array[index-1]
     let nextValue = array[index+1]
 
+
     switch (true){
-        case (symbolObject[0].sign.includes(opSymbol)):
+        case (symbol == symbolObject[0]):
 //          addition
                 result = +previousValue + +nextValue
                
                 array.splice(index-1, 3, result)
-                
+                return
 
             break;
 
-        case (symbolObject[1].sign.includes(opSymbol)):
+        case (symbol == symbolObject[1]):
 //          subtraction
             if (previousValue == "" || 
                 !Number(previousValue)){
@@ -485,35 +481,35 @@ function doCalculation (symbol, index, array){
             }
             break;
 
-        case (symbolObject[2].sign.includes(opSymbol)):
+        case (symbol == symbolObject[2]):
 //          multiplication
             return symbolObject[2]
             break;
 
-        case (symbolObject[3].sign.includes(opSymbol)):
+        case (symbol == symbolObject[3]):
 //          division
             return symbolObject[3]
             break;
 
-        case (symbolObject[4].sign.includes(opSymbol)):
+        case (symbol == symbolObject[4]):
 //          bracketOpen
+            console.log(index)
             return symbolObject[4]
             break;
 
-        case (symbolObject[5].sign.includes(opSymbol)):
+        case (symbol == symbolObject[5]):
 //          bracketClose
 //          return symbolObject[5]
-            array.splice(index, 1)
+            console.log(array[index], index)
             return ""
-console.log(symbolObject[5])
+            console.log(symbolObject[5])
             break;
                                                 
 
         default:
             console.log(`doCalculation symbol "${symbol.sign}" unknown, thus was removed. ERROR`)
             array.splice(index, 1)
-    }
-            
+    }         
 }
 
 function doubleOperators (
@@ -524,7 +520,6 @@ function doubleOperators (
     nextNextElement,
     index,
     array){
-        console.log("doubleOperators")
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
