@@ -148,7 +148,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "1 + 2"
+let userInput = "(1 + 2)"
 updateDisplay()
 
 let currentElement = ""
@@ -281,11 +281,11 @@ function displayEntry(){
 }
 
 function displayAns(){
+    console.log("displayAns")
     displayBottom.textContent = ans
 }
 
 function evaluateStringSymbols (string){
-    console.log("evaluateStringSymbols")
     
 // 3 values that can be given, to evaluate the context of a symbol
     let previousValue =- ""
@@ -426,6 +426,7 @@ function checkOperator (previousValue, value, nextValue){
 }
 
 function calculateInOrder(array, i){
+    console.log("calculateInOrder")
 let operationFound = false
 // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -433,17 +434,15 @@ let operationFound = false
         if (typeof element == "object" && element.precedence == i){
 // do a calculation, (find the operator that the object is, 
 //use the values around of the array to get the answer, and splice the unneeded values.
-            console.log(`element is ${element.sign}`)
             doCalculation(element, index, array)
-
+            console.log(`iteration is: ${i}`)
 // end the function when the calculation was done
+            console.log(array)
             operationFound = true
-            return true
         }
 // if no operators of this precedence were found, check a lower precedence value
-        return false
+        operationFound = false
     })
-    console.log(`i is value: ${i}`)
 
     if (operationFound) {
         calculateInOrder(array,i)
@@ -459,6 +458,7 @@ let operationFound = false
 }
 
 function doCalculation (symbol, index, array){
+    console.log("doCalculation")
     let opSymbol = symbol.sign[0]
     let result = ""
     let previousValue = array[index-1]
@@ -497,9 +497,7 @@ function doCalculation (symbol, index, array){
 
         case (symbolObject[4].sign.includes(opSymbol)):
 //          bracketOpen
-//            return symbolObject[4]
-            array.splice(index, 1)
-            return ""
+            return symbolObject[4]
             break;
 
         case (symbolObject[5].sign.includes(opSymbol)):
@@ -526,6 +524,7 @@ function doubleOperators (
     nextNextElement,
     index,
     array){
+        console.log("doubleOperators")
     switch (true){
         case (symbolObject[0].sign === currentElement.sign):
 //          addition
