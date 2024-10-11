@@ -210,7 +210,7 @@ function runEquals (){
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
         ans = calculate(array.flat())
-        displayAns(ans)
+        displayAns()
         inputArray = []
         currentElement = ""
         clearEntry()
@@ -279,8 +279,7 @@ function displayEntry(){
     displayTop.textContent = userInput
 }
 
-function displayAns(ans){
-    console.log(ans)
+function displayAns(){
     displayBottom.textContent = ans
 }
 
