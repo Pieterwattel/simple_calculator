@@ -144,7 +144,6 @@ otherBtns.forEach ((prop) => {
 //#endregion
 //#region       >> Global Variables
 
-// variables that hold calculation data:
 let operator = ""
 let ans = ""
 
@@ -158,6 +157,7 @@ let currentNum = ""
 
 let errorCheckIteration = 0
 
+let bracketOpenIndexArray = []
 
 //#endregion
 //#endregion
@@ -493,16 +493,15 @@ function doCalculation (symbol, index, array){
 
         case (symbol == symbolObject[4]):
 //          bracketOpen
-            console.log(index)
-            return symbolObject[4]
+//          saves the indexes of open brackets, to be re-used when a close bracket has been found
+            bracketOpenIndexArray.push(index)
+            console.log(bracketOpenIndexArray)
             break;
 
         case (symbol == symbolObject[5]):
 //          bracketClose
-//          return symbolObject[5]
-            console.log(array[index], index)
-            return ""
-            console.log(symbolObject[5])
+            
+
             break;
                                                 
 
