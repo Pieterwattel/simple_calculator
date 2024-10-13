@@ -476,12 +476,11 @@ function doCalculation (symbol, index, array){
 
         case (symbol == symbolObject[1]):
 //          subtraction
-            if (previousValue == "" || 
-                !Number(previousValue)){
+                result = +previousValue - +nextValue
+                            
+                array.splice(index-1, 3, result)
                 return array
-            } else {
-                return array
-            }
+
             break;
 
         case (symbol == symbolObject[2]):
@@ -610,7 +609,7 @@ function calculate(array){
 
 function checkForErrors (array) {
 /* 
-but if there is an error found that will not be solved, isError will be true
+if there is an error found that will not be solved, isError will be true
 this will stop the rest of calculation
 */
 
