@@ -511,9 +511,11 @@ function doCalculation (symbol, index, array){
             let bracketedLength = (bracketCloseIndex - bracketOpenIndex)  + 1
             console.log("bracketedLength "+ bracketedLength)
             let bracketedContent = array.splice(bracketOpenIndex, bracketedLength)
-            alert(bracketedContent)
-            alert (array)
-            let unbracketedContent
+//removing the brackets from the content that they contain 
+            bracketedContent.pop()
+            bracketedContent.shift()
+
+            alert (bracketedContent)
             result = calculate(bracketedContent)
             console.log(result.flat())
             array.splice(bracketOpenIndex, 0 , result)
