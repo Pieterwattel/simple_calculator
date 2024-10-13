@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "4 + (2+ (3 + 2))"
+let userInput = "2+8"
 updateDisplay()
 
 let currentElement = ""
@@ -459,7 +459,7 @@ let operationFound = false
 
 function doCalculation (symbol, index, array){
     let result = ""
-    let previousValue = array[index+1]
+    let previousValue = array[index-1]
     let nextValue = array[index+1]
 
 
@@ -506,20 +506,17 @@ function doCalculation (symbol, index, array){
 //          bracketClose
             let bracketOpenIndex = bracketOpenIndexArray.pop()
             let bracketCloseIndex = index
-            console.log("bracketOpenIndex " + bracketOpenIndex)
-            console.log("bracketCloseIndex " + bracketCloseIndex)
             let bracketedLength = (bracketCloseIndex - bracketOpenIndex)  + 1
-            console.log("bracketedLength "+ bracketedLength)
             let bracketedContent = array.splice(bracketOpenIndex, bracketedLength)
+
 //removing the brackets from the content that they contain 
-            bracketedContent.pop()
+            bracketedContent.pop() 
             bracketedContent.shift()
-            console.log(bracketedContent[1])
-//            alert (bracketedContent)
+            
             result = calculate(bracketedContent)
+//place the result in the original array, in place of the brackets            
             array.splice(bracketOpenIndex, 0 , result)
-//            alert("result was " + result)
-//            alert("remaining array is " + array)
+
             return array
             break;
                                                 
