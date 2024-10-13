@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "(2 + (3 + 4)) + 2"
+let userInput = "4 + (3 + 2)"
 updateDisplay()
 
 let currentElement = ""
@@ -499,16 +499,25 @@ function doCalculation (symbol, index, array){
 //          saves the indexes of open brackets, to be re-used when a close bracket has been found
             bracketOpenIndexArray.push(index)
             console.log(bracketOpenIndexArray)
-            array.splice(index, 1)
             return array
             break;
 
         case (symbol == symbolObject[5]):
 //          bracketClose
-            console.log("index closebracket was " + index)
-            console.log("index openbracket was " + bracketOpenIndexArray.pop())
-            console.log("array was " + bracketOpenIndexArray)
-            array.splice(index, 1)
+            let bracketOpenIndex = bracketOpenIndexArray.pop()
+            let bracketCloseIndex = index
+            console.log("bracketOpenIndex " + bracketOpenIndex)
+            console.log("bracketCloseIndex " + bracketCloseIndex)
+            let bracketedLength = (bracketCloseIndex - bracketOpenIndex)  + 1
+            console.log("bracketedLength "+ bracketedLength)
+            let bracketedContent = array.splice(bracketOpenIndex, bracketedLength)
+            alert(bracketedContent)
+            alert (array)
+            let unbracketedContent
+            result = calculate(bracketedContent)
+            console.log(result.flat())
+            array.splice(bracketOpenIndex, 0 , result)
+
             return array
             break;
                                                 
