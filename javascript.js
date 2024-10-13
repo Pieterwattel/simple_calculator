@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "4 + (3 + 2)"
+let userInput = "4 + (2+ (3 + 2))"
 updateDisplay()
 
 let currentElement = ""
@@ -514,12 +514,12 @@ function doCalculation (symbol, index, array){
 //removing the brackets from the content that they contain 
             bracketedContent.pop()
             bracketedContent.shift()
-
-            alert (bracketedContent)
+            console.log(bracketedContent[1])
+//            alert (bracketedContent)
             result = calculate(bracketedContent)
-            console.log(result.flat())
             array.splice(bracketOpenIndex, 0 , result)
-
+//            alert("result was " + result)
+//            alert("remaining array is " + array)
             return array
             break;
                                                 
