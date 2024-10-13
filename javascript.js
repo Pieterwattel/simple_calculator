@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "2 + 3 + 4"
+let userInput = "(2 + (3 + 4)) + 2"
 updateDisplay()
 
 let currentElement = ""
@@ -209,7 +209,8 @@ function runEquals (){
     array = makeStringArray(displayTop.textContent)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
-        ans = calculate(array.flat())
+        result = calculate(array)
+        ans = result.flat()
         displayAns()
         inputArray = []
         currentElement = ""
@@ -429,7 +430,7 @@ let operationFound = false
     array.some((element, index) => {
 // if the element is an object and precedence is (i) do:
         if (typeof element == "object" && element.precedence == i){
-// do a calculation, (find the operator that the object is, 
+//do a calculation, (find the operator that the object is, and
 //use the values around of the array to get the answer, and splice the unneeded values.
             array = doCalculation(element, index, array)
 // end the function when the calculation was done
@@ -438,8 +439,12 @@ let operationFound = false
 // if no operators of this precedence were found, operationfound stays false
     })
 
+//if a symbol was found, the array changed. so the function needs to be 
+//run again with the modified array.
     if (operationFound) {
         return calculateInOrder(array,i)
+//if no operation was found, that means the we have no symbols at this precedence, 
+//thus we can move up one precedence value
     } else if(i < 8){
         i++
         return calculateInOrder (array, i)
@@ -454,8 +459,9 @@ let operationFound = false
 
 function doCalculation (symbol, index, array){
     let result = ""
-    let previousValue = array[index-1]
+    let previousValue = array[index+1]
     let nextValue = array[index+1]
+
 
 
     switch (true){
@@ -493,12 +499,17 @@ function doCalculation (symbol, index, array){
 //          saves the indexes of open brackets, to be re-used when a close bracket has been found
             bracketOpenIndexArray.push(index)
             console.log(bracketOpenIndexArray)
+            array.splice(index, 1)
+            return array
             break;
 
         case (symbol == symbolObject[5]):
 //          bracketClose
-            
-
+            console.log("index closebracket was " + index)
+            console.log("index openbracket was " + bracketOpenIndexArray.pop())
+            console.log("array was " + bracketOpenIndexArray)
+            array.splice(index, 1)
+            return array
             break;
                                                 
 
