@@ -147,7 +147,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "2+8"
+let userInput = "2-8"
 updateDisplay()
 
 let currentElement = ""
@@ -370,14 +370,17 @@ function checkOperator (previousValue, value, nextValue){
 
         case (symbolObject[1].sign.includes(value)):
 //          subtraction
-            if (previousValue == "" || 
-                !Number(previousValue)){
-                return "number"
-            } else {
 
-            return symbolObject[1]
-            }
-            break;
+        if (previousValue === ""){
+            return "number"
+        } else if (previousValue == "-"){
+            return "number"
+        }
+        symbolObject.forEach(element => {
+            if (element.sign.includes(previousValue))
+                return "number"
+        });
+        return symbolObject[1]
 
         case (symbolObject[2].sign.includes(value)):
 //          multiplication
