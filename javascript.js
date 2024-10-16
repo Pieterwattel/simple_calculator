@@ -59,7 +59,7 @@ let symbolObject = [
     } ,
     {
     id: 'btnMultiply' ,
-    sign: ['*', 'x'],   
+    sign: ['*'],   
     precedence: 4 , 
     category: "operator"
     } ,
@@ -488,12 +488,20 @@ function doCalculation (symbol, index, array){
 
         case (symbol == symbolObject[2]):
 //          multiplication
-            return array
+                result = +previousValue * +nextValue
+
+                array.splice(index-1, 3, result)   
+                return array
+
             break;
 
         case (symbol == symbolObject[3]):
 //          division
-            return array
+                result = +previousValue / +nextValue
+
+                array.splice(index-1, 3, result)   
+                return array
+
             break;
 
         case (symbol == symbolObject[4]):
@@ -614,7 +622,7 @@ function checkForErrors (array) {
 /* 
 if there is an error found that will not be solved, isError will be true
 this will stop the rest of calculation
-*/
+*/  
 
     let isError = false
     let j = array.length -1
@@ -626,6 +634,7 @@ this will stop the rest of calculation
         let nextElement = array[i+1]
         let nextNextElement = array[i+2]
         let index = i
+
         if (currentElement.category == "operator") {
             doubleOperators(
                 prePreviousElement, 
