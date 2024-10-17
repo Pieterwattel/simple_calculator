@@ -202,7 +202,6 @@ function runEquals (){
     array = makeStringArray(displayTop.textContent)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
-        alertSimplifiedArray(array)
         result = calculate(array)
         ans = result.flat()
         displayAns()
@@ -617,8 +616,10 @@ function updateDisplay (){
 
 
 function makeStringArray(string){
-    result = evaluateStringSymbols(string.replace(/ /g,""))
-    return result
+    let result
+    result = string.replace(/ /g,"")
+    result = string.replace(/−/g,"-")
+    return evaluateStringSymbols(result)
 }
 
 function calculate(array){
