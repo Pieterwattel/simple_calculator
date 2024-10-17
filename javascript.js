@@ -366,18 +366,15 @@ function checkOperator (previousValue, value, nextValue){
 //          subtraction
 // if this the first value, expect that it is the start of a negative number
         if (previousValue === ""){
-            console.log("if 1")
             return "number"
         }
 // if the previous value was an operator, also expect that this is a negative number
         symbolObject.forEach(element => {
             if (element.sign.includes(previousValue))
                 return "number"
-                console.log("if 2")
         });
 
         if (nextValue == "-"){
-            console.log("if 3")
             return symbolObject[1]
         }
 
@@ -385,7 +382,6 @@ function checkOperator (previousValue, value, nextValue){
         inputArray.push(currentElement)
         inputArray.push(symbolObject[0])
         currentElement = ""
-        console.log("if 4")
         return "number"
 
         case (symbolObject[2].sign.includes(value)):
@@ -514,7 +510,6 @@ function doCalculation (symbol, index, array){
 //          bracketOpen
 //          saves the indexes of open brackets, to be re-used when a close bracket has been found
             bracketOpenIndexArray.push(index)
-            console.log(bracketOpenIndexArray)
             return array
             break;
 
@@ -590,9 +585,8 @@ function doubleOperators (
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    let operatorString = makeSymbolString(e.target.textContent)
     userInput = displayTop.textContent
-    userInput += operatorString
+    userInput += e.target.textContent
     updateDisplay ();
 }
 
