@@ -180,6 +180,18 @@ function makeNumber(value){
     return parseFloat(value)    
 }
 
+function alertSimplifiedArray(array){
+    let result = []
+    array.forEach(element => {
+        if (typeof element == "object"){
+            result.push(element.sign[0])
+        } else {
+            result.push(element)
+        }
+    });
+    alert ("simplified array is: " + result)
+}
+
 function getFunction(e){
     switch (e.target.textContent){
         case "=": 
@@ -350,7 +362,8 @@ function makeInputArray(previousValue, value, nextValue){
         }
         inputArray.push(result)
         currentElement = ""
-
+    } else if (result == "skip"){
+        
     } else if (result == "error"){
         alert (`${value} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
@@ -370,17 +383,25 @@ function checkOperator (previousValue, value, nextValue){
 
         case (symbolObject[1].sign.includes(value)):
 //          subtraction
-
+// if this the first value, expect that it is the start of a negative number
         if (previousValue === ""){
             return "number"
-        } else if (previousValue == "-"){
-            return "number"
         }
+// if the previous value was an operator, also expect that this is a negative number
         symbolObject.forEach(element => {
             if (element.sign.includes(previousValue))
                 return "number"
         });
-        return symbolObject[1]
+
+        if (nextValue == "-"){
+            return "operator"
+        }
+
+// if all of those are not the case, see it as a number, and place a "+" operator in front of it
+        inputArray.push(currentElement)
+        inputArray.push(symbolObject[0])
+        currentElement = ""
+        return "number"
 
         case (symbolObject[2].sign.includes(value)):
 //          multiplication
