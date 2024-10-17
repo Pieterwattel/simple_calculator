@@ -580,6 +580,10 @@ function doubleOperators (
             
 }
 
+displayTop.addEventListener('input', function(){
+    userInput = displayTop.textContent
+})
+
 
 //#endregion
 //#region       >> Controller Functions
