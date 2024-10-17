@@ -1,22 +1,3 @@
-/*
-===========
->>>INDEX<<<
-===========
-
-> Variable Declarations
-    >> Node Declarations		
-        >>> Numbers
-        >>> Operators
-        >>> Functional
-    >> Other Global Variables
-> Functions
-    >> Utility Functions
-    >> Controller Functions
-> Dom Generation
-    >> Node Creation
-    >> Listeners
-*/
-
 //#region   > Variable Declarations
 //#region       >> Node declaration / generation
 //#region           >>> Containers
@@ -53,31 +34,31 @@ let symbolObject = [
     },
     {
     id: 'btnSubtract' ,
-    sign: '-',   
+    sign: ['-','−'],   
     precedence: 5 , 
     category : "operator"
     } ,
     {
     id: 'btnMultiply' ,
-    sign: ['*'],   
+    sign: ['*','×'],   
     precedence: 4 , 
     category: "operator"
     } ,
     {
     id: 'btnDivide' ,
-    sign: '/',   
+    sign: ['/'],   
     precedence: 4 ,
     category: 'operator'
     } ,
     {
     id: 'bracketOpen' ,
-    sign: '(',   
+    sign: ['('],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
     id: 'bracketClose' ,
-    sign: ')',   
+    sign: [')'],   
     precedence:  2,
     category: 'bracket'
     } ,
@@ -147,7 +128,7 @@ otherBtns.forEach ((prop) => {
 let operator = ""
 let ans = ""
 
-let userInput = "2-8"
+let userInput = "(5+3)×(12−4)/2−7"
 updateDisplay()
 
 let currentElement = ""
@@ -221,6 +202,7 @@ function runEquals (){
     array = makeStringArray(displayTop.textContent)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
+        alertSimplifiedArray(array)
         result = calculate(array)
         ans = result.flat()
         displayAns()
@@ -331,7 +313,7 @@ function numberOrSymbol (previousValue, value,  nextValue) {
        returnValue = "number"
     }
 
-    // check if value is operator, returns array [operator,  arrayIndex()]
+    // check if value is operator, returns array [operator,  arrayIndex()
     symbolObject.forEach(element => {
         if (element.sign.includes(value)){
             returnValue = checkOperator(previousValue, value, nextValue)
@@ -369,7 +351,7 @@ function makeInputArray(previousValue, value, nextValue){
              I am vewwy sowwy (◞‸ ◟)💧`)
 
     } else {
-        console.log("value falls outside makeInputArray() if statement options")
+        console.log(`value :${value} falls outside makeInputArray() if statement options`)
 
     }
 }
@@ -385,22 +367,26 @@ function checkOperator (previousValue, value, nextValue){
 //          subtraction
 // if this the first value, expect that it is the start of a negative number
         if (previousValue === ""){
+            console.log("if 1")
             return "number"
         }
 // if the previous value was an operator, also expect that this is a negative number
         symbolObject.forEach(element => {
             if (element.sign.includes(previousValue))
                 return "number"
+                console.log("if 2")
         });
 
         if (nextValue == "-"){
-            return "operator"
+            console.log("if 3")
+            return symbolObject[1]
         }
 
 // if all of those are not the case, see it as a number, and place a "+" operator in front of it
         inputArray.push(currentElement)
         inputArray.push(symbolObject[0])
         currentElement = ""
+        console.log("if 4")
         return "number"
 
         case (symbolObject[2].sign.includes(value)):
