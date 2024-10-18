@@ -594,8 +594,8 @@ function doubleOperators (
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    userInput = displayTop.value
-    userInput += e.target.textContent
+    newInput = userInput.slice(0,caretPosition) + e.target.textContent + userInput.slice(caretPosition)
+    userInput = newInput
     updateDisplay ();
 }
 
