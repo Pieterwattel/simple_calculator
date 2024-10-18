@@ -685,12 +685,6 @@ function unEqualBracketAmount(array){
     }
 }
 
-function updateCaretPosition (){
-    let selection = window.getSelection()
-    let range = selection.getRangeAt(0);
-    caretPosition = range.startOffset
-}
-
 
 //#endregion
 //#endregion
@@ -725,8 +719,15 @@ document.addEventListener("keydown", (e=>{
     updateCaretPosition()
 }))
 
-displayTop.addEventListener("blur", (e=>{
+/*
+displayTop.addEventListener("click", (e=>{
+    caretPosition = e.target.selectionStart
+    console.log(caretPosition)
+}))*/
 
+displayTop.addEventListener("blur", (e=>{
+    caretPosition = e.target.selectionStart
+    console.log(caretPosition)
 }))
 
 //#endregion
