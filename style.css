@@ -4,7 +4,8 @@
 }
 
 div,
-span {
+span,
+input {
     border: 3px solid brown;
     padding: 5px;
 }
@@ -27,4 +28,8 @@ span {
 .btn{
     background-color: rgb(237, 211, 61);
     color: black;
+}
+
+#displayTop{
+    font-size: 16px !important;
 }

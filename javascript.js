@@ -136,9 +136,12 @@ let inputArray = []
 
 let currentNum = ""
 
+let isError = false
 let errorCheckIteration = 0
 
 let bracketOpenIndexArray = []
+
+let caretPosition = 0
 
 //#endregion
 //#endregion
@@ -198,8 +201,10 @@ function getFunction(e){
 
 function runEquals (){
     ans = ""
+    isError=false
     inputArray.length = 0
-    array = makeStringArray(displayTop.textContent)
+    array = makeStringArray(displayTop.value)
+
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
         result = calculate(array)
@@ -216,7 +221,7 @@ function clearAllValues(){
 }
 
 function runAns (){
-    displayTop.textContent += ans
+    displayTop.value += ans
 }
 
 function clearDisplay(){
@@ -270,7 +275,7 @@ function makeSymbolString (symbol){
 }
 
 function displayEntry(){
-    displayTop.textContent = userInput
+    displayTop.value = userInput
 }
 
 function displayAns(){
@@ -321,7 +326,9 @@ function numberOrSymbol (previousValue, value,  nextValue) {
 
     //value was not a number nor known operator
     if  (returnValue == "error"){
-        console.log(`value "${value}" was no operator or number`)
+        console.log("numberOrOperator error")
+        alert ("ERROR: unknown symbol")
+        isError = true
         returnValue = "error"
     }
 
@@ -345,9 +352,10 @@ function makeInputArray(previousValue, value, nextValue){
         currentElement = ""
     } else if (result == "skip"){
         
-    } else if (result == "error"){
+    } else if (result == "error"||typeof result == "undefined"|| result == ""){
         alert (`${value} ... is invalid. It might not be possible to use this operator yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
+            isError = true
 
     } else {
         console.log(`value :${value} falls outside makeInputArray() if statement options`)
@@ -425,6 +433,8 @@ function checkOperator (previousValue, value, nextValue){
             break;
 
         default:
+            isError = true
+            alert("ERROR: unknown symbol")
             return "error"
     }
 }
@@ -580,16 +590,11 @@ function doubleOperators (
             
 }
 
-displayTop.addEventListener('input', function(){
-    userInput = displayTop.textContent
-})
-
-
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    userInput = displayTop.textContent
+    userInput = displayTop.value
     userInput += e.target.textContent
     updateDisplay ();
 }
@@ -624,13 +629,18 @@ function calculate(array){
     return calculateInOrder(array, 1)
 }
 
+
 function checkForErrors (array) {
 /* 
 if there is an error found that will not be solved, isError will be true
 this will stop the rest of calculation
-*/  
+*/ 
 
-    let isError = false
+    if (isError){
+        alert ("unknown error found")
+        return true
+    }
+
     let j = array.length -1
     for (let i = 0 ; i <= j ; i++){
         errorCheckIteration = i
@@ -675,6 +685,12 @@ function unEqualBracketAmount(array){
     }
 }
 
+function updateCaretPosition (){
+    let selection = window.getSelection()
+    let range = selection.getRangeAt(0);
+    caretPosition = range.startOffset
+}
+
 
 //#endregion
 //#endregion
@@ -692,6 +708,26 @@ btnFrameNum.childNodes.forEach(child => {
 btnFrameOperator.childNodes.forEach(child => {
     child.addEventListener("click", operatorPress);
 });
+
+displayTop.addEventListener('input', function(){
+    userInput = displayTop.value
+})
+
+window.addEventListener("focus", ()=>{
+    displayTop.focus()
+})
+document.addEventListener("keydown", (e=>{
+    if (e.key == "Enter"){
+
+        e.preventDefault()
+        runEquals()
+    }
+    updateCaretPosition()
+}))
+
+displayTop.addEventListener("blur", (e=>{
+
+}))
 
 //#endregion
 //#endregion
