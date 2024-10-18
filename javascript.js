@@ -28,39 +28,45 @@ for (let i = 9; i >= 0; i--){
 let symbolObject = [
     {
     id: 'btnAdd' ,
-    sign: ['+'] ,  
+    sign: ['+', '➕', '˖'] ,  
     precedence: 5 , 
     category: "operator"
     },
     {
     id: 'btnSubtract' ,
-    sign: ['-','−'],   
+    sign: ['-','−', '˗', '-', '−', '➖', '﹣', '－'],   
     precedence: 5 , 
     category : "operator"
     } ,
     {
     id: 'btnMultiply' ,
-    sign: ['*','×'],   
+    sign: ['*','×', '⋅', '∗'],   
     precedence: 4 , 
     category: "operator"
     } ,
     {
     id: 'btnDivide' ,
-    sign: ['/'],   
+    sign: ['/', '÷', '➗'],   
     precedence: 4 ,
     category: 'operator'
     } ,
     {
     id: 'bracketOpen' ,
-    sign: ['('],   
+    sign: ['(', '﹙', '（'],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
     id: 'bracketClose' ,
-    sign: [')'],   
+    sign: [')', '﹚', '）'],   
     precedence:  2,
     category: 'bracket'
+    } ,
+    {
+    id: 'pi' ,
+    sign: ['π', 'Π', 'Π', 'Π', 'π', 'π', 'π', 'ϖ', 'ϖ', 'ϖ'],   
+    precedence: 1,
+    category: 'value'
     } ,
 ]
 
@@ -77,14 +83,14 @@ symbolObject.forEach ((prop) => {
 /*
     {
     id: '' ,
-    sign: '',   
+    sign: [''],   
     precedence:  ,
     category: ''
     } ,
 
 //to add an operator:
 add the operator to the operatorObject + different ways that it can be written
-write a way to check for this operator in the checkOperator()
+write a way to check for this operator in the checkSymbol()
 add the calculation in the doCalculation function
 think about possible errors, and add these in checkForErrors()
 */
@@ -321,7 +327,7 @@ function numberOrSymbol (previousValue, value,  nextValue) {
     // check if value is operator, returns array [operator,  arrayIndex()
     symbolObject.forEach(element => {
         if (element.sign.includes(value)){
-            returnValue = checkOperator(previousValue, value, nextValue)
+            returnValue = checkSymbol(previousValue, value, nextValue)
         }
     })
 
@@ -354,7 +360,7 @@ function makeInputArray(previousValue, value, nextValue){
     } else if (result == "skip"){
         
     } else if (result == "error"||typeof result == "undefined"|| result == ""){
-        alert (`${value} ... is invalid. It might not be possible to use this operator yet..
+        alert (`${value} ... is invalid. It might not be possible to use this symbol yet..
              I am vewwy sowwy (◞‸ ◟)💧`)
             isError = true
 
@@ -364,7 +370,7 @@ function makeInputArray(previousValue, value, nextValue){
     }
 }
 
-function checkOperator (previousValue, value, nextValue){
+function checkSymbol (previousValue, value, nextValue){
     switch (true){
         case (symbolObject[0].sign.includes(value)):
 //          addition
@@ -414,8 +420,9 @@ function checkOperator (previousValue, value, nextValue){
             break;     
                
         case (symbolObject[6].sign.includes(value)):
-//          ..
-            return symbolObject[6]
+//          pi
+            inputArray.push(Math.PI)
+            return "skip"
             break;               
 
         case (symbolObject[7].sign.includes(value)):
@@ -647,7 +654,6 @@ this will stop the rest of calculation
 */ 
 
     if (isError){
-        alert ("unknown error found")
         return true
     }
 
