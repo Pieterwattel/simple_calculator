@@ -601,7 +601,7 @@ function operatorPress (e) {
 
 function numberPress (e) {
     let newNum = e.target.id.replace('btn', "")
-    newInput = userInput.slice(0,3) + newNum + userInput.slice(3)
+    newInput = userInput.slice(0,caretPosition) + newNum + userInput.slice(caretPosition)
     userInput = newInput
     updateDisplay ();
 }
