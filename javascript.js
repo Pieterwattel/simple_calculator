@@ -202,7 +202,7 @@ function getFunction(e){
 function runEquals (){
     ans = ""
     isError=false
-    inputArray.length = 0
+    inputArray = []
     array = makeStringArray(displayTop.value)
 
     // if there are no errors, run the rest of the function
