@@ -1,4 +1,24 @@
 //#region   > Variable Declarations
+//#region       >> Global Variables
+
+let operator = ""
+let ans = ""
+
+let userInput = ""
+
+let currentElement = ""
+let inputArray = []
+
+let currentNum = ""
+
+let isError = false
+let errorCheckIteration = 0
+
+let bracketOpenIndexArray = []
+
+let caretPosition = 0
+
+//#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
 const contentBase = document.getElementById(`contentBase`)
@@ -97,24 +117,33 @@ think about possible errors, and add these in checkForErrors()
 
 
 //#endregion
-//#region           >>> Other Buttons
+//#region           >>> Function Buttons
 
 let otherBtns = [
     {
     id: 'btnEquals' ,
-    sign: '=' ,   
+    sign: '=' ,  
+    function: runEquals(), 
     },
     {
     id: 'btnans' ,
-    sign: 'ans',   
+    sign: 'ans',  
+    function: runAns(), 
     } ,
     {
     id: 'btnClear' ,
     sign: 'C',   
+    function: clearDisplay(),
     } ,
     {
     id: 'btnClearEntry' ,
     sign: 'CE',   
+    function: clearEntry(),
+    } ,
+    {
+    id: 'btnBackSpace' ,
+    sign: '⌫',   
+    function: doBackspace(),
     } ,
 ]
 
@@ -129,30 +158,9 @@ otherBtns.forEach ((prop) => {
 
 //#endregion
 //#endregion
-//#region       >> Global Variables
-
-let operator = ""
-let ans = ""
-
-let userInput = "(5+3)×(12−4)/2−7"
-updateDisplay()
-
-let currentElement = ""
-let inputArray = []
-
-let currentNum = ""
-
-let isError = false
-let errorCheckIteration = 0
-
-let bracketOpenIndexArray = []
-
-let caretPosition = 0
-
-//#endregion
-//#endregion
 //#region   > Functions 
 //#region       >> Utility Functions
+
 function logId (e){
     console.log(`hi! is seems that the ${e.target.id} item was clicked`)
 }
@@ -222,10 +230,6 @@ function runEquals (){
     }
 }
 
-function clearAllValues(){
-    ans = ""
-}
-
 function runAns (){
     displayTop.value += ans
     inputArray = displayTop.value
@@ -240,6 +244,10 @@ function clearDisplay(){
 function clearEntry(){
     userInput = ""
     updateDisplay()
+}
+
+function doBackspace(){
+    
 }
 
 function makeSymbolString (symbol){
@@ -605,7 +613,6 @@ function returnCaret (value){
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
-//    switchCurrentNum();
     userInput = displayTop.value
     newSymbol = e.target.textContent
     newInput = userInput.slice(0,caretPosition) + newSymbol + userInput.slice(caretPosition)
@@ -750,3 +757,6 @@ displayTop.addEventListener("blur", (e=>{
 
 //#endregion
 //#endregion
+
+userInput = "(5+3)×(12−4)/2−7"
+updateDisplay()
