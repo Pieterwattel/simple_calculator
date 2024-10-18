@@ -222,6 +222,7 @@ function clearAllValues(){
 
 function runAns (){
     displayTop.value += ans
+    inputArray = displayTop.value
 }
 
 function clearDisplay(){
@@ -590,13 +591,20 @@ function doubleOperators (
             
 }
 
+function returnCaret (value){
+    displayTop.setSelectionRange(caretPosition+value.length, caretPosition+value.length)
+}
+
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e) {
 //    switchCurrentNum();
-    newInput = userInput.slice(0,caretPosition) + e.target.textContent + userInput.slice(caretPosition)
+    userInput = displayTop.value
+    newSymbol = e.target.textContent
+    newInput = userInput.slice(0,caretPosition) + newSymbol + userInput.slice(caretPosition)
     userInput = newInput
     updateDisplay ();
+    returnCaret(e.target.textContent)
 }
 
 function numberPress (e) {
@@ -604,6 +612,7 @@ function numberPress (e) {
     newInput = userInput.slice(0,caretPosition) + newNum + userInput.slice(caretPosition)
     userInput = newInput
     updateDisplay ();
+    returnCaret(newNum)
 }
 
 function functionPress (e) {
@@ -716,6 +725,8 @@ document.addEventListener("keydown", (e=>{
 
         e.preventDefault()
         runEquals()
+    } else if (e.key.length == 1){
+        console.log(`value ${e.key} pressed`)
     }
 }))
 
@@ -725,9 +736,10 @@ displayTop.addEventListener("click", (e=>{
     console.log(caretPosition)
 }))*/
 
+//save the last caretposition when the input goed out of focus
 displayTop.addEventListener("blur", (e=>{
     caretPosition = e.target.selectionStart
-    console.log(caretPosition)
+    displayTop.focus()
 }))
 
 //#endregion
