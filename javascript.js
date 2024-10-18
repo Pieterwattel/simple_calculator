@@ -601,7 +601,8 @@ function operatorPress (e) {
 
 function numberPress (e) {
     let newNum = e.target.id.replace('btn', "")
-    userInput += newNum
+    newInput = userInput.slice(0,3) + newNum + userInput.slice(3)
+    userInput = newInput
     updateDisplay ();
 }
 
@@ -716,7 +717,6 @@ document.addEventListener("keydown", (e=>{
         e.preventDefault()
         runEquals()
     }
-    updateCaretPosition()
 }))
 
 /*
