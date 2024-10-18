@@ -208,6 +208,10 @@ function getFunction(e){
         clearEntry()
         break;
 
+        case "⌫":
+        doBackspace()
+        break;
+
         default: 
         alert ("Unknown function button pressed")
     }
@@ -247,7 +251,9 @@ function clearEntry(){
 }
 
 function doBackspace(){
-    
+    userInput = userInput.slice(0,caretPosition-1) + userInput.slice(caretPosition)
+    updateDisplay()
+    displayTop.setSelectionRange(caretPosition-1, caretPosition-1)
 }
 
 function makeSymbolString (symbol){
@@ -733,13 +739,17 @@ displayTop.addEventListener('input', function(){
 window.addEventListener("focus", ()=>{
     displayTop.focus()
 })
+
+window.addEventListener("load", ()=>{
+    displayTop.focus()
+})
+
 document.addEventListener("keydown", (e=>{
     if (e.key == "Enter"){
 
         e.preventDefault()
         runEquals()
     } else if (e.key.length == 1){
-        console.log(`value ${e.key} pressed`)
     }
 }))
 
