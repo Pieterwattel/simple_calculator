@@ -145,6 +145,11 @@ let otherBtns = [
     sign: '⌫',   
     function: doBackspace(),
     } ,
+    {
+    id: 'btnDelete' ,
+    sign: 'Del',   
+    function: doDelete(),
+    } ,
 ]
 
 otherBtns.forEach ((prop) => {
@@ -212,6 +217,10 @@ function getFunction(e){
         doBackspace()
         break;
 
+        case "Del":
+        doDelete()
+        break;
+
         default: 
         alert ("Unknown function button pressed")
     }
@@ -254,6 +263,12 @@ function doBackspace(){
     userInput = userInput.slice(0,caretPosition-1) + userInput.slice(caretPosition)
     updateDisplay()
     displayTop.setSelectionRange(caretPosition-1, caretPosition-1)
+}
+
+function doDelete(){
+    userInput = userInput.slice(0,caretPosition) + userInput.slice(caretPosition+1)
+    updateDisplay()
+    returnCaret("")
 }
 
 function makeSymbolString (symbol){
