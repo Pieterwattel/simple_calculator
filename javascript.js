@@ -130,6 +130,7 @@ symbolObject.forEach ((prop) => {
     } else {
         btn.textContent = prop.btnTxt
     }
+    btn.addEventListener("click", ()=>operatorPress(Event, prop.sign[0]))
 })
 
 
@@ -861,13 +862,12 @@ function returnCaret (value){
 
 //#endregion
 //#region       >> Controller Functions
-function operatorPress (e) {
+function operatorPress (e, newSymbol) {
     userInput = displayTop.value
-    newSymbol = e.target.textContent
     newInput = userInput.slice(0,caretPosition) + newSymbol + userInput.slice(caretPosition)
     userInput = newInput
     updateDisplay ();
-    returnCaret(e.target.textContent)
+    returnCaret(newSymbol)
 }
 
 function numberPress (e) {
@@ -969,10 +969,6 @@ btnFrameFunc.childNodes.forEach(child => {
 
 btnFrameNum.childNodes.forEach(child => {
     child.addEventListener("click", numberPress);
-});
-
-btnFrameOperator.childNodes.forEach(child => {
-    child.addEventListener("click", operatorPress);
 });
 
 displayTop.addEventListener('input', function(){
