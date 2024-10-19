@@ -88,6 +88,12 @@ let symbolObject = [
     precedence: 1,
     category: 'value'
     } ,
+    {
+    id: '2ndPower' ,
+    sign: ['²'],   
+    precedence: 3,
+    category: 'power'
+    } ,
 ]
 
 symbolObject.forEach ((prop) => {
@@ -99,7 +105,7 @@ symbolObject.forEach ((prop) => {
 })
 
 
-// empty operator, for later additions
+// empty symbol, for later additions
 /*
     {
     id: '' ,
@@ -109,10 +115,11 @@ symbolObject.forEach ((prop) => {
     } ,
 
 //to add an operator:
-add the operator to the operatorObject + different ways that it can be written
-write a way to check for this operator in the checkSymbol()
-add the calculation in the doCalculation function
-think about possible errors, and add these in checkForErrors()
+- add the operator to the operatorObject + different ways that it can be written
+- write a way to check for this operator in the checkSymbol() : put it before any other signs that are smaller and might actually get confused with this sign.
+- make a way to write this in makeSymbolString
+- add the calculation in the doCalculation function
+- think about possible errors, and add these in checkForErrors()
 */
 
 
@@ -460,7 +467,7 @@ function checkSymbol (previousValue, value, nextValue){
             break;               
 
         case (symbolObject[7].sign.includes(value)):
-//          ..
+//          to the 2nd power
             return symbolObject[7]
             break;            
 
@@ -581,6 +588,15 @@ function doCalculation (symbol, index, array){
             array.splice(bracketOpenIndex, 0 , result)
 
             return array
+            break;
+
+        case (symbol == symbolObject[7]):
+//          to the 2nd power
+            result = +previousValue * +previousValue
+
+            array.splice(index-1, 2, result)   
+            return array
+
             break;
                                                 
 
