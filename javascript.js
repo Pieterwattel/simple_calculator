@@ -92,7 +92,13 @@ let symbolObject = [
     id: '2ndPower' ,
     sign: ['²'],   
     precedence: 3,
-    category: 'power'
+    category: 'operator'
+    } ,
+    {
+    id: 'toThePower' ,
+    sign: ['^', '**'],   
+    precedence: 3,
+    category: 'operator'
     } ,
 ]
 
@@ -238,7 +244,7 @@ function runEquals (){
     isError=false
     inputArray = []
     array = makeStringArray(displayTop.value)
-
+    alert(inputArray)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
         result = calculate(array)
@@ -337,21 +343,21 @@ function evaluateStringSymbols (string){
         previousValue = string.charAt(j-1)
         value = string.charAt(j)
         nextValue = string.charAt(j+1)
-        makeInputArray(previousValue, value, nextValue)
+        makeInputArray(previousValue, value, nextValue, string, j)
         j++
     }
 
     // small script to also add the very last value to inputArray[]
-    if (numberOrSymbol(previousValue, value, nextValue) == "number" ){
+    if (numberOrSymbol(previousValue, value, nextValue, string, j) == "number" ){
         inputArray.push(currentElement)
-    } else if (numberOrSymbol(previousValue, value, nextValue) == "operator" ){
+    } else if (numberOrSymbol(previousValue, value, nextValue, string, j) == "operator" ){
         inputArray.push(string.charAt(j-1))
 
     }
     return inputArray
 }
 
-function numberOrSymbol (previousValue, value,  nextValue) {
+function numberOrSymbol (previousValue, value, nextValue, string, index) {
     let returnValue = ""
 
     // check if value is number, returns string "number"
@@ -363,7 +369,7 @@ function numberOrSymbol (previousValue, value,  nextValue) {
     // check if value is operator, returns array [operator,  arrayIndex()
     symbolObject.forEach(element => {
         if (element.sign.includes(value)){
-            returnValue = checkSymbol(previousValue, value, nextValue)
+            returnValue = checkSymbol(previousValue, value, nextValue, string, index)
         }
     })
 
@@ -378,8 +384,10 @@ function numberOrSymbol (previousValue, value,  nextValue) {
     return returnValue
 }
 
-function makeInputArray(previousValue, value, nextValue){
+function makeInputArray(previousValue, value, nextValue, string, index){
     result = numberOrSymbol(previousValue, value, nextValue)
+    alert (string)
+    alert(index)
 // check of the value if it is a number.
     if (result == "number"){
 //        console.log("value is" + value)
@@ -406,11 +414,19 @@ function makeInputArray(previousValue, value, nextValue){
     }
 }
 
-function checkSymbol (previousValue, value, nextValue){
+function checkSymbol (previousValue, value, nextValue, array){
 // the checks are order by length of the symbols, so:
 //cos() is checked before (), because otherwise it might label the symbol wrongly
 
     switch (true){
+
+//-- 2 VALUE LENGTH SYMBOLS --
+case (symbolObject[8].sign.includes(value)):
+    //          any exponent
+                console.log("any exponent")
+                return symbolObject[8]
+                break;            
+    
 
 //-- 1 VALUE-LENGTH SYMBOLS --
         case (symbolObject[0].sign.includes(value)):
@@ -471,14 +487,64 @@ function checkSymbol (previousValue, value, nextValue){
             return symbolObject[7]
             break;            
 
-        case (symbolObject[8].sign.includes(value)):
-        //          ..
-            return symbolObject[8]
-            break;            
-
         case (symbolObject[9].sign.includes(value)):
 //          ..
             return symbolObject[9]
+            break;
+
+        case (symbolObject[10].sign.includes(value)):
+//          ..
+            return symbolObject[10]
+            break;
+
+        case (symbolObject[11].sign.includes(value)):
+//          ..
+            return symbolObject[11]
+            break;
+
+        case (symbolObject[12].sign.includes(value)):
+//          ..
+            return symbolObject[12]
+            break;
+
+        case (symbolObject[13].sign.includes(value)):
+//          ..
+            return symbolObject[13]
+            break;
+
+        case (symbolObject[14].sign.includes(value)):
+//          ..
+            return symbolObject[14]
+            break;
+
+        case (symbolObject[15].sign.includes(value)):
+//          ..
+            return symbolObject[15]
+            break;
+
+        case (symbolObject[16].sign.includes(value)):
+//          ..
+            return symbolObject[16]
+            break;
+
+        case (symbolObject[17].sign.includes(value)):
+//          ..
+            return symbolObject[17]
+            break;
+
+        case (symbolObject[18].sign.includes(value)):
+//          ..
+            return symbolObject[18]
+            break;
+
+        case (symbolObject[19].sign.includes(value)):
+//          ..
+            return symbolObject[19]
+            break;
+
+        case (symbolObject[20].sign.includes(value)):
+//          ..
+            return symbolObject[20]
             break;
 
         default:
@@ -596,9 +662,93 @@ function doCalculation (symbol, index, array){
 
             array.splice(index-1, 2, result)   
             return array
-
             break;
-                                                
+
+        case (symbol == symbolObject[8]):
+            let acc = previousValue
+            for (i = nextValue; i>0 ; i--){
+                acc = acc * previousValue
+            }
+            result = acc
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[9]):
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[10]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[11]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[12]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[13]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[14]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[15]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[16]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[17]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[18]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
+
+        case (symbol == symbolObject[19]):
+//          ...
+            result = +previousValue + +previousValue
+            array.splice(index-1, 3, result)   
+            return array
+            break;
 
         default:
             console.log(`doCalculation symbol "${symbol.sign}" unknown, thus was removed. ERROR`)
@@ -642,7 +792,6 @@ function doubleOperators (
             break;
 
         default:
-            alert ("doubleOperators() error")
             return array
     }
             
