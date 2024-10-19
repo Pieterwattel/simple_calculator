@@ -48,58 +48,75 @@ for (let i = 9; i >= 0; i--){
 
 let symbolObject = [
     {
+//0
     id: 'btnAdd' ,
     sign: ['+', '➕', '˖'] ,  
-    precedence: 5 , 
+    precedence: 6 , 
     category: "operator"
     },
     {
+//1
     id: 'btnSubtract' ,
     sign: ['-','−', '˗', '-', '−', '➖', '﹣', '－'],   
-    precedence: 5 , 
+    precedence: 6 , 
     category : "operator"
     } ,
     {
+//2
     id: 'btnMultiply' ,
     sign: ['*','×', '⋅', '∗'],   
-    precedence: 4 , 
+    precedence: 5 , 
     category: "operator"
     } ,
     {
+//3
     id: 'btnDivide' ,
     sign: ['/', '÷', '➗'],   
-    precedence: 4 ,
+    precedence: 5 ,
     category: 'operator'
     } ,
     {
+//4
     id: 'bracketOpen' ,
     sign: ['(', '﹙', '（'],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
+//5
     id: 'bracketClose' ,
     sign: [')', '﹚', '）'],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
+//6
     id: 'pi' ,
     sign: ['π', 'Π', 'Π', 'Π', 'π', 'π', 'π', 'ϖ', 'ϖ', 'ϖ'],   
     precedence: 1,
     category: 'value'
     } ,
     {
+//7
     id: '2ndPower' ,
     sign: ['²'],   
-    precedence: 3,
+    precedence: 4,
     category: 'operator'
     } ,
     {
+//8
     id: 'toThePower' ,
     sign: ['^', '**'],   
-    precedence: 3,
+    precedence: 4,
     category: 'operator'
+    } ,
+    {
+//9
+    id: 'factorial' ,
+    sign: ['!'],   
+    precedence:  3,
+    category: 'operator',
+    btnTxt: "x!",
     } ,
 ]
 
@@ -108,13 +125,18 @@ symbolObject.forEach ((prop) => {
     btnFrameOperator.appendChild(btn)
     btn.setAttribute("id" , prop.id)
     btn.classList.add("btn")
-    btn.textContent = prop.sign[0]
+    if (typeof prop.btnTxt == "undefined"){
+        btn.textContent = prop.sign[0]
+    } else {
+        btn.textContent = prop.btnTxt
+    }
 })
 
 
 // empty symbol, for later additions
 /*
     {
+//
     id: '' ,
     sign: [''],   
     precedence:  ,
@@ -284,6 +306,7 @@ function doDelete(){
     returnCaret("")
 }
 
+/*
 function makeSymbolString (symbol){
     switch (symbol){
         case (symbolObject[0].sign[0]):
@@ -322,6 +345,7 @@ function makeSymbolString (symbol){
     }
     clearEntry()
 }
+    */
 
 function displayEntry(){
     displayTop.value = userInput
@@ -421,7 +445,6 @@ function makeInputArray(previousValue, value, nextValue, string, index){
 function deleteValuesFromString(index, amount){
     userInput = userInput.slice(0,index) + userInput.slice(index+amount)
     updateString = true
-    alert(userInput)
 }
 
 function checkSymbol (previousValue, value, nextValue, string, index){
@@ -509,7 +532,7 @@ function checkSymbol (previousValue, value, nextValue, string, index){
             break;    
 
         case (symbolObject[9].sign.includes(value)):
-//          ..
+//          factorial
             return symbolObject[9]
             break;
 
@@ -609,6 +632,8 @@ let operationFound = false
 
 
 function doCalculation (symbol, index, array){
+    let num
+    let acc
     let result = ""
     let previousValue = array[index-1]
     let nextValue = array[index+1]
@@ -686,7 +711,8 @@ function doCalculation (symbol, index, array){
             break;
 
         case (symbol == symbolObject[8]):
-            let acc = previousValue
+//          any exponent
+            acc = previousValue
             for (i = nextValue; i>0 ; i--){
                 acc = acc * previousValue
             }
@@ -696,8 +722,19 @@ function doCalculation (symbol, index, array){
             break;
 
         case (symbol == symbolObject[9]):
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+            num = previousValue
+            if (num == 0 || num == 1){
+                return 1
+              }
+            
+              let acc = 1
+              let i = 1 
+              while (i-1 < num){
+                acc = acc * i
+                i++
+              }
+            result = acc
+            array.splice(index-1, 2, result)   
             return array
             break;
 
