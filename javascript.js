@@ -5,6 +5,7 @@ let operator = ""
 let ans = ""
 
 let userInput = ""
+updateString = false
 
 let currentElement = ""
 let inputArray = []
@@ -339,6 +340,11 @@ function evaluateStringSymbols (string){
     let i = string.length
     let j = 0
     while (j < i){
+        if(updateString){
+            string = userInput
+            updateString = false
+            i = string.length
+        }
         previousValue = string.charAt(j-1)
         value = string.charAt(j)
         nextValue = string.charAt(j+1)
@@ -412,29 +418,30 @@ function makeInputArray(previousValue, value, nextValue, string, index){
     }
 }
 
+function deleteValuesFromString(index, amount){
+    userInput = userInput.slice(0,index) + userInput.slice(index+amount)
+    updateString = true
+    alert(userInput)
+}
+
 function checkSymbol (previousValue, value, nextValue, string, index){
 // the checks are order by length of the symbols, so:
 //cos() is checked before (), because otherwise it might label the symbol wrongly
-alert (string)
-alert(index)
+    twoSymbolValue = string.slice(index, index+2)
+    threeSymbolValue = string.slice(index, index+3)
+    fourSymbolValue = string.slice(index, index+4)
+    fiveSymbolValue = string.slice(index, index+5)
+    sixSymbolValue = string.slice(index, index+6)
 
-/*
-    let twoSymbolValue = string.slice(index, 2)
-    let threeSymbolValue = string.slice(index, 3)
-    let fourSymbolValue = string.slice(index, 4)
-    let fiveSymbolValue = string.slice(index, 5)
-    let sixSymbolValue = string.slice(index, 6)
-    alert(twoSymbolValue)
-    alert(sixSymbolValue)*/
 
     switch (true){
 
 //-- 2 VALUE LENGTH SYMBOLS --
-case (symbolObject[8].sign.includes(value)):
-    //          any exponent
-                console.log("any exponent")
-                return symbolObject[8]
-                break;            
+        case (symbolObject[8].sign.includes(twoSymbolValue)):
+//          any exponent
+            deleteValuesFromString(index+1, 1)
+            return symbolObject[8]
+            break;            
     
 
 //-- 1 VALUE-LENGTH SYMBOLS --
@@ -495,6 +502,11 @@ case (symbolObject[8].sign.includes(value)):
 //          to the 2nd power
             return symbolObject[7]
             break;            
+
+        case (symbolObject[8].sign.includes(value)):
+//          any exponent
+            return symbolObject[8]
+            break;    
 
         case (symbolObject[9].sign.includes(value)):
 //          ..
