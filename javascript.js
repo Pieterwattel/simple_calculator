@@ -244,7 +244,6 @@ function runEquals (){
     isError=false
     inputArray = []
     array = makeStringArray(displayTop.value)
-    alert(inputArray)
     // if there are no errors, run the rest of the function
     if (!checkForErrors(array)){
         result = calculate(array)
@@ -358,8 +357,8 @@ function evaluateStringSymbols (string){
 }
 
 function numberOrSymbol (previousValue, value, nextValue, string, index) {
-    let returnValue = ""
 
+    let returnValue = ""
     // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0"){
 //        console.log(`value "${value}" is a number`)
@@ -385,9 +384,8 @@ function numberOrSymbol (previousValue, value, nextValue, string, index) {
 }
 
 function makeInputArray(previousValue, value, nextValue, string, index){
-    result = numberOrSymbol(previousValue, value, nextValue)
-    alert (string)
-    alert(index)
+    result = numberOrSymbol(previousValue, value, nextValue, string, index)
+
 // check of the value if it is a number.
     if (result == "number"){
 //        console.log("value is" + value)
@@ -414,9 +412,20 @@ function makeInputArray(previousValue, value, nextValue, string, index){
     }
 }
 
-function checkSymbol (previousValue, value, nextValue, array){
+function checkSymbol (previousValue, value, nextValue, string, index){
 // the checks are order by length of the symbols, so:
 //cos() is checked before (), because otherwise it might label the symbol wrongly
+alert (string)
+alert(index)
+
+/*
+    let twoSymbolValue = string.slice(index, 2)
+    let threeSymbolValue = string.slice(index, 3)
+    let fourSymbolValue = string.slice(index, 4)
+    let fiveSymbolValue = string.slice(index, 5)
+    let sixSymbolValue = string.slice(index, 6)
+    alert(twoSymbolValue)
+    alert(sixSymbolValue)*/
 
     switch (true){
 
