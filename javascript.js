@@ -400,7 +400,12 @@ function makeInputArray(previousValue, value, nextValue){
 }
 
 function checkSymbol (previousValue, value, nextValue){
+// the checks are order by length of the symbols, so:
+//cos() is checked before (), because otherwise it might label the symbol wrongly
+
     switch (true){
+
+//-- 1 VALUE-LENGTH SYMBOLS --
         case (symbolObject[0].sign.includes(value)):
 //          addition
             return symbolObject[0]
