@@ -49,70 +49,70 @@ for (let i = 9; i >= 0; i--){
 let symbolObject = [
     {
 //0
-    id: 'btnAdd' ,
+    id: 'Addition' ,
     sign: ['+', '➕', '˖'] ,  
     precedence: 6 , 
     category: "operator"
     },
     {
 //1
-    id: 'btnSubtract' ,
+    id: 'Subtraction' ,
     sign: ['-','−', '˗', '-', '−', '➖', '﹣', '－'],   
     precedence: 6 , 
     category : "operator"
     } ,
     {
 //2
-    id: 'btnMultiply' ,
+    id: 'Multiplication' ,
     sign: ['*','×', '⋅', '∗'],   
     precedence: 5 , 
     category: "operator"
     } ,
     {
 //3
-    id: 'btnDivide' ,
+    id: 'Division' ,
     sign: ['/', '÷', '➗'],   
     precedence: 5 ,
     category: 'operator'
     } ,
     {
 //4
-    id: 'bracketOpen' ,
+    id: 'Bracket open' ,
     sign: ['(', '﹙', '（'],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
 //5
-    id: 'bracketClose' ,
+    id: 'Bracket close' ,
     sign: [')', '﹚', '）'],   
     precedence:  2,
     category: 'bracket'
     } ,
     {
 //6
-    id: 'pi' ,
+    id: 'Pi' ,
     sign: ['π', 'Π', 'Π', 'Π', 'π', 'π', 'π', 'ϖ', 'ϖ', 'ϖ'],   
     precedence: 1,
     category: 'value'
     } ,
     {
 //7
-    id: '2ndPower' ,
+    id: '2nd power' ,
     sign: ['²'],   
     precedence: 4,
     category: 'operator'
     } ,
     {
 //8
-    id: 'toThePower' ,
+    id: 'Exponentiation' ,
     sign: ['^', '**'],   
     precedence: 4,
     category: 'operator'
     } ,
     {
 //9
-    id: 'factorial' ,
+    id: 'Factorial' ,
     sign: ['!'],   
     precedence:  3,
     category: 'operator',
@@ -120,9 +120,16 @@ let symbolObject = [
     } ,
     {
 //10
-    id: 'remainder' ,
+    id: 'Modulus divide' ,
     sign: ['%', 'mod'],   
     precedence: 5 ,
+    category: 'operator'
+    } ,
+    {
+//11
+    id: 'Square root' ,
+    sign: ['√', ],   
+    precedence: 4 ,
     category: 'operator'
     } ,
 ]
@@ -131,6 +138,7 @@ symbolObject.forEach ((prop) => {
     let btn = document.createElement("button")
     btnFrameOperator.appendChild(btn)
     btn.setAttribute("id" , prop.id)
+    btn.setAttribute("title" , prop.id)
     btn.classList.add("btn")
     if (typeof prop.btnTxt == "undefined"){
         btn.textContent = prop.sign[0]
@@ -520,7 +528,7 @@ function checkSymbol (previousValue, value, nextValue, string, index,
 
 //-- 3 VALUE LENGTH SYMBOLS --
         case   (symbolObject[10].sign.includes(threeSymbolValue)):
-//          remainder (mod)
+//          remainder (modulo)
             deleteValuesFromString(index+1, 2)
             return symbolObject[10]
             break;      
@@ -603,12 +611,12 @@ function checkSymbol (previousValue, value, nextValue, string, index,
             break;
 
         case (symbolObject[10].sign.includes(value)):
-//          remainder (mod)
+//          remainder (modulo)
             return symbolObject[10]
             break;
 
         case (symbolObject[11].sign.includes(value)):
-//          ..
+//          square root
             return symbolObject[11]
             break;
 
@@ -812,9 +820,9 @@ function doCalculation (symbol, index, array){
             break;
 
         case (symbol == symbolObject[11]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          square root
+            result = Math.sqrt(nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
