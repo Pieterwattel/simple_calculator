@@ -118,6 +118,13 @@ let symbolObject = [
     category: 'operator',
     btnTxt: "x!",
     } ,
+    {
+//10
+    id: 'remainder' ,
+    sign: ['%', 'mod'],   
+    precedence: 5 ,
+    category: 'operator'
+    } ,
 ]
 
 symbolObject.forEach ((prop) => {
@@ -362,6 +369,13 @@ function evaluateStringSymbols (string){
     let previousValue =- ""
     let value = ""
     let nextValue = ""
+
+    let twoSymbolValue
+    let threeSymbolValue
+    let fourSymbolValue
+    let fiveSymbolValue
+    let sixSymbolValue
+
     let i = string.length
     let j = 0
     while (j < i){
@@ -373,7 +387,20 @@ function evaluateStringSymbols (string){
         previousValue = string.charAt(j-1)
         value = string.charAt(j)
         nextValue = string.charAt(j+1)
-        makeInputArray(previousValue, value, nextValue, string, j)
+
+        twoSymbolValue = string.slice(j, j+2)
+        threeSymbolValue = string.slice(j, j+3)
+        fourSymbolValue = string.slice(j, j+4)
+        fiveSymbolValue = string.slice(j, j+5)
+        sixSymbolValue = string.slice(j, j+6)
+
+        makeInputArray(previousValue, value, nextValue, string, j,
+            twoSymbolValue,
+            threeSymbolValue,
+            fourSymbolValue,
+            fiveSymbolValue,
+            sixSymbolValue,
+        )
         j++
     }
 
@@ -387,7 +414,13 @@ function evaluateStringSymbols (string){
     return inputArray
 }
 
-function numberOrSymbol (previousValue, value, nextValue, string, index) {
+function numberOrSymbol (previousValue, value, nextValue, string, index,
+    twoSymbolValue,
+    threeSymbolValue,
+    fourSymbolValue,
+    fiveSymbolValue,
+    sixSymbolValue,
+) {
 
     let returnValue = ""
     // check if value is number, returns string "number"
@@ -398,8 +431,19 @@ function numberOrSymbol (previousValue, value, nextValue, string, index) {
 
     // check if value is operator, returns array [operator,  arrayIndex()
     symbolObject.forEach(element => {
-        if (element.sign.includes(value)){
-            returnValue = checkSymbol(previousValue, value, nextValue, string, index)
+        if (element.sign.includes(value)||
+        element.sign.includes(twoSymbolValue) ||
+        element.sign.includes(threeSymbolValue) ||
+        element.sign.includes(fourSymbolValue) ||
+        element.sign.includes(fiveSymbolValue) ||
+        element.sign.includes(sixSymbolValue)){
+            returnValue = checkSymbol(previousValue, value, nextValue, string, index,
+                twoSymbolValue,
+                threeSymbolValue,
+                fourSymbolValue,
+                fiveSymbolValue,
+                sixSymbolValue,
+            )
         }
     })
 
@@ -414,8 +458,21 @@ function numberOrSymbol (previousValue, value, nextValue, string, index) {
     return returnValue
 }
 
-function makeInputArray(previousValue, value, nextValue, string, index){
-    result = numberOrSymbol(previousValue, value, nextValue, string, index)
+function makeInputArray(previousValue, value, nextValue, string, index,
+            twoSymbolValue,
+            threeSymbolValue,
+            fourSymbolValue,
+            fiveSymbolValue,
+            sixSymbolValue,
+){
+
+    result = numberOrSymbol(previousValue, value, nextValue, string, index,
+            twoSymbolValue,
+            threeSymbolValue,
+            fourSymbolValue,
+            fiveSymbolValue,
+            sixSymbolValue,
+    )
 
 // check of the value if it is a number.
     if (result == "number"){
@@ -448,17 +505,25 @@ function deleteValuesFromString(index, amount){
     updateString = true
 }
 
-function checkSymbol (previousValue, value, nextValue, string, index){
+function checkSymbol (previousValue, value, nextValue, string, index,
+    twoSymbolValue,
+    threeSymbolValue,
+    fourSymbolValue,
+    fiveSymbolValue,
+    sixSymbolValue,
+){
 // the checks are order by length of the symbols, so:
 //cos() is checked before (), because otherwise it might label the symbol wrongly
-    twoSymbolValue = string.slice(index, index+2)
-    threeSymbolValue = string.slice(index, index+3)
-    fourSymbolValue = string.slice(index, index+4)
-    fiveSymbolValue = string.slice(index, index+5)
-    sixSymbolValue = string.slice(index, index+6)
-
 
     switch (true){
+
+
+//-- 3 VALUE LENGTH SYMBOLS --
+        case   (symbolObject[10].sign.includes(threeSymbolValue)):
+//          remainder (mod)
+            deleteValuesFromString(index+1, 2)
+            return symbolObject[10]
+            break;      
 
 //-- 2 VALUE LENGTH SYMBOLS --
         case (symbolObject[8].sign.includes(twoSymbolValue)):
@@ -538,7 +603,7 @@ function checkSymbol (previousValue, value, nextValue, string, index){
             break;
 
         case (symbolObject[10].sign.includes(value)):
-//          ..
+//          remainder (mod)
             return symbolObject[10]
             break;
 
@@ -740,8 +805,8 @@ function doCalculation (symbol, index, array){
             break;
 
         case (symbol == symbolObject[10]):
-//          ...
-            result = +previousValue + +previousValue
+//          remainder
+            result = +previousValue % +nextValue
             array.splice(index-1, 3, result)   
             return array
             break;
@@ -1007,5 +1072,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "(5+3)×(12−4)/2−7"
+userInput = "3mod2"
 updateDisplay()
