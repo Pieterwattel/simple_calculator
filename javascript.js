@@ -147,7 +147,7 @@ let symbolObject = [
     {
 //13
     id: 'CoSine' ,
-    sign: ['cos('],   
+    sign: ['cos'],   
     precedence: 3,
     category: 'trigFunction',
     btnTxt: "cos",
@@ -155,7 +155,7 @@ let symbolObject = [
     {
 //14
     id: 'Tangent' ,
-    sign: ['tan('],   
+    sign: ['tan'],   
     precedence: 3,
     category: 'trigFunction',
     btnTxt: "tan",
@@ -163,26 +163,26 @@ let symbolObject = [
     {
 //15
     id: 'Inverse Sine' ,
-    sign: ['asin('],   
+    sign: ['asin'],   
     precedence: 3,
     category: 'trigFunction',
-    btnTxt: "asin",
+    btnTxt: "aSin",
     } ,
     {
 //16
     id: 'Inverse CoSine' ,
-    sign: ['acos('],   
+    sign: ['acos'],   
     precedence: 3,
     category: 'trigFunction',
-    btnTxt: "acos",
+    btnTxt: "aCos",
     } ,
     {
 //17
     id: 'Inverse Tangent' ,
-    sign: ['atan('],   
+    sign: ['atan'],   
     precedence: 3,
     category: 'trigFunction',
-    btnTxt: "atan",
+    btnTxt: "aTan",
     } ,
 ]
 
@@ -336,7 +336,6 @@ function runEquals (){
         isError = false
         inputArray = []
         array = makeStringArray(displayTop.value)
-        console.log("isError = " + isError)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)){
             result = calculate(array)
@@ -586,6 +585,24 @@ function checkSymbol (previousValue, value, nextValue, string, index,
 
     switch (true){
 
+//-- 4 VALUE LENGTH SYMBOLS --
+    case   (symbolObject[15].sign.includes(fourSymbolValue)):
+//          inverse sine
+            deleteValuesFromString(index+1, 3)
+            return symbolObject[15]
+            break;   
+                
+        case   (symbolObject[16].sign.includes(fourSymbolValue)):
+//          inverse coSine
+            deleteValuesFromString(index+1, 3)
+            return symbolObject[16]
+            break;   
+    
+        case   (symbolObject[17].sign.includes(fourSymbolValue)):
+//          inverse tangent
+            deleteValuesFromString(index+1, 3)
+            return symbolObject[17]
+            break;   
 
 //-- 3 VALUE LENGTH SYMBOLS --
         case   (symbolObject[10].sign.includes(threeSymbolValue)):
@@ -598,6 +615,18 @@ function checkSymbol (previousValue, value, nextValue, string, index,
 //          sine
             deleteValuesFromString(index+1, 2)
             return symbolObject[12]
+            break;      
+
+        case   (symbolObject[13].sign.includes(threeSymbolValue)):
+//          cosine
+            deleteValuesFromString(index+1, 2)
+            return symbolObject[13]
+            break;      
+
+        case   (symbolObject[14].sign.includes(threeSymbolValue)):
+//          tangent
+            deleteValuesFromString(index+1, 2)
+            return symbolObject[14]
             break;      
 
 //-- 2 VALUE LENGTH SYMBOLS --
@@ -899,37 +928,37 @@ function doCalculation (symbol, index, array){
             break;
 
         case (symbol == symbolObject[13]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          coSine
+            result = Math.cos(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
         case (symbol == symbolObject[14]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          tangent
+            result = Math.tan(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
         case (symbol == symbolObject[15]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          inverse sine
+            result = Math.asin(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
         case (symbol == symbolObject[16]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          inverse coSine
+            result = Math.acos(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
         case (symbol == symbolObject[17]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          inverse tangent
+            result = Math.atan(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
@@ -1065,9 +1094,7 @@ function makeStringArray(string){
 }
 
 function stringErrorCheck(string){
-    console.log(isError)
     unEqualBracketAmount(string)
-    console.log(isError)
 }
 
 function calculate(array){
@@ -1106,6 +1133,30 @@ this will stop the rest of calculation
                 array
             )
         }
+
+        let num 
+
+        if (typeof nextElement == "object"){
+            num = nextNextElement
+        } else {
+            num = nextElement
+        }
+
+        if (currentElement == symbolObject[15]){
+            if (num < -1 ||
+                num > 1){
+                    isError = true
+                    alert("invalid input for aSine, number must be between -1 and 1")
+                }
+        } else if (currentElement == symbolObject[16]){
+            if (num < -1 ||
+                num > 1){
+                    isError = true
+                    alert("invalid input for aCos, number must be between -1 and 1")
+                }
+        }
+
+
         // if any adjustments in index number need be made,
         // they can be changed in the error checks, and implemented here
         i = errorCheckIteration
@@ -1182,5 +1233,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "sin(3)"
+userInput = "asin(3)"
 updateDisplay()
