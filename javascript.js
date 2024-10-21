@@ -5,7 +5,8 @@ let operator = ""
 let ans = ""
 
 let userInput = ""
-updateString = false
+let updateString = false
+let stringRemovedAmount
 
 let currentElement = ""
 let inputArray = []
@@ -235,7 +236,7 @@ function makeNumber(value){
     return parseFloat(value)    
 }
 
-function alertSimplifiedArray(array){
+function returnSimplifiedArray(array){
     let result = []
     array.forEach(element => {
         if (typeof element == "object"){
@@ -244,7 +245,7 @@ function alertSimplifiedArray(array){
             result.push(element)
         }
     });
-    alert ("simplified array is: " + result)
+    return result
 }
 
 function getFunction(e){
@@ -389,9 +390,10 @@ function evaluateStringSymbols (string){
     while (j < i){
         if(updateString){
             string = userInput
-            updateString = false
             i = string.length
+            updateString = false
         }
+
         previousValue = string.charAt(j-1)
         value = string.charAt(j)
         nextValue = string.charAt(j+1)
@@ -409,6 +411,7 @@ function evaluateStringSymbols (string){
             fiveSymbolValue,
             sixSymbolValue,
         )
+
         j++
     }
 
@@ -429,7 +432,6 @@ function numberOrSymbol (previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-
     let returnValue = ""
     // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0"){
@@ -437,21 +439,26 @@ function numberOrSymbol (previousValue, value, nextValue, string, index,
        returnValue = "number"
     }
 
+    let allowForEach = true
+
     // check if value is operator, returns array [operator,  arrayIndex()
     symbolObject.forEach(element => {
-        if (element.sign.includes(value)||
-        element.sign.includes(twoSymbolValue) ||
-        element.sign.includes(threeSymbolValue) ||
-        element.sign.includes(fourSymbolValue) ||
-        element.sign.includes(fiveSymbolValue) ||
-        element.sign.includes(sixSymbolValue)){
-            returnValue = checkSymbol(previousValue, value, nextValue, string, index,
-                twoSymbolValue,
-                threeSymbolValue,
-                fourSymbolValue,
-                fiveSymbolValue,
-                sixSymbolValue,
-            )
+        if (allowForEach){
+            if (element.sign.includes(value)||
+            element.sign.includes(twoSymbolValue) ||
+            element.sign.includes(threeSymbolValue) ||
+            element.sign.includes(fourSymbolValue) ||
+            element.sign.includes(fiveSymbolValue) ||
+            element.sign.includes(sixSymbolValue)){
+                returnValue = checkSymbol(previousValue, value, nextValue, string, index,
+                    twoSymbolValue,
+                    threeSymbolValue,
+                    fourSymbolValue,
+                    fiveSymbolValue,
+                    sixSymbolValue,
+                )
+                allowForEach = false
+            }
         }
     })
 
@@ -462,7 +469,6 @@ function numberOrSymbol (previousValue, value, nextValue, string, index,
         isError = true
         returnValue = "error"
     }
-
     return returnValue
 }
 
@@ -473,7 +479,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
             fiveSymbolValue,
             sixSymbolValue,
 ){
-
     result = numberOrSymbol(previousValue, value, nextValue, string, index,
             twoSymbolValue,
             threeSymbolValue,
@@ -482,7 +487,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
             sixSymbolValue,
     )
 
-// check of the value if it is a number.
+// check if the value if it is a number.
     if (result == "number"){
 //        console.log("value is" + value)
 //        console.log("currentElement is" + currentElement)        
@@ -511,6 +516,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
 function deleteValuesFromString(index, amount){
     userInput = userInput.slice(0,index) + userInput.slice(index+amount)
     updateString = true
+    stringRemovedAmount = amount
 }
 
 function checkSymbol (previousValue, value, nextValue, string, index,
@@ -520,6 +526,7 @@ function checkSymbol (previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ){
+
 // the checks are order by length of the symbols, so:
 //cos() is checked before (), because otherwise it might label the symbol wrongly
 
@@ -713,7 +720,6 @@ function doCalculation (symbol, index, array){
     let nextValue = array[index+1]
 
 
-
     switch (true){
         case (symbol == symbolObject[0]):
 //          addition
@@ -786,11 +792,8 @@ function doCalculation (symbol, index, array){
 
         case (symbol == symbolObject[8]):
 //          any exponent
-            acc = previousValue
-            for (i = nextValue; i>0 ; i--){
-                acc = acc * previousValue
-            }
-            result = acc
+            result = (+previousValue) ** (+nextValue)
+
             array.splice(index-1, 3, result)   
             return array
             break;
@@ -965,6 +968,7 @@ function updateDisplay (){
 
 
 function makeStringArray(string){
+
     let result
     result = string.replace(/ /g,"")
     result = string.replace(/−/g,"-")
@@ -1080,5 +1084,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "3mod2"
+userInput = "3**2"
 updateDisplay()
