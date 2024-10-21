@@ -139,7 +139,7 @@ let symbolObject = [
     {
 //12
     id: 'Sine' ,
-    sign: ['sin('],   
+    sign: ['sin'],   
     precedence:  3,
     category: 'trigFunction',
     btnTxt: "sin",
@@ -594,6 +594,12 @@ function checkSymbol (previousValue, value, nextValue, string, index,
             return symbolObject[10]
             break;      
 
+        case   (symbolObject[12].sign.includes(threeSymbolValue)):
+//          sine
+            deleteValuesFromString(index+1, 2)
+            return symbolObject[12]
+            break;      
+
 //-- 2 VALUE LENGTH SYMBOLS --
         case (symbolObject[8].sign.includes(twoSymbolValue)):
 //          any exponent
@@ -679,11 +685,6 @@ function checkSymbol (previousValue, value, nextValue, string, index,
         case (symbolObject[11].sign.includes(value)):
 //          square root
             return symbolObject[11]
-            break;
-
-        case (symbolObject[12].sign.includes(value)):
-//          ..
-            return symbolObject[12]
             break;
 
         case (symbolObject[13].sign.includes(value)):
@@ -886,14 +887,14 @@ function doCalculation (symbol, index, array){
                 console.log("root else")
                 result = Math.sqrt(nextValue)
                 array.splice(index, 2, result) 
-            }  
+            }
             return array
             break;
 
         case (symbol == symbolObject[12]):
-//          ...
-            result = +previousValue + +previousValue
-            array.splice(index-1, 3, result)   
+//          sinus
+            result = Math.sin(+nextValue)
+            array.splice(index, 2, result)   
             return array
             break;
 
@@ -1013,7 +1014,6 @@ function checkBracketsBalance (string){
     }
     BracketBalance = (openBracketAmount - closedBracketAmount)
 
-    console.log(BracketBalance)
     return BracketBalance
 }
 
@@ -1182,5 +1182,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "2√3"
+userInput = "sin(3)"
 updateDisplay()
