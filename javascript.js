@@ -28,6 +28,8 @@ const contentBase = document.getElementById(`contentBase`)
 
         const displayFrame = document.getElementById(`displayFrame`)
             const displayTop = document.getElementById(`displayTop`)
+            const backMissingCharacters = document.getElementById(`backMissingCharacters`)        
+
             const displayBottom = document.getElementById(`displayBottom`)
 
         const btnsFrameMain = document.getElementById(`btnsFrameMain`)
@@ -131,7 +133,56 @@ let symbolObject = [
     id: 'Square root' ,
     sign: ['√', ],   
     precedence: 4 ,
-    category: 'operator'
+    category: 'operator',
+    btnTxt: "x√",
+    } ,
+    {
+//12
+    id: 'Sine' ,
+    sign: ['sin('],   
+    precedence:  3,
+    category: 'trigFunction',
+    btnTxt: "sin",
+    } ,
+    {
+//13
+    id: 'CoSine' ,
+    sign: ['cos('],   
+    precedence: 3,
+    category: 'trigFunction',
+    btnTxt: "cos",
+    } ,
+    {
+//14
+    id: 'Tangent' ,
+    sign: ['tan('],   
+    precedence: 3,
+    category: 'trigFunction',
+    btnTxt: "tan",
+    } ,
+    {
+//15
+    id: 'Inverse Sine' ,
+    sign: ['asin('],   
+    precedence: 3,
+    category: 'trigFunction',
+    btnTxt: "asin",
+    } ,
+    {
+//16
+    id: 'Inverse CoSine' ,
+    sign: ['acos('],   
+    precedence: 3,
+    category: 'trigFunction',
+    btnTxt: "acos",
+    } ,
+    {
+//17
+    id: 'Inverse Tangent' ,
+    sign: ['atan('],   
+    precedence: 3,
+    category: 'trigFunction',
+    btnTxt: "atan",
     } ,
 ]
 
@@ -157,7 +208,7 @@ symbolObject.forEach ((prop) => {
     id: '' ,
     sign: [''],   
     precedence:  ,
-    category: ''
+    category: '',
     } ,
 
 //to add an operator:
@@ -280,18 +331,21 @@ function getFunction(e){
 }
 
 function runEquals (){
-    ans = ""
-    isError=false
-    inputArray = []
-    array = makeStringArray(displayTop.value)
-    // if there are no errors, run the rest of the function
-    if (!checkForErrors(array)){
-        result = calculate(array)
-        ans = result.flat()
-        displayAns()
+    if (displayTop.value != ""){
+        ans = ""
+        isError = false
         inputArray = []
-        currentElement = ""
-        clearEntry()
+        array = makeStringArray(displayTop.value)
+        console.log("isError = " + isError)
+        // if there are no errors, run the rest of the function
+        if (!checkForErrors(array)){
+            result = calculate(array)
+            ans = result.flat()
+            displayAns()
+            inputArray = []
+            currentElement = ""
+            clearEntry()
+        }
     }
 }
 
@@ -943,6 +997,33 @@ function returnCaret (value){
     displayTop.setSelectionRange(caretPosition+value.length, caretPosition+value.length)
 }
 
+function checkBracketsBalance (string){
+    console.log("yes")
+    let closedBracketAmount
+    let openBracketAmount
+    let BracketBalance
+
+    open = string.match(/\(/g)
+    if (open != null){
+        openBracketAmount = open.length
+    }
+
+    close = string.match(/\)/g)
+    if (close != null){
+        closedBracketAmount = close.length
+    }
+    BracketBalance = (openBracketAmount - closedBracketAmount)
+    return BracketBalance
+}
+
+function unEqualBracketAmount(string){
+    if (checkBracketsBalance(string) != 0){
+        isError = true
+        alert ("ERROR: unequal bracket balance")
+    }
+}
+
+
 //#endregion
 //#region       >> Controller Functions
 function operatorPress (e, newSymbol) {
@@ -975,11 +1056,17 @@ function updateDisplay (){
 
 
 function makeStringArray(string){
-
+    stringErrorCheck(string)
     let result
     result = string.replace(/ /g,"")
     result = string.replace(/−/g,"-")
     return evaluateStringSymbols(result)
+}
+
+function stringErrorCheck(string){
+    console.log(isError)
+    unEqualBracketAmount(string)
+    console.log(isError)
 }
 
 function calculate(array){
@@ -1022,25 +1109,9 @@ this will stop the rest of calculation
         // they can be changed in the error checks, and implemented here
         i = errorCheckIteration
     }
-
-    isError = unEqualBracketAmount(array)
     
     return isError
 }
-
-function unEqualBracketAmount(array){
-    let openBracketAmount = (() =>{
-        return array.filter(x => x.id=="bracketOpen").length
-    })(array)
-    let closedBracketAmount = ((array) =>{
-        return array.filter(x => x.id=="bracketClose").length
-    })(array)
-    if (openBracketAmount != closedBracketAmount){
-        alert ("ERROR: unequal amount of brackets!")
-        return true
-    }
-}
-
 
 //#endregion
 //#endregion
@@ -1055,10 +1126,6 @@ btnFrameNum.childNodes.forEach(child => {
     child.addEventListener("click", numberPress);
 });
 
-displayTop.addEventListener('input', function(){
-    userInput = displayTop.value
-})
-
 window.addEventListener("focus", ()=>{
     displayTop.focus()
 })
@@ -1067,15 +1134,24 @@ window.addEventListener("load", ()=>{
     displayTop.focus()
 })
 
-document.addEventListener("keydown", (e=>{
+
+//----------LISTEN TO ANY INPUT CHANGE-----------
+document.addEventListener("keyup", (e=>{
     if (e.key == "Enter"){
 
         e.preventDefault()
         runEquals()
     } else if (e.key.length == 1){
     }
+    userInput = displayTop.value
+    checkBracketsBalance(userInput)
 }))
 
+btnsFrameMain.addEventListener('click', function(){
+    userInput = displayTop.value
+    checkBracketsBalance(userInput)
+})
+//-----------------------------------------------
 /*
 displayTop.addEventListener("click", (e=>{
     caretPosition = e.target.selectionStart
