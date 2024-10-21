@@ -1116,7 +1116,19 @@ this will stop the rest of calculation
 
 function runEveryEdit (e){
     userInput = displayTop.value
-    checkBracketsBalance(userInput)
+    balance = checkBracketsBalance(userInput)
+    giveMissingBrackets(balance)
+}
+
+function giveMissingBrackets(balance){
+
+    let missingCloseBrackets = ""
+    if (balance >= 0){
+        for (i = balance-1 ; i >= 0; i--){
+            missingCloseBrackets += ")"
+        }
+    }
+    backMissingCharacters.textContent = missingCloseBrackets
 }
 
 //#endregion
