@@ -824,8 +824,15 @@ function doCalculation (symbol, index, array){
 
         case (symbol == symbolObject[11]):
 //          square root
-            result = Math.sqrt(nextValue)
-            array.splice(index, 2, result)   
+              console.log(Number(parseFloat(previousValue)))
+            if (Number(parseFloat(previousValue))){
+                result = Math.sqrt(nextValue) * previousValue
+                array.splice(index-1, 3, result) 
+            } else {
+                console.log("root else")
+                result = Math.sqrt(nextValue)
+                array.splice(index, 2, result) 
+            }  
             return array
             break;
 
@@ -1084,5 +1091,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "3**2"
+userInput = "2√3"
 updateDisplay()
