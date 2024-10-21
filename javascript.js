@@ -998,9 +998,8 @@ function returnCaret (value){
 }
 
 function checkBracketsBalance (string){
-    console.log("yes")
-    let closedBracketAmount
-    let openBracketAmount
+    let closedBracketAmount = 0
+    let openBracketAmount = 0
     let BracketBalance
 
     open = string.match(/\(/g)
@@ -1013,6 +1012,8 @@ function checkBracketsBalance (string){
         closedBracketAmount = close.length
     }
     BracketBalance = (openBracketAmount - closedBracketAmount)
+
+    console.log(BracketBalance)
     return BracketBalance
 }
 
@@ -1113,6 +1114,11 @@ this will stop the rest of calculation
     return isError
 }
 
+function runEveryEdit (e){
+    userInput = displayTop.value
+    checkBracketsBalance(userInput)
+}
+
 //#endregion
 //#endregion
 //#region   > Dom Generation
@@ -1141,16 +1147,13 @@ document.addEventListener("keyup", (e=>{
 
         e.preventDefault()
         runEquals()
-    } else if (e.key.length == 1){
     }
-    userInput = displayTop.value
-    checkBracketsBalance(userInput)
+    runEveryEdit(e)
 }))
 
-btnsFrameMain.addEventListener('click', function(){
-    userInput = displayTop.value
-    checkBracketsBalance(userInput)
-})
+btnsFrameMain.addEventListener('click', (e=>{
+    runEveryEdit()
+}))
 //-----------------------------------------------
 /*
 displayTop.addEventListener("click", (e=>{
