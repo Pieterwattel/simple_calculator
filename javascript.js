@@ -549,8 +549,9 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     // check if the value if it is a number.
     if (result == "number") {
         //if there is an operator in front that multiplies when you write a number after it,
-        //and if this is the first of the numbers (currentElement == "")     
-        if (previousValue.multiplyWhenNumBehind && currentElement == "") {5
+        //and if this is the first of the numbers (currentElement == "")
+        if (inputArray.slice(-1)[0].multiplyWhenNumBehind && currentElement == "") {
+            console.log("yes")  
             inputArray.push(symbolObject[2])
         }
         currentElement += value
@@ -1256,5 +1257,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "π"
+userInput = "π3"
 updateDisplay()
