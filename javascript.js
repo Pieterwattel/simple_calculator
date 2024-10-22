@@ -543,27 +543,16 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
-
-    let prePreviousValue = string.charAt(index - 2)
+    console.log("result is " + result)
+    addMultiplication(result, currentElement)
+    
     
     // check if the value if it is a number.
     if (result == "number") {
-        //if there is an operator in front that multiplies when you write a number after it,
-        //and if this is the first of the numbers (currentElement == "")
-        if (inputArray.slice(-1)[0].multiplyWhenNumBehind && currentElement == "") {
-            console.log("yes")  
-            inputArray.push(symbolObject[2])
-        }
         currentElement += value
     } else if (typeof result == "object") {
         // then check if it is an operator, using the previous and next value to evaluate that
-        // add the number, and optional multiplication to the array before adding an operator
-        if (currentElement != "") {
-            inputArray.push(currentElement)
-            if (result.multiplyWhenNumInFront) {
-                inputArray.push(symbolObject[2])
-            }
-        }
+        inputArray.push(currentElement)
         inputArray.push(result)
         currentElement = ""
     } else if (result == "skip") {
@@ -577,6 +566,28 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         console.log(`value :${value} falls outside makeInputArray() if statement options`)
 
     }
+
+}
+
+function addMultiplication (result, currentElement){
+    /*
+    if (!inputArray.slice(-1)[0]){
+        return
+    }
+
+    if (result == "number") {
+        if (inputArray.slice(-1)[0].multiplyWhenNumBehind && currentElement == "") {
+            console.log("yes")  
+            inputArray.push(symbolObject[2])
+        }
+    } else if (typeof result == "object") { 
+        if (currentElement != "") {
+            if (result.multiplyWhenNumInFront) {
+                inputArray.push(symbolObject[2])
+            }
+        }
+    }
+    */
 }
 
 function deleteValuesFromString(index, amount) {
@@ -699,7 +710,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             break;
 
         case (symbolObject[6].sign.includes(value)):
-            //          pi
+            //          Pi
             return symbolObject[6]
             break;
 
@@ -883,7 +894,6 @@ function doCalculation(symbol, index, array) {
             result = Math.PI
 
             array.splice(index , 1, result)
-            alert(array)
             return array
             break;
 
