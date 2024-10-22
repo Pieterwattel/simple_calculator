@@ -83,7 +83,8 @@ let symbolObject = [
     id: 'Bracket open' ,
     sign: ['(', '﹙', '（'],   
     precedence:  2,
-    category: 'bracket'
+    category: 'bracket',
+    multiplyWhenNumInFront: 'true',
     } ,
     {
 //5
@@ -97,7 +98,7 @@ let symbolObject = [
     id: 'Pi' ,
     sign: ['π', 'Π', 'Π', 'Π', 'π', 'π', 'π', 'ϖ', 'ϖ', 'ϖ'],   
     precedence: 1,
-    category: 'value'
+    category: 'value',
     } ,
     {
 //7
@@ -335,7 +336,7 @@ function runEquals (){
         ans = ""
         isError = false
         inputArray = []
-        array = makeStringArray(displayTop.value)
+        array = returnArrayFromString(displayTop.value)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)){
             result = calculate(array)
@@ -550,6 +551,9 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     } else if (typeof result == "object"){
         if (currentElement != ""){
             inputArray.push(currentElement)
+            if (result.multiplyWhenNumInFront){
+                inputArray.push(symbolObject[2])
+            }
         }
         inputArray.push(result)
         currentElement = ""
@@ -1085,7 +1089,7 @@ function updateDisplay (){
 }
 
 
-function makeStringArray(string){
+function returnArrayFromString(string){
     stringErrorCheck(string)
     let result
     result = string.replace(/ /g,"")
@@ -1195,8 +1199,11 @@ btnFrameNum.childNodes.forEach(child => {
     child.addEventListener("click", numberPress);
 });
 
-window.addEventListener("focus", ()=>{
+window.addEventListener("focus", (e)=>{
+    if (e.id != "displayBottom"){
     displayTop.focus()
+    } else {
+    }
 })
 
 window.addEventListener("load", ()=>{
@@ -1233,5 +1240,5 @@ displayTop.addEventListener("blur", (e=>{
 //#endregion
 //#endregion
 
-userInput = "asin(3)"
+userInput = "3(2)"
 updateDisplay()
