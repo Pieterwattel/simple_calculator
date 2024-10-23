@@ -1,0 +1,35 @@
+* {
+    background-color: black;
+    color: white;
+}
+
+div,
+span,
+input {
+    border: 3px solid brown;
+    padding: 5px;
+}
+
+#body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#btnsFrameMain {
+    display: flex;
+    flex:1;
+}
+
+#contentBase {
+    height: 98.3vh;
+    border-radius: 40px;
+}
+
+.btn{
+    background-color: rgb(237, 211, 61);
+    color: black;
+}
+
+#displayTop{
+    font-size: 16px !important;
+}

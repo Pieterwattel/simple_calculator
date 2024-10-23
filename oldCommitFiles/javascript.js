@@ -10,8 +10,6 @@ let stringRemovedAmount
 
 let currentElement = ""
 let inputArray = []
-let previousElementForMultiplication = ""
-let addMultiplyOp = false
 
 let currentNum = ""
 
@@ -29,7 +27,6 @@ const contentBase = document.getElementById(`contentBase`)
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
 const displayFrame = document.getElementById(`displayFrame`)
-const previousCalculation = document.getElementById(`previousCalculation`)
 const displayTop = document.getElementById(`displayTop`)
 const backMissingCharacters = document.getElementById(`backMissingCharacters`)
 
@@ -142,7 +139,6 @@ let symbolObject = [
         precedence: 4,
         category: 'operator',
         btnTxt: "x√",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //12
@@ -151,7 +147,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "sin",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //13
@@ -160,7 +155,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "cos",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //14
@@ -169,7 +163,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "tan",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //15
@@ -178,7 +171,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "aSin",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //16
@@ -187,7 +179,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "aCos",
-        multiplyWhenNumInFront: 'true',
     },
     {
         //17
@@ -196,7 +187,6 @@ let symbolObject = [
         precedence: 3,
         category: 'trigFunction',
         btnTxt: "aTan",
-        multiplyWhenNumInFront: 'true',
     },
 ]
 
@@ -239,32 +229,32 @@ symbolObject.forEach((prop) => {
 
 let otherBtns = [
     {
-        id: 'Equals',
+        id: 'btnEquals',
         sign: '=',
         function: runEquals(),
     },
     {
-        id: 'Previous answer',
+        id: 'btnans',
         sign: 'ans',
         function: runAns(),
     },
     {
-        id: 'Clear all fields',
+        id: 'btnClear',
         sign: 'C',
         function: clearDisplay(),
     },
     {
-        id: 'Clear entry',
+        id: 'btnClearEntry',
         sign: 'CE',
         function: clearEntry(),
     },
     {
-        id: 'BackSpace',
+        id: 'btnBackSpace',
         sign: '⌫',
         function: doBackspace(),
     },
     {
-        id: 'Delete',
+        id: 'btnDelete',
         sign: 'Del',
         function: doDelete(),
     },
@@ -276,7 +266,6 @@ otherBtns.forEach((prop) => {
     btn.setAttribute("id", prop.id)
     btn.classList.add("btn")
     btn.textContent = prop.sign
-    btn.setAttribute("title", prop.id)
 })
 
 
@@ -300,18 +289,6 @@ function logNum(e) {
 
 function makeNumber(value) {
     return parseFloat(value)
-}
-
-function returnSimplifiedString(array){
-    let string = ""
-    array.forEach(element => {
-        if (Number(parseFloat(element))){
-            string += element
-        } else if (typeof element == "object"){
-            string += element.sign[0]
-        }
-    });
-    return string
 }
 
 function returnSimplifiedArray(array) {
@@ -362,9 +339,7 @@ function runEquals() {
         ans = ""
         isError = false
         inputArray = []
-        previousElementForMultiplication = ""
-        array = getArrayFromString(displayTop.value)
-        previousCalculation.textContent = returnSimplifiedString(inputArray)
+        array = returnArrayFromString(displayTop.value)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -404,6 +379,47 @@ function doDelete() {
     updateDisplay()
     returnCaret("")
 }
+
+/*
+function makeSymbolString (symbol){
+    switch (symbol){
+        case (symbolObject[0].sign[0]):
+//          addition
+            return " " + symbol + " "
+            break;
+
+        case (symbolObject[1].sign[0]):
+//          subtraction
+            return " " + symbol + " "
+            break;
+
+        case (symbolObject[2].sign[0]):
+//          multiplication
+            return " " + symbol + " "
+            break;
+
+        case (symbolObject[3].sign[0]):
+//          division
+            return " " + symbol + " "
+            break;
+
+        case (symbolObject[4].sign[0]):
+//          bracketOpen
+            return symbol
+            break;
+
+        case (symbolObject[5].sign[0]):
+//          bracketClose
+            return symbol
+            break;
+
+        default:
+            console.log("operator: " + symbol + ", not added yet in operatorString()")
+            return symbol
+    }
+    clearEntry()
+}
+    */
 
 function displayEntry() {
     displayTop.value = userInput
@@ -527,6 +543,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
+    console.log("result is " + result)
     addMultiplication(result, currentElement)
     
     
@@ -535,13 +552,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         currentElement += value
     } else if (typeof result == "object") {
         // then check if it is an operator, using the previous and next value to evaluate that
-        if (currentElement != "") {
-            inputArray.push(currentElement)
-            if (addMultiplyOp){
-                inputArray.push(symbolObject[2])
-                addMultiplyOp =  false
-            }
-        }
+        inputArray.push(currentElement)
         inputArray.push(result)
         currentElement = ""
     } else if (result == "skip") {
@@ -555,36 +566,28 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         console.log(`value :${value} falls outside makeInputArray() if statement options`)
 
     }
-    if (addMultiplyOp){
-        inputArray.push(symbolObject[2])
-    }
-    addMultiplyOp = false
+
 }
 
-
-
 function addMultiplication (result, currentElement){
-
-    if (typeof previousElementForMultiplication == "undefined"||
-        previousElementForMultiplication == ""){
-        previousElementForMultiplication = result
-        return false
+    /*
+    if (!inputArray.slice(-1)[0]){
+        return
     }
 
     if (result == "number") {
-        if (previousElementForMultiplication.multiplyWhenNumBehind && currentElement == "") {
-            console.log("addmultiplyOp number")  
-    //        inputArray.push(symbolObject[2])
-            addMultiplyOp = true
+        if (inputArray.slice(-1)[0].multiplyWhenNumBehind && currentElement == "") {
+            console.log("yes")  
+            inputArray.push(symbolObject[2])
         }
-    } else if (typeof result == "object" && typeof previousElementForMultiplication == "string" ) { 
+    } else if (typeof result == "object") { 
         if (currentElement != "") {
             if (result.multiplyWhenNumInFront) {
-                addMultiplyOp = true
+                inputArray.push(symbolObject[2])
             }
         }
     }
-    previousElementForMultiplication = result
+    */
 }
 
 function deleteValuesFromString(index, amount) {
@@ -936,8 +939,15 @@ function doCalculation(symbol, index, array) {
 
         case (symbol == symbolObject[11]):
             //          square root
+            console.log(Number(parseFloat(previousValue)))
+            if (Number(parseFloat(previousValue))) {
+                result = Math.sqrt(nextValue) * previousValue
+                array.splice(index - 1, 3, result)
+            } else {
+                console.log("root else")
                 result = Math.sqrt(nextValue)
                 array.splice(index, 2, result)
+            }
             return array
             break;
 
@@ -1106,12 +1116,11 @@ function updateDisplay() {
 }
 
 
-function getArrayFromString(string) {
+function returnArrayFromString(string) {
     stringErrorCheck(string)
     let result
-    result = string.replace(/ /g, "").toLowerCase()
+    result = string.replace(/ /g, "")
     result = string.replace(/−/g, "-")
-    result = string.toLowerCase()
     return evaluateStringSymbols(result)
 }
 
@@ -1258,5 +1267,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "2(3-2)"
+userInput = "π3"
 updateDisplay()
