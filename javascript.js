@@ -424,6 +424,16 @@ function isNumber(value){
     }
 }
 
+function isNumberOrMinus(value){
+    if (!isNaN(value) || 
+    value === "." ||
+    symbolObject[1].sign.includes(value) ){
+        return true
+    } else {
+        return false
+    }
+}
+
 function evaluateStringSymbols(string) {
 
     // 3 values that can be given, to evaluate the context of a symbol
@@ -564,15 +574,18 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     let lastElement = inputArray[inputArray.length-1]
     
     console.log("makeInputArray()")
-    if (isNumber(result) || result === "-"){
+    if (isNumberOrMinus(result)){
         if (typeof lastElement === "object" ||
             typeof lastElement === "undefined"){
             inputArray.push(result)
         } else if (isNumber(lastElement) || lastElement == "-"){
-            inputArray += result
+            console.log(lastElement)
+            inputArray[inputArray.length-1] += result
         }
     } else if (typeof result == "object") {
         inputArray.push(result)
+    } else {
+        alert("value falls outside makeInputArray options")
     }
 
 /*
@@ -719,12 +732,12 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             //          subtraction
             // if this the first value, expect that it is the start of a negative number
             if (previousValue === "") {
-                return "number"
+                return value
             }
             // if the previous value was an operator, also expect that this is a negative number
             symbolObject.forEach(element => {
                 if (element.sign.includes(previousValue))
-                    return "number"
+                    return value
             });
 
             if (nextValue == "-") {
@@ -732,10 +745,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             }
 
             // if all of those are not the case, see it as a number, and place a "+" operator in front of it
-            inputArray.push(currentElement)
-            inputArray.push(symbolObject[0])
-            currentElement = ""
-            return "number"
+            return value
 
         case (symbolObject[2].sign.includes(value)):
             //          multiplication
@@ -1310,5 +1320,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "2(3+2)"
+userInput = "-2(3-2)"
 updateDisplay()
