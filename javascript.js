@@ -365,6 +365,7 @@ function runEquals() {
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
         previousCalculation.textContent = returnSimplifiedString(inputArray)
+        /*
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -374,6 +375,8 @@ function runEquals() {
             currentElement = ""
             clearEntry()
         }
+
+        */
     }
 }
 
@@ -473,6 +476,8 @@ function numberOrSymbol(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+
+    /*
     let returnValue = ""
     // check if value is number, returns string "number"
     if (Number(parseFloat(value)) || value == "." || value == "0") {
@@ -511,6 +516,7 @@ function numberOrSymbol(previousValue, value, nextValue, string, index,
         returnValue = "error"
     }
     return returnValue
+    */
 }
 
 function makeInputArray(previousValue, value, nextValue, string, index,
@@ -529,7 +535,9 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     )
     addMultiplication(result, currentElement)
     
-    
+    console.log("makeInputArray")
+
+/*
     // check if the value if it is a number.
     if (result == "number") {
         currentElement += value
@@ -559,6 +567,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         inputArray.push(symbolObject[2])
     }
     addMultiplyOp = false
+*/
 }
 
 
