@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:officeooo="http://openoffice.org/2009/office" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><dc:date>2024-10-24T18:03:37.962777436</dc:date><meta:editing-duration>PT9H57M55S</meta:editing-duration><meta:editing-cycles>45</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="2" meta:paragraph-count="51" meta:word-count="480" meta:character-count="2798" meta:non-whitespace-character-count="2345"/></office:meta>
+ <office:meta><dc:date>2024-10-25T15:11:54.746355741</dc:date><meta:editing-duration>P1DT6H33M4S</meta:editing-duration><meta:editing-cycles>46</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="2" meta:paragraph-count="51" meta:word-count="480" meta:character-count="2796" meta:non-whitespace-character-count="2343"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">23918</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">27728</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">23523</config:config-item>
-   <config:config-item config:name="ViewAreaHeight" config:type="long">18549</config:config-item>
+   <config:config-item config:name="ViewAreaHeight" config:type="long">22068</config:config-item>
    <config:config-item config:name="ShowRedlineChanges" config:type="boolean">true</config:config-item>
    <config:config-item config:name="InBrowseMode" config:type="boolean">false</config:config-item>
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">6010</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">33096</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">11224</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">41905</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">23918</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">27728</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">23521</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">42466</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">49795</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -88,7 +88,7 @@
    <config:config-item config:name="ChartAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="PrinterSetup" config:type="base64Binary"/>
    <config:config-item config:name="AddParaTableSpacingAtStart" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">2293550</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">2387555</config:config-item>
    <config:config-item config:name="EmbeddedDatabaseName" config:type="string"/>
    <config:config-item config:name="FieldAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="OutlineLevelYieldsNumbering" config:type="boolean">false</config:config-item>
@@ -154,7 +154,7 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="Noto Serif CJK SC" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Lohit Devanagari1" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
@@ -271,61 +271,55 @@
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00f6ce2f" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
   <style:style style:name="P8" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" officeooo:rsid="00fbe0f1" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P9" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009d9484" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P10" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009e3cea" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P11" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00f14d0b" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P12" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009fcc34" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00ffa826" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="001f66ae" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P9" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00203974" officeooo:paragraph-rsid="00203974" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P10" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0021e706" officeooo:paragraph-rsid="0021e706" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P11" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0021e706" officeooo:paragraph-rsid="0022a7ba" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P12" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0021e706" officeooo:paragraph-rsid="0022ff2e" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0022a7ba" officeooo:paragraph-rsid="0022a7ba" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0022ff2e" officeooo:paragraph-rsid="0022ff2e" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00fa3ebf" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
+  <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" officeooo:rsid="00fbe0f1" officeooo:paragraph-rsid="001dc5da"/>
   </style:style>
-  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="bold" officeooo:rsid="00203974" officeooo:paragraph-rsid="00203974" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="normal" officeooo:rsid="0021e706" officeooo:paragraph-rsid="0021e706" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="normal" officeooo:rsid="0022a7ba" officeooo:paragraph-rsid="0022a7ba" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" style:text-underline-style="none" fo:font-weight="normal" officeooo:rsid="0022ff2e" officeooo:paragraph-rsid="0022ff2e" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
-  <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009bd36e" officeooo:paragraph-rsid="001dc5da"/>
+  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009d9484" officeooo:paragraph-rsid="001dc5da"/>
+  </style:style>
+  <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009e3cea" officeooo:paragraph-rsid="001dc5da"/>
+  </style:style>
+  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00f14d0b" officeooo:paragraph-rsid="001dc5da"/>
+  </style:style>
+  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009fcc34" officeooo:paragraph-rsid="001dc5da"/>
+  </style:style>
+  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00ffa826" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
   </style:style>
   <style:style style:name="T1" style:family="text">
    <style:text-properties officeooo:rsid="001dc5da"/>
@@ -363,6 +357,9 @@
   <style:style style:name="T12" style:family="text">
    <style:text-properties officeooo:rsid="0022ff2e"/>
   </style:style>
+  <style:style style:name="T13" style:family="text">
+   <style:text-properties officeooo:rsid="00246e63"/>
+  </style:style>
   <style:page-layout style:name="pm1">
    <style:page-layout-properties fo:page-width="8.2701in" fo:page-height="11.6902in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.7874in" fo:margin-bottom="0.7874in" fo:margin-left="0.7874in" fo:margin-right="0.7874in" fo:background-color="#000000" style:writing-mode="lr-tb" style:layout-grid-color="#c0c0c0" style:layout-grid-lines="20" style:layout-grid-base-height="0.278in" style:layout-grid-ruby-height="0.139in" style:layout-grid-mode="none" style:layout-grid-ruby-below="false" style:layout-grid-print="false" style:layout-grid-display="false" draw:fill="solid" draw:fill-color="#000000" draw:opacity="100%" style:footnote-max-height="0in" loext:margin-gutter="0in">
     <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
@@ -386,60 +383,60 @@
     <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
     <text:sequence-decl text:display-outline-level="0" text:name="Figure"/>
    </text:sequence-decls>
-   <text:p text:style-name="P13"><text:span text:style-name="T1">- </text:span>make the calculator work with uppercase letters</text:p>
+   <text:p text:style-name="P24"><text:span text:style-name="T1">- </text:span>make the calculator work with uppercase letters</text:p>
    <text:p text:style-name="P2"/>
    <text:p text:style-name="P3"><text:span text:style-name="T1">- </text:span>make numbers appear gradually, not only when an operator is added<text:span text:style-name="T2">, so that the inputArray is always as complete as it can be</text:span><text:span text:style-name="T7">:</text:span></text:p>
+   <text:p text:style-name="P8"/>
+   <text:p text:style-name="P9">First I need to disable everything that I am not using yet.</text:p>
+   <text:p text:style-name="P14">just have all symbols be presented one by one, from evaluateStringSymbols</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">then I should make a function called isNumber()</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">use the function to discern between numbers and symbols in the numberOrSymbol()</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P10">-- check if all numbers stay the same, and all symbols are labelled at the end of evaluateStringSymbols</text:p>
+   <text:p text:style-name="P10">check if you still need the last extra valuecheck inside evaluateStringSymbols</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">then also the<text:span text:style-name="T8"> isNumber</text:span> function to make two options<text:span text:style-name="T8"> in makeInputArray</text:span>, either this is an object, or this is a number (check again)</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P16">if it is a number:</text:p>
+   <text:p text:style-name="P9">then I need to check if the last array item is an object or &quot;&quot;, and in that case, make a new element for the number.</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">else if there is already a number present, just concatenate to that number. </text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P16">if it is an object:</text:p>
+   <text:p text:style-name="P9">If this is an object, just push the object into a new element</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P10">-- give <text:span text:style-name="T12">evaluateStringSymbols</text:span> a list of numbers and symbols, and see if it <text:span text:style-name="T12">evaluates</text:span> them correctly</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">now work on the - sign. if it <text:span text:style-name="T8">should be</text:span> a number, let it return a - to the <text:span text:style-name="T8">makeInput Array</text:span><text:span text:style-name="T12"> thats if:</text:span></text:p>
+   <text:p text:style-name="P14">- it is the very first given value</text:p>
+   <text:p text:style-name="P14">- if it comes after an operator</text:p>
+   <text:p text:style-name="P14">- if it comes after a number (add a comment that there should later be a +object added here, later added via addInputArrayAddition()</text:p>
    <text:p text:style-name="P14"/>
-   <text:p text:style-name="P15">First I need to disable everything that I am not using yet.</text:p>
-   <text:p text:style-name="P20">just have all symbols be presented one by one, from evaluateStringSymbols</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">then I should make a function called isNumber()</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">use the function to discern between numbers and symbols in the numberOrSymbol()</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P16">-- check if all numbers stay the same, and all symbols are labelled at the end of evaluateStringSymbols</text:p>
-   <text:p text:style-name="P16">check if you still need the last extra valuecheck inside evaluateStringSymbols</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">then also the<text:span text:style-name="T8"> isNumber</text:span> function to make two options<text:span text:style-name="T8"> in makeInputArray</text:span>, either this is an object, or this is a number (check again)</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P22">if it is a number:</text:p>
-   <text:p text:style-name="P15">then I need to check if the last array item is an object or &quot;&quot;, and in that case, make a new element for the number.</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">else if there is already a number present, just concatenate to that number. </text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P22">if it is an object:</text:p>
-   <text:p text:style-name="P15">If this is an object, just push the object into a new element</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P16">-- give <text:span text:style-name="T12">evaluateStringSymbols</text:span> a list of numbers and symbols, and see if it <text:span text:style-name="T12">evaluates</text:span> them correctly</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">now work on the - sign. if it <text:span text:style-name="T8">should be</text:span> a number, let it return a - to the <text:span text:style-name="T8">makeInput Array</text:span><text:span text:style-name="T12"> thats if:</text:span></text:p>
-   <text:p text:style-name="P20">- it is the very first given value</text:p>
-   <text:p text:style-name="P20">- if it comes after an operator</text:p>
-   <text:p text:style-name="P20">- if it comes after a number (add a comment that there should later be a +object added here, later added via addInputArrayAddition()</text:p>
-   <text:p text:style-name="P20"/>
-   <text:p text:style-name="P20">it is an object</text:p>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15">now, we need to be able to <text:span text:style-name="T8">add things to the inputArray. this can be done with a new array called : </text:span><text:span text:style-name="T12">i</text:span><text:span text:style-name="T9">nputArray</text:span><text:span text:style-name="T12">Additions</text:span><text:span text:style-name="T8">. This contains objects, with the keys</text:span></text:p>
-   <text:p text:style-name="P24">element:<text:span text:style-name="T10"> </text:span></text:p>
-   <text:p text:style-name="P23">index:<text:span text:style-name="T11"> </text:span></text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P25">make a function called addIn<text:span text:style-name="T9">putArray</text:span>Addition, with the parameters value, and index</text:p>
-   <text:p text:style-name="P16"/>
-   <text:p text:style-name="P18">Now I should make a function called splice<text:span text:style-name="T12">New</text:span>ValuesIntoArray, which will sort the <text:span text:style-name="T12">i</text:span><text:span text:style-name="T9">nputArray</text:span><text:span text:style-name="T12">Additions</text:span>, from high to low.</text:p>
-   <text:p text:style-name="P16"/>
-   <text:p text:style-name="P16">-- make an object with a random order, and check if spliceValuesIntoArray will sort it</text:p>
-   <text:p text:style-name="P16"/>
-   <text:p text:style-name="P17">then<text:span text:style-name="T9"> the <text:s/></text:span>spliceValuesIntoArray<text:span text:style-name="T9"> will splice the values into the array</text:span></text:p>
+   <text:p text:style-name="P14">it is an object</text:p>
+   <text:p text:style-name="P9"/>
+   <text:p text:style-name="P9">now, we need to be able to <text:span text:style-name="T8">add things to the inputArray. this can be done with a new array called : </text:span><text:span text:style-name="T12">i</text:span><text:span text:style-name="T9">nputArray</text:span><text:span text:style-name="T12">Additions</text:span><text:span text:style-name="T8">. This contains objects, with the keys</text:span></text:p>
+   <text:p text:style-name="P18">element:<text:span text:style-name="T10"> </text:span></text:p>
+   <text:p text:style-name="P17">index:<text:span text:style-name="T11"> </text:span></text:p>
    <text:p text:style-name="P17"/>
-   <text:p text:style-name="P19">now <text:span text:style-name="T12">let the addMultiplication select between objects, and everything else (expecting that everything else is a number)</text:span></text:p>
-   <text:p text:style-name="P19"/>
-   <text:p text:style-name="P20">make the addMultiplication give an element</text:p>
-   <text:p text:style-name="P14"/>
-   <text:p text:style-name="P14"/>
-   <text:p text:style-name="P14"/>
-   <text:p text:style-name="P14"/>
+   <text:p text:style-name="P19">make a function called addIn<text:span text:style-name="T9">putArray</text:span>Addition, with the parameters value, and index</text:p>
+   <text:p text:style-name="P10"/>
+   <text:p text:style-name="P12">Now I should make a function called splice<text:span text:style-name="T12">New</text:span>ValuesIntoArray, which will sort the <text:span text:style-name="T12">i</text:span><text:span text:style-name="T9">nputArray</text:span><text:span text:style-name="T12">Additions</text:span>, from high to low.</text:p>
+   <text:p text:style-name="P10"/>
+   <text:p text:style-name="P10">-- make an object with a random order, and check if spliceValuesIntoArray will sort it</text:p>
+   <text:p text:style-name="P10"/>
+   <text:p text:style-name="P11">then<text:span text:style-name="T9"> the <text:s/></text:span>spliceValuesIntoArray<text:span text:style-name="T9"> will splice the values into the array</text:span></text:p>
+   <text:p text:style-name="P11"/>
+   <text:p text:style-name="P13">now <text:span text:style-name="T12">let the addMultiplication select between objects, and everything else (expecting that everything else is a number)</text:span></text:p>
+   <text:p text:style-name="P13"/>
+   <text:p text:style-name="P14">make the addMultiplication give an element</text:p>
+   <text:p text:style-name="P8"/>
+   <text:p text:style-name="P8"/>
+   <text:p text:style-name="P8"/>
+   <text:p text:style-name="P8"/>
    <text:p text:style-name="P4"><text:soft-page-break/></text:p>
-   <text:p text:style-name="P20">Other things:</text:p>
+   <text:p text:style-name="P14">Other things:</text:p>
    <text:p text:style-name="P5"><text:span text:style-name="T1">- </text:span>fix a way to let pi multiply when it is behind certain objects</text:p>
    <text:p text:style-name="P5"/>
    <text:p text:style-name="P6"><text:span text:style-name="T1">- </text:span>let !calculations work with floating point numbers</text:p>
@@ -458,17 +455,17 @@
    <text:p text:style-name="P1">runEquals:</text:p>
    <text:p text:style-name="P1"/>
    <text:p text:style-name="P1"/>
-   <text:p text:style-name="P8">getArrayFromString</text:p>
-   <text:p text:style-name="P9"><text:span text:style-name="T6"><text:tab/></text:span>evaluateStringSymbols</text:p>
-   <text:p text:style-name="P9"><text:span text:style-name="T6"><text:tab/></text:span><text:tab/><text:tab/>makeInputArray</text:p>
-   <text:p text:style-name="P10"><text:span text:style-name="T6"><text:tab/></text:span><text:tab/><text:tab/><text:tab/>numberOrOperator</text:p>
-   <text:p text:style-name="P11"><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/>checkSymbol</text:p>
-   <text:p text:style-name="P10">checkForErrors</text:p>
-   <text:p text:style-name="P12"><text:tab/>doubleOperators</text:p>
-   <text:p text:style-name="P12"/>
-   <text:p text:style-name="P9"><text:span text:style-name="T6"><text:tab/></text:span>calculate</text:p>
-   <text:p text:style-name="P12"><text:tab/><text:span text:style-name="T6"><text:tab/></text:span>calculateInOrder</text:p>
-   <text:p text:style-name="P12"><text:tab/><text:tab/><text:span text:style-name="T6"><text:tab/></text:span>doCalculation</text:p>
+   <text:p text:style-name="P15">getArrayFromString</text:p>
+   <text:p text:style-name="P20"><text:span text:style-name="T6"><text:tab/></text:span>evaluateStringSymbols</text:p>
+   <text:p text:style-name="P20"><text:span text:style-name="T6"><text:tab/></text:span><text:tab/><text:tab/>makeInputArray</text:p>
+   <text:p text:style-name="P21"><text:span text:style-name="T6"><text:tab/></text:span><text:tab/><text:tab/><text:tab/>numberOr<text:span text:style-name="T13">Symbol</text:span></text:p>
+   <text:p text:style-name="P22"><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/>checkSymbol</text:p>
+   <text:p text:style-name="P21">checkForErrors</text:p>
+   <text:p text:style-name="P23"><text:tab/>doubleOperators</text:p>
+   <text:p text:style-name="P23"/>
+   <text:p text:style-name="P20"><text:span text:style-name="T6"><text:tab/></text:span>calculate</text:p>
+   <text:p text:style-name="P23"><text:tab/><text:span text:style-name="T6"><text:tab/></text:span>calculateInOrder</text:p>
+   <text:p text:style-name="P23"><text:tab/><text:tab/><text:span text:style-name="T6"><text:tab/></text:span>doCalculation</text:p>
    <text:p text:style-name="P1">displayAns</text:p>
    <text:p text:style-name="P1">clearEntry</text:p>
   </office:text>

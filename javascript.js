@@ -442,6 +442,8 @@ function evaluateStringSymbols(string) {
         value = string.charAt(j)
         nextValue = string.charAt(j + 1)
 
+        console.log(`evalStrSymbols value=${value} index=${j}`)
+
         twoSymbolValue = string.slice(j, j + 2)
         threeSymbolValue = string.slice(j, j + 3)
         fourSymbolValue = string.slice(j, j + 4)
@@ -459,6 +461,7 @@ function evaluateStringSymbols(string) {
         j++
     }
 
+    /*
     // small script to also add the very last value to inputArray[]
     if (numberOrSymbol(previousValue, value, nextValue, string, j) == "number") {
         inputArray.push(currentElement)
@@ -467,6 +470,7 @@ function evaluateStringSymbols(string) {
 
     }
     return inputArray
+    */
 }
 
 function numberOrSymbol(previousValue, value, nextValue, string, index,
@@ -476,6 +480,7 @@ function numberOrSymbol(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+    console.log(`numberOrSymbol()`)
 
     /*
     let returnValue = ""
@@ -533,11 +538,12 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
-    addMultiplication(result, currentElement)
     
-    console.log("makeInputArray")
+    console.log("makeInputArray()")
 
 /*
+
+    addMultiplication(result, currentElement)
     // check if the value if it is a number.
     if (result == "number") {
         currentElement += value
@@ -609,6 +615,8 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+
+    console.log("checkSymbol")
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
@@ -1116,6 +1124,7 @@ function updateDisplay() {
 
 
 function getArrayFromString(string) {
+    console.log("getArrayFromString")
     stringErrorCheck(string)
     let result
     result = string.replace(/ /g, "").toLowerCase()
