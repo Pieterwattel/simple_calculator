@@ -490,6 +490,12 @@ function numberOrSymbol(previousValue, value, nextValue, string, index,
 ) {
     console.log(`numberOrSymbol()`)
 
+    if (isNumber(value)){
+        console.log("value was number")
+    } else {
+        console.log("value was operator")
+    }
+
     /*
     let returnValue = ""
     // check if value is number, returns string "number"
