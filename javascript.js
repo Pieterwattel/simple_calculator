@@ -471,9 +471,9 @@ function evaluateStringSymbols(string) {
 
     /*
     // small script to also add the very last value to inputArray[]
-    if (numberOrSymbol(previousValue, value, nextValue, string, j) == "number") {
+    if (numberOrObject(previousValue, value, nextValue, string, j) == "number") {
         inputArray.push(currentElement)
-    } else if (numberOrSymbol(previousValue, value, nextValue, string, j) == "operator") {
+    } else if (numberOrObject(previousValue, value, nextValue, string, j) == "operator") {
         inputArray.push(string.charAt(j - 1))
 
     }
@@ -481,19 +481,25 @@ function evaluateStringSymbols(string) {
     */
 }
 
-function numberOrSymbol(previousValue, value, nextValue, string, index,
+function numberOrObject(previousValue, value, nextValue, string, index,
     twoSymbolValue,
     threeSymbolValue,
     fourSymbolValue,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-    console.log(`numberOrSymbol()`)
+    console.log(`numberOrObject()`)
 
     if (isNumber(value)){
-        console.log("value was number")
+        return value
     } else {
-        console.log("value was operator")
+        return checkSymbol(previousValue, value, nextValue, string, index,
+            twoSymbolValue,
+            threeSymbolValue,
+            fourSymbolValue,
+            fiveSymbolValue,
+            sixSymbolValue,
+        )
     }
 
     /*
@@ -545,7 +551,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-    result = numberOrSymbol(previousValue, value, nextValue, string, index,
+    result = numberOrObject(previousValue, value, nextValue, string, index,
         twoSymbolValue,
         threeSymbolValue,
         fourSymbolValue,
@@ -554,6 +560,11 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     )
     
     console.log("makeInputArray()")
+    if (isNumber(result) || result === "-"){
+        console.log("value was number")
+    } else if (typeof result == "object") {
+        console.log("value was object")
+    }
 
 /*
 
