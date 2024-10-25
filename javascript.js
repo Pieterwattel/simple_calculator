@@ -465,20 +465,22 @@ function evaluateStringSymbols(string) {
             fiveSymbolValue,
             sixSymbolValue,
         )
-
         j++
     }
 
     /*
     // small script to also add the very last value to inputArray[]
+
     if (numberOrObject(previousValue, value, nextValue, string, j) == "number") {
         inputArray.push(currentElement)
     } else if (numberOrObject(previousValue, value, nextValue, string, j) == "operator") {
         inputArray.push(string.charAt(j - 1))
 
     }
-    return inputArray
+
     */
+    alert (inputArray)
+    return inputArray
 }
 
 function numberOrObject(previousValue, value, nextValue, string, index,
@@ -558,10 +560,18 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
+
+    let lastElement = inputArray[inputArray.length-1]
     
     console.log("makeInputArray()")
     if (isNumber(result) || result === "-"){
-        console.log("value was number")
+        if (typeof lastElement === "object" ||
+            typeof lastElement === "undefined"){
+            inputArray.push(result)
+        } else {
+        //if (isNumber(lastElement) || lastElement == "-"){
+            inputArray += result
+        }
     } else if (typeof result == "object") {
         console.log("value was object")
     }
@@ -1301,5 +1311,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "2(3-2)"
+userInput = "2(3+2)"
 updateDisplay()
