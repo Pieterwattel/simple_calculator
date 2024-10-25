@@ -479,7 +479,7 @@ function evaluateStringSymbols(string) {
     }
 
     */
-    alert (inputArray)
+    alert (returnSimplifiedArray(inputArray))
     return inputArray
 }
 
@@ -568,12 +568,11 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         if (typeof lastElement === "object" ||
             typeof lastElement === "undefined"){
             inputArray.push(result)
-        } else {
-        //if (isNumber(lastElement) || lastElement == "-"){
+        } else if (isNumber(lastElement) || lastElement == "-"){
             inputArray += result
         }
     } else if (typeof result == "object") {
-        console.log("value was object")
+        inputArray.push(result)
     }
 
 /*
