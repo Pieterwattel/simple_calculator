@@ -442,7 +442,7 @@ function evaluateStringSymbols(string) {
         value = string.charAt(j)
         nextValue = string.charAt(j + 1)
 
-        console.log(`evalStrSymbols value=${value} index=${j}`)
+        console.log(`${value} index=${j} evalStrSymbols()`)
 
         twoSymbolValue = string.slice(j, j + 2)
         threeSymbolValue = string.slice(j, j + 3)
