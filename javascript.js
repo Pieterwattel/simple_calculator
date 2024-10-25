@@ -416,6 +416,14 @@ function displayAns() {
     displayBottom.textContent = ans
 }
 
+function isNumber(value){
+    if (!isNaN(value) || value === "." ){
+        return true
+    } else {
+        return false
+    }
+}
+
 function evaluateStringSymbols(string) {
 
     // 3 values that can be given, to evaluate the context of a symbol
