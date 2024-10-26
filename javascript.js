@@ -437,7 +437,7 @@ function isNumberOrMinus(value){
 function evaluateStringSymbols(string) {
 
     // 3 values that can be given, to evaluate the context of a symbol
-    let previousValue = - ""
+    let previousValue = ""
     let value = ""
     let nextValue = ""
 
@@ -572,21 +572,29 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     )
 
     let lastElement = inputArray[inputArray.length-1]
-    
+    console.log(`numberOrObject result =`)
+    console.log(result)
     console.log("makeInputArray()")
     if (isNumberOrMinus(result)){
+        console.log("was number")
+        console.log(lastElement)
+//then I need to check if the last array item is an object or "", 
+//and in that case, make a new element for the number.    
         if (typeof lastElement === "object" ||
             typeof lastElement === "undefined"){
+                console.log(`number ${result} pushed`)
             inputArray.push(result)
         } else if (isNumber(lastElement) || lastElement == "-"){
-            console.log(lastElement)
+            console.log(`number ${result} concatenated`)
             inputArray[inputArray.length-1] += result
         }
     } else if (typeof result == "object") {
         inputArray.push(result)
+        console.log(`object ${result} pushed`)
     } else {
         alert("value falls outside makeInputArray options")
     }
+    console.log(`!!inputArray = ${returnSimplifiedString(inputArray)}  ${value}`)
 
 /*
 
@@ -623,8 +631,12 @@ function makeInputArray(previousValue, value, nextValue, string, index,
 */
 }
 
+function addToInputArray(item, index){
+    inputArray.push(item)
+}
 
 
+/*
 function addMultiplication (result, currentElement){
 
     if (typeof previousElementForMultiplication == "undefined"||
@@ -648,6 +660,7 @@ function addMultiplication (result, currentElement){
     }
     previousElementForMultiplication = result
 }
+*/
 
 function deleteValuesFromString(index, amount) {
     userInput = userInput.slice(0, index) + userInput.slice(index + amount)
@@ -663,6 +676,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     sixSymbolValue,
 ) {
 
+    previousElement = inputArray[inputArray.length-1]
     console.log("checkSymbol")
 
     // the checks are order by length of the symbols, so:
@@ -729,23 +743,29 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             break;
 
         case (symbolObject[1].sign.includes(value)):
+            console.log(`subtraction accessed`)
             //          subtraction
-            // if this the first value, expect that it is the start of a negative number
+            // if this the first value expect that it is the start of a negative number
             if (previousValue === "") {
+                console.log(`if 1`)
+                return value
+            } else if (typeof previousElement == "object"&&
+                previousElement.category != "number"
+            ){
+            // if the previous value was an operator, also expect that this is a negative number
+                return value
+            } else if (symbolObject[1].sign.includes(nextValue)) {
+            //if the next value is also a minus, see this as an operator
+                console.log(`if 3`)
+                return symbolObject[1]
+            } else {
+                // if all of those are not the case, assume this is meant as an operator.
+                // see it as a number, and place a "+" operator in front of it
+                console.log(`if 4`)
+                addToInputArray(symbolObject[0], index)
                 return value
             }
-            // if the previous value was an operator, also expect that this is a negative number
-            symbolObject.forEach(element => {
-                if (element.sign.includes(previousValue))
-                    return value
-            });
-
-            if (nextValue == "-") {
-                return symbolObject[1]
-            }
-
-            // if all of those are not the case, see it as a number, and place a "+" operator in front of it
-            return value
+            
 
         case (symbolObject[2].sign.includes(value)):
             //          multiplication
