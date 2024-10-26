@@ -363,7 +363,6 @@ function runEquals() {
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
         previousCalculation.textContent = returnSimplifiedString(inputArray)
-        /*
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -374,7 +373,6 @@ function runEquals() {
             clearEntry()
         }
 
-        */
     }
 }
 
@@ -653,13 +651,27 @@ function addMultiplication (){
         return
     }
 
+    //check if there is a combination symbol and number that warrants adding multiplication
     console.log(frontNum.multiplyWhenNumBehind, isNumberIncludesAll(backNum))
     if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
         inputArray.push(symbolObject[2])
+        inputArray.push(backNum)
+        return
     } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
         inputArray.push(symbolObject[2])
+        inputArray.push(backNum)
+        return
     }
+
+    if (backNum == symbolObject[4] && frontNum == symbolObject[5]){
+        inputArray.push(symbolObject[2])
+        inputArray.push(backNum)
+        return
+    }
+
+    // if none match, don't forget to put the last element back in its place
     inputArray.push(backNum)
+
 }
 
 function deleteValuesFromString(index, amount) {
@@ -1294,7 +1306,8 @@ btnFrameNum.childNodes.forEach(child => {
 });
 
 window.addEventListener("focus", (e) => {
-    if (e.id != "displayBottom") {
+    console.log(e.target.id)
+    if (!e.target.id == "displayBottom") {
         displayTop.focus()
     } else {
     }
@@ -1326,9 +1339,14 @@ displayTop.addEventListener("click", (e=>{
 }))*/
 
 //save the last caretposition when the input goed out of focus
-displayTop.addEventListener("blur", (e => {
-    caretPosition = e.target.selectionStart
-    displayTop.focus()
+window.addEventListener("mousedown", (e => {
+    console.log(e.target.id)
+    if (e.target.id != "displayBottom"){
+        setTimeout(() => {
+            caretPosition = e.target.selectionStart
+            displayTop.focus()
+        }, "5")
+    }
 }))
 
 //#endregion
