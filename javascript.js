@@ -10,8 +10,6 @@ let stringRemovedAmount
 
 let currentElement = ""
 let inputArray = []
-let previousElementForMultiplication = ""
-let addMultiplyOp = false
 
 let currentNum = ""
 
@@ -434,6 +432,17 @@ function isNumberOrMinus(value){
     }
 }
 
+function isNumberIncludesAll(value){
+    if (!isNaN(value) || 
+    value === "." ||
+    symbolObject[1].sign.includes(value)||
+    value.category == "number" ){
+        return true
+    } else {
+        return false
+    }
+}
+
 function evaluateStringSymbols(string) {
 
     // 3 values that can be given, to evaluate the context of a symbol
@@ -500,7 +509,6 @@ function numberOrObject(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-    console.log(`numberOrObject()`)
 
     if (isNumber(value)){
         return value
@@ -572,30 +580,23 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     )
 
     let lastElement = inputArray[inputArray.length-1]
-    console.log(`numberOrObject result =`)
-    console.log(result)
-    console.log("makeInputArray()")
     if (isNumberOrMinus(result)){
-        console.log("was number")
-        console.log(lastElement)
 //then I need to check if the last array item is an object or "", 
 //and in that case, make a new element for the number.    
         if (typeof lastElement === "object" ||
             typeof lastElement === "undefined"){
-                console.log(`number ${result} pushed`)
             inputArray.push(result)
         } else if (isNumber(lastElement) || lastElement == "-"){
-            console.log(`number ${result} concatenated`)
             inputArray[inputArray.length-1] += result
         }
     } else if (typeof result == "object") {
         inputArray.push(result)
-        console.log(`object ${result} pushed`)
     } else {
         alert("value falls outside makeInputArray options")
     }
-    console.log(`!!inputArray = ${returnSimplifiedString(inputArray)}  ${value}`)
+    addMultiplication ()
 
+    
 /*
 
     addMultiplication(result, currentElement)
@@ -635,32 +636,31 @@ function addToInputArray(item, index){
     inputArray.push(item)
 }
 
+function addMultiplication (){
+// pops off the last element, to put back at the end. 
+//if multiplication is added, then this can thus be added in between the last and before last element
 
-/*
-function addMultiplication (result, currentElement){
 
-    if (typeof previousElementForMultiplication == "undefined"||
-        previousElementForMultiplication == ""){
-        previousElementForMultiplication = result
-        return false
+    frontNum = inputArray[inputArray.length-2]
+    backNum =  inputArray.pop()
+
+    //first check if either values are empty, then there is nothing multiply of course.
+    if (typeof frontNum == "undefined"||
+        typeof backNum == "undefined"||
+        frontNum == ""||
+        backNum == ""){
+            inputArray.push(backNum)
+        return
     }
 
-    if (result == "number") {
-        if (previousElementForMultiplication.multiplyWhenNumBehind && currentElement == "") {
-            console.log("addmultiplyOp number")  
-    //        inputArray.push(symbolObject[2])
-            addMultiplyOp = true
-        }
-    } else if (typeof result == "object" && typeof previousElementForMultiplication == "string" ) { 
-        if (currentElement != "") {
-            if (result.multiplyWhenNumInFront) {
-                addMultiplyOp = true
-            }
-        }
+    console.log(frontNum.multiplyWhenNumBehind, isNumberIncludesAll(backNum))
+    if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
+        inputArray.push(symbolObject[2])
+    } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
+        inputArray.push(symbolObject[2])
     }
-    previousElementForMultiplication = result
+    inputArray.push(backNum)
 }
-*/
 
 function deleteValuesFromString(index, amount) {
     userInput = userInput.slice(0, index) + userInput.slice(index + amount)
@@ -677,7 +677,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 ) {
 
     previousElement = inputArray[inputArray.length-1]
-    console.log("checkSymbol")
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
@@ -743,11 +742,9 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             break;
 
         case (symbolObject[1].sign.includes(value)):
-            console.log(`subtraction accessed`)
             //          subtraction
             // if this the first value expect that it is the start of a negative number
             if (previousValue === "") {
-                console.log(`if 1`)
                 return value
             } else if (typeof previousElement == "object"&&
                 previousElement.category != "number"
@@ -756,12 +753,10 @@ function checkSymbol(previousValue, value, nextValue, string, index,
                 return value
             } else if (symbolObject[1].sign.includes(nextValue)) {
             //if the next value is also a minus, see this as an operator
-                console.log(`if 3`)
                 return symbolObject[1]
             } else {
                 // if all of those are not the case, assume this is meant as an operator.
                 // see it as a number, and place a "+" operator in front of it
-                console.log(`if 4`)
                 addToInputArray(symbolObject[0], index)
                 return value
             }
@@ -1188,7 +1183,6 @@ function updateDisplay() {
 
 
 function getArrayFromString(string) {
-    console.log("getArrayFromString")
     stringErrorCheck(string)
     let result
     result = string.replace(/ /g, "").toLowerCase()
