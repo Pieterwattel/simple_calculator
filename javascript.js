@@ -123,7 +123,8 @@ let symbolObject = [
         id: 'Factorial',
         sign: ['!'],
         precedence: 3,
-        category: 'operator',
+        category: 'number',
+        multiplyWhenNumBehind: 'true',
         btnTxt: "x!",
     },
     {
@@ -466,7 +467,7 @@ function evaluateStringSymbols(string) {
         value = string.charAt(j)
         nextValue = string.charAt(j + 1)
 
-        console.log(`${value} index=${j} evalStrSymbols()`)
+//        console.log(`${value} index=${j} evalStrSymbols()`)
 
         twoSymbolValue = string.slice(j, j + 2)
         threeSymbolValue = string.slice(j, j + 3)
