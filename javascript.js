@@ -653,12 +653,16 @@ function addMultiplication (){
         return
     }
 
-    console.log(frontNum.multiplyWhenNumBehind, isNumberIncludesAll(backNum))
     if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
         inputArray.push(symbolObject[2])
     } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
         inputArray.push(symbolObject[2])
     }
+
+    if (frontNum == symbolObject[5] && backNum == symbolObject[4]) {
+        inputArray.push(symbolObject[2])
+    }
+
     inputArray.push(backNum)
 }
 
@@ -1334,5 +1338,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "-2(3-2)"
+userInput = "(1)(2)"
 updateDisplay()
