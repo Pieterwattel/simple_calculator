@@ -363,7 +363,6 @@ function runEquals() {
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
         previousCalculation.textContent = returnSimplifiedString(inputArray)
-        /*
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -373,8 +372,6 @@ function runEquals() {
             currentElement = ""
             clearEntry()
         }
-
-        */
     }
 }
 
@@ -1125,7 +1122,9 @@ function doubleOperators(
 }
 
 function returnCaret(value) {
-    displayTop.setSelectionRange(caretPosition + value.length, caretPosition + value.length)
+    setTimeout(()=>{
+        displayTop.setSelectionRange(caretPosition + value.length, caretPosition + value.length)
+    }, 10)
 }
 
 function checkBracketsBalance(string) {
@@ -1297,10 +1296,15 @@ btnFrameNum.childNodes.forEach(child => {
     child.addEventListener("click", numberPress);
 });
 
-window.addEventListener("focus", (e) => {
-    if (e.id != "displayBottom") {
-        displayTop.focus()
+window.addEventListener("mousedown", (e) => {
+
+    if (e.target.id == "displayBottom"||
+        e.target.parentNode.id == "displayFrame") {
     } else {
+        setTimeout(()=>{
+            displayTop.focus()
+        }, 50)
+
     }
 })
 
@@ -1332,7 +1336,6 @@ displayTop.addEventListener("click", (e=>{
 //save the last caretposition when the input goed out of focus
 displayTop.addEventListener("blur", (e => {
     caretPosition = e.target.selectionStart
-    displayTop.focus()
 }))
 
 //#endregion
