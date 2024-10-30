@@ -123,7 +123,7 @@ let symbolObject = [
         id: 'Factorial',
         sign: ['!'],
         precedence: 3,
-        category: 'number',
+        category: 'operator',
         multiplyWhenNumBehind: 'true',
         btnTxt: "x!",
     },
