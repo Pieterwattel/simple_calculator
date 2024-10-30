@@ -606,7 +606,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     } else {
         alert("value falls outside makeInputArray options")
     }
-    numMinusTrigFunction
 
     addMultiplication ()
 
@@ -1419,9 +1418,16 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 //#region   > CSS variables
-console.log(calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/10000)
-let relativeSize = 100
-document.documentElement.style.setProperty('--relativeSize', `${relativeSize}px`)
+let relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/20000
+document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/100000+2}px`)
+
+window.addEventListener('resize', ()=>{
+    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
+    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000+2}px`)
+    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
+
+})
+
 //#endregion
 
 userInput = "2-sin(2)"

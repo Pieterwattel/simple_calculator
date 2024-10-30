@@ -1,5 +1,6 @@
 :root {
-    --relativeSize: 5px;
+    --relativeSizeSlow: 10px;
+    --relativeSize: ;
 }
 
 
@@ -46,9 +47,9 @@ input {
 }
 
 #calculatorFrame{
-    height: 700px;
-    width: 500px;
-    padding: 1.5%;
+    height: min(95vh, 800px);
+    max-width: min(550px, 70vh);
+    padding: calc(var(--relativeSizeSlow));
     display: flex;
     flex-direction: column;
     flex:1;
@@ -67,9 +68,8 @@ input {
 }
 
 #btnFrameNum{
-    padding: var(--relativeSize)
+    padding: calc(var(--relativeSize));
 }
 
 #btnFrameNum > *{
-    width: 30%;
 }
