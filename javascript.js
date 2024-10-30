@@ -380,7 +380,6 @@ function runEquals() {
             displayAns()
             inputArray = []
             currentElement = ""
-            clearEntry()
         }
     }
 }
