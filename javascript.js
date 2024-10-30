@@ -375,7 +375,7 @@ function runEquals() {
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
-            console.log("runEquals")
+            ans = ""
             ans = result.flat()
             displayAns()
             inputArray = []
@@ -1000,6 +1000,7 @@ function doCalculation(symbol, index, array) {
             break;
 
         case (symbol == symbolObject[9]):
+            //          factorial
             num = previousValue
             if (num == 0 || num == 1) {
                 return 1
@@ -1012,6 +1013,8 @@ function doCalculation(symbol, index, array) {
                 i++
             }
             result = acc
+            console.log(previousValue)
+            console.log(result)
             array.splice(index - 1, 2, result)
             return array
             break;
@@ -1284,7 +1287,43 @@ function checkForErrors(array) {
 function runEveryEdit(e) {
     userInput = displayTop.value
     balance = checkBracketsBalance(userInput)
+    if (userInput.length <= 3){
+        addAnsWhenOperatorFirst(userInput)
+    }
     giveMissingBrackets(balance)
+}
+
+function addAnsWhenOperatorFirst(string){
+    let endLoop = false
+    let i
+    let char = ""
+    loop1: for (i = 0; i <= 3 ; i++ ){
+        char += string.charAt(i)
+
+        symbolObject.forEach(element => {
+            if (element.category == "operator" &&
+                element.sign.includes(char) &&
+                element.id != "Square root"
+            ){
+                let oldInput = displayTop.value
+                displayTop.value = ""
+                displayTop.value = "ANS"
+                displayTop.value += oldInput
+                endLoop = true
+            }
+        });
+        if (endLoop){
+            break loop1
+        }
+
+    }
+
+    /*
+
+
+    char += string.charAt(1)
+    char += string.charAt(2)
+    */
 }
 
 function giveMissingBrackets(balance) {
