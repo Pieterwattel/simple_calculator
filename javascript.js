@@ -366,6 +366,7 @@ function getFunction(e) {
 }
 
 function runEquals() {
+    
     if (displayTop.value != "") {
         isError = false
         inputArray = []
@@ -605,6 +606,8 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     } else {
         alert("value falls outside makeInputArray options")
     }
+    numMinusTrigFunction
+
     addMultiplication ()
 
     
@@ -664,12 +667,19 @@ function addMultiplication (){
         return
     }
 
+    // object first, number next  "π3" = "π*3"
     if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
+        
         inputArray.push(symbolObject[2])
+        console.log("mult1")
+    // number first, object next "3π" = "3*π"
     } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
         inputArray.push(symbolObject[2])
+        console.log("mult2")
+
     }
 
+    //two brackets facing each other back to back ")(" = ")*("
     if (frontNum == symbolObject[5] && backNum == symbolObject[4]) {
         inputArray.push(symbolObject[2])
     }
@@ -1352,6 +1362,10 @@ function giveMissingBrackets(balance) {
 //#region   > Dom Generation
 //#region       >> LISTENERS
 
+window.addEventListener("mouseover", (e)=>{
+    e.target.setAttribute("title", `id: ${e.target.id} class: ${e.target.classList}`)
+})
+
 btnFrameFunc.childNodes.forEach(child => {
     child.addEventListener("click", functionPress);
 });
@@ -1404,8 +1418,14 @@ displayTop.addEventListener("blur", (e => {
 
 //#endregion
 //#endregion
+//#region   > CSS variables
+console.log(calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/10000)
+let relativeSize = 100
+document.documentElement.style.setProperty('--relativeSize', `${relativeSize}px`)
+//#endregion
 
-userInput = "5 * 10 + SIN(π) * 100"
+userInput = "2-sin(2)"
 updateDisplay()
 
+//√(4)+3^2-sin(π/2)
 
