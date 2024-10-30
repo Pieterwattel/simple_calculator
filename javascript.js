@@ -2,7 +2,7 @@
 //#region       >> Global Variables
 
 let operator = ""
-let ans = ""
+let ans = "0"
 
 let userInput = ""
 let updateString = false
@@ -197,6 +197,15 @@ let symbolObject = [
         btnTxt: "aTan",
         multiplyWhenNumInFront: 'true',
     },
+    {
+        //18
+        sign: ['ans'],
+        precedence: 1,
+        category: 'number',
+        multiplyWhenNumInFront: 'true',
+        multiplyWhenNumBehind: 'true',
+    },
+
 ]
 
 symbolObject.forEach((prop) => {
@@ -240,32 +249,32 @@ let otherBtns = [
     {
         id: 'Equals',
         sign: '=',
-        function: runEquals(),
+        function: ()=>runEquals(),
     },
     {
         id: 'Previous answer',
         sign: 'ans',
-        function: runAns(),
+        function: ()=>runAns(),
     },
     {
         id: 'Clear all fields',
         sign: 'C',
-        function: clearDisplay(),
+        function: ()=>clearDisplay(),
     },
     {
         id: 'Clear entry',
         sign: 'CE',
-        function: clearEntry(),
+        function: ()=>clearEntry(),
     },
     {
         id: 'BackSpace',
         sign: '⌫',
-        function: doBackspace(),
+        function: ()=>doBackspace(),
     },
     {
         id: 'Delete',
         sign: 'Del',
-        function: doDelete(),
+        function: ()=>doDelete(),
     },
 ]
 
@@ -358,15 +367,15 @@ function getFunction(e) {
 
 function runEquals() {
     if (displayTop.value != "") {
-        ans = ""
         isError = false
         inputArray = []
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
-        previousCalculation.textContent = returnSimplifiedString(inputArray)
+        previousCalculation.textContent = returnSimplifiedString(array)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
+            console.log("runEquals")
             ans = result.flat()
             displayAns()
             inputArray = []
@@ -377,11 +386,14 @@ function runEquals() {
 }
 
 function runAns() {
-    displayTop.value += ans
-    inputArray = displayTop.value
+    newInput = userInput.slice(0, caretPosition) + "ANS" + userInput.slice(caretPosition)
+    userInput = newInput
+    updateDisplay();
+    returnCaret("ANS")
 }
 
 function clearDisplay() {
+    console.log("clearDisplay")
     userInput = ""
     ans = ""
     updateDisplay()
@@ -496,7 +508,6 @@ function evaluateStringSymbols(string) {
     }
 
     */
-    alert (returnSimplifiedArray(inputArray))
     return inputArray
 }
 
@@ -729,6 +740,12 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             return symbolObject[14]
             break;
 
+        case (symbolObject[18].sign.includes(threeSymbolValue)):
+            //          ANS
+            deleteValuesFromString(index + 1, 2)
+            return symbolObject[18]
+            break;
+
         //-- 2 VALUE LENGTH SYMBOLS --
         case (symbolObject[8].sign.includes(twoSymbolValue)):
             //          any exponent
@@ -837,11 +854,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
         case (symbolObject[17].sign.includes(value)):
             //          ..
             return symbolObject[17]
-            break;
-
-        case (symbolObject[18].sign.includes(value)):
-            //          ..
-            return symbolObject[18]
             break;
 
         case (symbolObject[19].sign.includes(value)):
@@ -1062,9 +1074,10 @@ function doCalculation(symbol, index, array) {
             break;
 
         case (symbol == symbolObject[18]):
-            //          ...
-            result = +previousValue + +previousValue
-            array.splice(index - 1, 3, result)
+            //          ans
+            result = ans
+
+            array.splice(index , 1, result)
             return array
             break;
 
@@ -1190,8 +1203,7 @@ function getArrayFromString(string) {
     stringErrorCheck(string)
     let result
     result = string.replace(/ /g, "").toLowerCase()
-    result = string.replace(/−/g, "-")
-    result = string.toLowerCase()
+    result = result.replace(/−/g, "-")
     return evaluateStringSymbols(result)
 }
 
@@ -1258,6 +1270,9 @@ function checkForErrors(array) {
             }
         }
 
+        if (currentElement == ""){
+            array.splice(index, 1)
+        }
 
         // if any adjustments in index number need be made,
         // they can be changed in the error checks, and implemented here
@@ -1342,5 +1357,5 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "(1)(2)"
+userInput = "(2)(3)+ANS"
 updateDisplay()
