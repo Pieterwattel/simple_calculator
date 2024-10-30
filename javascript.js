@@ -470,6 +470,7 @@ function evaluateStringSymbols(string) {
     while (j < i) {
         if (updateString) {
             string = userInput
+            console.log(`updateString ${string}`)
             i = string.length
             updateString = false
         }
@@ -517,6 +518,7 @@ function numberOrObject(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+    console.log(`numOrObject ${string}`)
 
     if (isNumber(value)){
         return value
@@ -586,6 +588,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
+    console.log(`makeInputArray ${string}`)
 
     let lastElement = inputArray[inputArray.length-1]
     if (isNumberOrMinus(result)){
@@ -687,6 +690,10 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+    console.log(`checksymbol ${string}`)
+    console.log(value)
+
+    console.log(inputArray)
 
     previousElement = inputArray[inputArray.length-1]
 
@@ -723,6 +730,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
         case (symbolObject[12].sign.includes(threeSymbolValue)):
             //          sine
+            console.log("sine")
             deleteValuesFromString(index + 1, 2)
             return symbolObject[12]
             break;
@@ -1202,10 +1210,12 @@ function updateDisplay() {
 
 
 function getArrayFromString(string) {
-    stringErrorCheck(string)
     let result
-    result = string.replace(/ /g, "").toLowerCase()
+    result = string.toLowerCase()
+    result = result.replace(/\s/g,'').toLowerCase()
     result = result.replace(/−/g, "-")
+    userInput = result
+    stringErrorCheck(result)
     return evaluateStringSymbols(result)
 }
 
@@ -1395,5 +1405,7 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 
-userInput = "(2)(3)+ANS"
+userInput = "5 * 10 + SIN(π) * 100"
 updateDisplay()
+
+
