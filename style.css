@@ -1,5 +1,5 @@
 :root {
-    --relativeSizeSlow: 8000px;
+    --relativeSizeSlow:;
     --relativeSize: ;
 }
 
@@ -7,7 +7,6 @@
 * {
     background-color: black;
     color: white;
-    font-size: 50px;
     font-size: calc(12px + var(--relativeSizeSlow)*1.7);
 }
 
@@ -71,7 +70,20 @@ input {
 }
 
 #btnsFrameMain{
+    border: 2px solid rebeccapurple;
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 1;
+}
 
+#staticBtnFrame{
+    display: flex;
+    flex: 1 1 1;
+}
+
+#btnFrameOperator{
+    width: 50%;
+    flex: 1 1 2;
 }
 
 #btnFrameNum{

@@ -247,16 +247,6 @@ symbolObject.forEach((prop) => {
 
 let otherBtns = [
     {
-        id: 'Equals',
-        sign: '=',
-        function: ()=>runEquals(),
-    },
-    {
-        id: 'Previous answer',
-        sign: 'ans',
-        function: ()=>runAns(),
-    },
-    {
         id: 'Clear all fields',
         sign: 'C',
         function: ()=>clearDisplay(),
@@ -275,6 +265,16 @@ let otherBtns = [
         id: 'Delete',
         sign: 'Del',
         function: ()=>doDelete(),
+    },    
+    {
+        id: 'Previous answer',
+        sign: 'ans',
+        function: ()=>runAns(),
+    },
+    {
+        id: 'Equals',
+        sign: '=',
+        function: ()=>runEquals(),
     },
 ]
 
@@ -1421,9 +1421,16 @@ displayTop.addEventListener("blur", (e => {
 let relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/20000
 document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/100000+2}px`)
 
-window.addEventListener('resize', ()=>{
+window.addEventListener('load', ()=>{
     relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
     document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000+2}px`)
+    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
+
+})
+
+window.addEventListener('resize', ()=>{
+    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
+    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
     document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
 
 })
