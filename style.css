@@ -7,6 +7,7 @@
 * {
     background-color: black;
     color: white;
+    font-size: calc(12px + var(--relativeSizeSlow)*1.7);
 }
 
 div,
@@ -49,10 +50,15 @@ input {
 #calculatorFrame{
     height: min(95vh, 800px);
     max-width: min(550px, 70vh);
-    padding: calc(var(--relativeSizeSlow));
+    padding: 0;
+/*    padding: calc(var(--relativeSizeSlow));*/
     display: flex;
     flex-direction: column;
     flex:1;
+}
+
+#dragBar{
+    height: 1.2em;
 }
 
 .textBox {
