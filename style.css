@@ -1,19 +1,21 @@
 :root {
     --relativeSizeSlow:;
     --relativeSize: ;
+    --btnFrameNumHeight ;
 }
 
 
 * {
+    border: 2px solid rgb(255, 72, 0);
     background-color: black;
     color: white;
-    font-size: calc(12px + var(--relativeSizeSlow)*1.7);
+    font-size: 40px;
+    /*font-size: calc(8px + var(--relativeSizeSlow)*4);*/
 }
 
 div,
 span,
 input {
-    border: 3px solid brown;
     padding: 5px;
 }
 
@@ -38,7 +40,7 @@ input {
 }
 
 #displayTop{
-    font-size: calc(12px + var(--relativeSizeSlow)*1.7);
+    /*font-size: calc(12px + var(--relativeSizeSlow)*1.7);*/
 }
 
 #contentBase{
@@ -70,25 +72,39 @@ input {
 }
 
 #btnsFrameMain{
-    border: 2px solid rebeccapurple;
+    background-color: rebeccapurple;
     display: flex;
-    flex-direction: column-reverse;
-    flex: 1;
+    flex-direction: column;
 }
 
-#staticBtnFrame{
+#btnFrameFunc{
     display: flex;
-    flex: 1 1 1;
 }
 
-#btnFrameOperator{
-    width: 50%;
-    flex: 1 1 2;
+#btnFrameFunc > *{
+    width: fit-content;
+    height: fit-content;
+    flex:1;
+}
+
+#dynamicBtnFrame{
+    display: flex;
+    flex-wrap: inherit;
 }
 
 #btnFrameNum{
-    padding: calc(var(--relativeSize));
+    min-width: fit-content;
+    height: fit-content;
+    padding: 0;
+    flex: 0 0 1;
 }
 
 #btnFrameNum > *{
+    margin: 0;
+}
+
+#btnFrameOperator{
+    display: grid;
+    padding: 0;
+    height: var(--btnFrameNumHeight);
 }

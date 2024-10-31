@@ -9,20 +9,19 @@
     </head>
     <body id="body">
         <div id="contentBase"> 
-            contentBase
             <div id="calculatorFrame">
                 <div id="dragBar"></div>
                 <div class = "display" id="displayFrame">
                     <div class = "display textBox" id="previousCalculation"></div>
                     <span class = "display textBox suggestions" id="frontMissingCharacters"></span><input class = "display textBox" id="displayTop"><span class = "display textBox suggestions" id="backMissingCharacters"></span>
                     <div class = "display textBox" class = display id="displayBottom">
-                        displayBottom
                     </div>
                 </div>
                 <div id="btnsFrameMain">
-                    <span id="staticBtnFrame">
+                    <div class= "btnFrame" id="btnFrameFunc">
+                    </div>
+                        <div class="btnFrame" id="dynamicBtnFrame">
                         <div class= "btnFrame" id="btnFrameNum">
-                            <br>
                             <button class="btn" id="btn1">
                                 1
                             </button>
@@ -60,13 +59,9 @@
                                 .
                             </button>
                         </div>
-                        <div class= "btnFrame" id="btnFrameFunc">
-                        </div>
-                    </span>
-                    <span class="btnFrame" id="staticBtnFrame">
                         <span class = "btnFrame" id="btnFrameOperator">
                         </span>
-                    </span>
+                        </div>
                 </div>
             </div>
         </div>

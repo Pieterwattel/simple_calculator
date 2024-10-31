@@ -265,8 +265,7 @@ let otherBtns = [
         id: 'Delete',
         sign: 'Del',
         function: ()=>doDelete(),
-    },    
-    {
+    },    {
         id: 'Previous answer',
         sign: 'ans',
         function: ()=>runAns(),
@@ -1192,9 +1191,11 @@ function unEqualBracketAmount(string) {
 function operatorPress(e, newSymbol) {
     userInput = displayTop.value
     newInput = userInput.slice(0, caretPosition) + newSymbol + userInput.slice(caretPosition)
+    if (userInput != ""){
+        returnCaret(newSymbol)
+    }
     userInput = newInput
     updateDisplay();
-    returnCaret(newSymbol)
 }
 
 function numberPress(e) {
@@ -1419,12 +1420,17 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#region   > CSS variables
 let relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/20000
+let btnFrameNumHeight = btnFrameNum.offsetHeight
+
+
 document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/100000+2}px`)
 
 window.addEventListener('load', ()=>{
     relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
     document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000+2}px`)
     document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
+    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
+
 
 })
 
@@ -1432,6 +1438,7 @@ window.addEventListener('resize', ()=>{
     relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
     document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
     document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
+    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
 
 })
 
