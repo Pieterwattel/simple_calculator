@@ -210,7 +210,7 @@ let symbolObject = [
 
 symbolObject.forEach((prop) => {
     let btn = document.createElement("button")
-    btnFrameOperator.appendChild(btn)
+    btnFrameSymbol.appendChild(btn)
     btn.setAttribute("id", prop.id)
     btn.setAttribute("title", prop.id)
     btn.classList.add("btn")

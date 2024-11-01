@@ -24,14 +24,14 @@ input {
     margin: 0px;
 }
 
-#btnsFrameMain {
-    display: flex;
-    flex:1;
-}
-
 #contentBase {
     height: 98.3vh;
     border-radius: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100dvh - 20px);
 }
 
 .btn{
@@ -41,13 +41,6 @@ input {
 
 #displayTop{
     /*font-size: calc(12px + var(--relativeSizeSlow)*1.7);*/
-}
-
-#contentBase{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100dvh - 20px);
 }
 
 #calculatorFrame{
@@ -73,38 +66,37 @@ input {
 
 #btnsFrameMain{
     background-color: rebeccapurple;
-    display: flex;
-    flex-direction: column;
 }
 
 #btnFrameFunc{
-    display: flex;
+    max-width: fit-content;
+    height: fit-content;
+    display:flex;
 }
 
 #btnFrameFunc > *{
     width: fit-content;
     height: fit-content;
-    flex:1;
 }
 
-#dynamicBtnFrame{
+#numAndSymbolFrame{
     display: flex;
-    flex-wrap: inherit;
 }
 
 #btnFrameNum{
+    max-width: fit-content;
     min-width: fit-content;
     height: fit-content;
-    padding: 0;
-    flex: 0 0 1;
 }
 
 #btnFrameNum > *{
     margin: 0;
 }
 
-#btnFrameOperator{
-    display: grid;
-    padding: 0;
-    height: var(--btnFrameNumHeight);
+#btnFrameSymbol{
+    display: inline;
+    float: right;
+}
+
+#btnFrameSymbol > *{
 }
