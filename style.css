@@ -2,6 +2,8 @@
     --relativeSizeSlow:;
     --relativeSize: ;
     --btnFrameNumHeight ;
+    --calculatorFrameWidth ;
+    --inputWidth ;
 }
 
 
@@ -9,8 +11,7 @@
     border: 2px solid rgb(255, 72, 0);
     background-color: black;
     color: white;
-    font-size: 40px;
-    /*font-size: calc(8px + var(--relativeSizeSlow)*4);*/
+    font-size: 60px
 }
 
 div,
@@ -24,39 +25,36 @@ input {
     margin: 0px;
 }
 
-#contentBase {
-    height: 98.3vh;
-    border-radius: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100dvh - 20px);
-}
-
 .btn{
     background-color: rgb(237, 211, 61);
     color: black;
 }
 
-#displayTop{
-    /*font-size: calc(12px + var(--relativeSizeSlow)*1.7);*/
-}
-
-#calculatorFrame{
-    height: min(95dvh, 800px);
-    max-width: min(550px, 70vh);
-    padding: calc(var(--relativeSizeSlow));
-    display: flex;
-    flex-direction: column;
+#inputFrame{
+    display:flex;
     flex:1;
 }
 
-#dragBar{
-    height: 1.2em;
+#displayTop{
+    min-width: 10px !important;
+    width: var(--inputWidth);
+    white-space: nowrap;
 }
 
-.textBox {
+#calculatorFrame{
+    position: absolute;
+    height: 705px;
+    width: 655px;
+    overflow: auto;
+    resize: both;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    background-size: contain
+}
+
+#dragBar{
     height: 1.2em;
 }
 
@@ -72,6 +70,7 @@ input {
     max-width: fit-content;
     height: fit-content;
     display:flex;
+
 }
 
 #btnFrameFunc > *{
@@ -94,9 +93,11 @@ input {
 }
 
 #btnFrameSymbol{
-    display: inline;
-    float: right;
 }
 
 #btnFrameSymbol > *{
+}
+
+button{
+    margin: 0px;
 }

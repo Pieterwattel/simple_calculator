@@ -371,7 +371,7 @@ function runEquals() {
         inputArray = []
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
-        previousCalculation.textContent = returnSimplifiedString(array)
+        //previousCalculation.textContent = returnSimplifiedString(array)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -1419,27 +1419,49 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 //#region   > CSS variables
+
 let relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/20000
 let btnFrameNumHeight = btnFrameNum.offsetHeight
-
-
-document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/100000+2}px`)
+let inputWidth = displayBottom.offsetWidth -backMissingCharacters.offsetWidth
 
 window.addEventListener('load', ()=>{
+    document.documentElement.style.setProperty('--inputWidth', `${inputWidth}px`)
+
+    /*
     relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
     document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000+2}px`)
     document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
     document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
-
+*/
 
 })
 
 window.addEventListener('resize', ()=>{
+
+    /*
     relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
     document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
     document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
     document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
+*/
+})
 
+calculatorFrame.addEventListener('mousedown', ()=>{
+    calculatorFrame.addEventListener('mousemove', ()=>{
+        inputWidth = displayBottom.offsetWidth -backMissingCharacters.offsetWidth
+
+        document.documentElement.style.setProperty('--inputWidth', `${inputWidth}px`)
+
+        relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
+        document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
+    
+    })
+    /*
+    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
+    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
+    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
+    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
+*/
 })
 
 //#endregion
