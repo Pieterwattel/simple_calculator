@@ -1231,11 +1231,11 @@ dragBar.addEventListener("mousedown", ()=>{
 })
 
 function leftLocationCalFr (){
-    return dragHandle.getBoundingClientRect().left
+    return calculatorFrame.getBoundingClientRect().left
 }
 
 function topLocationCalFr (){
-    return dragHandle.getBoundingClientRect().top
+    return calculatorFrame.getBoundingClientRect().top
 }
 
 

@@ -48,7 +48,6 @@ input {
     flex-direction: column;
     flex:1;
     background-size: contain;
-    transform: scale(0.8, 0.8)
 }
 
 #dragBar{
