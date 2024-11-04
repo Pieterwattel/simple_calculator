@@ -48,10 +48,15 @@ input {
     flex-direction: column;
     flex:1;
     background-size: contain;
+    border-radius: 50px;
+    transform: scale(0.5, 0.5);
+    transform-origin: top left;
 }
 
 #dragBar{
     height: 1.2em;
+    background-color: rgb(145, 88, 22);
+    border: 2px solid black;
 }
 
 #dragHandle{
@@ -73,7 +78,7 @@ input {
 #btnFrameFunc{
     height: fit-content;
     display:flex;
-
+    justify-content: space-between;
 }
 
 #btnFrameFunc > *{
@@ -93,7 +98,6 @@ input {
 }
 
 #btnFrameNum > *{
-    margin: 0;
     font-size: 70px;
     width: 65px;
 }
@@ -106,6 +110,9 @@ input {
 
 button{
     margin: 0px;
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .symbolFrame{
@@ -116,6 +123,7 @@ button{
 .symbolFrame > *{
     min-width: 50px;
     padding: 8px;
+    margin-left: 2px;
 }
 
 #line4 > *{
