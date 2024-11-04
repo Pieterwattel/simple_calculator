@@ -26,6 +26,8 @@ let caretPosition = 0
 const contentBase = document.getElementById(`contentBase`)
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
+const dragBar = document.getElementById("dragBar")
+const dragHandle = document.getElementById("dragHandle")
 const displayFrame = document.getElementById(`displayFrame`)
 const previousCalculation = document.getElementById(`previousCalculation`)
 const displayTop = document.getElementById(`displayTop`)
@@ -36,6 +38,11 @@ const displayBottom = document.getElementById(`displayBottom`)
 const btnsFrameMain = document.getElementById(`btnsFrameMain`)
 const staticBtnFrame = document.getElementById(`staticBtnFrame`)
 const btnFrameFunc = document.getElementById(`btnFrameFunc`)
+const line1 = document.getElementById(`line1`)
+const line2 = document.getElementById(`line2`)
+const line3 = document.getElementById(`line3`)
+const line4 = document.getElementById(`line4`)
+
 const btnFrameNum = document.getElementById(`btnFrameNum`)
 
 const btnFrameOperator = document.getElementById(`btnFrameOperator`)
@@ -56,28 +63,32 @@ let symbolObject = [
         id: 'Addition',
         sign: ['+', '➕', '˖'],
         precedence: 6,
-        category: "operator"
+        category: "operator",
+        placement: line1,
     },
     {
         //1
         id: 'Subtraction',
         sign: ['-', '−', '˗', '-', '−', '➖', '﹣', '－'],
         precedence: 6,
-        category: "operator"
+        category: "operator",
+        placement: line1,
     },
     {
         //2
         id: 'Multiplication',
         sign: ['*', '×', '⋅', '∗'],
         precedence: 5,
-        category: "operator"
+        category: "operator",
+        placement: line1,
     },
     {
         //3
         id: 'Division',
         sign: ['/', '÷', '➗'],
         precedence: 5,
-        category: 'operator'
+        category: 'operator',
+        placement: line1,
     },
     {
         //4
@@ -86,6 +97,7 @@ let symbolObject = [
         precedence: 2,
         category: 'bracket',
         multiplyWhenNumInFront: 'true',
+        placement: line1,
     },
     {
         //5
@@ -94,6 +106,7 @@ let symbolObject = [
         precedence: 2,
         category: 'bracket',
         multiplyWhenNumBehind: 'true',
+        placement: line1,
     },
     {
         //6
@@ -103,20 +116,23 @@ let symbolObject = [
         category: 'number',
         multiplyWhenNumInFront: 'true',
         multiplyWhenNumBehind: 'true',
+        placement: line2
     },
     {
         //7
         id: '2nd power',
         sign: ['²'],
         precedence: 4,
-        category: 'operator'
+        category: 'operator',
+        placement: line2,
     },
     {
         //8
         id: 'Exponentiation',
         sign: ['^', '**'],
         precedence: 4,
-        category: 'operator'
+        category: 'operator',
+        placement: line2,
     },
     {
         //9
@@ -126,13 +142,15 @@ let symbolObject = [
         category: 'operator',
         multiplyWhenNumBehind: 'true',
         btnTxt: "x!",
+        placement: line2,
     },
     {
         //10
         id: 'Modulus divide',
         sign: ['%', 'mod'],
         precedence: 5,
-        category: 'operator'
+        category: 'operator',
+        placement: line2,
     },
     {
         //11
@@ -142,6 +160,7 @@ let symbolObject = [
         category: 'operator',
         btnTxt: "x√",
         multiplyWhenNumInFront: 'true',
+        placement: line2,
     },
     {
         //12
@@ -151,6 +170,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "sin",
         multiplyWhenNumInFront: 'true',
+        placement: line3,
     },
     {
         //13
@@ -160,6 +180,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "cos",
         multiplyWhenNumInFront: 'true',
+        placement: line3,
     },
     {
         //14
@@ -169,6 +190,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "tan",
         multiplyWhenNumInFront: 'true',
+        placement: line3,
     },
     {
         //15
@@ -178,6 +200,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aSin",
         multiplyWhenNumInFront: 'true',
+        placement: line4,
     },
     {
         //16
@@ -187,6 +210,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aCos",
         multiplyWhenNumInFront: 'true',
+        placement: line4,
     },
     {
         //17
@@ -196,6 +220,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aTan",
         multiplyWhenNumInFront: 'true',
+        placement: line4,
     },
     {
         //18
@@ -210,7 +235,9 @@ let symbolObject = [
 
 symbolObject.forEach((prop) => {
     let btn = document.createElement("button")
-    btnFrameSymbol.appendChild(btn)
+    if (prop.placement){
+    prop.placement.appendChild(btn)
+    }
     btn.setAttribute("id", prop.id)
     btn.setAttribute("title", prop.id)
     btn.classList.add("btn")
@@ -249,31 +276,31 @@ let otherBtns = [
     {
         id: 'Clear all fields',
         sign: 'C',
-        function: ()=>clearDisplay(),
+        function: () => clearDisplay(),
     },
     {
         id: 'Clear entry',
         sign: 'CE',
-        function: ()=>clearEntry(),
+        function: () => clearEntry(),
     },
     {
         id: 'BackSpace',
         sign: '⌫',
-        function: ()=>doBackspace(),
+        function: () => doBackspace(),
     },
     {
         id: 'Delete',
         sign: 'Del',
-        function: ()=>doDelete(),
-    },    {
+        function: () => doDelete(),
+    }, {
         id: 'Previous answer',
         sign: 'ans',
-        function: ()=>runAns(),
+        function: () => runAns(),
     },
     {
         id: 'Equals',
         sign: '=',
-        function: ()=>runEquals(),
+        function: () => runEquals(),
     },
 ]
 
@@ -309,12 +336,12 @@ function makeNumber(value) {
     return parseFloat(value)
 }
 
-function returnSimplifiedString(array){
+function returnSimplifiedString(array) {
     let string = ""
     array.forEach(element => {
-        if (Number(parseFloat(element))){
+        if (Number(parseFloat(element))) {
             string += element
-        } else if (typeof element == "object"){
+        } else if (typeof element == "object") {
             string += element.sign[0]
         }
     });
@@ -365,7 +392,7 @@ function getFunction(e) {
 }
 
 function runEquals() {
-    
+
     if (displayTop.value != "") {
         isError = false
         inputArray = []
@@ -423,29 +450,29 @@ function displayAns() {
     displayBottom.textContent = ans
 }
 
-function isNumber(value){
-    if (!isNaN(value) || value === "." ){
+function isNumber(value) {
+    if (!isNaN(value) || value === ".") {
         return true
     } else {
         return false
     }
 }
 
-function isNumberOrMinus(value){
-    if (!isNaN(value) || 
-    value === "." ||
-    symbolObject[1].sign.includes(value) ){
+function isNumberOrMinus(value) {
+    if (!isNaN(value) ||
+        value === "." ||
+        symbolObject[1].sign.includes(value)) {
         return true
     } else {
         return false
     }
 }
 
-function isNumberIncludesAll(value){
-    if (!isNaN(value) || 
-    value === "." ||
-    symbolObject[1].sign.includes(value)||
-    value.category == "number" ){
+function isNumberIncludesAll(value) {
+    if (!isNaN(value) ||
+        value === "." ||
+        symbolObject[1].sign.includes(value) ||
+        value.category == "number") {
         return true
     } else {
         return false
@@ -479,7 +506,7 @@ function evaluateStringSymbols(string) {
         value = string.charAt(j)
         nextValue = string.charAt(j + 1)
 
-//        console.log(`${value} index=${j} evalStrSymbols()`)
+        //        console.log(`${value} index=${j} evalStrSymbols()`)
 
         twoSymbolValue = string.slice(j, j + 2)
         threeSymbolValue = string.slice(j, j + 3)
@@ -520,7 +547,7 @@ function numberOrObject(previousValue, value, nextValue, string, index,
 ) {
     console.log(`numOrObject ${string}`)
 
-    if (isNumber(value)){
+    if (isNumber(value)) {
         return value
     } else {
         return checkSymbol(previousValue, value, nextValue, string, index,
@@ -590,15 +617,15 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     )
     console.log(`makeInputArray ${string}`)
 
-    let lastElement = inputArray[inputArray.length-1]
-    if (isNumberOrMinus(result)){
-//then I need to check if the last array item is an object or "", 
-//and in that case, make a new element for the number.    
+    let lastElement = inputArray[inputArray.length - 1]
+    if (isNumberOrMinus(result)) {
+        //then I need to check if the last array item is an object or "", 
+        //and in that case, make a new element for the number.    
         if (typeof lastElement === "object" ||
-            typeof lastElement === "undefined"){
+            typeof lastElement === "undefined") {
             inputArray.push(result)
-        } else if (isNumber(lastElement) || lastElement == "-"){
-            inputArray[inputArray.length-1] += result
+        } else if (isNumber(lastElement) || lastElement == "-") {
+            inputArray[inputArray.length - 1] += result
         }
     } else if (typeof result == "object") {
         inputArray.push(result)
@@ -606,71 +633,71 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         alert("value falls outside makeInputArray options")
     }
 
-    addMultiplication ()
+    addMultiplication()
 
+
+    /*
     
-/*
-
-    addMultiplication(result, currentElement)
-    // check if the value if it is a number.
-    if (result == "number") {
-        currentElement += value
-    } else if (typeof result == "object") {
-        // then check if it is an operator, using the previous and next value to evaluate that
-        if (currentElement != "") {
-            inputArray.push(currentElement)
-            if (addMultiplyOp){
-                inputArray.push(symbolObject[2])
-                addMultiplyOp =  false
+        addMultiplication(result, currentElement)
+        // check if the value if it is a number.
+        if (result == "number") {
+            currentElement += value
+        } else if (typeof result == "object") {
+            // then check if it is an operator, using the previous and next value to evaluate that
+            if (currentElement != "") {
+                inputArray.push(currentElement)
+                if (addMultiplyOp){
+                    inputArray.push(symbolObject[2])
+                    addMultiplyOp =  false
+                }
             }
+            inputArray.push(result)
+            currentElement = ""
+        } else if (result == "skip") {
+    
+        } else if (result == "error" || typeof result == "undefined" || result == "") {
+            alert(`${value} ... is invalid. It might not be possible to use this symbol yet..
+                 I am vewwy sowwy (◞‸ ◟)💧`)
+            isError = true
+    
+        } else {
+            console.log(`value :${value} falls outside makeInputArray() if statement options`)
+    
         }
-        inputArray.push(result)
-        currentElement = ""
-    } else if (result == "skip") {
-
-    } else if (result == "error" || typeof result == "undefined" || result == "") {
-        alert(`${value} ... is invalid. It might not be possible to use this symbol yet..
-             I am vewwy sowwy (◞‸ ◟)💧`)
-        isError = true
-
-    } else {
-        console.log(`value :${value} falls outside makeInputArray() if statement options`)
-
-    }
-    if (addMultiplyOp){
-        inputArray.push(symbolObject[2])
-    }
-    addMultiplyOp = false
-*/
+        if (addMultiplyOp){
+            inputArray.push(symbolObject[2])
+        }
+        addMultiplyOp = false
+    */
 }
 
-function addToInputArray(item, index){
+function addToInputArray(item, index) {
     inputArray.push(item)
 }
 
-function addMultiplication (){
-// pops off the last element, to put back at the end. 
-//if multiplication is added, then this can thus be added in between the last and before last element
+function addMultiplication() {
+    // pops off the last element, to put back at the end. 
+    //if multiplication is added, then this can thus be added in between the last and before last element
 
 
-    frontNum = inputArray[inputArray.length-2]
-    backNum =  inputArray.pop()
+    frontNum = inputArray[inputArray.length - 2]
+    backNum = inputArray.pop()
 
     //first check if either values are empty, then there is nothing multiply of course.
-    if (typeof frontNum == "undefined"||
-        typeof backNum == "undefined"||
-        frontNum == ""||
-        backNum == ""){
-            inputArray.push(backNum)
+    if (typeof frontNum == "undefined" ||
+        typeof backNum == "undefined" ||
+        frontNum == "" ||
+        backNum == "") {
+        inputArray.push(backNum)
         return
     }
 
     // object first, number next  "π3" = "π*3"
     if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
-        
+
         inputArray.push(symbolObject[2])
         console.log("mult1")
-    // number first, object next "3π" = "3*π"
+        // number first, object next "3π" = "3*π"
     } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
         inputArray.push(symbolObject[2])
         console.log("mult2")
@@ -703,7 +730,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
     console.log(inputArray)
 
-    previousElement = inputArray[inputArray.length-1]
+    previousElement = inputArray[inputArray.length - 1]
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
@@ -780,13 +807,13 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             // if this the first value expect that it is the start of a negative number
             if (previousValue === "") {
                 return value
-            } else if (typeof previousElement == "object"&&
+            } else if (typeof previousElement == "object" &&
                 previousElement.category != "number"
-            ){
-            // if the previous value was an operator, also expect that this is a negative number
+            ) {
+                // if the previous value was an operator, also expect that this is a negative number
                 return value
             } else if (symbolObject[1].sign.includes(nextValue)) {
-            //if the next value is also a minus, see this as an operator
+                //if the next value is also a minus, see this as an operator
                 return symbolObject[1]
             } else {
                 // if all of those are not the case, assume this is meant as an operator.
@@ -794,7 +821,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
                 addToInputArray(symbolObject[0], index)
                 return value
             }
-            
+
 
         case (symbolObject[2].sign.includes(value)):
             //          multiplication
@@ -995,7 +1022,7 @@ function doCalculation(symbol, index, array) {
             //          Pi
             result = Math.PI
 
-            array.splice(index , 1, result)
+            array.splice(index, 1, result)
             return array
             break;
 
@@ -1044,8 +1071,8 @@ function doCalculation(symbol, index, array) {
 
         case (symbol == symbolObject[11]):
             //          square root
-                result = Math.sqrt(nextValue)
-                array.splice(index, 2, result)
+            result = Math.sqrt(nextValue)
+            array.splice(index, 2, result)
             return array
             break;
 
@@ -1095,7 +1122,7 @@ function doCalculation(symbol, index, array) {
             //          ans
             result = ans
 
-            array.splice(index , 1, result)
+            array.splice(index, 1, result)
             return array
             break;
 
@@ -1154,7 +1181,7 @@ function doubleOperators(
 }
 
 function returnCaret(value) {
-    setTimeout(()=>{
+    setTimeout(() => {
         displayTop.setSelectionRange(caretPosition + value.length, caretPosition + value.length)
     }, 10)
 }
@@ -1185,13 +1212,45 @@ function unEqualBracketAmount(string) {
     }
 }
 
+let moveCalculatorFrame = (e) => {
+    let newLeft = leftLocationCalFr() + e.movementX
+    let newTop = topLocationCalFr() + e.movementY
+
+    newCoordinatesCalFr(newLeft, newTop)
+}
+
+let dragCoordinates
+//eventlistener for dragging the cursor in the dragBar
+dragBar.addEventListener("mousedown", ()=>{
+
+    dragBar.addEventListener("mousemove", moveCalculatorFrame)
+
+    document.addEventListener("mouseup", ()=>{
+        dragBar.removeEventListener("mousemove", moveCalculatorFrame)
+    })
+})
+
+function leftLocationCalFr (){
+    return dragHandle.getBoundingClientRect().left
+}
+
+function topLocationCalFr (){
+    return dragHandle.getBoundingClientRect().top
+}
+
+
+function newCoordinatesCalFr(left, top){
+    calculatorFrame.style.left= (left + "px")
+    calculatorFrame.style.top= (top + "px")
+}
+
 
 //#endregion
 //#region       >> Controller Functions
 function operatorPress(e, newSymbol) {
     userInput = displayTop.value
     newInput = userInput.slice(0, caretPosition) + newSymbol + userInput.slice(caretPosition)
-    if (userInput != ""){
+    if (userInput != "") {
         returnCaret(newSymbol)
     }
     userInput = newInput
@@ -1222,7 +1281,7 @@ function updateDisplay() {
 function getArrayFromString(string) {
     let result
     result = string.toLowerCase()
-    result = result.replace(/\s/g,'').toLowerCase()
+    result = result.replace(/\s/g, '').toLowerCase()
     result = result.replace(/−/g, "-")
     userInput = result
     stringErrorCheck(result)
@@ -1292,7 +1351,7 @@ function checkForErrors(array) {
             }
         }
 
-        if (currentElement == ""){
+        if (currentElement == "") {
             array.splice(index, 1)
         }
 
@@ -1307,24 +1366,24 @@ function checkForErrors(array) {
 function runEveryEdit(e) {
     userInput = displayTop.value
     balance = checkBracketsBalance(userInput)
-    if (userInput.length <= 3){
+    if (userInput.length <= 3) {
         addAnsWhenOperatorFirst(userInput)
     }
     giveMissingBrackets(balance)
 }
 
-function addAnsWhenOperatorFirst(string){
+function addAnsWhenOperatorFirst(string) {
     let endLoop = false
     let i
     let char = ""
-    loop1: for (i = 0; i <= 3 ; i++ ){
+    loop1: for (i = 0; i <= 3; i++) {
         char += string.charAt(i)
 
         symbolObject.forEach(element => {
             if (element.category == "operator" &&
                 element.sign.includes(char) &&
                 element.id != "Square root"
-            ){
+            ) {
                 let oldInput = displayTop.value
                 displayTop.value = ""
                 displayTop.value = "ANS"
@@ -1332,7 +1391,7 @@ function addAnsWhenOperatorFirst(string){
                 endLoop = true
             }
         });
-        if (endLoop){
+        if (endLoop) {
             break loop1
         }
 
@@ -1362,7 +1421,7 @@ function giveMissingBrackets(balance) {
 //#region   > Dom Generation
 //#region       >> LISTENERS
 
-window.addEventListener("mouseover", (e)=>{
+window.addEventListener("mouseover", (e) => {
     e.target.setAttribute("title", `id: ${e.target.id} class: ${e.target.classList}`)
 })
 
@@ -1376,10 +1435,10 @@ btnFrameNum.childNodes.forEach(child => {
 
 window.addEventListener("mousedown", (e) => {
 
-    if (e.target.id == "displayBottom"||
+    if (e.target.id == "displayBottom" ||
         e.target.parentNode.id == "displayFrame") {
     } else {
-        setTimeout(()=>{
+        setTimeout(() => {
             displayTop.focus()
         }, 50)
 
@@ -1419,52 +1478,6 @@ displayTop.addEventListener("blur", (e => {
 //#endregion
 //#endregion
 //#region   > CSS variables
-
-let relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth/20000
-let btnFrameNumHeight = btnFrameNum.offsetHeight
-let inputWidth = displayBottom.offsetWidth -backMissingCharacters.offsetWidth
-
-window.addEventListener('load', ()=>{
-    document.documentElement.style.setProperty('--inputWidth', `${inputWidth}px`)
-
-    /*
-    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
-    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000+2}px`)
-    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
-    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
-*/
-
-})
-
-window.addEventListener('resize', ()=>{
-
-    /*
-    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
-    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
-    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
-    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
-*/
-})
-
-calculatorFrame.addEventListener('mousedown', ()=>{
-    calculatorFrame.addEventListener('mousemove', ()=>{
-        inputWidth = displayBottom.offsetWidth -backMissingCharacters.offsetWidth
-
-        document.documentElement.style.setProperty('--inputWidth', `${inputWidth}px`)
-
-        relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
-        document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
-    
-    })
-    /*
-    relativeSize = calculatorFrame.offsetHeight * calculatorFrame.offsetWidth
-    document.documentElement.style.setProperty('--relativeSizeSlow', `${relativeSize/107000}px`)
-    document.documentElement.style.setProperty('--relativeSize', `${relativeSize/80000}px`)
-    document.documentElement.style.setProperty('--btnFrameNumHeight', `${relativeSize/80000}px`)
-*/
-})
-
-//#endregion
 
 userInput = "2-sin(2)"
 updateDisplay()
