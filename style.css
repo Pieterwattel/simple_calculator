@@ -28,6 +28,7 @@ html{
     align-items: center;
     justify-content: center;
     background-image: url(./files/steven-kamenar-MMJx78V7xS8-unsplash.jpg);
+    background-size: cover;
     border:0;
     margin: 0;
 }
@@ -46,20 +47,33 @@ html{
     
 }
 
+#previousCalculation{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+}
+
 #displayTop{
     min-width: 10px !important;
     white-space: nowrap;
+    text-indent: 10px;
+    border: 2px solid black;
+}
+
+input:focus{
+    outline: none;
 }
 
 #displayBottom{
     min-width: 10px !important;
     white-space: nowrap;
+    text-indent: 16px;
 }
 
 #calculatorFrame{
     position: absolute;
     height: fit-content;
-    width: 600px;
+    width: 605px;
     overflow: auto;
     padding: 0;
     display: flex;
@@ -67,9 +81,11 @@ html{
     flex:1;
     background-size: contain;
     border: 2px solid white;
-    border-radius: 50px;
+    border-radius: 50px 50px 20px 20px;
     background-color: rgba(0, 0, 0, 0.377);
-    transform: scale(0.8,0.8);
+   /* 
+   transform: scale(0.4,0.4);
+   */
     box-shadow: 4px 4px 60px black;
     transform-origin: top left;
 
@@ -117,6 +133,8 @@ html{
     height: fit-content;
     display:flex;
     justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #btnFrameFunc > *{
@@ -133,10 +151,11 @@ html{
     max-width: fit-content;
     min-width: fit-content;
     height: fit-content;
+    margin-left: 5px;
 }
 
 #btnFrameNum > *{
-    font-size: 70px;
+    font-size: 68px;
     width: 65px;
 }
 
@@ -166,6 +185,7 @@ button{
 .symbolFrame{
     display: flex;
     justify-content: space-between;
+    margin-right: 50px;
 }
 
 .symbolFrame > *{
@@ -178,7 +198,7 @@ button{
 #line2,
 #line3,
 #line4{
-    height: 96px;
+    height: 94px;
 }
 
 #line4 > *{

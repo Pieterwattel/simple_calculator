@@ -339,7 +339,8 @@ function makeNumber(value) {
 function returnSimplifiedString(array) {
     let string = ""
     array.forEach(element => {
-        if (Number(parseFloat(element))) {
+        if (Number(parseFloat(element))||
+        element == "-") {
             string += element
         } else if (typeof element == "object") {
             string += element.sign[0]
@@ -398,8 +399,10 @@ function runEquals() {
         inputArray = []
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
-        //previousCalculation.textContent = returnSimplifiedString(array)
+        previousCalculation.textContent = returnSimplifiedString(array)
+        console.log(inputArray)
         // if there are no errors, run the rest of the function
+        /*
         if (!checkForErrors(array)) {
             result = calculate(array)
             ans = ""
@@ -408,6 +411,7 @@ function runEquals() {
             inputArray = []
             currentElement = ""
         }
+        */
     }
 }
 
@@ -479,6 +483,21 @@ function isNumberIncludesAll(value) {
     }
 }
 
+function isNumberIncludesAllButMinus(value) {
+    console.log(value)
+    if (value == "-"){
+        return false
+    }
+    if (!isNaN(value) ||
+        value === "." ||
+        symbolObject[1].sign.includes(value) ||
+        value.category == "number") {
+        return true
+    } else {
+        return false
+    }
+}
+
 function evaluateStringSymbols(string) {
 
     // 3 values that can be given, to evaluate the context of a symbol
@@ -497,7 +516,6 @@ function evaluateStringSymbols(string) {
     while (j < i) {
         if (updateString) {
             string = userInput
-            console.log(`updateString ${string}`)
             i = string.length
             updateString = false
         }
@@ -545,7 +563,6 @@ function numberOrObject(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-    console.log(`numOrObject ${string}`)
 
     if (isNumber(value)) {
         return value
@@ -615,19 +632,24 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
-    console.log(`makeInputArray ${string}`)
+    console.log(`numOrObject ${value} = ${result}`)
 
     let lastElement = inputArray[inputArray.length - 1]
-    if (isNumberOrMinus(result)) {
+
+    if (isNumber(result)) {
         //then I need to check if the last array item is an object or "", 
         //and in that case, make a new element for the number.    
         if (typeof lastElement === "object" ||
-            typeof lastElement === "undefined") {
+            typeof lastElement === "undefined" ||
+            lastElement === "-") {
             inputArray.push(result)
-        } else if (isNumber(lastElement) || lastElement == "-") {
+        } else if (isNumber(lastElement)) {
             inputArray[inputArray.length - 1] += result
         }
-    } else if (typeof result == "object") {
+    }else if (result == "-"){
+        console.log("wasminus")
+        inputArray.push(result)
+    }else if (typeof result == "object") {
         inputArray.push(result)
     } else {
         alert("value falls outside makeInputArray options")
@@ -692,13 +714,13 @@ function addMultiplication() {
         return
     }
 
-    // object first, number next  "π3" = "π*3"
-    if (backNum.multiplyWhenNumInFront && isNumberIncludesAll(frontNum)) {
+    // number first, object next  "3sin()" = "3*sin()"
+    if (backNum.multiplyWhenNumInFront && isNumberIncludesAllButMinus(frontNum)) {
 
         inputArray.push(symbolObject[2])
         console.log("mult1")
-        // number first, object next "3π" = "3*π"
-    } else if (isNumberIncludesAll(backNum) && frontNum.multiplyWhenNumBehind) {
+        // object first, number next "sin()3" = "sin()*3"
+    } else if (isNumberIncludesAllButMinus(backNum) && frontNum.multiplyWhenNumBehind) {
         inputArray.push(symbolObject[2])
         console.log("mult2")
 
@@ -725,11 +747,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-    console.log(`checksymbol ${string}`)
-    console.log(value)
-
-    console.log(inputArray)
-
     previousElement = inputArray[inputArray.length - 1]
 
     // the checks are order by length of the symbols, so:
@@ -765,7 +782,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
         case (symbolObject[12].sign.includes(threeSymbolValue)):
             //          sine
-            console.log("sine")
             deleteValuesFromString(index + 1, 2)
             return symbolObject[12]
             break;
@@ -1520,7 +1536,8 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "2-sin(2)"
+userInput = "2-sin(1)"
+//
 updateDisplay()
 
 //√(4)+3^2-sin(π/2)
