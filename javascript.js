@@ -1242,6 +1242,26 @@ function topLocationCalFr (){
 function newCoordinatesCalFr(left, top){
     calculatorFrame.style.left= (left + "px")
     calculatorFrame.style.top= (top + "px")
+    setTimeout(() => {
+        if (left < 0){
+            left = 0
+            newCoordinatesCalFr(left, top)
+        }
+        if (top < 0){
+            top = 0
+            newCoordinatesCalFr(left, top)
+        }
+    }, "500")
+}
+
+function zoomout () {
+    calculatorFrameZoom = calculatorFrameZoom * 0.8
+    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
+}
+
+function zoomin () {
+    calculatorFrameZoom = calculatorFrameZoom * 1.2
+    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
 }
 
 
@@ -1457,6 +1477,18 @@ document.addEventListener("keyup", (e => {
         e.preventDefault()
         runEquals()
     }
+
+    if (e.altKey && e.key === '-') {
+        e.preventDefault();
+        zoomout()
+    }
+
+    if (e.altKey && e.key === '='||
+        e.altKey && e.key === '+') {
+        e.preventDefault();
+        zoomin()
+    }
+
     runEveryEdit(e)
 }))
 
@@ -1480,15 +1512,9 @@ zoominBtn = document.getElementById("zoominBtn")
 
 let calculatorFrameZoom = 1
 
-zoomoutBtn.addEventListener("mousedown" ,()=>{
-    calculatorFrameZoom = calculatorFrameZoom * 0.8
-    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
-})
+zoomoutBtn.addEventListener("mousedown" ,()=> zoomout())
 
-zoominBtn.addEventListener("mousedown" ,()=>{
-    calculatorFrameZoom = calculatorFrameZoom * 1.2
-    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
-})
+zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 
 //#endregion
 //#endregion
