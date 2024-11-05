@@ -1223,10 +1223,10 @@ let dragCoordinates
 //eventlistener for dragging the cursor in the dragBar
 dragBar.addEventListener("mousedown", ()=>{
 
-    dragBar.addEventListener("mousemove", moveCalculatorFrame)
+    document.addEventListener("mousemove", moveCalculatorFrame)
 
     document.addEventListener("mouseup", ()=>{
-        dragBar.removeEventListener("mousemove", moveCalculatorFrame)
+        document.removeEventListener("mousemove", moveCalculatorFrame)
     })
 })
 
@@ -1474,6 +1474,21 @@ displayTop.addEventListener("click", (e=>{
 displayTop.addEventListener("blur", (e => {
     caretPosition = e.target.selectionStart
 }))
+
+zoomoutBtn = document.getElementById("zoomoutBtn")
+zoominBtn = document.getElementById("zoominBtn")
+
+let calculatorFrameZoom = 1
+
+zoomoutBtn.addEventListener("mousedown" ,()=>{
+    calculatorFrameZoom = calculatorFrameZoom * 0.8
+    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
+})
+
+zoominBtn.addEventListener("mousedown" ,()=>{
+    calculatorFrameZoom = calculatorFrameZoom * 1.2
+    calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
+})
 
 //#endregion
 //#endregion
