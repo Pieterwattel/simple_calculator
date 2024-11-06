@@ -400,7 +400,6 @@ function runEquals() {
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
         previousCalculation.textContent = returnSimplifiedString(array)
-        console.log(inputArray)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -928,11 +927,11 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 let allNegativeNumDone = false
 
 function calculateInOrder(array, i) {
+    
+    array = makeNumbersNegative(array)
 
-    if (!allNegativeNumDone){
-        array = makeNumbersNegative(array)
-    }
-    /*
+    console.log(`array = ${returnSimplifiedArray(array)}, i = ${i}`)
+
     let operationFound = false
     // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -962,7 +961,6 @@ function calculateInOrder(array, i) {
         console.log("calculateInOrder ERROR")
         return array
     }
-        */
 }
 
 function makeNumbersNegative(array){
@@ -971,15 +969,15 @@ function makeNumbersNegative(array){
         let currentElement = array[i]
         let nextElement = array[i+1]
         if (currentElement == "-"){
-            allNegativeNumDone = false
             if (isNumber(nextElement)){
+                console.log(currentElement)
                 array.splice(i, 1)
                 array[i] = nextElement * -1
             }
         }
 
     }
-    console.log(array)
+    return (array)
 
 }
 
@@ -1049,7 +1047,9 @@ function doCalculation(symbol, index, array) {
 
             result = calculate(bracketedContent)
             //place the result in the original array, in place of the brackets            
-            array.splice(bracketOpenIndex, 0, result)
+            array.splice(bracketOpenIndex, 0, ...result)
+
+            console.log(array)
 
             return array
             break;
@@ -1557,7 +1557,7 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "2-sin(-1)"
+userInput = "3(-2)"
 //
 updateDisplay()
 
