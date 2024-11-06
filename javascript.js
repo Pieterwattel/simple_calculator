@@ -402,7 +402,6 @@ function runEquals() {
         previousCalculation.textContent = returnSimplifiedString(array)
         console.log(inputArray)
         // if there are no errors, run the rest of the function
-        /*
         if (!checkForErrors(array)) {
             result = calculate(array)
             ans = ""
@@ -411,7 +410,6 @@ function runEquals() {
             inputArray = []
             currentElement = ""
         }
-        */
     }
 }
 
@@ -423,7 +421,6 @@ function runAns() {
 }
 
 function clearDisplay() {
-    console.log("clearDisplay")
     userInput = ""
     ans = ""
     updateDisplay()
@@ -484,7 +481,6 @@ function isNumberIncludesAll(value) {
 }
 
 function isNumberIncludesAllButMinus(value) {
-    console.log(value)
     if (value == "-"){
         return false
     }
@@ -632,7 +628,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
-    console.log(`numOrObject ${value} = ${result}`)
 
     let lastElement = inputArray[inputArray.length - 1]
 
@@ -647,7 +642,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
             inputArray[inputArray.length - 1] += result
         }
     }else if (result == "-"){
-        console.log("wasminus")
         inputArray.push(result)
     }else if (typeof result == "object") {
         inputArray.push(result)
@@ -931,7 +925,14 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     }
 }
 
+let allNegativeNumDone = false
+
 function calculateInOrder(array, i) {
+
+    if (!allNegativeNumDone){
+        array = makeNumbersNegative(array)
+    }
+    /*
     let operationFound = false
     // find an element with following arguments: the element and the index
     array.some((element, index) => {
@@ -961,6 +962,25 @@ function calculateInOrder(array, i) {
         console.log("calculateInOrder ERROR")
         return array
     }
+        */
+}
+
+function makeNumbersNegative(array){
+    allNegativeNumDone = true
+    for (i=0; i <= array.length-1; i++){
+        let currentElement = array[i]
+        let nextElement = array[i+1]
+        if (currentElement == "-"){
+            allNegativeNumDone = false
+            if (isNumber(nextElement)){
+                array.splice(i, 1)
+                array[i] = nextElement * -1
+            }
+        }
+
+    }
+    console.log(array)
+
 }
 
 
@@ -1306,7 +1326,8 @@ function functionPress(e) {
 }
 
 
-function updateDisplay() {
+function 
+updateDisplay() {
     //    updateNum()
     //    addSpaces()
     displayEntry()
@@ -1536,7 +1557,7 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "2-sin(1)"
+userInput = "2-sin(-1)"
 //
 updateDisplay()
 
