@@ -399,8 +399,9 @@ function runEquals() {
         inputArray = []
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
-        previousCalculation.textContent = returnSimplifiedString(array)
+        previousCalculation.textContent = returnSimplifiedArray(array)
         // if there are no errors, run the rest of the function
+        /*
         if (!checkForErrors(array)) {
             result = calculate(array)
             ans = ""
@@ -409,6 +410,7 @@ function runEquals() {
             inputArray = []
             currentElement = ""
         }
+            */
     }
 }
 
@@ -648,46 +650,44 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         alert("value falls outside makeInputArray options")
     }
 
+    addNegativeNums()
     addMultiplication()
-
-
-    /*
-    
-        addMultiplication(result, currentElement)
-        // check if the value if it is a number.
-        if (result == "number") {
-            currentElement += value
-        } else if (typeof result == "object") {
-            // then check if it is an operator, using the previous and next value to evaluate that
-            if (currentElement != "") {
-                inputArray.push(currentElement)
-                if (addMultiplyOp){
-                    inputArray.push(symbolObject[2])
-                    addMultiplyOp =  false
-                }
-            }
-            inputArray.push(result)
-            currentElement = ""
-        } else if (result == "skip") {
-    
-        } else if (result == "error" || typeof result == "undefined" || result == "") {
-            alert(`${value} ... is invalid. It might not be possible to use this symbol yet..
-                 I am vewwy sowwy (◞‸ ◟)💧`)
-            isError = true
-    
-        } else {
-            console.log(`value :${value} falls outside makeInputArray() if statement options`)
-    
-        }
-        if (addMultiplyOp){
-            inputArray.push(symbolObject[2])
-        }
-        addMultiplyOp = false
-    */
 }
 
 function addToInputArray(item, index) {
     inputArray.push(item)
+}
+
+function addNegativeNums(){
+    frontValue = inputArray[inputArray.length-2]
+    backValue = inputArray[inputArray.length-1]
+
+    //first check if there is a "-" operator in any of these values:
+    if (frontValue != symbolObject[1]&&
+        backValue != symbolObject[1]){
+            return
+    }
+
+
+    /*
+    // if this the first value expect that it is the start of a negative number
+    if (frontValue === "") {
+        return value
+    } else if (typeof previousElement == "object" &&
+        previousElement.category != "number"
+    ) {
+        // if the previous value was an operator, also expect that this is a negative number
+        return value
+    } else if (symbolObject[1].sign.includes(nextValue)) {
+        //if the next value is also a minus, see this as an operator
+        return symbolObject[1]
+    } else {
+        // if all of those are not the case, assume this is meant as an operator.
+        // see it as a number, and place a "+" operator in front of it
+        addToInputArray(symbolObject[0], index)
+        return value
+    }
+        */
 }
 
 function addMultiplication() {
@@ -813,6 +813,8 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
         case (symbolObject[1].sign.includes(value)):
             //          subtraction
+
+            /*
             // if this the first value expect that it is the start of a negative number
             if (previousValue === "") {
                 return value
@@ -830,6 +832,9 @@ function checkSymbol(previousValue, value, nextValue, string, index,
                 addToInputArray(symbolObject[0], index)
                 return value
             }
+                */
+            return symbolObject[1]
+            break;
 
 
         case (symbolObject[2].sign.includes(value)):
@@ -927,7 +932,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 let allNegativeNumDone = false
 
 function calculateInOrder(array, i) {
-    
+
     array = makeNumbersNegative(array)
 
     console.log(`array = ${returnSimplifiedArray(array)}, i = ${i}`)
@@ -1557,7 +1562,7 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "3(-2)"
+userInput = "(2)-3"
 //
 updateDisplay()
 
