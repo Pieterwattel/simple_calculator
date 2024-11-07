@@ -656,12 +656,17 @@ function makeInputArray(previousValue, value, nextValue, string, index,
 }
 
 function addToInputArray(item, index) {
-    inputArray.push(item)
+    console.log(index)
+    if (typeof index == "undefined"){
+        inputArray.push(item)
+    }
+    inputArray.splice(index, 0, item)
 }
 
 function addNegativeNums(){
-    frontValue = inputArray[inputArray.length-2]
-    backValue = inputArray[inputArray.length-1]
+    let frontValue = inputArray[inputArray.length-2]
+    let backValue = inputArray[inputArray.length-1]
+    let minus = symbolObject[1]
 
     function removeFrontValue(){
         inputArray.splice(inputArray.length-2, 1)
@@ -672,20 +677,15 @@ function addNegativeNums(){
     }
 
     //first check if there is a "-" operator in any of these values:
-    if (frontValue != symbolObject[1]&&
-        backValue != symbolObject[1]){
+    if (frontValue == minus ||
+        backValue == minus){
             return
     }
 
-    removeBackValue()
-    console.log(inputArray)
-
-
-    /*
     // if this the first value expect that it is the start of a negative number
     if (frontValue === "") {
         return value
-    } else if (typeof previousElement == "object" &&
+    } /*else if (typeof previousElement == "object" &&
         previousElement.category != "number"
     ) {
         // if the previous value was an operator, also expect that this is a negative number
