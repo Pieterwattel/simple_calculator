@@ -666,6 +666,10 @@ function addToInputArray(item, index) {
 function addNegativeNums(){
     let frontValue = inputArray[inputArray.length-2]
     let backValue = inputArray[inputArray.length-1]
+
+    let frontIndex = inputArray.length-2
+    let backIndex = inputArray.length-1
+
     let minus = symbolObject[1]
 
     function removeFrontValue(){
@@ -676,15 +680,15 @@ function addNegativeNums(){
         inputArray.splice(inputArray.length-1, 1)
     }
 
-    //first check if there is a "-" operator in any of these values:
-    if (frontValue == minus ||
-        backValue == minus){
+    //of both values are not minus, just end the function
+    if (frontValue != minus &&
+        backValue != minus){
             return
     }
 
     // if this the first value expect that it is the start of a negative number
     if (frontValue === "") {
-        return value
+        inputArray[backIndex] = inputArray[backIndex] * -1
     } /*else if (typeof previousElement == "object" &&
         previousElement.category != "number"
     ) {
@@ -1443,13 +1447,30 @@ function runEveryEdit(e) {
     if (userInput.length <= 3) {
         addAnsWhenOperatorFirst(userInput)
     }
-    giveMissingBrackets(balance)
+    giveMissingBrackets(balance) 
 }
 
 function addAnsWhenOperatorFirst(string) {
     let endLoop = false
     let i
     let char = ""
+    //check the first value of the userinput
+    char = string.charAt(0)
+
+    symbolObject.forEach(element => {
+        if (element.category == "operator" &&
+            element.sign.includes(char) &&
+            element.id != "Square root" &&
+            element.id != "Subtraction"
+        ) {
+            let oldInput = displayTop.value
+            displayTop.value = ""
+            displayTop.value = "ANS"
+            displayTop.value += oldInput
+            endLoop = true
+        }
+    });
+    /*
     loop1: for (i = 0; i <= 3; i++) {
         char += string.charAt(i)
 
@@ -1470,6 +1491,7 @@ function addAnsWhenOperatorFirst(string) {
         }
 
     }
+    */
 
     /*
 
