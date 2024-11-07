@@ -337,6 +337,7 @@ function makeNumber(value) {
 }
 
 function returnSimplifiedString(array) {
+
     let string = ""
     array.forEach(element => {
         if (Number(parseFloat(element))||
@@ -662,11 +663,22 @@ function addNegativeNums(){
     frontValue = inputArray[inputArray.length-2]
     backValue = inputArray[inputArray.length-1]
 
+    function removeFrontValue(){
+        inputArray.splice(inputArray.length-2, 1)
+    }
+
+    function removeBackValue(){
+        inputArray.splice(inputArray.length-1, 1)
+    }
+
     //first check if there is a "-" operator in any of these values:
     if (frontValue != symbolObject[1]&&
         backValue != symbolObject[1]){
             return
     }
+
+    removeBackValue()
+    console.log(inputArray)
 
 
     /*
