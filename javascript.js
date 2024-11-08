@@ -650,9 +650,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     } else {
         alert("value falls outside makeInputArray options")
     }
-
-    addNegativeNums()
-    addMultiplication()
 }
 
 function addToInputArray(item, index) {
@@ -664,31 +661,33 @@ function addToInputArray(item, index) {
 }
 
 function addNegativeNums(){
-    let frontValue = inputArray[inputArray.length-2]
-    let backValue = inputArray[inputArray.length-1]
+    let prePreviousElement = inputArray[inputArray.length-2]
+    let previousElement = inputArray[inputArray.length-1]
+    let currentElement = inputArray[inputArray.length]
 
-    let frontIndex = inputArray.length-2
-    let backIndex = inputArray.length-1
+    let prePreviousIndex = inputArray.length-1
+    let previousIndex = inputArray.length-1
+    let currentIndex = inputArray.length
 
     let minus = symbolObject[1]
 
-    function removeFrontValue(){
-        inputArray.splice(inputArray.length-2, 1)
+    function removeFrontElement(){
+        inputArray.splice(frontIndex, 1)
     }
 
-    function removeBackValue(){
-        inputArray.splice(inputArray.length-1, 1)
+    function removeBackElement(){
+        inputArray.splice(backIndex, 1)
     }
 
     //of both values are not minus, just end the function
-    if (frontValue != minus &&
-        backValue != minus){
+    if (previousElement != minus){
             return
     }
 
     // if this the first value expect that it is the start of a negative number
-    if (frontValue === "") {
-        inputArray[backIndex] = inputArray[backIndex] * -1
+    if (typeof prePreviousElement === "undefined") {
+        console.log(inputArray[previousIndex])
+        inputArray[currentIndex] = currentElement*-1
     } /*else if (typeof previousElement == "object" &&
         previousElement.category != "number"
     ) {
@@ -706,41 +705,36 @@ function addNegativeNums(){
         */
 }
 
-function addMultiplication() {
+function addMultiplication(array, index) {
     // pops off the last element, to put back at the end. 
     //if multiplication is added, then this can thus be added in between the last and before last element
 
-
-    frontNum = inputArray[inputArray.length - 2]
-    backNum = inputArray.pop()
+    frontNum = array[index]
+    backNum = array[index-1]
 
     //first check if either values are empty, then there is nothing multiply of course.
     if (typeof frontNum == "undefined" ||
         typeof backNum == "undefined" ||
         frontNum == "" ||
         backNum == "") {
-        inputArray.push(backNum)
         return
     }
 
     // number first, object next  "3sin()" = "3*sin()"
-    if (backNum.multiplyWhenNumInFront && isNumberIncludesAllButMinus(frontNum)) {
-
-        inputArray.push(symbolObject[2])
-        console.log("mult1")
+    if (isNumberIncludesAllButMinus(backNum) && frontNum.multiplyWhenNumInFront) {
+        array.splice(index, 0 , symbolObject[2])
         // object first, number next "sin()3" = "sin()*3"
-    } else if (isNumberIncludesAllButMinus(backNum) && frontNum.multiplyWhenNumBehind) {
-        inputArray.push(symbolObject[2])
-        console.log("mult2")
-
+    } else if (backNum.multiplyWhenNumBehind && isNumberIncludesAllButMinus(frontNum)) {
+        array.splice(index, 0 , symbolObject[2])
     }
+
+    /*
 
     //two brackets facing each other back to back ")(" = ")*("
     if (frontNum == symbolObject[5] && backNum == symbolObject[4]) {
         inputArray.push(symbolObject[2])
     }
-
-    inputArray.push(backNum)
+        */
 }
 
 function deleteValuesFromString(index, amount) {
@@ -1363,7 +1357,13 @@ function getArrayFromString(string) {
     result = result.replace(/−/g, "-")
     userInput = result
     stringErrorCheck(result)
-    return evaluateStringSymbols(result)
+    resultArray = evaluateStringSymbols(result)
+    resultArray.forEach((element, index) => {
+
+        addMultiplication(resultArray, index)
+    });
+//    addNegativeNums()
+    return resultArray
 }
 
 function stringErrorCheck(string) {
@@ -1596,7 +1596,7 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "(2)-3"
+userInput = "3sin(2)"
 //
 updateDisplay()
 
