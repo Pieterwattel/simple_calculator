@@ -728,13 +728,14 @@ function addMultiplication(array, index) {
         array.splice(index, 0 , symbolObject[2])
     }
 
-    /*
+    console.log(backNum)
+    console.log(frontNum)
+
 
     //two brackets facing each other back to back ")(" = ")*("
-    if (frontNum == symbolObject[5] && backNum == symbolObject[4]) {
-        inputArray.push(symbolObject[2])
+    if (backNum == symbolObject[5] && frontNum == symbolObject[4]) {
+        array.splice(index, 0 , symbolObject[2])
     }
-        */
 }
 
 function deleteValuesFromString(index, amount) {
@@ -1359,10 +1360,9 @@ function getArrayFromString(string) {
     stringErrorCheck(result)
     resultArray = evaluateStringSymbols(result)
     resultArray.forEach((element, index) => {
-
+       // addNegativeNums()
         addMultiplication(resultArray, index)
     });
-//    addNegativeNums()
     return resultArray
 }
 
