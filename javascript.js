@@ -660,34 +660,31 @@ function addToInputArray(item, index) {
     inputArray.splice(index, 0, item)
 }
 
-function addNegativeNums(){
-    let prePreviousElement = inputArray[inputArray.length-2]
-    let previousElement = inputArray[inputArray.length-1]
-    let currentElement = inputArray[inputArray.length]
+function addNegativeNums(array, index){
+    let previousElement = inputArray[index-1]
+    let currentElement = inputArray[index]
+    let nextElement = inputArray[index+1]
 
-    let prePreviousIndex = inputArray.length-1
-    let previousIndex = inputArray.length-1
-    let currentIndex = inputArray.length
+    console.log(currentElement)
 
     let minus = symbolObject[1]
 
-    function removeFrontElement(){
-        inputArray.splice(frontIndex, 1)
-    }
-
+/*
     function removeBackElement(){
         inputArray.splice(backIndex, 1)
     }
-
+*/
     //of both values are not minus, just end the function
-    if (previousElement != minus){
+    if (currentElement != minus){
+        console.log("noMinus")
             return
     }
+    console.log("function accessed")
 
     // if this the first value expect that it is the start of a negative number
-    if (typeof prePreviousElement === "undefined") {
-        console.log(inputArray[previousIndex])
-        inputArray[currentIndex] = currentElement*-1
+    if (typeof previousElement === "undefined") {
+        let newValue = nextElement * -1
+        array.splice(index, 2, newValue)
     } /*else if (typeof previousElement == "object" &&
         previousElement.category != "number"
     ) {
@@ -727,9 +724,6 @@ function addMultiplication(array, index) {
     } else if (backNum.multiplyWhenNumBehind && isNumberIncludesAllButMinus(frontNum)) {
         array.splice(index, 0 , symbolObject[2])
     }
-
-    console.log(backNum)
-    console.log(frontNum)
 
 
     //two brackets facing each other back to back ")(" = ")*("
@@ -1360,7 +1354,9 @@ function getArrayFromString(string) {
     stringErrorCheck(result)
     resultArray = evaluateStringSymbols(result)
     resultArray.forEach((element, index) => {
-       // addNegativeNums()
+        addNegativeNums(resultArray, index)
+    });
+    resultArray.forEach((element, index) => {
         addMultiplication(resultArray, index)
     });
     return resultArray
