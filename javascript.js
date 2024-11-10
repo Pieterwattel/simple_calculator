@@ -697,16 +697,17 @@ function addNegativeNums(array, index){
         // if the previous value was an operator, also expect that this is a negative number
         makeNextElementNegative()
         return
-    } /* else if (symbolObject[1].sign.includes(nextValue)) {
+    } else if (nextElement == symbolObject[1]) {
         //if the next value is also a minus, see this as an operator
-        return symbolObject[1]
-    } /*else {
+        return
+    } else {
         // if all of those are not the case, assume this is meant as an operator.
         // see it as a number, and place a "+" operator in front of it
-        addToInputArray(symbolObject[0], index)
-        return value
+        let newValue = symbolObject[0]
+        array.splice(index, 0, newValue)
+        decrementIndex = true
+        return
     }
-        */
 }
 
 function addMultiplication(array, index) {
