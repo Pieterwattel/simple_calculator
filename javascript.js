@@ -400,9 +400,7 @@ function runEquals() {
         inputArray = []
         previousElementForMultiplication = ""
         array = getArrayFromString(displayTop.value)
-        previousCalculation.textContent = returnSimplifiedArray(array)
         // if there are no errors, run the rest of the function
-        /*
         if (!checkForErrors(array)) {
             result = calculate(array)
             ans = ""
@@ -411,7 +409,6 @@ function runEquals() {
             inputArray = []
             currentElement = ""
         }
-            */
     }
 }
 
@@ -681,13 +678,6 @@ function addNegativeNums(array, index){
         decrementIndex = true
     }
 
-    //of both values are not minus, just end the function
-    if (currentElement != minus){
-        console.log("noMinus")
-            return
-    }
-    console.log("function accessed")
-
     // if this the first value expect that it is the start of a negative number
     if (typeof previousElement === "undefined") {
         makeNextElementNegative()
@@ -946,7 +936,26 @@ let allNegativeNumDone = false
 
 function calculateInOrder(array, i) {
 
-    array = makeNumbersNegative(array)
+    let minusFound
+    if (minusFound || typeof minusFound == "undefined"){
+        let minusFound = false
+
+        let l = array.length
+        for (let i = 0 ; i < l; i++){
+            if (array[i] == symbolObject[1]){
+                addNegativeNums(array, i)
+
+                minusFound = true
+
+                if (decrementIndex){
+                    i--
+                    decrementIndex = false
+                }
+            }
+        }
+    }
+
+    previousCalculation.textContent = returnSimplifiedArray(array)
 
     console.log(`array = ${returnSimplifiedArray(array)}, i = ${i}`)
 
@@ -1362,15 +1371,7 @@ function getArrayFromString(string) {
     userInput = result
     stringErrorCheck(result)
     resultArray = evaluateStringSymbols(result)
-    let l = resultArray.length
-    for (let i = 0 ; i < l; i++){
-        addNegativeNums(resultArray, i)
-        if (decrementIndex){
-            i--
-            decrementIndex = false
-        }
-        console.log(resultArray)
-    }
+
     resultArray.forEach((element, index) => {
         addMultiplication(resultArray, index)
     });
