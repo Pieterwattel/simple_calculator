@@ -690,7 +690,7 @@ function addNegativeNums(array, index){
     } else if (nextElement == symbolObject[1]) {
         //if the next value is also a minus, see this as an operator
         return
-    } else {
+    } else if (isNumber(nextElement)){
         // if all of those are not the case, assume this is meant as an operator.
         // see it as a number, and place a "+" operator in front of it
         let newValue = symbolObject[0]
@@ -936,28 +936,18 @@ let allNegativeNumDone = false
 
 function calculateInOrder(array, i) {
 
-    let minusFound
-    if (minusFound || typeof minusFound == "undefined"){
-        let minusFound = false
 
-        let l = array.length
-        for (let i = 0 ; i < l; i++){
-            if (array[i] == symbolObject[1]){
-                addNegativeNums(array, i)
+    let l = array.length
+    for (let i = 0 ; i < l; i++){
+        if (array[i] == symbolObject[1]){
+            addNegativeNums(array, i)
 
-                minusFound = true
-
-                if (decrementIndex){
-                    i--
-                    decrementIndex = false
-                }
+            if (decrementIndex){
+                i--
+                decrementIndex = false
             }
         }
     }
-
-    previousCalculation.textContent = returnSimplifiedArray(array)
-
-    console.log(`array = ${returnSimplifiedArray(array)}, i = ${i}`)
 
     let operationFound = false
     // find an element with following arguments: the element and the index
@@ -1372,9 +1362,24 @@ function getArrayFromString(string) {
     stringErrorCheck(result)
     resultArray = evaluateStringSymbols(result)
 
+    let l = resultArray.length
+    for (let i = 0 ; i < l; i++){
+        if (resultArray[i] == symbolObject[1]){
+            addNegativeNums(resultArray, i)
+
+            if (decrementIndex){
+                i--
+                decrementIndex = false
+            }
+        }
+    }
+
     resultArray.forEach((element, index) => {
         addMultiplication(resultArray, index)
     });
+
+    previousCalculation.textContent = returnSimplifiedArray(resultArray)
+
     return resultArray
 }
 
