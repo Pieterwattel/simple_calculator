@@ -29,6 +29,10 @@ const body = document.getElementById("body")
 const contentBase = document.getElementById(`contentBase`)
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
+const zoomButtons = document.getElementById('zoomButtons')
+
+const resetColor = document.getElementById("resetColors")
+
 const pixels = document.querySelectorAll(".pixel")
 
 const pixel1 = document.getElementById("pixel1")
@@ -167,7 +171,7 @@ let symbolObject = [
         sign: ['√',],
         precedence: 4,
         category: 'operator',
-        btnTxt: "x√",
+        btnTxt: "√",
         multiplyWhenNumInFront: 'true',
         placement: line2,
     },
@@ -407,7 +411,6 @@ function getFunction(e) {
 }
 
 function runEquals() {
-
     if (displayTop.value != "") {
         isError = false
         inputArray = []
@@ -522,7 +525,7 @@ function evaluateStringSymbols(string) {
 
     let i = string.length
     let j = 0
-    while (j < i) {
+    loop: while (j < i) {
         if (updateString) {
             string = userInput
             i = string.length
@@ -548,6 +551,11 @@ function evaluateStringSymbols(string) {
             fiveSymbolValue,
             sixSymbolValue,
         )
+
+        if(isError){
+            break loop
+        }
+
         j++
     }
 
@@ -572,7 +580,6 @@ function numberOrObject(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
-
     if (isNumber(value)) {
         return value
     } else {
@@ -634,6 +641,7 @@ function makeInputArray(previousValue, value, nextValue, string, index,
     fiveSymbolValue,
     sixSymbolValue,
 ) {
+
     result = numberOrObject(previousValue, value, nextValue, string, index,
         twoSymbolValue,
         threeSymbolValue,
@@ -641,6 +649,10 @@ function makeInputArray(previousValue, value, nextValue, string, index,
         fiveSymbolValue,
         sixSymbolValue,
     )
+
+    if(isError){
+        return
+    }
 
     let lastElement = inputArray[inputArray.length - 1]
 
@@ -761,9 +773,7 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
-
     switch (true) {
-
         //-- 4 VALUE LENGTH SYMBOLS --
         case (symbolObject[15].sign.includes(fourSymbolValue)):
             //          inverse sine
@@ -830,26 +840,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 
         case (symbolObject[1].sign.includes(value)):
             //          subtraction
-
-            /*
-            // if this the first value expect that it is the start of a negative number
-            if (previousValue === "") {
-                return value
-            } else if (typeof previousElement == "object" &&
-                previousElement.category != "number"
-            ) {
-                // if the previous value was an operator, also expect that this is a negative number
-                return value
-            } else if (symbolObject[1].sign.includes(nextValue)) {
-                //if the next value is also a minus, see this as an operator
-                return symbolObject[1]
-            } else {
-                // if all of those are not the case, assume this is meant as an operator.
-                // see it as a number, and place a "+" operator in front of it
-                addToInputArray(symbolObject[0], index)
-                return value
-            }
-                */
             return symbolObject[1]
             break;
 
@@ -927,22 +917,10 @@ function checkSymbol(previousValue, value, nextValue, string, index,
         case (symbolObject[17].sign.includes(value)):
             //          ..
             return symbolObject[17]
-            break;
-
-        case (symbolObject[19].sign.includes(value)):
-            //          ..
-            return symbolObject[19]
-            break;
-
-        case (symbolObject[20].sign.includes(value)):
-            //          ..
-            return symbolObject[20]
-            break;
 
         default:
             isError = true
-            alert("ERROR: unknown symbol")
-            return "error"
+            alert('SYNTAX ERROR, value "' + value + '" is unknown')
     }
 }
 
@@ -1377,6 +1355,11 @@ function resetColors(){
             element.style.color=color4
         });*/
         btnsFrameMain.style.backgroundColor=""
+        zoomButtons.style.backgroundColor="rgb(224, 224, 224)"
+
+        pixels.forEach(pixel => {
+            pixel.style.backgroundColor="white"
+        });
 }
 
 function changeColors(color1, color2, color3){
@@ -1393,6 +1376,7 @@ function changeColors(color1, color2, color3){
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
+    zoomButtons.style.backgroundColor=color3
 }
 
 function getRandomRgbValue () {
@@ -1672,11 +1656,13 @@ btnsFrameMain.addEventListener('click', (e => {
     runEveryEdit()
 }))
 //-----------------------------------------------
+
 /*
 displayTop.addEventListener("click", (e=>{
     caretPosition = e.target.selectionStart
     console.log(caretPosition)
-}))*/
+}))
+*/
 
 //save the last caretposition when the input goed out of focus
 displayTop.addEventListener("blur", (e => {
@@ -1692,6 +1678,12 @@ zoomoutBtn.addEventListener("mousedown" ,()=> zoomout())
 
 zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 
+pixel1.addEventListener("mouseover", ()=> triggerColorChange(1))
+pixel2.addEventListener("mouseover", ()=> triggerColorChange(2))
+pixel3.addEventListener("mouseover", ()=> triggerColorChange(3))
+
+resetColor.addEventListener("click", ()=> resetColors())
+
 //#endregion
 //#endregion
 //#region   > CSS variables
@@ -1699,8 +1691,4 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 displayBottom.textContent = ""
 
 //√(4)+3^2-sin(π/2)
-
-pixel1.addEventListener("mouseover", ()=> triggerColorChange(1))
-pixel2.addEventListener("mouseover", ()=> triggerColorChange(2))
-pixel3.addEventListener("mouseover", ()=> triggerColorChange(3))
 

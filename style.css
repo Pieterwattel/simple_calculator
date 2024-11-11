@@ -68,6 +68,7 @@ input:focus{
     white-space: nowrap;
     text-indent: 16px;
     height: 69px;
+    font-size: 50px;
 }
 
 #calculatorFrame{
@@ -102,6 +103,7 @@ input:focus{
     width: 150px;
     margin-bottom: 0;
     display: flex;
+    background-color: grey;
 }
 
 #zoomButtons > *{
@@ -113,11 +115,13 @@ input:focus{
 }
 
 #zoomoutBtn{
-    background-color: rgb(90, 90, 90);
+    background-color: rgba(0, 0, 0, 0);
+    color:black;
 }
 
 #zoominBtn{
-    background-color: rgb(90, 90, 90);
+    background-color: rgba(0, 0, 0, 0);
+    color:black;
 }
 
 
@@ -216,6 +220,7 @@ button{
 
 #colorPicker{
     margin: 5px;
+    margin-top: 33px;
     position: absolute;
 
     top: 0;
@@ -234,4 +239,17 @@ button{
 
     height: 5vw;
     width: 5vw;
+}
+
+#resetColors{
+    margin:5px;
+    position: absolute;
+
+    right:0;
+
+    font-size: calc(10px + 0.4vw);
+
+    align-self: flex-start;
+
+    border-radius: 5px;
 }
