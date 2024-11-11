@@ -30,6 +30,7 @@ const contentBase = document.getElementById(`contentBase`)
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
 const zoomButtons = document.getElementById('zoomButtons')
+const calcLogBtn = document.getElementById("calcLogBtn")
 
 const resetColor = document.getElementById("resetColors")
 
@@ -422,11 +423,16 @@ function runEquals() {
             result = calculate(array)
             ans = ""
             ans = result.flat()
+            saveCalculation(string, ans)
             displayAns()
             inputArray = []
             currentElement = ""
         }
     }
+}
+
+function saveCalculation(string, ans){
+    alert(string + ans)
 }
 
 function runAns() {
@@ -1377,6 +1383,7 @@ function changeColors(color1, color2, color3){
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
     zoomButtons.style.backgroundColor=color3
+    calcLogBtn.style.backgroundColor=color3
 }
 
 function getRandomRgbValue () {

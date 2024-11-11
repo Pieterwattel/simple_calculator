@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:officeooo="http://openoffice.org/2009/office" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><dc:date>2024-11-11T17:19:04.638146505</dc:date><meta:editing-duration>P4DT3H20M48S</meta:editing-duration><meta:editing-cycles>89</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="2" meta:paragraph-count="54" meta:word-count="446" meta:character-count="2532" meta:non-whitespace-character-count="2119"/></office:meta>
+ <office:meta><dc:date>2024-11-11T19:42:47.172055072</dc:date><meta:editing-duration>P4DT3H40M3S</meta:editing-duration><meta:editing-cycles>93</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="2" meta:paragraph-count="68" meta:word-count="590" meta:character-count="3347" meta:non-whitespace-character-count="2804"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">9899</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">36830</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">23523</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">22068</config:config-item>
@@ -13,12 +13,12 @@
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">4316</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">45508</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">11725</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">57120</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">9899</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">36830</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">23521</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">31965</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">58896</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -88,7 +88,7 @@
    <config:config-item config:name="ChartAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="PrinterSetup" config:type="base64Binary"/>
    <config:config-item config:name="AddParaTableSpacingAtStart" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">4997431</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">5050462</config:config-item>
    <config:config-item config:name="EmbeddedDatabaseName" config:type="string"/>
    <config:config-item config:name="FieldAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="OutlineLevelYieldsNumbering" config:type="boolean">false</config:config-item>
@@ -154,7 +154,7 @@
  <office:styles>
   <style:default-style style:family="graphic">
    <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="0.1181in" draw:shadow-offset-y="0.1181in" draw:start-line-spacing-horizontal="0.1114in" draw:start-line-spacing-vertical="0.1114in" draw:end-line-spacing-horizontal="0.1114in" draw:end-line-spacing-vertical="0.1114in" style:flow-with-text="false"/>
-   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
    <style:text-properties style:use-window-font-color="true" loext:opacity="0%" style:font-name="Liberation Serif" fo:font-size="12pt" fo:language="en" fo:country="US" style:letter-kerning="true" style:font-name-asian="Noto Serif CJK SC" style:font-size-asian="10.5pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="Lohit Devanagari1" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
@@ -313,13 +313,19 @@
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004328a8" officeooo:paragraph-rsid="004328a8"/>
   </style:style>
   <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004328a8" officeooo:paragraph-rsid="004328a8"/>
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004a5713" officeooo:paragraph-rsid="004a5713"/>
   </style:style>
   <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004a5713" officeooo:paragraph-rsid="004a5713"/>
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004c4137" officeooo:paragraph-rsid="004c4137"/>
   </style:style>
   <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004c4137" officeooo:paragraph-rsid="004c4137"/>
+  </style:style>
+  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004c4c61" officeooo:paragraph-rsid="004c4c61"/>
+  </style:style>
+  <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004d105e" officeooo:paragraph-rsid="004d105e"/>
   </style:style>
   <style:style style:name="T1" style:family="text">
    <style:text-properties officeooo:rsid="001dc5da"/>
@@ -344,6 +350,9 @@
   </style:style>
   <style:style style:name="T8" style:family="text">
    <style:text-properties officeooo:rsid="004a5713"/>
+  </style:style>
+  <style:style style:name="T9" style:family="text">
+   <style:text-properties officeooo:rsid="004d105e"/>
   </style:style>
   <style:page-layout style:name="pm1">
    <style:page-layout-properties fo:page-width="8.2701in" fo:page-height="11.6902in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.7874in" fo:margin-bottom="0.7874in" fo:margin-left="0.7874in" fo:margin-right="0.7874in" fo:background-color="#000000" style:writing-mode="lr-tb" style:layout-grid-color="#c0c0c0" style:layout-grid-lines="20" style:layout-grid-base-height="0.278in" style:layout-grid-ruby-height="0.139in" style:layout-grid-mode="none" style:layout-grid-ruby-below="false" style:layout-grid-print="false" style:layout-grid-display="false" draw:fill="solid" draw:fill-color="#000000" draw:opacity="100%" style:footnote-max-height="0in" loext:margin-gutter="0in">
@@ -420,46 +429,71 @@
    <text:p text:style-name="P21">if it is a number, <text:span text:style-name="T7">it is seen as the start of a number if the previous</text:span></text:p>
    <text:p text:style-name="P21"/>
    <text:p text:style-name="P21"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"><text:soft-page-break/>color 1: background</text:p>
+   <text:p text:style-name="P22">color 2: dragBar</text:p>
+   <text:p text:style-name="P22">color 3: buttons, border</text:p>
+   <text:p text:style-name="P22">color 4: textfield</text:p>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22">first make a function called changeColors()</text:p>
+   <text:p text:style-name="P22">choose some colors as variables</text:p>
+   <text:p text:style-name="P22">make some nodegroups, which contain the different colored categories</text:p>
+   <text:p text:style-name="P22">make sure that the nodegroups work when you try some colors on them</text:p>
+   <text:p text:style-name="P22">connect the nodegroups and color variables</text:p>
+   <text:p text:style-name="P22">now let the color variables be entered as parameters to the function<text:line-break/></text:p>
+   <text:p text:style-name="P22">add a function called resetColors, which removes all the inline backgroundColor styling of the nodegroups</text:p>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22">make a 2x2 square in the corner that changes color when you move over a square</text:p>
+   <text:p text:style-name="P22">now let it output it colors each time the mouse goes over</text:p>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22">now also let it trigger the changeColors() on mouseover</text:p>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P22">sin²3</text:p>
+   <text:p text:style-name="P22"/>
+   <text:p text:style-name="P23">errors geven wanneer een tekst niet geparsed kan worden </text:p>
+   <text:p text:style-name="P23">asin ans ook zeggen wanneer nummer niet kan</text:p>
+   <text:p text:style-name="P23"/>
+   <text:p text:style-name="P23">machtwortels</text:p>
+   <text:p text:style-name="P23"/>
+   <text:p text:style-name="P23">wanneer je hebt uitgerekend en cijfer indrukt, leeg de input</text:p>
+   <text:p text:style-name="P23">en bij trig functions ook </text:p>
    <text:p text:style-name="P23"/>
    <text:p text:style-name="P23"/>
+   <text:p text:style-name="P23">-----</text:p>
+   <text:p text:style-name="P23">maak een array die elke rekensom de userInput &amp; ans opslaat</text:p>
    <text:p text:style-name="P23"/>
    <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"><text:soft-page-break/>color 1: background</text:p>
-   <text:p text:style-name="P23">color 2: dragBar</text:p>
-   <text:p text:style-name="P23">color 3: buttons, border</text:p>
-   <text:p text:style-name="P23">color 4: textfield</text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23">first make a function called changeColors()</text:p>
-   <text:p text:style-name="P23">choose some colors as variables</text:p>
-   <text:p text:style-name="P23">make some nodegroups, which contain the different colored categories</text:p>
-   <text:p text:style-name="P23">make sure that the nodegroups work when you try some colors on them</text:p>
-   <text:p text:style-name="P23">connect the nodegroups and color variables</text:p>
-   <text:p text:style-name="P23">now let the color variables be entered as parameters to the function<text:line-break/></text:p>
-   <text:p text:style-name="P23">add a function called resetColors, which removes all the inline backgroundColor styling of the nodegroups</text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23">make a 2x2 square in the corner that changes color when you move over a square</text:p>
-   <text:p text:style-name="P23">now let it output it colors each time the mouse goes over</text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23">now also let it trigger the changeColors() on mouseover</text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P23">sin²3</text:p>
-   <text:p text:style-name="P23"/>
-   <text:p text:style-name="P24">errors geven wanneer een tekst niet geparsed kan worden </text:p>
-   <text:p text:style-name="P24">asin ans ook zeggen wanneer nummer niet kan</text:p>
-   <text:p text:style-name="P24"/>
-   <text:p text:style-name="P24">machtwortels</text:p>
-   <text:p text:style-name="P24"/>
-   <text:p text:style-name="P24">wanneer je hebt uitgerekend en cijfer indrukt, leeg de input</text:p>
-   <text:p text:style-name="P24">en bij trig functions ook </text:p>
-   <text:p text:style-name="P24"/>
-   <text:p text:style-name="P24"/>
-   <text:p text:style-name="P24">-----</text:p>
-   <text:p text:style-name="P24">maak een array die elke rekensom de userInput &amp; ans opslaat</text:p>
+   <text:p text:style-name="P25">saving answers:</text:p>
+   <text:p text:style-name="P25">first make an a function <text:span text:style-name="T9">saveCalculation() </text:span>that receives the calculationString and the Ans from every calculation.</text:p>
+   <text:p text:style-name="P25"/>
+   <text:p text:style-name="P25">then let these be saved in a new array with the key calculation, and the key ans</text:p>
+   <text:p text:style-name="P25"/>
+   <text:p text:style-name="P25">then make a box on the left side of the screen.</text:p>
+   <text:p text:style-name="P26">let the location be calculated from the left top sides</text:p>
+   <text:p text:style-name="P25"/>
+   <text:p text:style-name="P26">arrange two long narrow divs, one for calculation, and one for ANS.</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">every time that saveCalculation() is run, update the calcLog,</text:p>
+   <text:p text:style-name="P26">place calculation on the left side,</text:p>
+   <text:p text:style-name="P26">answer on the right side.</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">now let the location be calculated from the right top sides, so that the container falls outside of the screen.</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">if the calcLogBtn is now pressed, change from where the placement is measured, so it becomes visible.</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">now give it a transition so the item slides in smoothly</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">add colors</text:p>
+   <text:p text:style-name="P26"/>
+   <text:p text:style-name="P26">add colors that change in changeColors()</text:p>
   </office:text>
  </office:body>
 </office:document>
