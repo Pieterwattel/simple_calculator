@@ -28,7 +28,6 @@ html{
     align-items: center;
     justify-content: center;
     background-image: url(./files/johannes-plenio-YRBPT5x5aLw-unsplash.jpg);
-    background-size: cover;
     border:0;
     margin: 0;
 }
@@ -68,6 +67,7 @@ input:focus{
     min-width: 10px !important;
     white-space: nowrap;
     text-indent: 16px;
+    height: 69px;
 }
 
 #calculatorFrame{
@@ -212,4 +212,26 @@ button{
 
 .display{
     background-color: rgba(0, 0, 0, 0.452);
+}
+
+#colorPicker{
+    margin: 5px;
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    border: 2px solid black;
+    background-color: white;
+}
+
+.pixelFrame{
+}
+
+.pixel{
+    border: 2px solid black;
+    background-color: white;
+
+    height: 5vw;
+    width: 5vw;
 }

@@ -23,8 +23,17 @@ let caretPosition = 0
 //#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
+
+const body = document.getElementById("body")
+
 const contentBase = document.getElementById(`contentBase`)
 const calculatorFrame = document.getElementById(`calculatorFrame`)
+
+const pixels = document.querySelectorAll(".pixel")
+
+const pixel1 = document.getElementById("pixel1")
+const pixel2 = document.getElementById("pixel2")
+const pixel3 = document.getElementById("pixel3")
 
 const dragBar = document.getElementById("dragBar")
 const dragHandle = document.getElementById("dragHandle")
@@ -272,6 +281,7 @@ symbolObject.forEach((prop) => {
 //#endregion
 //#region           >>> Function Buttons
 
+
 let otherBtns = [
     {
         id: 'Clear all fields',
@@ -314,6 +324,9 @@ otherBtns.forEach((prop) => {
 })
 
 
+//#endregion
+//#region           >>> later variable declarations
+const allBtns = document.querySelectorAll(".btn")
 //#endregion
 //#endregion
 //#region   > Functions 
@@ -399,7 +412,8 @@ function runEquals() {
         isError = false
         inputArray = []
         previousElementForMultiplication = ""
-        array = getArrayFromString(displayTop.value)
+        let string = displayTop.value.concat(backMissingCharacters.textContent)
+        array = getArrayFromString(string)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
             result = calculate(array)
@@ -1317,6 +1331,75 @@ function zoomin () {
     calculatorFrame.style.transform=(`scale(${calculatorFrameZoom}, ${calculatorFrameZoom})`)
 }
 
+function triggerColorChange (color){
+    let newColor = getRandomRgbValue ()
+    let color1
+    let color2
+    let color3
+    switch (color){
+        case 1:
+            color1 = newColor
+            pixel1.style.backgroundColor = color1
+        break;
+        case 2:
+            color2 = newColor
+            pixel2.style.backgroundColor = color2
+        break;
+        case 3:
+            color3 = newColor
+            pixel3.style.backgroundColor = color3
+        break;
+    default:
+    }
+    changeColors(color1, color2, color3)
+}
+
+function RandomColors(){
+    changeColors(getRandomRgbValue(), getRandomRgbValue(), getRandomRgbValue())
+}
+
+function resetColors(){
+        //nodes1
+        document.body.style.background = "url(./files/johannes-plenio-YRBPT5x5aLw-unsplash.jpg)"
+        document.body.style.backgroundColor = ""
+    
+        //nodes2
+    
+        //nodes3
+        allBtns.forEach(element => {
+            element.style.backgroundColor=""
+        });
+        calculatorFrame.style.borderColor=""
+        dragBar.style.backgroundColor=""
+    
+        //nodes3
+       /* allBtns.forEach(element => {
+            element.style.color=color4
+        });*/
+        btnsFrameMain.style.backgroundColor=""
+}
+
+function changeColors(color1, color2, color3){
+    //nodes1
+    document.body.style.background = color1
+    document.body.style.backgroundColor = color1
+
+    //nodes2
+    allBtns.forEach(element => {
+        element.style.backgroundColor=color2
+    });
+    calculatorFrame.style.borderColor=color2
+    dragBar.style.backgroundColor=color2
+
+    //nodes3
+    btnsFrameMain.style.backgroundColor=color3
+}
+
+function getRandomRgbValue () {
+    let getValue = () =>  Math.floor(Math.random() *255)
+    return `rgb(${getValue()}, ${getValue()}, ${getValue()})`
+}
+
 
 //#endregion
 //#region       >> Controller Functions
@@ -1378,7 +1461,7 @@ function getArrayFromString(string) {
         addMultiplication(resultArray, index)
     });
 
-    previousCalculation.textContent = returnSimplifiedArray(resultArray)
+    //previousCalculation.textContent = returnSimplifiedArray(resultArray)
 
     return resultArray
 }
@@ -1613,9 +1696,11 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 //#endregion
 //#region   > CSS variables
 
-userInput = "3sin(2)"
-//
-updateDisplay()
+displayBottom.textContent = ""
 
 //√(4)+3^2-sin(π/2)
+
+pixel1.addEventListener("mouseover", ()=> triggerColorChange(1))
+pixel2.addEventListener("mouseover", ()=> triggerColorChange(2))
+pixel3.addEventListener("mouseover", ()=> triggerColorChange(3))
 
