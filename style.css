@@ -33,8 +33,9 @@ html{
 }
 
 .btn{
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(214, 214, 214);
     color: rgb(0, 0, 0);
+    border: 0;
 }
 
 #inputFrame{
@@ -74,14 +75,14 @@ input:focus{
 #calculatorFrame{
     position: absolute;
     height: fit-content;
-    width: 605px;
+    width: 615px;
     overflow: auto;
     padding: 0;
     display: flex;
     flex-direction: column;
     flex:1;
     background-size: contain;
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 50px 50px 20px 20px;
     background-color: rgba(0, 0, 0, 0.377);
    /* 
@@ -103,20 +104,21 @@ input:focus{
     width: 150px;
     margin-bottom: 0;
     display: flex;
-    background-color: grey;
+    background-color: rgb(214, 214, 214);
 }
 
 #zoomButtons > *{
     border-radius: 0;
     width: 100%;
     height: 100%;
-    border: 0 3 0 3;
     margin: 0;
+    border: 0;
 }
 
 #zoomoutBtn{
     background-color: rgba(0, 0, 0, 0);
     color:black;
+    border-right: 1px solid black;
 }
 
 #zoominBtn{
@@ -148,7 +150,7 @@ input:focus{
 
 #numAndSymbolFrame{
     display: flex;
-    gap: 6px;
+    gap: 12px;
 }
 
 #btnFrameNum{
@@ -202,7 +204,15 @@ button{
 #line2,
 #line3,
 #line4{
-    height: 94px;
+    height: 90px;
+}
+
+#line1 > *{
+    min-width: 50px;
+}
+
+#line2 > *{
+    min-width: 44px;
 }
 
 #line4 > *{
@@ -239,6 +249,10 @@ button{
 
     height: 5vw;
     width: 5vw;
+
+    color:black;
+    font-size: calc(10px + 0.4vw);
+    text-align: center;
 }
 
 #resetColors{

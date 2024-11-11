@@ -4,7 +4,7 @@
  <office:meta><dc:date>2024-11-11T17:19:04.638146505</dc:date><meta:editing-duration>P4DT3H20M48S</meta:editing-duration><meta:editing-cycles>89</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="2" meta:paragraph-count="54" meta:word-count="446" meta:character-count="2532" meta:non-whitespace-character-count="2119"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">38686</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">9899</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">23523</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">22068</config:config-item>
@@ -16,9 +16,9 @@
      <config:config-item config:name="ViewLeft" config:type="long">4316</config:config-item>
      <config:config-item config:name="ViewTop" config:type="long">45508</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">38686</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">9899</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">23521</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">60752</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">31965</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>

@@ -1347,7 +1347,7 @@ function resetColors(){
         allBtns.forEach(element => {
             element.style.backgroundColor=""
         });
-        calculatorFrame.style.borderColor=""
+        //calculatorFrame.style.borderColor=""
         dragBar.style.backgroundColor=""
     
         //nodes3
@@ -1355,7 +1355,7 @@ function resetColors(){
             element.style.color=color4
         });*/
         btnsFrameMain.style.backgroundColor=""
-        zoomButtons.style.backgroundColor="rgb(224, 224, 224)"
+        zoomButtons.style.backgroundColor="rgb(214, 214, 214)"
 
         pixels.forEach(pixel => {
             pixel.style.backgroundColor="white"
@@ -1371,7 +1371,7 @@ function changeColors(color1, color2, color3){
     allBtns.forEach(element => {
         element.style.backgroundColor=color2
     });
-    calculatorFrame.style.borderColor=color2
+    //calculatorFrame.style.borderColor=color2
     dragBar.style.backgroundColor=color2
 
     //nodes3
@@ -1678,9 +1678,9 @@ zoomoutBtn.addEventListener("mousedown" ,()=> zoomout())
 
 zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 
-pixel1.addEventListener("mouseover", ()=> triggerColorChange(1))
-pixel2.addEventListener("mouseover", ()=> triggerColorChange(2))
-pixel3.addEventListener("mouseover", ()=> triggerColorChange(3))
+pixel1.addEventListener("click", ()=> triggerColorChange(1))
+pixel2.addEventListener("click", ()=> triggerColorChange(2))
+pixel3.addEventListener("click", ()=> triggerColorChange(3))
 
 resetColor.addEventListener("click", ()=> resetColors())
 
