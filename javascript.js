@@ -31,6 +31,8 @@ let calcLog = []
 const body = document.getElementById("body")
 
 const calcLogFrame = document.getElementById("calcLogFrame")
+const calcLogHeader = document.getElementById("calcLogHeader")
+const calcLogContent = document.getElementById("calcLogContent")
 
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
@@ -441,7 +443,6 @@ function runEquals() {
 }
 
 function saveCalculation(string, ans){
-    console.log(string)
     calcLog.push({[calcIteration]: {
             calc: string ,
             ans: ans.toString() ,
@@ -451,14 +452,18 @@ function saveCalculation(string, ans){
     console.log(calcLog[calcIteration][calcIteration].calc)
 
     const calculationDiv = document.createElement("div")
-    const answerDiv = document.createElement("div")
-
     calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
+    calculationDiv.classList.add("calculation")
+
+    const answerDiv = document.createElement("div")
     answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
+    answerDiv.classList.add("answer")
 
 
-    calcLogFrame.prepend(answerDiv)
-    calcLogFrame.prepend(calculationDiv)
+    calcLogContent.prepend(answerDiv)
+
+    calcLogContent.prepend(calculationDiv)
+
 
     calcIteration++
 }
