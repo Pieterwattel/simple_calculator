@@ -75,7 +75,7 @@ input:focus{
 #calculatorFrame{
     position: absolute;
     height: fit-content;
-    width: 615px;
+    width: 623px;
     overflow: auto;
     padding: 0;
     display: flex;
@@ -144,7 +144,7 @@ input:focus{
 }
 
 #btnsFrameMain{
-
+ padding:5px
 }
 
 #btnFrameFunc{

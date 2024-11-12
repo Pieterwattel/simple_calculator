@@ -20,6 +20,9 @@ let bracketOpenIndexArray = []
 
 let caretPosition = 0
 
+let calcIteration = 1
+let calcLog = []
+
 //#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
@@ -432,7 +435,13 @@ function runEquals() {
 }
 
 function saveCalculation(string, ans){
-    alert(string + ans)
+    calcLog.push({[calcIteration]: {
+            calc: string ,
+            ans: ans.toString() ,
+        }
+    })
+    calcIteration++
+    console.log(calcLog)
 }
 
 function runAns() {
@@ -542,8 +551,6 @@ function evaluateStringSymbols(string) {
         value = string.charAt(j)
         nextValue = string.charAt(j + 1)
 
-        //        console.log(`${value} index=${j} evalStrSymbols()`)
-
         twoSymbolValue = string.slice(j, j + 2)
         threeSymbolValue = string.slice(j, j + 3)
         fourSymbolValue = string.slice(j, j + 4)
@@ -564,18 +571,6 @@ function evaluateStringSymbols(string) {
 
         j++
     }
-
-    /*
-    // small script to also add the very last value to inputArray[]
-
-    if (numberOrObject(previousValue, value, nextValue, string, j) == "number") {
-        inputArray.push(currentElement)
-    } else if (numberOrObject(previousValue, value, nextValue, string, j) == "operator") {
-        inputArray.push(string.charAt(j - 1))
-
-    }
-
-    */
     return inputArray
 }
 
@@ -1362,6 +1357,7 @@ function resetColors(){
         });*/
         btnsFrameMain.style.backgroundColor=""
         zoomButtons.style.backgroundColor="rgb(214, 214, 214)"
+        calcLogBtn.style.backgroundColor="rgb(214, 214, 214)"
 
         pixels.forEach(pixel => {
             pixel.style.backgroundColor="white"
