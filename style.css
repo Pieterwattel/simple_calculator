@@ -22,14 +22,15 @@ html{
 
 
 #body {
-    height: 100vh;
-    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     background-image: url(./files/johannes-plenio-YRBPT5x5aLw-unsplash.jpg);
     border:0;
     margin: 0;
+
+    height: 100vh;
+    max-width: 100vw;
 }
 
 .btn{
@@ -283,20 +284,21 @@ button{
 #calcLogFrame{
     background-color: brown;
     width: calc(15vw + 150px);
-    height: 100vh;
+    height: 97vh;
     max-height: 100vh;
     position: absolute;
     left: 0;
+    top: 0;
 
     margin-top: 0;
     padding: 5px;
-    padding-top: 15px;
+    padding-top: 5px;
 
     display: flex;
     flex-direction: column;
     overflow: auto;
 
-    border-radius: 1vw;
+    border-radius: calc(0.7vw + 5px);
     direction: rtl;
 
     /*left: calc(-15vw + -150px);*/
@@ -304,4 +306,5 @@ button{
 
 #calcLogFrame > * {
     text-align: left;
+    direction: ltr;
 }
