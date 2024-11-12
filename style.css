@@ -299,9 +299,9 @@ button{
     border-radius: 1vw;
     direction: rtl;
 
-    text-align: left;
-
     /*left: calc(-15vw + -150px);*/
+}
 
-
+#calcLogFrame > * {
+    text-align: left;
 }

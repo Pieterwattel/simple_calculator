@@ -14,6 +14,7 @@ let inputArray = []
 let currentNum = ""
 
 let isError = false
+let errorMessage = ""
 let errorCheckIteration = 0
 
 let bracketOpenIndexArray = []
@@ -431,11 +432,16 @@ function runEquals() {
             displayAns()
             inputArray = []
             currentElement = ""
+        } else {
+            console.log("yes")
+            alert(errorMessage)
         }
+        errorMessage = ""
     }
 }
 
 function saveCalculation(string, ans){
+    console.log(string)
     calcLog.push({[calcIteration]: {
             calc: string ,
             ans: ans.toString() ,
@@ -450,8 +456,9 @@ function saveCalculation(string, ans){
     calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
     answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
 
-    calcLogFrame.prepend(calculationDiv)
+
     calcLogFrame.prepend(answerDiv)
+    calcLogFrame.prepend(calculationDiv)
 
     calcIteration++
 }
@@ -1198,46 +1205,6 @@ function doCalculation(symbol, index, array) {
     }
 }
 
-function doubleOperators(
-    prePreviousElement,
-    previousElement,
-    currentElement,
-    nextElement,
-    nextNextElement,
-    index,
-    array) {
-    switch (true) {
-        case (symbolObject[0].sign === currentElement.sign):
-            //          addition
-
-            if (previousElement.category == "operator") {
-                array.splice(index, 1)
-                errorCheckIteration--
-            }
-            return array
-            break;
-
-        case (symbolObject[1].sign == currentElement.sign):
-            //          subtraction
-            return array
-            break;
-
-        case (symbolObject[2].sign == currentElement.sign):
-            //          multiplication
-            return array
-            break;
-
-        case (symbolObject[3].sign == currentElement.sign):
-            //          division
-            return array
-            break;
-
-        default:
-            return array
-    }
-
-}
-
 function returnCaret(value) {
     setTimeout(() => {
         displayTop.setSelectionRange(caretPosition + value.length, caretPosition + value.length)
@@ -1494,18 +1461,6 @@ function checkForErrors(array) {
         let nextNextElement = array[i + 2]
         let index = i
 
-        if (currentElement.category == "operator") {
-            doubleOperators(
-                prePreviousElement,
-                previousElement,
-                currentElement,
-                nextElement,
-                nextNextElement,
-                index,
-                array
-            )
-        }
-
         let num
 
         if (typeof nextElement == "object") {
@@ -1526,6 +1481,11 @@ function checkForErrors(array) {
                 isError = true
                 alert("invalid input for aCos, number must be between -1 and 1")
             }
+        }
+
+        if (currentElement.category == "operator" && nextElement.category == "operator" && nextElement != symbolObject[1]){
+            errorMessage = "SYNTAX ERROR: two consecutive operators"
+            isError = true
         }
 
         if (currentElement == "") {
