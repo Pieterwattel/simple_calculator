@@ -279,3 +279,29 @@ button{
 
     border-radius: 5px;
 }
+
+#calcLogFrame{
+    background-color: brown;
+    width: calc(15vw + 150px);
+    height: 100vh;
+    max-height: 100vh;
+    position: absolute;
+    left: 0;
+
+    margin-top: 0;
+    padding: 5px;
+    padding-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    border-radius: 1vw;
+    direction: rtl;
+
+    text-align: left;
+
+    /*left: calc(-15vw + -150px);*/
+
+
+}

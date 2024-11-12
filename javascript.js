@@ -20,7 +20,7 @@ let bracketOpenIndexArray = []
 
 let caretPosition = 0
 
-let calcIteration = 1
+let calcIteration = 0
 let calcLog = []
 
 //#endregion
@@ -29,7 +29,8 @@ let calcLog = []
 
 const body = document.getElementById("body")
 
-const contentBase = document.getElementById(`contentBase`)
+const calcLogFrame = document.getElementById("calcLogFrame")
+
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
 const zoomButtons = document.getElementById('zoomButtons')
@@ -440,8 +441,19 @@ function saveCalculation(string, ans){
             ans: ans.toString() ,
         }
     })
+
+    console.log(calcLog[calcIteration][calcIteration].calc)
+
+    const calculationDiv = document.createElement("div")
+    const answerDiv = document.createElement("div")
+
+    calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
+    answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
+
+    calcLogFrame.prepend(calculationDiv)
+    calcLogFrame.prepend(answerDiv)
+
     calcIteration++
-    console.log(calcLog)
 }
 
 function runAns() {
