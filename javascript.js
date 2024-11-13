@@ -1533,9 +1533,11 @@ function checkForErrors(array) {
             }
         }
 
-        if (currentElement.category == "operator" && nextElement.category == "operator" && nextElement != symbolObject[1]){
-            errorMessage = "SYNTAX ERROR: two consecutive operators"
-            isError = true
+        if (typeof nextElement != "undefined"){
+            if (currentElement.category == "operator" && nextElement.category == "operator" && nextElement != symbolObject[1]){
+                errorMessage = "SYNTAX ERROR: two consecutive operators"
+                isError = true
+            }
         }
 
         if (currentElement == "") {
