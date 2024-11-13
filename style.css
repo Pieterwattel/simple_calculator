@@ -339,13 +339,13 @@ button{
     border-radius: calc(10px + 0.5vw) calc(10px + 0.5vw) 0 0;
     padding: 0 10px 0 10px;
     margin-top: 5px;
-    border: 2px solid rgb(116, 116, 116);
+    border: 2px solid black;
 }
 
 .answer{
     border-radius: 0 0 calc(10px + 0.5vw) calc(10px + 0.5vw);
     padding: 0 10px 0 10px;
-    border: 2px dashed rgb(116, 116, 116);
+    border: 2px dashed black;
     border-top: 0;
 }
 

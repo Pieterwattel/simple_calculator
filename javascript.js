@@ -24,6 +24,10 @@ let caretPosition = 0
 let calcIteration = 0
 let calcLog = []
 
+let color1
+let color2
+let color3
+
 //#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
@@ -457,6 +461,7 @@ function saveCalculation(string, ans){
 
     const answerDiv = document.createElement("div")
     answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
+    answerDiv.style.borderColor=color1
     answerDiv.classList.add("answer")
 
 
@@ -1296,9 +1301,6 @@ function zoomin () {
 
 function triggerColorChange (color){
     let newColor = getRandomRgbValue ()
-    let color1
-    let color2
-    let color3
     switch (color){
         case 1:
             color1 = newColor
@@ -1325,26 +1327,29 @@ function resetColors(){
         //nodes1
         document.body.style.background = "url(./files/johannes-plenio-YRBPT5x5aLw-unsplash.jpg)"
         document.body.style.backgroundColor = ""
-    
+        calcLogContent.childNodes.forEach(node => {
+            node.style.borderColor=""
+        });
+
         //nodes2
-    
-        //nodes3
         allBtns.forEach(element => {
             element.style.backgroundColor=""
         });
         //calculatorFrame.style.borderColor=""
         dragBar.style.backgroundColor=""
+        calcLogHeader.style.backgroundColor=""
+        calcLogFrame.style.backgroundColor=""
+        calcLogHeader.style.color=""
     
         //nodes3
        /* allBtns.forEach(element => {
             element.style.color=color4
         });*/
         btnsFrameMain.style.backgroundColor=""
-        zoomButtons.style.backgroundColor="rgb(214, 214, 214)"
-        calcLogBtn.style.backgroundColor="rgb(214, 214, 214)"
-
+        zoomButtons.style.backgroundColor=""
+        calcLogBtn.style.backgroundColor=""
         pixels.forEach(pixel => {
-            pixel.style.backgroundColor="white"
+            pixel.style.backgroundColor=""
         });
 }
 
@@ -1359,16 +1364,38 @@ function changeColors(color1, color2, color3){
     });
     //calculatorFrame.style.borderColor=color2
     dragBar.style.backgroundColor=color2
+    calcLogHeader.style.backgroundColor=color2
+    if (color2){
+    calcLogHeader.style.color="black"
+    }
+
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
     zoomButtons.style.backgroundColor=color3
     calcLogBtn.style.backgroundColor=color3
+    calcLogFrame.style.backgroundColor=color3
 }
 
 function getRandomRgbValue () {
     let getValue = () =>  Math.floor(Math.random() *255)
     return `rgb(${getValue()}, ${getValue()}, ${getValue()})`
+}
+
+function darkenRgb(string){
+    let rgbNumbers = string.match(/\d+/g).map(Number)
+    rgbNumbers.forEach(number => {
+        return number - 100
+    });
+    return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+}
+
+function brightenRgb(string){
+    let rgbNumbers = string.match(/\d+/g).map(Number)
+    rgbNumbers.forEach(number => {
+        return number + 100
+    });
+    return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
 
