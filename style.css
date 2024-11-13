@@ -304,6 +304,7 @@ button{
 
     border-radius: 0 0 calc(0.7vw + 5px)calc(0.7vw + 5px);
     direction: rtl;
+    box-shadow: -2px -2px 20px black;
 
     /*left: calc(-15vw + -150px);*/
 }
@@ -314,14 +315,16 @@ button{
 }
 
 #calcLogHeader{
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgb(214, 214, 214);
     border-radius: 0 0 calc(10px + 0.5vw) calc(10px + 0.5vw);
     font-size: calc(14px + 2vw);
     text-align: center;
     position: sticky;
     top:0;
     z-index: 1;
-    margin: 0 0px 2px 0px;
+    margin: 0 1px 2px 1px;
+    border: 2px solid black;
+    color: black
 }
 
 #calcLogContent{
@@ -332,7 +335,8 @@ button{
 #calcLogContent > *{
     overflow-wrap: break-word;
     font-size: calc(30px + 0.8vw);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.377);
+    color: black;
 }
 
 .calculation{
@@ -350,7 +354,7 @@ button{
 }
 
 ::-webkit-scrollbar{
-    width: 7px;
+    width: 4px;
     background: #6e6e6e;
     border-radius: 5px;
 }

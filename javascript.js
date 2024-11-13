@@ -458,11 +458,16 @@ function saveCalculation(string, ans){
     const calculationDiv = document.createElement("div")
     calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
     calculationDiv.classList.add("calculation")
+    if (color2){
+        calculationDiv.style.backgroundColor=color2
+    }
 
     const answerDiv = document.createElement("div")
     answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
-    answerDiv.style.borderColor=color1
     answerDiv.classList.add("answer")
+    if (color1){
+        answerDiv.style.backgroundColor=color3
+    }
 
 
     calcLogContent.prepend(answerDiv)
@@ -1351,30 +1356,47 @@ function resetColors(){
         pixels.forEach(pixel => {
             pixel.style.backgroundColor=""
         });
+
+        Array.from(answerNodes).forEach(node => {
+            node.style.backgroundColor = ""
+        });
+        Array.from(calculationNodes).forEach(node => {
+            node.style.backgroundColor = ""
+        });
+        
 }
+
+const answerNodes = document.getElementsByClassName("answer")
+const calculationNodes = document.getElementsByClassName("calculation")
 
 function changeColors(color1, color2, color3){
     //nodes1
     document.body.style.background = color1
     document.body.style.backgroundColor = color1
+    Array.from(calculationNodes).forEach(node => {
+        console.log(node)
+        node.style.backgroundColor = color2
+    });
+    calcLogHeader.style.backgroundColor=color2
+    if (color2){
+        calcLogHeader.style.color="black"
+    }
 
     //nodes2
     allBtns.forEach(element => {
         element.style.backgroundColor=color2
     });
-    //calculatorFrame.style.borderColor=color2
     dragBar.style.backgroundColor=color2
-    calcLogHeader.style.backgroundColor=color2
-    if (color2){
-    calcLogHeader.style.color="black"
-    }
+    Array.from(answerNodes).forEach(node => {
+        node.style.backgroundColor = color3
+    });
 
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
     zoomButtons.style.backgroundColor=color3
     calcLogBtn.style.backgroundColor=color3
-    calcLogFrame.style.backgroundColor=color3
+    calcLogFrame.style.backgroundColor=color1
 }
 
 function getRandomRgbValue () {
@@ -1384,17 +1406,13 @@ function getRandomRgbValue () {
 
 function darkenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers.forEach(number => {
-        return number - 100
-    });
+    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 0.5 + 40))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
 function brightenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers.forEach(number => {
-        return number + 100
-    });
+    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.2))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
