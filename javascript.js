@@ -1398,21 +1398,13 @@ function brightenRgb(string){
 
 function darkenBackground (item){
     bgColor = window.getComputedStyle(item).backgroundColor;
-    item.style.backgroundColor = darkenRgb(bgColor)
+    item.addEventListener("mouseout", ()=>lightenBackground(item, bgColor))
+    let newColor = darkenRgb(bgColor)
+    item.style.backgroundColor = newColor
 }
 
 function lightenBackground (item, color){
-    bgColor = window.getComputedStyle(item).backgroundColor;
-    if (item.classList.contains("pixel")){
-        console.log("pixel")
-        return
-    } else if (color){
-        item.style.backgroundColor = color
-    } else if (color2){
-        item.style.backgroundColor = color2
-    } else {
-        item.style.backgroundColor = ""
-    }
+    item.style.backgroundColor = color
 }
 
 function addTempShadow(item){
