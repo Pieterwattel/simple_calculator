@@ -31,7 +31,6 @@ let color3
 //#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
-
 const body = document.getElementById("body")
 
 const calcLogFrame = document.getElementById("calcLogFrame")
@@ -341,8 +340,9 @@ otherBtns.forEach((prop) => {
 
 
 //#endregion
-//#region           >>> later variable declarations
+//#region           >>> later variable declarations or listeners
 let allBtns = document.querySelectorAll(".btn")
+
 //#endregion
 //#endregion
 //#region   > Functions 
@@ -445,6 +445,15 @@ function runEquals() {
         errorMessage = ""
     }
 }
+function addToInput(string){
+    userInput = displayTop.value
+    newInput = userInput.slice(0, caretPosition) + string + userInput.slice(caretPosition)
+    if (userInput != "") {
+    returnCaret(string)
+    }
+    userInput = newInput
+    updateDisplay();
+}
 
 function saveCalculation(string, ans){
     calcLog.push({[calcIteration]: {
@@ -455,35 +464,39 @@ function saveCalculation(string, ans){
 
     console.log(calcLog[calcIteration][calcIteration].calc)
 
-    const calculationDiv = document.createElement("div")
-    calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
-    calculationDiv.classList.add("calculation")
-    calculationDiv.classList.add("btn")
-    if (color2){
-        calculationDiv.style.backgroundColor=color2
-    }
-
-    const answerDiv = document.createElement("div")
-    answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
-    answerDiv.classList.add("answer")
-    answerDiv.classList.add("btn")
-    if (color1){
-        answerDiv.style.backgroundColor=color3
-    }
-
-
-    calcLogContent.prepend(answerDiv)
-
-    calcLogContent.prepend(calculationDiv)
-        answerDiv.addEventListener("mouseover", ()=>darkenBackground(answerDiv))
-        answerDiv.addEventListener("mouseout", ()=>lightenBackground(answerDiv, color3))
-        answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
-
-        calculationDiv.addEventListener("mouseover", ()=>darkenBackground(calculationDiv))
-        calculationDiv.addEventListener("mouseout", ()=>lightenBackground(calculationDiv))
-        calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
-
+    makeCalcLog(calcLog[calcIteration][calcIteration].calc, calcLog[calcIteration][calcIteration].ans)
     calcIteration++
+}
+
+function makeCalcLog(calculation, answer){
+    const calculationDiv = document.createElement("div")
+calculationDiv.textContent += calculation
+calculationDiv.classList.add("calculation")
+calculationDiv.classList.add("btn")
+calculationDiv.addEventListener("click", ()=> addToInput(calculationDiv.textContent))
+if (color2){
+    calculationDiv.style.backgroundColor=color2
+}
+
+const answerDiv = document.createElement("div")
+answerDiv.textContent += answer
+answerDiv.classList.add("answer")
+answerDiv.classList.add("btn")
+answerDiv.addEventListener("click", ()=> addToInput(answerDiv.textContent))
+if (color1){
+    answerDiv.style.backgroundColor=color3
+}
+
+
+calcLogContent.prepend(answerDiv)
+
+calcLogContent.prepend(calculationDiv)
+    answerDiv.addEventListener("mouseover", ()=>darkenBackground(answerDiv))
+    answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
+
+    calculationDiv.addEventListener("mouseover", ()=>darkenBackground(calculationDiv))
+    calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
+
 }
 
 function runAns() {
@@ -1374,7 +1387,8 @@ function changeColors(color1, color2, color3){
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
-    zoomButtons.style.backgroundColor=color3
+    zoominBtn.style.backgroundColor=color3
+    zoomoutBtn.style.backgroundColor=color3
     calcLogBtn.style.backgroundColor=color3
     calcLogFrame.style.backgroundColor=color1
 }
@@ -1682,17 +1696,7 @@ btnsFrameMain.addEventListener('click', (e => {
 }))
 //-----------------------------------------------
 
-/*
-displayTop.addEventListener("click", (e=>{
-    caretPosition = e.target.selectionStart
-    console.log(caretPosition)
-}))
-*/
-
 //save the last caretposition when the input goed out of focus
-displayTop.addEventListener("blur", (e => {
-    caretPosition = e.target.selectionStart
-}))
 
 zoomoutBtn = document.getElementById("zoomoutBtn")
 zoominBtn = document.getElementById("zoominBtn")
@@ -1705,7 +1709,6 @@ zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 
 allBtns.forEach(button=>{
     button.addEventListener("mouseover", ()=>darkenBackground(button))
-    button.addEventListener("mouseout", ()=>lightenBackground(button))
     button.addEventListener("mousedown", ()=>addTempShadow(button))
 })
 
@@ -1715,6 +1718,11 @@ pixel2.addEventListener("click", ()=> triggerColorChange(2))
 pixel3.addEventListener("click", ()=> triggerColorChange(3))
 
 resetColor.addEventListener("click", ()=> resetColors())
+
+
+displayTop.addEventListener("blur", (e => {
+    caretPosition = e.target.selectionStart
+}))
 
 //#endregion
 //#endregion
