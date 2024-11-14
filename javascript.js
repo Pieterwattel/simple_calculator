@@ -1540,7 +1540,7 @@ function checkForErrors(array) {
         }
 
         if (typeof nextElement != "undefined"){
-            if (currentElement.category == "operator" && nextElement.category == "operator" && nextElement != symbolObject[1]){
+            if (currentElement.category == "operator" && nextElement.category == "operator" && nextElement != symbolObject[11]){
                 errorMessage = "SYNTAX ERROR: two consecutive operators"
                 isError = true
             }
