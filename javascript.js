@@ -342,7 +342,7 @@ otherBtns.forEach((prop) => {
 
 //#endregion
 //#region           >>> later variable declarations
-const allBtns = document.querySelectorAll(".btn")
+let allBtns = document.querySelectorAll(".btn")
 //#endregion
 //#endregion
 //#region   > Functions 
@@ -458,6 +458,7 @@ function saveCalculation(string, ans){
     const calculationDiv = document.createElement("div")
     calculationDiv.textContent += calcLog[calcIteration][calcIteration].calc
     calculationDiv.classList.add("calculation")
+    calculationDiv.classList.add("btn")
     if (color2){
         calculationDiv.style.backgroundColor=color2
     }
@@ -465,6 +466,7 @@ function saveCalculation(string, ans){
     const answerDiv = document.createElement("div")
     answerDiv.textContent += calcLog[calcIteration][calcIteration].ans
     answerDiv.classList.add("answer")
+    answerDiv.classList.add("btn")
     if (color1){
         answerDiv.style.backgroundColor=color3
     }
@@ -473,7 +475,13 @@ function saveCalculation(string, ans){
     calcLogContent.prepend(answerDiv)
 
     calcLogContent.prepend(calculationDiv)
+        answerDiv.addEventListener("mouseover", ()=>darkenBackground(answerDiv))
+        answerDiv.addEventListener("mouseout", ()=>lightenBackground(answerDiv, color3))
+        answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
 
+        calculationDiv.addEventListener("mouseover", ()=>darkenBackground(calculationDiv))
+        calculationDiv.addEventListener("mouseout", ()=>lightenBackground(calculationDiv))
+        calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
 
     calcIteration++
 }
@@ -1378,7 +1386,7 @@ function getRandomRgbValue () {
 
 function darkenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 0.5 + 40))
+    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 0.7))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
@@ -1386,6 +1394,32 @@ function brightenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
     rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.2))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+}
+
+function darkenBackground (item){
+    bgColor = window.getComputedStyle(item).backgroundColor;
+    item.style.backgroundColor = darkenRgb(bgColor)
+}
+
+function lightenBackground (item, color){
+    bgColor = window.getComputedStyle(item).backgroundColor;
+    if (item.classList.contains("pixel")){
+        console.log("pixel")
+        return
+    } else if (color){
+        item.style.backgroundColor = color
+    } else if (color2){
+        item.style.backgroundColor = color2
+    } else {
+        item.style.backgroundColor = ""
+    }
+}
+
+function addTempShadow(item){
+    item.style.boxShadow="inset 1px 1px 4px black"
+    setTimeout(() => {
+            item.style.boxShadow=""
+    }, "80")
 }
 
 
@@ -1676,6 +1710,13 @@ let calculatorFrameZoom = 1
 zoomoutBtn.addEventListener("mousedown" ,()=> zoomout())
 
 zoominBtn.addEventListener("mousedown" ,()=> zoomin())
+
+allBtns.forEach(button=>{
+    button.addEventListener("mouseover", ()=>darkenBackground(button))
+    button.addEventListener("mouseout", ()=>lightenBackground(button))
+    button.addEventListener("mousedown", ()=>addTempShadow(button))
+})
+
 
 pixel1.addEventListener("click", ()=> triggerColorChange(1))
 pixel2.addEventListener("click", ()=> triggerColorChange(2))
