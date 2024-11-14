@@ -1329,41 +1329,13 @@ function RandomColors(){
 }
 
 function resetColors(){
-        //nodes1
-        document.body.style.background = "url(./files/johannes-plenio-YRBPT5x5aLw-unsplash.jpg)"
-        document.body.style.backgroundColor = ""
-        calcLogContent.childNodes.forEach(node => {
-            node.style.borderColor=""
-        });
-
-        //nodes2
-        allBtns.forEach(element => {
-            element.style.backgroundColor=""
-        });
-        //calculatorFrame.style.borderColor=""
-        dragBar.style.backgroundColor=""
-        calcLogHeader.style.backgroundColor=""
-        calcLogFrame.style.backgroundColor=""
-        calcLogHeader.style.color=""
-    
-        //nodes3
-       /* allBtns.forEach(element => {
-            element.style.color=color4
-        });*/
-        btnsFrameMain.style.backgroundColor=""
-        zoomButtons.style.backgroundColor=""
-        calcLogBtn.style.backgroundColor=""
-        pixels.forEach(pixel => {
-            pixel.style.backgroundColor=""
-        });
-
-        Array.from(answerNodes).forEach(node => {
-            node.style.backgroundColor = ""
-        });
-        Array.from(calculationNodes).forEach(node => {
-            node.style.backgroundColor = ""
-        });
-        
+    color1 = ""
+    color2 = ""
+    color3 = ""
+    pixel1.style.backgroundColor = ""
+    pixel2.style.backgroundColor = ""
+    pixel3.style.backgroundColor = ""
+    changeColors(color1, color2, color3)
 }
 
 const answerNodes = document.getElementsByClassName("answer")
