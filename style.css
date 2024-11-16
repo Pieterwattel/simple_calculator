@@ -117,7 +117,6 @@ input:focus{
     padding-right: 20px;
     padding-top: 5px;
     background-color: rgba(214, 214, 214, 0);
-
     color:black
 }
 
@@ -293,7 +292,7 @@ button{
     width: calc(15vw + 150px);
     min-height: fit-content;
     height: fit-content;
-    max-height: 98vh;
+    max-height: 98vh !important;
     position: absolute;
     left: 0;
     top: 0;
@@ -309,7 +308,6 @@ button{
     overflow: auto;
 
     border-radius: 0 0 calc(0.7vw + 5px)calc(0.7vw + 5px);
-    direction: rtl;
     box-shadow: -2px -2px 20px black;
 
     /*left: calc(-15vw + -150px);*/
@@ -317,7 +315,6 @@ button{
 
 #calcLogFrame > * {
     text-align: left;
-    direction: ltr;
 }
 
 #calcLogHeader{

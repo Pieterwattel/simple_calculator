@@ -13,6 +13,7 @@ let inputArray = []
 
 let currentNum = ""
 
+let ranEquals = false
 let isError = false
 let errorMessage = ""
 let errorCheckIteration = 0
@@ -438,8 +439,8 @@ function runEquals() {
             displayAns()
             inputArray = []
             currentElement = ""
+            ranEquals = true
         } else {
-            console.log("yes")
             alert(errorMessage)
         }
         errorMessage = ""
@@ -572,6 +573,19 @@ function isNumberIncludesAllButMinus(value) {
     }
     if (!isNaN(value) ||
         value === "." ||
+        symbolObject[1].sign.includes(value) ||
+        value.category == "number") {
+        return true
+    } else {
+        return false
+    }
+}
+
+function isNumberIncludesAllButMinusAndPeriod(value) {
+    if (value == "-"){
+        return false
+    }
+    if (!isNaN(value) ||
         symbolObject[1].sign.includes(value) ||
         value.category == "number") {
         return true
@@ -1566,6 +1580,15 @@ function checkForErrors(array) {
 
 function runEveryEdit(e) {
     userInput = displayTop.value
+    if (ranEquals){
+        let newValue = userInput.at(-1)
+        if (isNumberIncludesAllButMinusAndPeriod(newValue)){
+            userInput=""
+            userInput += newValue
+            updateDisplay()
+        }
+        ranEquals=false
+    }
     balance = checkBracketsBalance(userInput)
     if (userInput.length <= 3) {
         addAnsWhenOperatorFirst(userInput)
@@ -1640,10 +1663,6 @@ function giveMissingBrackets(balance) {
 //#region   > Dom Generation
 //#region       >> LISTENERS
 
-window.addEventListener("mouseover", (e) => {
-    e.target.setAttribute("title", `id: ${e.target.id} class: ${e.target.classList}`)
-})
-
 btnFrameFunc.childNodes.forEach(child => {
     child.addEventListener("click", functionPress);
 });
@@ -1675,6 +1694,7 @@ document.addEventListener("keyup", (e => {
 
         e.preventDefault()
         runEquals()
+        return
     }
 
     if (e.altKey && e.key === '-') {
