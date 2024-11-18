@@ -89,7 +89,7 @@ input:focus{
     box-shadow: 4px 4px 60px black;
     transform-origin: top left;
 
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
 }
 
 #dragBar{

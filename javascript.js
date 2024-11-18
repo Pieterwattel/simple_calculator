@@ -1429,15 +1429,16 @@ function darkenRgb(string){
 
 function brightenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.3 + 50))
+    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.3 + 30))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
 function darkenOnHover (item){
     bgColor = window.getComputedStyle(item).backgroundColor;
-    item.addEventListener("mouseout", ()=>resetBackground(item, bgColor))
     let newColor = darkenRgb(bgColor)
     item.style.backgroundColor = newColor
+    
+    item.addEventListener("mouseout", ()=>resetBackground(item, bgColor))
 }
 
 function resetBackground (item, color){
