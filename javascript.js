@@ -1779,10 +1779,21 @@ displayTop.addEventListener("blur", (e => {
     caretPosition = e.target.selectionStart
 }))
 
-deleteCalcLogBtn.addEventListener("click", ()=> console.log("leftclick"))
+deleteCalcLogBtn.addEventListener("click", ()=>{
+    calcLog2 = calcLog
+    calcLog = []
+    console.log(calcLogContent.childNodes)
+    for (let i = calcLogContent.childNodes.length-1; i>=0; i--){
+        calcLogContent.childNodes[i].remove()
+    }
+    displayCalcLog()
+})
+
 deleteCalcLogBtn.addEventListener("contextmenu", (e)=> {
-    e.preventDefault() 
-    console.log("rightclick")
+    let calcLogSave = calcLog2
+    calcLog2 = calcLog
+    calcLog = calcLogSave
+    displayCalcLog()
 })
 
 //#endregion
