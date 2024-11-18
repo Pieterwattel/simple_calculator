@@ -107,13 +107,14 @@ input:focus{
     display: flex;
 }
 
-#calcLogBtn{
+#deleteCalcLogBtn{
     font-weight: 900;
     padding-left: 15px;
-    padding-right: 20px;
+    padding-right: 0px;
     padding-top: 5px;
     background-color: rgba(214, 214, 214, 0);
-    color:black
+    color:black;
+    border-left: 1px solid black; 
 }
 
 #zoomButtons {

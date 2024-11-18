@@ -24,6 +24,7 @@ let caretPosition = 0
 
 let calcIteration = 0
 let calcLog = []
+let calcLog2 = []
 
 let color1
 let color2
@@ -41,7 +42,7 @@ const calcLogContent = document.getElementById("calcLogContent")
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
 const zoomButtons = document.getElementById('zoomButtons')
-const calcLogBtn = document.getElementById("calcLogBtn")
+const deleteCalcLogBtn = document.getElementById("deleteCalcLogBtn")
 
 const resetColor = document.getElementById("resetColors")
 
@@ -465,38 +466,38 @@ function saveCalculation(string, ans){
 
     console.log(calcLog[calcIteration][calcIteration].calc)
 
-    makeCalcLog(calcLog[calcIteration][calcIteration].calc, calcLog[calcIteration][calcIteration].ans)
+    displayCalcLogElement(calcLog[calcIteration][calcIteration].calc, calcLog[calcIteration][calcIteration].ans)
     calcIteration++
 }
 
-function makeCalcLog(calculation, answer){
-    const calculationDiv = document.createElement("div")
-calculationDiv.textContent += calculation
-calculationDiv.classList.add("calculation")
-calculationDiv.classList.add("btn")
-calculationDiv.addEventListener("click", ()=> addToInput(calculationDiv.textContent))
-if (color2){
-    calculationDiv.style.backgroundColor=color2
-}
+function displayCalcLogElement(calculation, answer){
+        const calculationDiv = document.createElement("div")
+    calculationDiv.textContent += calculation
+    calculationDiv.classList.add("calculation")
+    calculationDiv.classList.add("btn")
+    calculationDiv.addEventListener("click", ()=> addToInput(calculationDiv.textContent))
+    if (color2){
+        calculationDiv.style.backgroundColor=color2
+    }
 
-const answerDiv = document.createElement("div")
-answerDiv.textContent += answer
-answerDiv.classList.add("answer")
-answerDiv.classList.add("btn")
-answerDiv.addEventListener("click", ()=> addToInput(answerDiv.textContent))
-if (color1){
-    answerDiv.style.backgroundColor=color3
-}
+    const answerDiv = document.createElement("div")
+    answerDiv.textContent += answer
+    answerDiv.classList.add("answer")
+    answerDiv.classList.add("btn")
+    answerDiv.addEventListener("click", ()=> addToInput(answerDiv.textContent))
+    if (color1){
+        answerDiv.style.backgroundColor=color3
+    }
 
 
-calcLogContent.prepend(answerDiv)
+    calcLogContent.prepend(answerDiv)
 
-calcLogContent.prepend(calculationDiv)
-    answerDiv.addEventListener("mouseover", ()=>darkenOnHover(answerDiv))
-    answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
+    calcLogContent.prepend(calculationDiv)
+        answerDiv.addEventListener("mouseover", ()=>darkenOnHover(answerDiv))
+        answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
 
-    calculationDiv.addEventListener("mouseover", ()=>darkenOnHover(calculationDiv))
-    calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
+        calculationDiv.addEventListener("mouseover", ()=>darkenOnHover(calculationDiv))
+        calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
 
 }
 
@@ -1408,8 +1409,8 @@ function changeColors(color1, color2, color3){
     btnsFrameMain.style.backgroundColor=color3
     zoominBtn.style.backgroundColor=color3
     zoomoutBtn.style.backgroundColor=color3
-    if (calcLogBtn){
-        calcLogBtn.style.backgroundColor=color3
+    if (deleteCalcLogBtn){
+        deleteCalcLogBtn.style.backgroundColor=color3
     }
     if (calcLogFrame){
         calcLogFrame.style.backgroundColor=color1
@@ -1456,6 +1457,18 @@ function addTempShadow(item){
     setTimeout(() => {
             item.style.boxShadow=""
     }, "80")
+}
+
+function deleteCalcLog (){
+    calcLog2 = calcLog
+    calcLog = []
+}
+
+function displayCalcLog(){
+    j = calcLog.length-1
+    for (i = 0; i <= j; i++){
+       displayCalcLogElement(calcLog[i][i].calc, calcLog[i][i].ans)
+    }
 }
 
 
@@ -1766,11 +1779,16 @@ displayTop.addEventListener("blur", (e => {
     caretPosition = e.target.selectionStart
 }))
 
+deleteCalcLogBtn.addEventListener("click", ()=> console.log("leftclick"))
+deleteCalcLogBtn.addEventListener("contextmenu", (e)=> {
+    e.preventDefault() 
+    console.log("rightclick")
+})
+
 //#endregion
 //#endregion
 //#region   > CSS variables
 
-displayBottom.textContent = ""
+
 
 //√(4)+3^2-sin(π/2)
-
