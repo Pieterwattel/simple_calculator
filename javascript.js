@@ -122,7 +122,7 @@ let symbolObject = [
         precedence: 2,
         category: 'bracket',
         multiplyWhenNumInFront: 'true',
-        placement: line1,
+        placement: line2,
     },
     {
         //5
@@ -131,7 +131,7 @@ let symbolObject = [
         precedence: 2,
         category: 'bracket',
         multiplyWhenNumBehind: 'true',
-        placement: line1,
+        placement: line2,
     },
     {
         //6
@@ -141,7 +141,7 @@ let symbolObject = [
         category: 'number',
         multiplyWhenNumInFront: 'true',
         multiplyWhenNumBehind: 'true',
-        placement: line2
+        placement: line3
     },
     {
         //7
@@ -167,7 +167,7 @@ let symbolObject = [
         category: 'operator',
         multiplyWhenNumBehind: 'true',
         btnTxt: "x!",
-        placement: line2,
+        placement: line3,
     },
     {
         //10
@@ -175,7 +175,7 @@ let symbolObject = [
         sign: ['%', 'mod'],
         precedence: 5,
         category: 'operator',
-        placement: line2,
+        placement: line3,
     },
     {
         //11
@@ -195,7 +195,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "sin",
         multiplyWhenNumInFront: 'true',
-        placement: line3,
+        placement: line5,
     },
     {
         //13
@@ -205,7 +205,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "cos",
         multiplyWhenNumInFront: 'true',
-        placement: line3,
+        placement: line5,
     },
     {
         //14
@@ -215,7 +215,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "tan",
         multiplyWhenNumInFront: 'true',
-        placement: line3,
+        placement: line5,
     },
     {
         //15
@@ -225,7 +225,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aSin",
         multiplyWhenNumInFront: 'true',
-        placement: line4,
+        placement: line5,
     },
     {
         //16
@@ -235,7 +235,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aCos",
         multiplyWhenNumInFront: 'true',
-        placement: line4,
+        placement: line5,
     },
     {
         //17
@@ -245,7 +245,7 @@ let symbolObject = [
         category: 'trigFunction',
         btnTxt: "aTan",
         multiplyWhenNumInFront: 'true',
-        placement: line4,
+        placement: line5,
     },
     {
         //18
@@ -343,7 +343,7 @@ otherBtns.forEach((prop) => {
 //#endregion
 //#region           >>> later variable declarations or listeners
 let allBtns = document.querySelectorAll(".btn")
-
+const equalsBtn = document.getElementById("Equals")
 //#endregion
 //#endregion
 //#region   > Functions 
@@ -492,10 +492,10 @@ if (color1){
 calcLogContent.prepend(answerDiv)
 
 calcLogContent.prepend(calculationDiv)
-    answerDiv.addEventListener("mouseover", ()=>darkenBackground(answerDiv))
+    answerDiv.addEventListener("mouseover", ()=>darkenOnHover(answerDiv))
     answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
 
-    calculationDiv.addEventListener("mouseover", ()=>darkenBackground(calculationDiv))
+    calculationDiv.addEventListener("mouseover", ()=>darkenOnHover(calculationDiv))
     calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
 
 }
@@ -1283,7 +1283,7 @@ function checkBracketsBalance(string) {
 function unEqualBracketAmount(string) {
     if (checkBracketsBalance(string) != 0) {
         isError = true
-        alert("ERROR: unequal bracket balance")
+        errorMessage = "SYNTAX ERROR: unequal bracket balance"
     }
 }
 
@@ -1388,6 +1388,7 @@ function changeColors(color1, color2, color3){
     if (color2){
         calcLogHeader.style.color="black"
     }
+    equalsBtn.style.borderColor=color2
 
     //nodes2
     allBtns.forEach(element => {
@@ -1397,14 +1398,22 @@ function changeColors(color1, color2, color3){
     Array.from(answerNodes).forEach(node => {
         node.style.backgroundColor = color3
     });
+    lightenBackground(equalsBtn)
+
+
+    
 
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
     zoominBtn.style.backgroundColor=color3
     zoomoutBtn.style.backgroundColor=color3
-    calcLogBtn.style.backgroundColor=color3
-    calcLogFrame.style.backgroundColor=color1
+    if (calcLogBtn){
+        calcLogBtn.style.backgroundColor=color3
+    }
+    if (calcLogFrame){
+        calcLogFrame.style.backgroundColor=color1
+    }
 }
 
 function getRandomRgbValue () {
@@ -1420,19 +1429,25 @@ function darkenRgb(string){
 
 function brightenRgb(string){
     let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.2))
+    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.3 + 50))
     return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
 }
 
-function darkenBackground (item){
+function darkenOnHover (item){
     bgColor = window.getComputedStyle(item).backgroundColor;
-    item.addEventListener("mouseout", ()=>lightenBackground(item, bgColor))
+    item.addEventListener("mouseout", ()=>resetBackground(item, bgColor))
     let newColor = darkenRgb(bgColor)
     item.style.backgroundColor = newColor
 }
 
-function lightenBackground (item, color){
+function resetBackground (item, color){
     item.style.backgroundColor = color
+}
+
+function lightenBackground (item){
+    bgColor = window.getComputedStyle(item).backgroundColor;
+    let newColor = brightenRgb(bgColor)
+    item.style.backgroundColor = newColor
 }
 
 function addTempShadow(item){
@@ -1549,13 +1564,13 @@ function checkForErrors(array) {
             if (num < -1 ||
                 num > 1) {
                 isError = true
-                alert("invalid input for aSine, number must be between -1 and 1")
+                errorMessage = "invalid input for aSine, number must be between -1 and 1"
             }
         } else if (currentElement == symbolObject[16]) {
             if (num < -1 ||
                 num > 1) {
                 isError = true
-                alert("invalid input for aCos, number must be between -1 and 1")
+                errorMessage = "invalid input for aCos, number must be between -1 and 1"
             }
         }
 
@@ -1568,6 +1583,12 @@ function checkForErrors(array) {
 
         if (currentElement == "") {
             array.splice(index, 1)
+        }
+
+        if (currentElement == symbolObject[4]&&
+            nextElement == symbolObject [5]){
+                errorMessage = "SYNTAX ERROR: empty brackets"
+                isError = true
         }
 
         // if any adjustments in index number need be made,
@@ -1702,8 +1723,7 @@ document.addEventListener("keyup", (e => {
         zoomout()
     }
 
-    if (e.altKey && e.key === '='||
-        e.altKey && e.key === '+') {
+    if (e.altKey && e.key === '+') {
         e.preventDefault();
         zoomin()
     }
@@ -1728,7 +1748,7 @@ zoomoutBtn.addEventListener("mousedown" ,()=> zoomout())
 zoominBtn.addEventListener("mousedown" ,()=> zoomin())
 
 allBtns.forEach(button=>{
-    button.addEventListener("mouseover", ()=>darkenBackground(button))
+    button.addEventListener("mouseover", ()=>darkenOnHover(button))
     button.addEventListener("mousedown", ()=>addTempShadow(button))
 })
 

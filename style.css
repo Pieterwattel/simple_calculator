@@ -4,7 +4,6 @@
 
 
 * {
-    background-color: black;
     color: white;
     font-size: 60px
 }
@@ -87,9 +86,6 @@ input:focus{
     border: 2px solid black;
     border-radius: 50px 50px 20px 20px;
     background-color: rgba(0, 0, 0, 0.377);
-   /* 
-   transform: scale(0.4,0.4);
-   */
     box-shadow: 4px 4px 60px black;
     transform-origin: top left;
 
@@ -165,10 +161,25 @@ input:focus{
 #btnFrameFunc > *{
     width: fit-content;
     height: fit-content;
+    font-weight: 700;
+}
+
+#Equals{
+    min-width: 90px;
+    border: 5px solid black;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 55px;
 }
 
 #numAndSymbolFrame{
     display: flex;
+    flex-direction: column;
+}
+
+#btnsBlock1{
+    display: flex;
+    flex-direction: row;
     gap: 12px;
 }
 
@@ -226,8 +237,15 @@ button{
     height: 90px;
 }
 
+#line5{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 4px;
+    padding-right: 5px;
+}
+
 #line1 > *{
-    min-width: 50px;
+    min-width: 70px;
 }
 
 #line2 > *{
@@ -237,6 +255,11 @@ button{
 #line4 > *{
     font-size: 40px;
 }
+
+#line5 > *{
+    font-size: 45px;
+}
+
 
 .displayFrame,
 .btnFrame{
