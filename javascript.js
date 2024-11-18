@@ -1469,6 +1469,7 @@ function displayCalcLog(){
     for (i = 0; i <= j; i++){
        displayCalcLogElement(calcLog[i][i].calc, calcLog[i][i].ans)
     }
+    calcIteration = calcLog.length
 }
 
 
@@ -1790,6 +1791,7 @@ deleteCalcLogBtn.addEventListener("click", ()=>{
 })
 
 deleteCalcLogBtn.addEventListener("contextmenu", (e)=> {
+    e.preventDefault()
     let calcLogSave = calcLog2
     calcLog2 = calcLog
     calcLog = calcLogSave
