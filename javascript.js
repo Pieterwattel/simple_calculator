@@ -1723,7 +1723,8 @@ document.addEventListener("keyup", (e => {
         zoomout()
     }
 
-    if (e.altKey && e.key === '+') {
+    if (e.altKey && e.key === '='||
+        e.altKey && e.key === '+') {
         e.preventDefault();
         zoomin()
     }
