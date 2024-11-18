@@ -308,6 +308,8 @@ button{
     align-self: flex-start;
 
     border-radius: 5px;
+    color: white;
+    background-color: black;
 }
 
 #calcLogFrame{
