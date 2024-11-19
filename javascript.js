@@ -1411,9 +1411,6 @@ function changeColors(color1, color2, color3){
     btnsFrameMain.style.backgroundColor=color3
     nextCalcLogBtn.style.backgroundColor=color3
     previousCalcLogBtn.style.backgroundColor=color3
-    if (deleteCalcLogBtn){
-        deleteCalcLogBtn.style.backgroundColor=color3
-    }
     if (calcLogFrame){
         calcLogFrame.style.backgroundColor=color1
     }
@@ -1461,12 +1458,45 @@ function addTempShadow(item){
     }, "80")
 }
 
-function deleteCalcLog (){
-    calcLog2 = calcLog
+let calcLogArray = []
+let currentCalcLogIndex = 0
+
+function newCalcLog (){
+    previousCalcLogs.push(calcLog)
     calcLog = []
 }
 
+function displayNextCalcLog(){
+    if (currentCalcLogIndex == 0){
+        calcLogArray.unshift(structuredClone(calcLog))
+        calcLog = []
+        console.log(calcLogArray)
+    } else {
+        currentCalcLogIndex--
+        calcLog = calcLogArray[currentCalcLogIndex]
+    }
+    displayCalcLog()
+}
+
+function displayPreviousCalcLog(){
+    if(currentCalcLogIndex >= calcLogArray.length-1){
+        alert("first history entry reached")
+    } else {
+        currentCalcLogIndex++
+        calcLog = calcLogArray[currentCalcLogIndex]
+        displayCalcLog()
+    }
+}
+
+
+
 function displayCalcLog(){
+    //delete calcLog html elements
+    for (let i = calcLogContent.childNodes.length-1; i>=0; i--){
+        calcLogContent.childNodes[i].remove()
+    }
+
+    //create calcLog html elements
     j = calcLog.length-1
     for (i = 0; i <= j; i++){
        displayCalcLogElement(calcLog[i][i].calc, calcLog[i][i].ans)
@@ -1782,23 +1812,20 @@ displayTop.addEventListener("blur", (e => {
     caretPosition = e.target.selectionStart
 }))
 
-deleteCalcLogBtn.addEventListener("click", ()=>{
-    calcLog2 = calcLog
-    calcLog = []
-    console.log(calcLogContent.childNodes)
-    for (let i = calcLogContent.childNodes.length-1; i>=0; i--){
-        calcLogContent.childNodes[i].remove()
-    }
-    displayCalcLog()
-})
+nextCalcLogBtn.addEventListener("click", ()=>displayNextCalcLog())
 
-deleteCalcLogBtn.addEventListener("contextmenu", (e)=> {
+previousCalcLogBtn.addEventListener("click", ()=> displayPreviousCalcLog())
+
+
+/*
+newCalcLogBtn.addEventListener("contextmenu", (e)=> {
     e.preventDefault()
     let calcLogSave = calcLog2
     calcLog2 = calcLog
     calcLog = calcLogSave
     displayCalcLog()
 })
+    */
 
 //#endregion
 //#endregion
