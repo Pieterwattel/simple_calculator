@@ -42,7 +42,9 @@ const calcLogContent = document.getElementById("calcLogContent")
 const calculatorFrame = document.getElementById(`calculatorFrame`)
 
 const zoomButtons = document.getElementById('zoomButtons')
-const deleteCalcLogBtn = document.getElementById("deleteCalcLogBtn")
+const nextCalcLogBtn = document.getElementById("nextCalcLogBtn")
+const previousCalcLogBtn = document.getElementById("previousCalcLogBtn")
+
 
 const resetColor = document.getElementById("resetColors")
 
@@ -1407,8 +1409,8 @@ function changeColors(color1, color2, color3){
 
     //nodes3
     btnsFrameMain.style.backgroundColor=color3
-    zoominBtn.style.backgroundColor=color3
-    zoomoutBtn.style.backgroundColor=color3
+    nextCalcLogBtn.style.backgroundColor=color3
+    previousCalcLogBtn.style.backgroundColor=color3
     if (deleteCalcLogBtn){
         deleteCalcLogBtn.style.backgroundColor=color3
     }

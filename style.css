@@ -83,7 +83,7 @@ input:focus{
     flex-direction: column;
     flex:1;
     background-size: contain;
-    border: 2px solid black;
+    border: 3.4px solid black;
     border-radius: 50px 50px 20px 20px;
     background-color: rgba(0, 0, 0, 0.377);
     box-shadow: 4px 4px 60px black;
@@ -107,14 +107,23 @@ input:focus{
     display: flex;
 }
 
-#deleteCalcLogBtn{
+#calcLogBtns{
+    display: block;
+    height: 100%;
+    width: fit-content;
+    margin-bottom: 0;
+    display: flex;
+}
+
+#nextCalcLogBtn,
+#previousCalcLogBtn{
     font-weight: 900;
-    padding-left: 15px;
-    padding-right: 0px;
+    padding-left: 18px;
+    padding-right: 18px;
     padding-top: 5px;
     background-color: rgba(214, 214, 214, 0);
     color:black;
-    border-left: 1px solid black; 
+    border-right: 1px solid black; 
 }
 
 #zoomButtons {
@@ -131,14 +140,14 @@ input:focus{
 
 #zoomoutBtn{
     color:black;
-    border-right: 1px solid black;
+    border-left: 1px solid black;
     background-color: rgba(214, 214, 214, 0);
 }
 
 #zoominBtn{
     color:black;
     background-color: rgba(214, 214, 214, 0);
-    border-right: 1px solid black;
+    border-left: 1px solid black;
 }
 
 
@@ -148,7 +157,7 @@ input:focus{
 }
 
 #btnsFrameMain{
- padding:5px
+ padding:5px;
 }
 
 #btnFrameFunc{
@@ -334,7 +343,7 @@ button{
     overflow: auto;
 
     border-radius: 0 0 calc(0.7vw + 5px)calc(0.7vw + 5px);
-    box-shadow: -2px -2px 20px black;
+    box-shadow: 2px 2px 8px black;
 
     /*left: calc(-15vw + -150px);*/
 }
