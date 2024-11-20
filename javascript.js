@@ -1458,8 +1458,8 @@ function addTempShadow(item){
     }, "80")
 }
 
-let calcLogArray = []
-let currentCalcLogIndex = 0
+let nextCalcLogArray = []
+let previousCalcLogArray = []
 
 function newCalcLog (){
     previousCalcLogs.push(calcLog)
@@ -1467,25 +1467,32 @@ function newCalcLog (){
 }
 
 function displayNextCalcLog(){
-    if (currentCalcLogIndex == 0){
-        calcLogArray.unshift(structuredClone(calcLog))
-        calcLog = []
-        console.log(calcLogArray)
+    let tempCalcLog = nextCalcLogArray.pop()
+    if (nextCurrentCalcArray.length == 0){
+        nextCalcLogArray.push(tempCalclog)
+        cal
     } else {
-        currentCalcLogIndex--
-        calcLog = calcLogArray[currentCalcLogIndex]
+        calcLog = nextC
     }
+    console.log(currentCalcLogIndex)
     displayCalcLog()
 }
 
 function displayPreviousCalcLog(){
-    if(currentCalcLogIndex >= calcLogArray.length-1){
+    if(currentCalcLogIndex >= calcLogArray.length){
         alert("first history entry reached")
+        currentCalcLogIndex--
+    } else if (currentCalcLogIndex == 0){
+        calcLogArray.unshift(structuredClone(calcLog))
+        currentCalcLogIndex = currentCalcLogIndex + 2
+        calcLog = calcLogArray[currentCalcLogIndex-1]
+        displayCalcLog()
     } else {
         currentCalcLogIndex++
-        calcLog = calcLogArray[currentCalcLogIndex]
+        calcLog = calcLogArray[currentCalcLogIndex-1]
         displayCalcLog()
     }
+    console.log(currentCalcLogIndex)
 }
 
 
