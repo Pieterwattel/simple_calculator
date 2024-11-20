@@ -24,7 +24,9 @@ let caretPosition = 0
 
 let calcIteration = 0
 let calcLog = []
-let calcLog2 = []
+let nextCalcLogArray = []
+let previousCalcLogArray = []
+let calcLogVisible = true
 
 let color1
 let color2
@@ -427,11 +429,12 @@ function getFunction(e) {
 }
 
 function runEquals() {
+    let string
     if (displayTop.value != "") {
         isError = false
         inputArray = []
         previousElementForMultiplication = ""
-        let string = displayTop.value.concat(backMissingCharacters.textContent)
+        string = displayTop.value.concat(backMissingCharacters.textContent)
         array = getArrayFromString(string)
         // if there are no errors, run the rest of the function
         if (!checkForErrors(array)) {
@@ -449,6 +452,7 @@ function runEquals() {
         errorMessage = ""
     }
 }
+
 function addToInput(string){
     userInput = displayTop.value
     newInput = userInput.slice(0, caretPosition) + string + userInput.slice(caretPosition)
@@ -465,9 +469,6 @@ function saveCalculation(string, ans){
             ans: ans.toString() ,
         }
     })
-
-    console.log(calcLog[calcIteration][calcIteration].calc)
-
     displayCalcLogElement(calcLog[calcIteration][calcIteration].calc, calcLog[calcIteration][calcIteration].ans)
     calcIteration++
 }
@@ -1459,9 +1460,6 @@ function addTempShadow(item){
     }, "80")
 }
 
-let nextCalcLogArray = []
-let previousCalcLogArray = []
-
 function newCalcLog (){
     previousCalcLogs.push(calcLog)
     calcLog = []
@@ -1486,14 +1484,14 @@ function displayNextCalcLog(){
             console.log("calclog pushed")
             previousCalcLogArray.push(calcLog)
             calcLog = []
+            calcLogHeader.textContent = `Calculation History ${integerToRoman(previousCalcLogArray.length+1)}`
         }
     } else{
         // if the user is not creating a new calcLog, they are navigating forward though the log history
         previousCalcLogArray.push(calcLog)    
         calcLog = nextCalcLogArray.pop()
+        calcLogHeader.textContent = `Calculation History ${integerToRoman(previousCalcLogArray.length+1)}`
     }
-    console.log(previousCalcLogArray.length)
-
     displayCalcLog()
 }
 
@@ -1512,6 +1510,7 @@ function displayPreviousCalcLog(){
         //if the user is not at the first calcLog, they are navigating backwards through the history.
         nextCalcLogArray.push(calcLog)
         calcLog = previousCalcLogArray.pop()
+        calcLogHeader.textContent = `Calculation History ${integerToRoman(previousCalcLogArray.length+1)}`
     }
     displayCalcLog()
 }
@@ -1540,6 +1539,32 @@ function switchCalcLogVisibility() {
         calcLogContent.classList.remove("closeAnimation")
         calcLogVisible = true
     }
+}
+
+function integerToRoman(num) {
+    const romanValues = {
+        M: 1000,
+        CM: 900,
+        D: 500,
+        CD: 400,
+        C: 100,
+        XC: 90,
+        L: 50,
+        XL: 40,
+        X: 10,
+        IX: 9,
+        V: 5,
+        IV: 4,
+        I: 1
+    };
+    let roman = '';
+    for (let key in romanValues) {
+        while (num >= romanValues[key]) {
+            roman += key;
+            num -= romanValues[key];
+        }
+    }
+    return roman;
 }
 
 
@@ -1855,18 +1880,6 @@ nextCalcLogBtn.addEventListener("click", ()=>displayNextCalcLog())
 previousCalcLogBtn.addEventListener("click", ()=> displayPreviousCalcLog())
 
 calcLogHeader.addEventListener("click", () => switchCalcLogVisibility())
-
-let calcLogVisible = true
-
-/*
-newCalcLogBtn.addEventListener("contextmenu", (e)=> {
-    e.preventDefault()
-    let calcLogSave = calcLog2
-    calcLog2 = calcLog
-    calcLog = calcLogSave
-    displayCalcLog()
-})
-    */
 
 //#endregion
 //#endregion
