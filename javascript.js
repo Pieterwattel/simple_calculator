@@ -511,6 +511,7 @@ function runAns() {
 }
 
 function clearDisplay() {
+    console.log(userInput)
     userInput = ""
     ans = ""
     updateDisplay()
@@ -1467,11 +1468,17 @@ function newCalcLog (){
 }
 
 function displayNextCalcLog(){
+    //make sure that the calcLog is displayed when it's currently hidden.
+    if (!calcLogVisible){
+        calcLogContent.classList.remove("closeAnimation")
+        calcLogVisible = true
+    }
+
     // check first if the user is creating a new calcLog
     if (nextCalcLogArray.length == 0){
         // if the current one is empty, don't allow it.
         if (calcLog.length == 0){
-        alert ("can't add a new history, the current one is empty")
+        alert ("can't make a new history entry, the current one is empty")
         return
         }
         // then, if this calcLog not empty, save the current one and empty it
@@ -1486,27 +1493,20 @@ function displayNextCalcLog(){
         calcLog = nextCalcLogArray.pop()
     }
     console.log(previousCalcLogArray.length)
-/*
 
-
-
-    /*
-    let tempCalcLog = nextCalcLogArray.pop()
-    if (nextCurrentCalcArray.length == 0){
-        nextCalcLogArray.push(tempCalclog)
-        cal
-    } else {
-        calcLog = nextC
-    }
-    console.log(currentCalcLogIndex)
-    */
     displayCalcLog()
 }
 
 function displayPreviousCalcLog(){
+    //make sure that the calcLog is displayed when it's currently hidden.
+    if (!calcLogVisible){
+        calcLogContent.classList.remove("closeAnimation")
+        calcLogVisible = true
+    }
+
     // check first if the user is at the first calcLog entry:
     if (previousCalcLogArray.length == 0){
-        alert ("first history entry reached")
+        alert ("initial history entry reached")
         return 
     } else {
         //if the user is not at the first calcLog, they are navigating backwards through the history.
@@ -1514,22 +1514,6 @@ function displayPreviousCalcLog(){
         calcLog = previousCalcLogArray.pop()
     }
     displayCalcLog()
-
-    /*
-    if(currentCalcLogIndex >= calcLogArray.length){
-        alert("first history entry reached")
-        currentCalcLogIndex--
-    } else if (currentCalcLogIndex == 0){
-        calcLogArray.unshift(structuredClone(calcLog))
-        currentCalcLogIndex = currentCalcLogIndex + 2
-        calcLog = calcLogArray[currentCalcLogIndex-1]
-        displayCalcLog()
-    } else {
-        currentCalcLogIndex++
-        calcLog = calcLogArray[currentCalcLogIndex-1]
-        displayCalcLog()
-    }
-        */
 }
 
 
@@ -1546,6 +1530,16 @@ function displayCalcLog(){
        displayCalcLogElement(calcLog[i][i].calc, calcLog[i][i].ans)
     }
     calcIteration = calcLog.length
+}
+
+function switchCalcLogVisibility() {
+    if (calcLogVisible){
+        calcLogContent.classList.add("closeAnimation")
+        calcLogVisible = false
+    } else {
+        calcLogContent.classList.remove("closeAnimation")
+        calcLogVisible = true
+    }
 }
 
 
@@ -1863,16 +1857,6 @@ previousCalcLogBtn.addEventListener("click", ()=> displayPreviousCalcLog())
 calcLogHeader.addEventListener("click", () => switchCalcLogVisibility())
 
 let calcLogVisible = true
-
-function switchCalcLogVisibility() {
-    if (calcLogVisible){
-        calcLogContent.classList.add("closeAnimation")
-        calcLogVisible = false
-    } else {
-        calcLogContent.classList.remove("closeAnimation")
-        calcLogVisible = true
-    }
-}
 
 /*
 newCalcLogBtn.addEventListener("contextmenu", (e)=> {
