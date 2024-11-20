@@ -32,6 +32,8 @@ let color1
 let color2
 let color3
 
+let fixEqualsBtnBug = ""
+
 //#endregion
 //#region       >> Node declaration / generation
 //#region           >>> Containers
@@ -260,6 +262,14 @@ let symbolObject = [
         multiplyWhenNumInFront: 'true',
         multiplyWhenNumBehind: 'true',
     },
+    {
+        //19
+        id: 'Nth root' ,
+        sign: ['ⁿ√'],   
+        precedence: 4,
+        category: 'operator',
+        placement: line2,
+        } ,
 
 ]
 
@@ -401,6 +411,7 @@ function getFunction(e) {
     switch (e.target.textContent) {
         case "=":
             runEquals()
+            fixEqualsBtnBug = displayTop.value
             break;
 
         case "ans":
@@ -536,7 +547,11 @@ function doDelete() {
 }
 
 function displayEntry() {
+    if (fixEqualsBtnBug != ""){
+        userInput = fixEqualsBtnBug
+    }
     displayTop.value = userInput
+    fixEqualsBtnBug = ""
 }
 
 function displayAns() {
@@ -906,6 +921,11 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             return symbolObject[8]
             break;
 
+        case (symbolObject[19].sign.includes(twoSymbolValue)):
+            //          ..
+            deleteValuesFromString(index - 1, 1)
+            return symbolObject[19]
+
 
         //-- 1 VALUE-LENGTH SYMBOLS --
         case (symbolObject[0].sign.includes(value)):
@@ -1248,7 +1268,7 @@ function doCalculation(symbol, index, array) {
 
         case (symbol == symbolObject[19]):
             //          ...
-            result = +previousValue + +previousValue
+            result = (Math.pow(nextValue,1/previousValue))
             array.splice(index - 1, 3, result)
             return array
             break;
@@ -1476,7 +1496,6 @@ function displayNextCalcLog(){
     if (nextCalcLogArray.length == 0){
         // if the current one is empty, don't allow it.
         if (calcLog.length == 0){
-        alert ("can't make a new history entry, the current one is empty")
         return
         }
         // then, if this calcLog not empty, save the current one and empty it
@@ -1504,7 +1523,6 @@ function displayPreviousCalcLog(){
 
     // check first if the user is at the first calcLog entry:
     if (previousCalcLogArray.length == 0){
-        alert ("initial history entry reached")
         return 
     } else {
         //if the user is not at the first calcLog, they are navigating backwards through the history.
@@ -1712,8 +1730,9 @@ function checkForErrors(array) {
 function runEveryEdit(e) {
     userInput = displayTop.value
     if (ranEquals){
+        if (typeof e.key != "undefined" && isNumberIncludesAllButMinusAndPeriod(e.key)||
+        typeof e.target.id != "undefined" && isNumberIncludesAllButMinusAndPeriod(e.target.id.replace('btn', ""))){
         let newValue = userInput.at(-1)
-        if (isNumberIncludesAllButMinusAndPeriod(newValue)){
             userInput=""
             userInput += newValue
             updateDisplay()
@@ -1843,7 +1862,7 @@ document.addEventListener("keyup", (e => {
 }))
 
 btnsFrameMain.addEventListener('click', (e => {
-    runEveryEdit()
+    runEveryEdit(e)
 }))
 //-----------------------------------------------
 
@@ -1884,7 +1903,3 @@ calcLogHeader.addEventListener("click", () => switchCalcLogVisibility())
 //#endregion
 //#endregion
 //#region   > CSS variables
-
-
-
-//√(4)+3^2-sin(π/2)

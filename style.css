@@ -212,6 +212,7 @@ input:focus{
 #btnFrameNum > *{
     font-size: 68px;
     width: 65px;
+    margin-right: 0;
 }
 
 #btnFrameSymbol{
@@ -286,7 +287,11 @@ button{
 }
 
 .display{
-    background-color: rgba(0, 0, 0, 0.452);
+    background-color: rgba(0, 0, 0, 0.30);
+}
+
+#displayTop{
+    background-color: rgba(0, 0, 0, 0.10);
 }
 
 #colorPicker{
