@@ -1467,6 +1467,30 @@ function newCalcLog (){
 }
 
 function displayNextCalcLog(){
+    // check first if the user is creating a new calcLog
+    if (nextCalcLogArray.length == 0){
+        // if the current one is empty, don't allow it.
+        if (calcLog.length == 0){
+        alert ("can't add a new history, the current one is empty")
+        return
+        }
+        // then, if this calcLog not empty, save the current one and empty it
+        if (calcLog.length > 0){
+            console.log("calclog pushed")
+            previousCalcLogArray.push(calcLog)
+            calcLog = []
+        }
+    } else{
+        // if the user is not creating a new calcLog, they are navigating forward though the log history
+        previousCalcLogArray.push(calcLog)    
+        calcLog = nextCalcLogArray.pop()
+    }
+    console.log(previousCalcLogArray.length)
+/*
+
+
+
+    /*
     let tempCalcLog = nextCalcLogArray.pop()
     if (nextCurrentCalcArray.length == 0){
         nextCalcLogArray.push(tempCalclog)
@@ -1475,10 +1499,23 @@ function displayNextCalcLog(){
         calcLog = nextC
     }
     console.log(currentCalcLogIndex)
+    */
     displayCalcLog()
 }
 
 function displayPreviousCalcLog(){
+    // check first if the user is at the first calcLog entry:
+    if (previousCalcLogArray.length == 0){
+        alert ("first history entry reached")
+        return 
+    } else {
+        //if the user is not at the first calcLog, they are navigating backwards through the history.
+        nextCalcLogArray.push(calcLog)
+        calcLog = previousCalcLogArray.pop()
+    }
+    displayCalcLog()
+
+    /*
     if(currentCalcLogIndex >= calcLogArray.length){
         alert("first history entry reached")
         currentCalcLogIndex--
@@ -1492,7 +1529,7 @@ function displayPreviousCalcLog(){
         calcLog = calcLogArray[currentCalcLogIndex-1]
         displayCalcLog()
     }
-    console.log(currentCalcLogIndex)
+        */
 }
 
 
