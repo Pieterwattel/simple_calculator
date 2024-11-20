@@ -1860,6 +1860,19 @@ nextCalcLogBtn.addEventListener("click", ()=>displayNextCalcLog())
 
 previousCalcLogBtn.addEventListener("click", ()=> displayPreviousCalcLog())
 
+calcLogHeader.addEventListener("click", () => switchCalcLogVisibility())
+
+let calcLogVisible = true
+
+function switchCalcLogVisibility() {
+    if (calcLogVisible){
+        calcLogContent.classList.add("closeAnimation")
+        calcLogVisible = false
+    } else {
+        calcLogContent.classList.remove("closeAnimation")
+        calcLogVisible = true
+    }
+}
 
 /*
 newCalcLogBtn.addEventListener("contextmenu", (e)=> {

@@ -353,6 +353,11 @@ button{
     /*left: calc(-15vw + -150px);*/
 }
 
+.closeAnimation{
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
 #calcLogFrame > * {
     text-align: left;
 }
@@ -367,7 +372,8 @@ button{
     z-index: 1;
     margin: 0 1px 2px 1px;
     border: 2px solid black;
-    color: black
+    color: black;
+    cursor:pointer;
 }
 
 #calcLogContent{
