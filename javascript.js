@@ -1847,13 +1847,17 @@ document.addEventListener("keyup", (e => {
         return
     }
 
-    if (e.altKey && e.key === '-') {
+    if (e.altKey && e.key === '-'||
+        e.key === "AltGraph" && e.key === '-'
+    ) {
         e.preventDefault();
         zoomout()
     }
 
     if (e.altKey && e.key === '='||
-        e.altKey && e.key === '+') {
+        e.altKey && e.key === '+' ||
+        e.key === "AltGraph" && e.key === '='||
+        e.key === "AltGraph" && e.key === '+') {
         e.preventDefault();
         zoomin()
     }
