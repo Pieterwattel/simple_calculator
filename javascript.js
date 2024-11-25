@@ -1853,6 +1853,7 @@ function runEveryEdit(e) {
         }
         ranEquals=false
     }
+
     balance = checkBracketsBalance(userInput)
     if (userInput.length <= 3) {
         addAnsWhenOperatorFirst(userInput)
@@ -1973,7 +1974,8 @@ document.addEventListener("keyup", (e => {
     if (e.altKey && e.key === '='||
         e.altKey && e.key === '+' ||
         e.key === "AltGraph" && e.key === '='||
-        e.key === "AltGraph" && e.key === '+') {
+        e.key === "AltGraph" && e.key === '+' ||
+        e.key === "¥"){
         e.preventDefault();
         zoomin()
     }
@@ -2113,11 +2115,11 @@ let themes = [
         colorAns: true,
         fillBtnFrame: true,
         btnFrameColorChange: true,
-        changeBlur: "8px"
+        changeBlur: "2px"
     },
 ]
 
-let currentTheme = 3
+let currentTheme = 7
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
