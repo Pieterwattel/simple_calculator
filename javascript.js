@@ -57,8 +57,8 @@ const zoomButtons = document.getElementById('zoomButtons')
 const nextCalcLogBtn = document.getElementById("nextCalcLogBtn")
 const previousCalcLogBtn = document.getElementById("previousCalcLogBtn")
 
-
-const resetColor = document.getElementById("resetColors")
+const themeSelection = document.getElementById(`themeSelection`)
+const resetTheme = document.getElementById("resetTheme")
 
 const pixels = document.querySelectorAll(".pixel")
 
@@ -493,7 +493,7 @@ function saveCalculation(string, ans){
 }
 
 function displayCalcLogElement(calculation, answer){
-        const calculationDiv = document.createElement("div")
+    const calculationDiv = document.createElement("div")
     calculationDiv.textContent += calculation
     calculationDiv.classList.add("calculation")
     calculationDiv.classList.add("btn")
@@ -507,7 +507,7 @@ function displayCalcLogElement(calculation, answer){
     answerDiv.classList.add("answer")
     answerDiv.classList.add("btn")
     answerDiv.addEventListener("click", ()=> addToInput(answerDiv.textContent))
-    if (color3 && themes.colorAns){
+    if (color3 && themes[currentTheme].colorAns){
         answerDiv.style.backgroundColor=color3
     }
 
@@ -517,9 +517,11 @@ function displayCalcLogElement(calculation, answer){
     calcLogContent.prepend(calculationDiv)
         answerDiv.addEventListener("mouseover", ()=>darkenOnHover(answerDiv))
         answerDiv.addEventListener("mousedown", ()=>addTempShadow(answerDiv))
+        fontWhiteIfBgDark(answerDiv)
 
         calculationDiv.addEventListener("mouseover", ()=>darkenOnHover(calculationDiv))
         calculationDiv.addEventListener("mousedown", ()=>addTempShadow(calculationDiv))
+        fontWhiteIfBgDark(calculationDiv)
 
 }
 
@@ -1400,34 +1402,22 @@ function RandomColors(){
     changeColors(getRandomRgbValue(), getRandomRgbValue(), getRandomRgbValue())
 }
 
-function resetColors(){
-    color1 = ""
-    color2 = ""
-    color3 = ""
-    pixel1.style.backgroundColor = ""
-    pixel2.style.backgroundColor = ""
-    pixel3.style.backgroundColor = ""
-    changeColors(color1, color2, color3)
+function resetThemes(){
+    applyTheme(currentTheme)
 }
 
 function changeColors(newColor1, newColor2, newColor3){
-    switch(!0){
-        case Boolean(newColor1):
-            console.log("1")
+
             color1 = newColor1  
             document.body.style.background = color1
             document.body.style.backgroundColor = color1
 
-        case Boolean(newColor2):
-            console.log("2")
+
             color2 = newColor2
             Array.from(calculationNodes).forEach(node => {
                 node.style.backgroundColor = color2
+                fontWhiteIfBgDark(node)
             });
-            calcLogHeader.style.backgroundColor=color2
-            if (color2){
-                calcLogHeader.style.color="black"
-            }
             equalsBtn.style.borderColor=color2
             allBtns.forEach(element => {
                 if (element != nextCalcLogBtn &&
@@ -1437,22 +1427,32 @@ function changeColors(newColor1, newColor2, newColor3){
                 }
             });
             dragBar.style.backgroundColor=color2
-            lightenBackground(equalsBtn)
+            lightenBackground(equalsBtn, color2)
 
-        case Boolean(newColor3):
-            console.log("3")
+
             color3 = newColor3   
-            if (themes.colorAns){
+            if (themes[currentTheme].colorAns){
                 Array.from(answerNodes).forEach(node => {
                     node.style.backgroundColor = color3
+                    fontWhiteIfBgDark(node)
                 });
             } else {
                 Array.from(answerNodes).forEach(node => {
                     node.style.backgroundColor = ""
                 });
             }
-            if (color1 && btnFrameColorChange){
-            btnsFrameMain.style.backgroundColor=color3
+
+            calcLogHeader.style.backgroundColor=color3
+            fontWhiteIfBgDark(calcLogHeader)
+
+            let bodyStyle = window.getComputedStyle(body)
+
+            if (bodyStyle.backgroundColor == "rgba(0, 0, 0, 0)"||
+                bodyStyle.backgroundColor == ""
+            ){
+                btnsFrameMain.style.backgroundColor="rgba(0, 0, 0, 0)"
+            } else {
+                btnsFrameMain.style.backgroundColor=color3
             }
             nextCalcLogBtn.style.backgroundColor=color3
             fontWhiteIfBgDark(nextCalcLogBtn)
@@ -1460,9 +1460,8 @@ function changeColors(newColor1, newColor2, newColor3){
             fontWhiteIfBgDark(previousCalcLogBtn)
             themeSelection.style.backgroundColor=color3
             fontWhiteIfBgDark(themeSelection)
-            resetColor.style.backgroundColor=color3
-            fontWhiteIfBgDark(resetColor)
-    }
+            resetTheme.style.backgroundColor=color3
+            fontWhiteIfBgDark(resetTheme)
 }
 
 function changeColorLogSpecific(calcLogSelectColor, AnsLog){
@@ -1484,16 +1483,20 @@ function getRandomRgbValue () {
     return `rgb(${getValue()}, ${getValue()}, ${getValue()})`
 }
 
-function darkenRgb(string){
-    let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 0.7))
-    return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+function darkenRgb(rgb){
+    if (typeof rgb == "string"){
+        let rgbNumbers = rgb.match(/\d+/g).map(Number)
+        rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 0.7))
+        return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+    }
 }
 
-function brightenRgb(string){
-    let rgbNumbers = string.match(/\d+/g).map(Number)
-    rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.3 + 30))
-    return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+function brightenRgb(rgb){
+    if (typeof rgb == "string"){
+        let rgbNumbers = rgb.match(/\d+/g).map(Number)
+        rgbNumbers = rgbNumbers.map(number => Math.max(0, number * 1.3 + 30))
+        return `rgb(${rgbNumbers[0]}, ${rgbNumbers[1]}, ${rgbNumbers[2]})`
+    }
 }
 
 function darkenOnHover (item){
@@ -1508,15 +1511,18 @@ function resetBackground (item, color){
     item.style.backgroundColor = color
 }
 
-function lightenBackground (item){
-    bgColor = window.getComputedStyle(item).backgroundColor;
+function lightenBackground (item, bgColor){
     let newColor = brightenRgb(bgColor)
     item.style.backgroundColor = newColor
 }
 
-function fontWhiteIfBgDark(item){
+function fontWhiteIfBgDark(item, color){
     let style = window.getComputedStyle(item)
     let bgColor = style.backgroundColor;
+
+    if (!item){
+        bgColor = color
+    }
 
     let num
     let acc = 0
@@ -1953,7 +1959,7 @@ pixel1.addEventListener("click", ()=> triggerColorChange(1))
 pixel2.addEventListener("click", ()=> triggerColorChange(2))
 pixel3.addEventListener("click", ()=> triggerColorChange(3))
 
-resetColor.addEventListener("click", ()=> resetColors())
+resetTheme.addEventListener("click", ()=> resetThemes())
 
 
 displayTop.addEventListener("blur", (e => {
@@ -2023,7 +2029,7 @@ let themes = [
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
         btnsColor: "rgb(45, 25, 65)",
-        specificColor: "rgb(138, 140, 145)",
+        specificColor: "rgb(0, 50, 70)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "0px",
@@ -2099,7 +2105,6 @@ function applyTheme (themeNumber) {
     updatePixels()
 }
 
-const themeSelection = document.getElementById(`themeSelection`)
 for (i = themes.length-1; i >= 0; i--){
     const option = document.createElement("option")
     themeSelection.appendChild(option)
