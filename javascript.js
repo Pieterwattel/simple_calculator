@@ -1417,7 +1417,6 @@ function changeColors(newColor1, newColor2, newColor3){
             color1 = newColor1  
             document.body.style.background = color1
             document.body.style.backgroundColor = color1
-            break;
 
         case Boolean(newColor2):
             console.log("2")
@@ -1439,7 +1438,6 @@ function changeColors(newColor1, newColor2, newColor3){
             });
             dragBar.style.backgroundColor=color2
             lightenBackground(equalsBtn)
-            break;
 
         case Boolean(newColor3):
             console.log("3")
@@ -1527,7 +1525,7 @@ function fontWhiteIfBgDark(item){
     })
     if (style.color == "rgb(0, 0, 0)") {
         if (acc < 200){
-            item.style.color="rgb(230, 230, 230)"
+            item.style.color="rgb(210, 210, 210)"
         }
     } else {
         if (acc >= 200){
@@ -2024,8 +2022,8 @@ let themes = [
         //4
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
-        btnsColor: "rgb(45, 35, 60)",
-        specificColor: "rgb(277, 277, 277)",
+        btnsColor: "rgb(45, 25, 65)",
+        specificColor: "rgb(138, 140, 145)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "0px",
@@ -2097,8 +2095,7 @@ function applyTheme (themeNumber) {
 
 
     color1 = ""
-    changeColors("", theme.btnsColor, "")
-    changeColorLogSpecific(theme.specificColor, "0")
+    changeColors("", theme.btnsColor, theme.specificColor)
     updatePixels()
 }
 
