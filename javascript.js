@@ -1457,9 +1457,13 @@ function changeColors(newColor1, newColor2, newColor3){
             btnsFrameMain.style.backgroundColor=color3
             }
             nextCalcLogBtn.style.backgroundColor=color3
+            fontWhiteIfBgDark(nextCalcLogBtn)
             previousCalcLogBtn.style.backgroundColor=color3
+            fontWhiteIfBgDark(previousCalcLogBtn)
             themeSelection.style.backgroundColor=color3
+            fontWhiteIfBgDark(themeSelection)
             resetColor.style.backgroundColor=color3
+            fontWhiteIfBgDark(resetColor)
     }
 }
 
@@ -1512,14 +1516,10 @@ function lightenBackground (item){
     item.style.backgroundColor = newColor
 }
 
-function fontWhiteIfBgDark(item, rgb){
+function fontWhiteIfBgDark(item){
     let style = window.getComputedStyle(item)
-    let bgColor
-    if (!rgb){
-        bgColor = style.backgroundColor;
-    } else {
-        bgColor=rgb
-    }
+    let bgColor = style.backgroundColor;
+
     let num
     let acc = 0
         bgColor.match(/\d+/g).map((num) =>{
@@ -1527,7 +1527,7 @@ function fontWhiteIfBgDark(item, rgb){
     })
     if (style.color == "rgb(0, 0, 0)") {
         if (acc < 200){
-            item.style.color="white"
+            item.style.color="rgb(230, 230, 230)"
         }
     } else {
         if (acc >= 200){
@@ -2029,7 +2029,7 @@ let themes = [
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "0px",
-        calcFrameShadow: "white"
+        calcFrameShadow: "rgb(184, 184, 184)"
     },
     {
         //5
