@@ -277,7 +277,28 @@ let symbolObject = [
         precedence: 4,
         category: 'operator',
         placement: line2,
-        } ,
+    } ,
+    {
+        //20
+        id: "Euler's number",
+        sign: ['e', 'e', 'e'],
+        precedence: 1,
+        category: 'number',
+        multiplyWhenNumInFront: 'true',
+        multiplyWhenNumBehind: 'true',
+        placement: line4
+    },
+    {
+        //21
+        id: 'Logarithm',
+        sign: ['log'],
+        precedence: 4,
+        category: 'trigFunction',
+        btnTxt: "Log",
+        multiplyWhenNumInFront: 'true',
+        placement: line4,
+    },
+
 
 ]
 
@@ -926,6 +947,12 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             return symbolObject[18]
             break;
 
+        case (symbolObject[21].sign.includes(threeSymbolValue)):
+            //          log
+            deleteValuesFromString(index + 1, 2)
+            return symbolObject[12]
+            break;
+
         //-- 2 VALUE LENGTH SYMBOLS --
         case (symbolObject[8].sign.includes(twoSymbolValue)):
             //          any exponent
@@ -1025,9 +1052,13 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             //          ..
             return symbolObject[17]
 
+        case (symbolObject[20].sign.includes(value)):
+            //          ..
+            return symbolObject[20]
+
         default:
             isError = true
-            alert('SYNTAX ERROR, value "' + value + '" is unknown')
+            errorMessage = 'SYNTAX ERROR, value "' + value + '" is unknown'
     }
 }
 
@@ -1285,6 +1316,22 @@ function doCalculation(symbol, index, array) {
             return array
             break;
 
+        case (symbol == symbolObject[20]):
+            //          Pi
+            result = Math.E
+
+            array.splice(index, 1, result)
+            return array
+            break;
+
+        case (symbol == symbolObject[21]):
+            //          Pi
+            result = Math.log(+nextValue)
+
+            array.splice(index, 1, result)
+            return array
+            break;
+
         default:
             console.log(`doCalculation symbol "${symbol.sign}" unknown, thus was removed. ERROR`)
             array.splice(index, 1)
@@ -1447,7 +1494,8 @@ function changeColors(newColor1, newColor2, newColor3){
 
             let bodyStyle = window.getComputedStyle(body)
 
-            if (bodyStyle.backgroundColor == "rgba(0, 0, 0, 0)"||
+            if (!themes[currentTheme].fillBtnFrame &&
+                bodyStyle.backgroundColor == "rgba(0, 0, 0, 0)"||
                 bodyStyle.backgroundColor == ""
             ){
                 btnsFrameMain.style.backgroundColor="rgba(0, 0, 0, 0)"
@@ -1531,7 +1579,7 @@ function fontWhiteIfBgDark(item, color){
     })
     if (style.color == "rgb(0, 0, 0)") {
         if (acc < 200){
-            item.style.color="rgb(210, 210, 210)"
+            item.style.color="rgb(190, 190, 190)"
         }
     } else {
         if (acc >= 200){
@@ -1988,9 +2036,9 @@ let themes = [
         //0
         name: "Skyrim",
         background: './files/skyrim.png',
-        btnsColor: "rgb(122, 221, 321)",
-        specificColor: "rgb(060, 277, 100)",
-        colorAns: false,
+        btnsColor: "rgb(20, 20, 20)",
+        specificColor: "rgb(60, 60, 100)",
+        colorAns: true,
         imgOverBg: true,
         btnFrameColorChange: false,
         changeBlur: "5px"
@@ -1999,11 +2047,12 @@ let themes = [
         //1
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
-        btnsColor: "rgb(200, 200, 100)",
-        specificColor: "rgb(100, 200, 200)",
+        btnsColor: "rgb(55, 40, 10)",
+        specificColor: "rgb(0, 60, 45)",
         colorAns: true,
         btnFrameColorChange: true,
-        changeBlur: "3px"
+        changeBlur: "3px",
+        calcFrameShadow: "rgb(180, 222, 117)",
     },
     {
         //2
@@ -2018,9 +2067,9 @@ let themes = [
         //3
         name: 'Sea',
         background: "url('./files/sea.jpg')",
-        btnsColor: "rgb(200, 200, 100)",
-        specificColor: "rgb(100, 200, 200)",
-        colorAns: true,
+        btnsColor: "rgb(37, 103, 92)",
+        specificColor: "rgb(4, 70, 103)",
+        colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "5px"
     },
@@ -2028,8 +2077,8 @@ let themes = [
         //4
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
-        btnsColor: "rgb(45, 25, 65)",
-        specificColor: "rgb(0, 50, 70)",
+        btnsColor: "rgb(30, 15, 35)",
+        specificColor: "rgb(0, 20, 50)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "0px",
@@ -2039,8 +2088,8 @@ let themes = [
         //5
         name: 'Desert',
         background: "url('./files/desert.png')",
-        btnsColor: "rgb(342, 233, 123)",
-        specificColor: "rgb(131, 140, 130)",
+        btnsColor: "rgb(170, 150, 80)",
+        specificColor: "rgb(131, 110, 100)",
         colorAns: true,
         btnFrameColorChange: true,
         changeBlur: "10px",
@@ -2049,15 +2098,26 @@ let themes = [
         //6
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
-        btnsColor: "rgb(200, 200, 100)",
-        specificColor: "",
+        btnsColor: "rgb(200, 100, 0)",
+        specificColor: "rgb(100, 20, 180)",
+        colorAns: false,
+        btnFrameColorChange: true,
+        changeBlur: "8px"
+    },
+    {
+        //7
+        name: 'Blueberries',
+        background: "url('./files/blueberries.jpg')",
+        btnsColor: "rgb(40, 0, 30)",
+        specificColor: "rgb(40, 0, 55)",
         colorAns: true,
+        fillBtnFrame: true,
         btnFrameColorChange: true,
         changeBlur: "8px"
     },
 ]
 
-let currentTheme = 4
+let currentTheme = 3
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2082,7 +2142,6 @@ function applyTheme (themeNumber) {
     if (theme.changeBlur){
         calculatorFrame.style.backdropFilter=`blur(${theme.changeBlur})`
     }
-    btnFrameColorChange = theme.btnFrameColorChange
     if (theme.calcFrameShadow){
         calculatorFrame.style.borderColor=theme.calcFrameShadow;
         calculatorFrame.style.boxShadow=`4px 4px 60px ${theme.calcFrameShadow}`;
@@ -2097,7 +2156,6 @@ function applyTheme (themeNumber) {
         calculatorFrame.style.borderColor="";
         calculatorFrame.style.boxShadow="";
     }
-    btnFrameColorChange = theme.btnFrameColorChange
 
 
     color1 = ""
