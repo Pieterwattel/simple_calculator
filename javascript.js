@@ -2129,14 +2129,14 @@ let themes = [
         colorAns: true,
         fillBtnFrame: false,
         btnFrameColorChange: true,
-        changeBlur: "0px",
+        changeBlur: "9px",
         calcFrameBgColor: "rgba(255, 255, 0, 0.28)"
     },
 ]
 
 //light purple rgb(138, 35, 247)
 //rgb(196, 222, 125)
-let currentTheme = 6
+let currentTheme = 8
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)

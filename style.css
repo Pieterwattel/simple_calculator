@@ -94,7 +94,7 @@ input:focus{
 #calculatorFrame{
     z-index: 2;
     position: absolute;
-    height: 552px;
+    height: fit-content;
     width: 448px;
     overflow: auto;
     padding: 0;
@@ -292,12 +292,12 @@ button{
 }
 
 #line4 > *{
-    font-size: 40px;
+    font-size: 34px;
 }
 
 #line5{
     gap: 8.4px;
-    padding-left: 5px;
+    padding-left: 5px
 }
 
 #line5 > *{
