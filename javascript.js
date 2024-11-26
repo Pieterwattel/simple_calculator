@@ -1968,17 +1968,19 @@ document.addEventListener("keyup", (e => {
     }
 
     if (e.altKey && e.key === '-'||
-        e.key === "AltGraph" && e.key === '-'
+        e.key === "AltGraph" && e.key === '-'||
+        e.key === "¥"
     ) {
         e.preventDefault();
         zoomout()
     }
-
+    
     if (e.altKey && e.key === '='||
         e.altKey && e.key === '+' ||
         e.key === "AltGraph" && e.key === '='||
         e.key === "AltGraph" && e.key === '+' ||
-        e.key === "¥"){
+        e.key === "×"
+        ){
         e.preventDefault();
         zoomin()
     }
