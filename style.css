@@ -103,7 +103,7 @@ input:focus{
     flex:1;
     background-size: contain;
     border: 3.4px solid black;
-    border-radius: 40px 40px 18px 18px;
+    border-radius: 32px 32px 18px 18px;
     background-color: rgba(0, 0, 0, 0.377);
     box-shadow: 4px 4px 60px black;
     transform-origin: top left;
@@ -122,7 +122,7 @@ input:focus{
 #zoomButtons{
     display: block;
     height: 100%;
-    width: 150px;
+    width: 110px;
     margin-bottom: 0;
     display: flex;
     background-color: rgba(214, 214, 214, 0);
@@ -132,16 +132,16 @@ input:focus{
     display: block;
     height: 100%;
     width: fit-content;
-    margin-bottom: 0;-
+    margin-bottom: 0;
     display: flex;
 }
 
 #nextCalcLogBtn,
 #previousCalcLogBtn{
     font-weight: 900;
-    padding-left: 18px;
-    padding-right: 18px;
-    padding-top: 5px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 2px;
     background-color: rgba(214, 214, 214, 0);
     color:black;
     border-right: 1px solid black; 
@@ -168,6 +168,7 @@ input:focus{
     color:black;
     background-color: rgba(214, 214, 214, 0);
     border-left: 1px solid black;
+    padding-right: 10px;
 }
 
 
@@ -181,7 +182,7 @@ input:focus{
  padding-right: 6px;
 }
 
-#btnFrameFunc{
+#btnFrameFunc{/
     height: fit-content;
     display:flex;
     justify-content: space-between;
