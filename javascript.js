@@ -2136,7 +2136,7 @@ let themes = [
 
 //light purple rgb(138, 35, 247)
 //rgb(196, 222, 125)
-let currentTheme = 8
+let currentTheme = 1
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2148,6 +2148,8 @@ function updatePixels(){
 }
 
 function applyTheme (themeNumber) {
+
+    const btns = document.querySelectorAll('.btnFrame .btn')   
     let theme = themes[themeNumber]
     if (theme.imgOverBg){
         body.appendChild(img)
@@ -2164,8 +2166,10 @@ function applyTheme (themeNumber) {
     if (theme.calcFrameShadow){
         calculatorFrame.style.borderColor=theme.calcFrameShadow;
         calculatorFrame.style.boxShadow=`4px 4px 60px ${theme.calcFrameShadow}`;
-        const btns = document.querySelectorAll('.btnFrame .btn')    
-    } 
+    } else {
+        calculatorFrame.style.borderColor="";
+        calculatorFrame.style.boxShadow=``; 
+    }
         
     if (theme.calcFrameBgColor){
         calculatorFrame.style.backgroundColor=theme.calcFrameBgColor
@@ -2178,9 +2182,9 @@ function applyTheme (themeNumber) {
             btn.style.boxShadow="0px 0px 2px grey"    
         });
     } else {
-
-        calculatorFrame.style.borderColor="";
-        calculatorFrame.style.boxShadow="";
+        btns.forEach(btn => { 
+            btn.style.boxShadow=""    
+        });
     }
 
 
