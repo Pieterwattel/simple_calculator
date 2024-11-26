@@ -1454,6 +1454,9 @@ function resetThemes(){
 }
 
 function changeColors(newColor1, newColor2, newColor3){
+    console.log("color1 " + newColor1)
+    console.log("color2 " + newColor2)
+    console.log("color3 " + newColor3)
 
             color1 = newColor1  
             document.body.style.background = color1
@@ -2049,8 +2052,8 @@ let themes = [
         //1
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
-        btnsColor: "rgb(55, 40, 10)",
-        specificColor: "rgb(0, 60, 45)",
+        btnsColor: "rgb(47, 64, 101)",
+        specificColor: "rgb(52, 21, 103)",
         colorAns: true,
         btnFrameColorChange: true,
         changeBlur: "3px",
@@ -2101,7 +2104,7 @@ let themes = [
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
         btnsColor: "rgb(200, 100, 0)",
-        specificColor: "rgb(100, 20, 180)",
+        specificColor: "rgb(128, 35, 237)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "8px"
@@ -2117,9 +2120,23 @@ let themes = [
         btnFrameColorChange: true,
         changeBlur: "2px"
     },
+    {
+        //8
+        name: 'Yellow',
+        background: "url('./files/yellow.jpg')",
+        btnsColor: "rgb(198, 156, 30)",
+        specificColor: "rgb(153, 9, 106)",
+        colorAns: true,
+        fillBtnFrame: false,
+        btnFrameColorChange: true,
+        changeBlur: "0px",
+        calcFrameBgColor: "rgba(255, 255, 0, 0.28)"
+    },
 ]
 
-let currentTheme = 7
+//light purple rgb(138, 35, 247)
+//rgb(196, 222, 125)
+let currentTheme = 6
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2147,12 +2164,19 @@ function applyTheme (themeNumber) {
     if (theme.calcFrameShadow){
         calculatorFrame.style.borderColor=theme.calcFrameShadow;
         calculatorFrame.style.boxShadow=`4px 4px 60px ${theme.calcFrameShadow}`;
-        const btns = document.querySelectorAll('.btnFrame .btn')       
+        const btns = document.querySelectorAll('.btnFrame .btn')    
+    } 
+        
+    if (theme.calcFrameBgColor){
+        calculatorFrame.style.backgroundColor=theme.calcFrameBgColor
+    } else {
+        calculatorFrame.style.backgroundColor=""
+    }
+        
     if (theme.name == "Galaxy"){
         btns.forEach(btn => { 
             btn.style.boxShadow="0px 0px 2px grey"    
         });
-    }
     } else {
 
         calculatorFrame.style.borderColor="";
