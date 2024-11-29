@@ -2052,24 +2052,43 @@ let themes = [
         //1
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
-        btnsColor: "rgb(47, 64, 101)",
-        specificColor: "rgb(52, 21, 103)",
-        colorAns: true,
+        btnsColor: "rgb(37, 70, 48)",
+        specificColor: "rgb(52, 21, 93)",
+        colorAns: false,
         btnFrameColorChange: true,
-        changeBlur: "3px",
+        changeBlur: "1px",
         calcFrameShadow: "rgb(180, 222, 117)",
+        calcFrameBorderColor: "rgb(39, 38, 4)"
     },
     {
         //2
         name: 'Forest 2',
         background: "url('./files/forest2.jpg')",
-        btnsColor: "rgb(99, 154, 142)",
+        btnsColor: "rgb(89, 125, 125)",
         specificColor: "rgb(117, 162, 182)",
         colorAns: true,
-        btnFrameColorChange: true
+        btnFrameColorChange: true,
+        changeBlur: "0px",
+        calcFrameBorderColor: "rgba(80, 122, 125, 0)",
+        calcFrameShadow: "rgb(40, 61, 62)"
     },
     {
         //3
+        name: 'Forest 3',
+        background: "url('./files/forest3.jpg')",
+        btnsColor: "rgb(217, 178, 36)",
+        specificColor: "rgb(164, 144, 100)",
+        //rgb(39, 38, 4)
+        //rgb(164, 144, 100)
+        colorAns: true,
+        btnFrameColorChange: true,
+        calcFrameBgColor: "rgba(0, 0, 0, 0)",
+        calcFrameBorderColor: "rgba(0, 0, 0, 0)",
+        changeBlur: "0px",
+        calcFrameShadow: "rgba(40, 61, 62, 0)"
+    },
+    {
+        //4
         name: 'Sea',
         background: "url('./files/sea.jpg')",
         btnsColor: "rgb(37, 103, 92)",
@@ -2079,38 +2098,41 @@ let themes = [
         changeBlur: "5px"
     },
     {
-        //4
+        //5
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
-        btnsColor: "rgb(30, 15, 35)",
-        specificColor: "rgb(0, 20, 50)",
+        btnsColor: "rgb(40, 15, 50)",
+        specificColor: "rgb(0, 25, 60)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "0px",
-        calcFrameShadow: "rgb(184, 184, 184)"
+        calcFrameBorderColor: "rgb(144, 144, 184)",
+        calcFrameShadow: "rgb(184, 184, 184)",
     },
     {
-        //5
+        //6
         name: 'Desert',
         background: "url('./files/desert.png')",
-        btnsColor: "rgb(170, 150, 80)",
+        btnsColor: "rgb(190, 165, 95)",
         specificColor: "rgb(131, 110, 100)",
         colorAns: true,
         btnFrameColorChange: true,
         changeBlur: "10px",
+        calcFrameBorderColor: "rgb(101, 90, 85)",
+
     },
     {
-        //6
+        //7
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
-        btnsColor: "rgb(200, 100, 0)",
-        specificColor: "rgb(128, 35, 237)",
+        btnsColor: "rgb(138, 45, 200)",
+        specificColor: "rgb(200, 100, 0)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "8px"
     },
     {
-        //7
+        //8
         name: 'Blueberries',
         background: "url('./files/blueberries.jpg')",
         btnsColor: "rgb(40, 0, 30)",
@@ -2120,8 +2142,10 @@ let themes = [
         btnFrameColorChange: true,
         changeBlur: "2px"
     },
+
+/*
     {
-        //8
+        //9
         name: 'Yellow',
         background: "url('./files/yellow.jpg')",
         btnsColor: "rgb(198, 156, 30)",
@@ -2129,14 +2153,16 @@ let themes = [
         colorAns: true,
         fillBtnFrame: false,
         btnFrameColorChange: true,
-        changeBlur: "9px",
-        calcFrameBgColor: "rgba(255, 255, 0, 0.28)"
-    },
+        changeBlur: "0px",
+        calcFrameBgColor: "rgba(255, 255, 0, 0.3)",
+        calcFrameBorderColor: "rgba(80, 122, 125, 0)",
+
+    },*/
 ]
 
 //light purple rgb(138, 35, 247)
 //rgb(196, 222, 125)
-let currentTheme = 1
+let currentTheme = 3
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2163,12 +2189,16 @@ function applyTheme (themeNumber) {
     if (theme.changeBlur){
         calculatorFrame.style.backdropFilter=`blur(${theme.changeBlur})`
     }
+    if (theme.calcFrameBorderColor){
+        calculatorFrame.style.borderColor=theme.calcFrameBorderColor;
+    } else {
+        calculatorFrame.style.borderColor='';
+    }
+
     if (theme.calcFrameShadow){
-        calculatorFrame.style.borderColor=theme.calcFrameShadow;
         calculatorFrame.style.boxShadow=`4px 4px 60px ${theme.calcFrameShadow}`;
     } else {
-        calculatorFrame.style.borderColor="";
-        calculatorFrame.style.boxShadow=``; 
+        calculatorFrame.style.boxShadow=``;
     }
         
     if (theme.calcFrameBgColor){
@@ -2179,7 +2209,7 @@ function applyTheme (themeNumber) {
         
     if (theme.name == "Galaxy"){
         btns.forEach(btn => { 
-            btn.style.boxShadow="0px 0px 2px grey"    
+            btn.style.boxShadow="0px 0px 2px rgb(160, 160, 160"    
         });
     } else {
         btns.forEach(btn => { 
@@ -2193,11 +2223,12 @@ function applyTheme (themeNumber) {
     updatePixels()
 }
 
-for (i = themes.length-1; i >= 0; i--){
+l = themes.length-1
+for (j = 0; j <= l; j++){
     const option = document.createElement("option")
     themeSelection.appendChild(option)
-    option.textContent = themes[i].name
-    option.value = i
+    option.textContent = themes[j].name
+    option.value = j
 }
 
 themeSelection.addEventListener("change", (e)=> {
