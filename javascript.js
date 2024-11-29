@@ -1970,6 +1970,7 @@ document.addEventListener("keyup", (e => {
     if (e.altKey && e.key === '-'||
         e.key === "AltGraph" && e.key === '-'||
         e.key === "¥") {
+        doBackspace()
         e.preventDefault();
         zoomout()
     }
@@ -1979,6 +1980,7 @@ document.addEventListener("keyup", (e => {
         e.key === "AltGraph" && e.key === '='||
         e.key === "AltGraph" && e.key === '+' ||
         e.key === "×"){
+        doBackspace()
         e.preventDefault();
         zoomin()
     }
