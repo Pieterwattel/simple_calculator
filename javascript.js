@@ -1196,8 +1196,6 @@ function doCalculation(symbol, index, array) {
             //place the result in the original array, in place of the brackets            
             array.splice(bracketOpenIndex, 0, ...result)
 
-            console.log(array)
-
             return array
             break;
 
