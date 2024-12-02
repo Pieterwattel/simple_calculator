@@ -1700,6 +1700,10 @@ function integerToRoman(num) {
     return roman;
 }
 
+function isSuperscript (string){
+    let s
+}
+
 
 //#endregion
 //#region       >> Controller Functions
@@ -2039,6 +2043,22 @@ let root = document.querySelector(":root")
 let themes = [
     {
         //0
+        name: 'Simple',
+        background: "url(./files/simple.jpg)",
+        btnsColor: "rgb(230, 230, 230)",
+        specificColor: "rgb(200, 190, 170)",
+        colorAns: false,
+        btnFrameColorChange: true,
+        changeBlur: "1px",
+        calcFrameBorderColor: "rgb(39, 38, 4)",
+        calcFrameBgColor: "rgba(0, 0, 0, 0.1)",
+        displayBgColor: "rgba(0, 0, 0, 0)",
+        displayFontColor: "rgb(0, 0, 0)",
+        calcFrameShadow: "rgba(0, 0, 0, 0)",
+    },
+/*
+    {
+        //1
         name: "Skyrim",
         background: './files/skyrim.png',
         btnsColor: "rgb(20, 20, 20)",
@@ -2048,20 +2068,21 @@ let themes = [
         btnFrameColorChange: false,
         changeBlur: "5px"
     },
+    */
     {
-        //1
+        //2
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
-        btnsColor: "rgb(37, 70, 48)",
-        specificColor: "rgb(52, 21, 93)",
-        colorAns: false,
+        btnsColor: "rgb(116, 155, 92)",
+        specificColor: "rgb(194, 131, 30)",
+        colorAns: true,
         btnFrameColorChange: true,
         changeBlur: "1px",
         calcFrameShadow: "rgb(180, 222, 117)",
         calcFrameBorderColor: "rgb(39, 38, 4)"
     },
     {
-        //2
+        //3
         name: 'Forest 2',
         background: "url('./files/forest2.jpg')",
         btnsColor: "rgb(89, 125, 125)",
@@ -2073,7 +2094,7 @@ let themes = [
         calcFrameShadow: "rgb(40, 61, 62)"
     },
     {
-        //3
+        //4
         name: 'Forest 3',
         background: "url('./files/forest3.jpg')",
         btnsColor: "rgb(217, 178, 36)",
@@ -2088,7 +2109,7 @@ let themes = [
         calcFrameShadow: "rgba(40, 61, 62, 0)"
     },
     {
-        //4
+        //5
         name: 'Sea',
         background: "url('./files/sea.jpg')",
         btnsColor: "rgb(37, 103, 92)",
@@ -2098,7 +2119,7 @@ let themes = [
         changeBlur: "5px"
     },
     {
-        //5
+        //6
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
         btnsColor: "rgb(40, 15, 50)",
@@ -2110,7 +2131,7 @@ let themes = [
         calcFrameShadow: "rgb(184, 184, 184)",
     },
     {
-        //6
+        //7
         name: 'Desert',
         background: "url('./files/desert.png')",
         btnsColor: "rgb(190, 165, 95)",
@@ -2122,7 +2143,7 @@ let themes = [
 
     },
     {
-        //7
+        //8
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
         btnsColor: "rgb(138, 45, 200)",
@@ -2132,7 +2153,7 @@ let themes = [
         changeBlur: "8px"
     },
     {
-        //8
+        //9
         name: 'Blueberries',
         background: "url('./files/blueberries.jpg')",
         btnsColor: "rgb(40, 0, 30)",
@@ -2162,7 +2183,7 @@ let themes = [
 
 //light purple rgb(138, 35, 247)
 //rgb(196, 222, 125)
-let currentTheme = 3
+let currentTheme = 2
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2206,6 +2227,26 @@ function applyTheme (themeNumber) {
     } else {
         calculatorFrame.style.backgroundColor=""
     }
+
+    if (theme.displayBgColor){
+        displayTop.style.backgroundColor=theme.displayBgColor
+        displayBottom.style.backgroundColor=theme.displayBgColor
+        inputFrame.style.backgroundColor=theme.displayBgColor
+    } else {
+        displayTop.style.backgroundColor=""
+        displayBottom.style.backgroundColor=""
+        inputFrame.style.backgroundColor=theme.displayBgColor
+    }
+
+    if (theme.displayFontColor){
+        displayTop.style.color=theme.displayFontColor
+        displayBottom.style.color=theme.displayFontColor
+    } else {
+        displayTop.style.color=""
+        displayBottom.style.color=""
+    }
+
+
         
     if (theme.name == "Galaxy"){
         btns.forEach(btn => { 

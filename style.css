@@ -347,7 +347,6 @@ button{
 
 #resetTheme{
     font-size: calc(10px + 0.4vw);
-
     align-self: flex-start;
 
     border-radius: 5px;
