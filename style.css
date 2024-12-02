@@ -376,9 +376,7 @@ button{
 #calcLogFrame{
     background-color: rgba(0, 0, 0, 0);
     width: calc(15vw + 150px);
-    min-height: fit-content;
-    height: fit-content;
-    max-height: min(98%, 98vh, 940px) !important;
+    max-height: 98vh !important;
     position: absolute;
     left: 0;
     top: 0;

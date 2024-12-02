@@ -298,6 +298,24 @@ let symbolObject = [
         multiplyWhenNumInFront: 'true',
         placement: line4,
     },
+    {
+        //22
+        id: 'Bracket open ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ',
+        sign: ['⁽'],
+        precedence: 2,
+        category: 'bracket',
+        multiplyWhenNumInFront: 'true',
+        placement: line4,
+    },
+    {
+        //22
+        id: 'Bracket close ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ',
+        sign: ['⁾'],
+        precedence: 2,
+        category: 'bracket',
+        multiplyWhenNumBehind: 'true',
+        placement: line4,
+    },
 
 
 ]
@@ -2043,18 +2061,32 @@ let root = document.querySelector(":root")
 let themes = [
     {
         //0
-        name: 'Simple',
+        name: 'Basic',
         background: "url(./files/simple.jpg)",
         btnsColor: "rgb(230, 230, 230)",
         specificColor: "rgb(200, 190, 170)",
         colorAns: false,
         btnFrameColorChange: true,
         changeBlur: "1px",
-        calcFrameBorderColor: "rgb(39, 38, 4)",
+        calcFrameBorderColor: "rgb(100, 100, 100",
         calcFrameBgColor: "rgba(0, 0, 0, 0.1)",
         displayBgColor: "rgba(0, 0, 0, 0)",
         displayFontColor: "rgb(0, 0, 0)",
         calcFrameShadow: "rgba(0, 0, 0, 0)",
+    },
+    {
+        //1
+        name: 'Dark',
+        background: "url(./files/black.jpg)",
+        btnsColor: "rgb(30, 30, 30)",
+        specificColor: "rgb(50, 50, 50)",
+        colorAns: true,
+        btnFrameColorChange: true,
+        calcFrameBorderColor: "rgb(35, 35, 35",
+        calcFrameBgColor: "rgba(0, 0, 0, 0.1)",
+        displayBgColor: "rgba(0, 0, 0, 0)",
+        calcFrameShadow: "rgba(0, 0, 0,)",
+        btnShadow: "0px 0px 2px rgb(110, 110, 110)",
     },
 /*
     {
@@ -2070,7 +2102,7 @@ let themes = [
     },
     */
     {
-        //2
+        //3
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
         btnsColor: "rgb(116, 155, 92)",
@@ -2082,7 +2114,7 @@ let themes = [
         calcFrameBorderColor: "rgb(39, 38, 4)"
     },
     {
-        //3
+        //4
         name: 'Forest 2',
         background: "url('./files/forest2.jpg')",
         btnsColor: "rgb(89, 125, 125)",
@@ -2094,7 +2126,7 @@ let themes = [
         calcFrameShadow: "rgb(40, 61, 62)"
     },
     {
-        //4
+        //5
         name: 'Forest 3',
         background: "url('./files/forest3.jpg')",
         btnsColor: "rgb(217, 178, 36)",
@@ -2109,7 +2141,7 @@ let themes = [
         calcFrameShadow: "rgba(40, 61, 62, 0)"
     },
     {
-        //5
+        //6
         name: 'Sea',
         background: "url('./files/sea.jpg')",
         btnsColor: "rgb(37, 103, 92)",
@@ -2119,7 +2151,7 @@ let themes = [
         changeBlur: "5px"
     },
     {
-        //6
+        //7
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
         btnsColor: "rgb(40, 15, 50)",
@@ -2129,9 +2161,10 @@ let themes = [
         changeBlur: "0px",
         calcFrameBorderColor: "rgb(144, 144, 184)",
         calcFrameShadow: "rgb(184, 184, 184)",
+        btnShadow: "0px 0px 2px rgb(160, 160, 160)",
     },
     {
-        //7
+        //8
         name: 'Desert',
         background: "url('./files/desert.png')",
         btnsColor: "rgb(190, 165, 95)",
@@ -2143,7 +2176,7 @@ let themes = [
 
     },
     {
-        //8
+        //9
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
         btnsColor: "rgb(138, 45, 200)",
@@ -2153,15 +2186,16 @@ let themes = [
         changeBlur: "8px"
     },
     {
-        //9
+        //10
         name: 'Blueberries',
         background: "url('./files/blueberries.jpg')",
-        btnsColor: "rgb(40, 0, 30)",
-        specificColor: "rgb(40, 0, 55)",
+        btnsColor: "rgb(121, 120, 189)",
+        specificColor: "rgb(61, 41, 100)",
         colorAns: true,
         fillBtnFrame: true,
         btnFrameColorChange: true,
-        changeBlur: "2px"
+        changeBlur: "2px",
+        btnShadow: "0px 0px 4px rgb(120, 120, 120)",
     },
 
 /*
@@ -2183,7 +2217,7 @@ let themes = [
 
 //light purple rgb(138, 35, 247)
 //rgb(196, 222, 125)
-let currentTheme = 2
+let currentTheme = 1
 //Math.floor(Math.random()*(themes.length))
 console.log(currentTheme)
 applyTheme(currentTheme)
@@ -2248,9 +2282,9 @@ function applyTheme (themeNumber) {
 
 
         
-    if (theme.name == "Galaxy"){
+    if (theme.btnShadow){
         btns.forEach(btn => { 
-            btn.style.boxShadow="0px 0px 2px rgb(160, 160, 160"    
+            btn.style.boxShadow=theme.btnShadow    
         });
     } else {
         btns.forEach(btn => { 
