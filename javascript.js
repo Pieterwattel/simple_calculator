@@ -2066,7 +2066,7 @@ let themes = [
         calcFrameBgColor: "rgba(0, 0, 0, 0)",
         calcFrameBorderColor: "rgba(0, 0, 0, 0)",
         changeBlur: "0px",
-        calcFrameShadow: "rgba(40, 61, 62, 0)"
+        calcFrameShadow: "rgba(40, 61, 62, 0)",
     },
     {
         //5
@@ -2176,7 +2176,8 @@ function applyTheme (themeNumber) {
     } else {
         displayTop.style.backgroundColor=""
         displayBottom.style.backgroundColor=""
-        inputFrame.style.backgroundColor=theme.displayBgColor
+        inputFrame.style.backgroundColor=""
+
     }
 
     if (theme.displayFontColor){
