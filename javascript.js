@@ -1997,7 +1997,7 @@ function background (){
 
 //#endregion
 //#endregion
-//#region   > CSS variables
+//#region   > Themes
 let root = document.querySelector(":root")
 
 let themes = [
@@ -2024,10 +2024,9 @@ let themes = [
         specificColor: "rgb(50, 50, 50)",
         colorAns: true,
         btnFrameColorChange: true,
-        calcFrameBorderColor: "rgb(35, 35, 35",
+        calcFrameBorderColor: "rgb(80, 80, 80",
         calcFrameBgColor: "rgba(0, 0, 0, 0.1)",
         displayBgColor: "rgba(0, 0, 0, 0)",
-        calcFrameShadow: "rgba(0, 0, 0,)",
         btnShadow: "0px 0px 2px rgb(110, 110, 110)",
     },
     {
@@ -2206,7 +2205,7 @@ function applyTheme (themeNumber) {
     updatePixels()
 }
 
-let themeslength = themes.length-1
+let themelength = themes.length-1
 
 for (j = 0; j <= themelength; j++){
     const option = document.createElement("option")
