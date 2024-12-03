@@ -36,6 +36,8 @@ let color3
 
 let fixEqualsBtnBug = ""
 
+let currentTheme = 0
+
 const img = document.createElement("img")
 let btnFrameColorChange = true
 
@@ -789,12 +791,6 @@ function addNegativeNums(array, index){
     let nextElement = inputArray[index+1]
 
     let minus = symbolObject[1]
-
-/*
-    function removeBackElement(){
-        inputArray.splice(backIndex, 1)
-    }
-*/
 
     function makeNextElementNegative() {
         let newValue = nextElement * -1
@@ -1729,8 +1725,6 @@ function functionPress(e) {
 
 function 
 updateDisplay() {
-    //    updateNum()
-    //    addSpaces()
     displayEntry()
     displayAns()
 }
@@ -1761,8 +1755,6 @@ function getArrayFromString(string) {
     resultArray.forEach((element, index) => {
         addMultiplication(resultArray, index)
     });
-
-    //previousCalculation.textContent = returnSimplifiedArray(resultArray)
 
     return resultArray
 }
@@ -1883,35 +1875,6 @@ function addAnsWhenOperatorFirst(string) {
             endLoop = true
         }
     });
-    /*
-    loop1: for (i = 0; i <= 3; i++) {
-        char += string.charAt(i)
-
-        symbolObject.forEach(element => {
-            if (element.category == "operator" &&
-                element.sign.includes(char) &&
-                element.id != "Square root"
-            ) {
-                let oldInput = displayTop.value
-                displayTop.value = ""
-                displayTop.value = "ANS"
-                displayTop.value += oldInput
-                endLoop = true
-            }
-        });
-        if (endLoop) {
-            break loop1
-        }
-
-    }
-    */
-
-    /*
-
-
-    char += string.charAt(1)
-    char += string.charAt(2)
-    */
 }
 
 function giveMissingBrackets(balance) {
@@ -2067,21 +2030,8 @@ let themes = [
         calcFrameShadow: "rgba(0, 0, 0,)",
         btnShadow: "0px 0px 2px rgb(110, 110, 110)",
     },
-/*
     {
-        //1
-        name: "Skyrim",
-        background: './files/skyrim.png',
-        btnsColor: "rgb(20, 20, 20)",
-        specificColor: "rgb(60, 60, 100)",
-        colorAns: true,
-        imgOverBg: true,
-        btnFrameColorChange: false,
-        changeBlur: "5px"
-    },
-    */
-    {
-        //3
+        //2
         name: 'Forest 1',
         background: "url('./files/forest1.jpg')",
         btnsColor: "rgb(116, 155, 92)",
@@ -2093,7 +2043,7 @@ let themes = [
         calcFrameBorderColor: "rgb(39, 38, 4)"
     },
     {
-        //4
+        //3
         name: 'Forest 2',
         background: "url('./files/forest2.jpg')",
         btnsColor: "rgb(89, 125, 125)",
@@ -2105,7 +2055,7 @@ let themes = [
         calcFrameShadow: "rgb(40, 61, 62)"
     },
     {
-        //5
+        //4
         name: 'Forest 3',
         background: "url('./files/forest3.jpg')",
         btnsColor: "rgb(217, 178, 36)",
@@ -2120,7 +2070,7 @@ let themes = [
         calcFrameShadow: "rgba(40, 61, 62, 0)"
     },
     {
-        //6
+        //5
         name: 'Sea',
         background: "url('./files/sea.jpg')",
         btnsColor: "rgb(37, 103, 92)",
@@ -2130,7 +2080,7 @@ let themes = [
         changeBlur: "5px"
     },
     {
-        //7
+        //6
         name: 'Galaxy',
         background: "url('./files/galaxy.jpg')",
         btnsColor: "rgb(40, 15, 50)",
@@ -2143,7 +2093,7 @@ let themes = [
         btnShadow: "0px 0px 2px rgb(160, 160, 160)",
     },
     {
-        //8
+        //7
         name: 'Desert',
         background: "url('./files/desert.png')",
         btnsColor: "rgb(190, 165, 95)",
@@ -2155,7 +2105,7 @@ let themes = [
 
     },
     {
-        //9
+        //8
         name: 'Flowers',
         background: "url('./files/flowers.jpg')",
         btnsColor: "rgb(138, 45, 200)",
@@ -2165,7 +2115,7 @@ let themes = [
         changeBlur: "8px"
     },
     {
-        //10
+        //9
         name: 'Blueberries',
         background: "url('./files/blueberries.jpg')",
         btnsColor: "rgb(121, 120, 189)",
@@ -2176,25 +2126,7 @@ let themes = [
         changeBlur: "2px",
         btnShadow: "0px 0px 4px rgb(120, 120, 120)",
     },
-
-/*
-    {
-        //9
-        name: 'Yellow',
-        background: "url('./files/yellow.jpg')",
-        btnsColor: "rgb(198, 156, 30)",
-        specificColor: "rgb(153, 9, 106)",
-        colorAns: true,
-        fillBtnFrame: false,
-        btnFrameColorChange: true,
-        changeBlur: "0px",
-        calcFrameBgColor: "rgba(255, 255, 0, 0.3)",
-        calcFrameBorderColor: "rgba(80, 122, 125, 0)",
-
-    },*/
 ]
-
-let currentTheme = 0
 
 applyTheme(currentTheme)
 
