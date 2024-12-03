@@ -207,7 +207,7 @@ let symbolObject = [
         id: 'Sine',
         sign: ['sin'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "sin",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -217,7 +217,7 @@ let symbolObject = [
         id: 'CoSine',
         sign: ['cos'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "cos",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -227,7 +227,7 @@ let symbolObject = [
         id: 'Tangent',
         sign: ['tan'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "tan",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -237,7 +237,7 @@ let symbolObject = [
         id: 'Inverse Sine',
         sign: ['asin'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "aSin",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -247,7 +247,7 @@ let symbolObject = [
         id: 'Inverse CoSine',
         sign: ['acos'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "aCos",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -257,7 +257,7 @@ let symbolObject = [
         id: 'Inverse Tangent',
         sign: ['atan'],
         precedence: 3,
-        category: 'trigFunction',
+        category: 'function',
         btnTxt: "aTan",
         multiplyWhenNumInFront: 'true',
         placement: line5,
@@ -286,39 +286,45 @@ let symbolObject = [
         category: 'number',
         multiplyWhenNumInFront: 'true',
         multiplyWhenNumBehind: 'true',
-        placement: line4
+        placement: line3,
     },
     {
         //21
-        id: 'Logarithm',
-        sign: ['log'],
+        id: 'Logarithm, base Eulers Number',
+        sign: ['ln'],
         precedence: 4,
-        category: 'trigFunction',
-        btnTxt: "Log",
+        category: 'function',
+        btnTxt: "ln",
         multiplyWhenNumInFront: 'true',
         placement: line4,
     },
     {
         //22
-        id: 'Bracket open ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ',
-        sign: ['⁽'],
-        precedence: 2,
-        category: 'bracket',
+        id: 'Logarithm, base 10',
+        sign: ['¹⁰log'],
+        precedence: 4,
+        category: 'function',
+        btnTxt: "log",
         multiplyWhenNumInFront: 'true',
         placement: line4,
     },
     {
-        //22
-        id: 'Bracket close ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ',
-        sign: ['⁾'],
-        precedence: 2,
-        category: 'bracket',
-        multiplyWhenNumBehind: 'true',
+        //23
+        id: 'Logarithm, variable base.\nwrite base value before ⁿ',
+        sign: ['ⁿlog'],
+        precedence: 4,
+        category: 'function',
+        btnTxt: "ⁿlog",
+        multiplyWhenNumInFront: 'true',
         placement: line4,
     },
+
 
 
 ]
+
+//console.log(Math.log(nextValue) / Math.log(previousValue))
+console.log(Math.log(100) / Math.log(10))
 
 symbolObject.forEach((prop) => {
     let btn = document.createElement("button")

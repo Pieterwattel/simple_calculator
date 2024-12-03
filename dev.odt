@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:officeooo="http://openoffice.org/2009/office" xmlns:css3t="http://www.w3.org/TR/css3-text/" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rpt="http://openoffice.org/2005/report" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:xforms="http://www.w3.org/2002/xforms" office:version="1.3" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><dc:date>2024-12-02T15:13:46.527128093</dc:date><meta:editing-duration>P5DT15H30M14S</meta:editing-duration><meta:editing-cycles>117</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="1" meta:paragraph-count="29" meta:word-count="175" meta:character-count="1129" meta:non-whitespace-character-count="961"/></office:meta>
+ <office:meta><dc:date>2024-12-03T15:28:08.419347187</dc:date><meta:editing-duration>P5DT16H9M18S</meta:editing-duration><meta:editing-cycles>119</meta:editing-cycles><meta:generator>LibreOffice/7.3.7.2$Linux_X86_64 LibreOffice_project/30$Build-2</meta:generator><meta:document-statistic meta:table-count="0" meta:image-count="0" meta:object-count="0" meta:page-count="1" meta:paragraph-count="25" meta:word-count="162" meta:character-count="973" meta:non-whitespace-character-count="835"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="long">3175</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="long">1270</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="long">0</config:config-item>
    <config:config-item config:name="ViewAreaWidth" config:type="long">23523</config:config-item>
    <config:config-item config:name="ViewAreaHeight" config:type="long">22068</config:config-item>
@@ -13,12 +13,12 @@
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="long">9185</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="long">10509</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="long">7068</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="long">16916</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="long">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="long">3175</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="long">1270</config:config-item>
      <config:config-item config:name="VisibleRight" config:type="long">23521</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="long">25241</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="long">23336</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">1</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
@@ -88,7 +88,7 @@
    <config:config-item config:name="ChartAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="PrinterSetup" config:type="base64Binary"/>
    <config:config-item config:name="AddParaTableSpacingAtStart" config:type="boolean">true</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">5758943</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">6110340</config:config-item>
    <config:config-item config:name="EmbeddedDatabaseName" config:type="string"/>
    <config:config-item config:name="FieldAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="OutlineLevelYieldsNumbering" config:type="boolean">false</config:config-item>
@@ -136,9 +136,7 @@
  </office:settings>
  <office:scripts>
   <office:script script:language="ooo:Basic">
-   <ooo:libraries xmlns:ooo="http://openoffice.org/2004/office" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <ooo:library-embedded ooo:name="Standard"/>
-   </ooo:libraries>
+   <ooo:libraries xmlns:ooo="http://openoffice.org/2004/office" xmlns:xlink="http://www.w3.org/1999/xlink"/>
   </office:script>
  </office:scripts>
  <office:font-face-decls>
@@ -250,145 +248,28 @@
  </office:styles>
  <office:automatic-styles>
   <style:style style:name="P1" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009bd36e" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P2" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00e9e7fb" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P3" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00fa3ebf" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P4" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="00fcc6fa" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P5" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" fo:font-weight="normal" officeooo:rsid="0022ff2e" officeooo:paragraph-rsid="0022ff2e" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P6" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="none" style:text-line-through-type="none" officeooo:rsid="00fbe0f1" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P7" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009d9484" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P8" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009e3cea" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P9" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00f14d0b" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P10" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="009fcc34" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P11" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00ffa826" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P12" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00fd7871" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P13" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00fcc6fa" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P14" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="01017ecf" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P15" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00e9e7fb" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00f6ce2f" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P17" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" fo:font-weight="normal" officeooo:rsid="00fa3ebf" officeooo:paragraph-rsid="001dc5da" style:font-weight-asian="normal" style:font-weight-complex="normal"/>
-  </style:style>
-  <style:style style:name="P18" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" officeooo:rsid="009bd36e" officeooo:paragraph-rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" style:text-line-through-style="solid" style:text-line-through-type="single" officeooo:rsid="004c4137" officeooo:paragraph-rsid="004c4137"/>
   </style:style>
-  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="003b97cb" officeooo:paragraph-rsid="003b97cb"/>
-  </style:style>
-  <style:style style:name="P21" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="003cd6a3" officeooo:paragraph-rsid="003cd6a3"/>
-  </style:style>
-  <style:style style:name="P22" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004328a8" officeooo:paragraph-rsid="004328a8"/>
-  </style:style>
-  <style:style style:name="P23" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004a5713" officeooo:paragraph-rsid="004a5713"/>
-  </style:style>
-  <style:style style:name="P24" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004c4137" officeooo:paragraph-rsid="004c4137"/>
-  </style:style>
-  <style:style style:name="P25" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004c4c61" officeooo:paragraph-rsid="004c4c61"/>
-  </style:style>
-  <style:style style:name="P26" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004d105e" officeooo:paragraph-rsid="004d105e"/>
-  </style:style>
-  <style:style style:name="P27" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="004e75d8" officeooo:paragraph-rsid="004e75d8"/>
-  </style:style>
-  <style:style style:name="P28" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00502d4a" officeooo:paragraph-rsid="00502d4a"/>
-  </style:style>
-  <style:style style:name="P29" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00522828" officeooo:paragraph-rsid="00522828"/>
-  </style:style>
-  <style:style style:name="P30" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P2" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00548b8f" officeooo:paragraph-rsid="00548b8f"/>
   </style:style>
-  <style:style style:name="P31" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+  <style:style style:name="P3" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00569c8c" officeooo:paragraph-rsid="00569c8c"/>
   </style:style>
-  <style:style style:name="P32" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00569c8c" officeooo:paragraph-rsid="0056ed63"/>
+  <style:style style:name="P4" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="0058d3f0" officeooo:paragraph-rsid="0058d3f0"/>
   </style:style>
-  <style:style style:name="P33" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="0056ed63" officeooo:paragraph-rsid="0056ed63"/>
+  <style:style style:name="P5" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="005aba53" officeooo:paragraph-rsid="005aba53"/>
   </style:style>
-  <style:style style:name="P34" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="00569c8c" officeooo:paragraph-rsid="00569c8c"/>
-  </style:style>
-  <style:style style:name="P35" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
-   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="0057dfdf" officeooo:paragraph-rsid="0057dfdf"/>
+  <style:style style:name="P6" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
+   <style:text-properties fo:color="#ffffff" loext:opacity="100%" officeooo:rsid="005d3c84" officeooo:paragraph-rsid="005d3c84"/>
   </style:style>
   <style:style style:name="T1" style:family="text">
-   <style:text-properties officeooo:rsid="001dc5da"/>
-  </style:style>
-  <style:style style:name="T2" style:family="text">
-   <style:text-properties officeooo:rsid="00fd88d7"/>
-  </style:style>
-  <style:style style:name="T3" style:family="text">
-   <style:text-properties officeooo:rsid="00fdecdf"/>
-  </style:style>
-  <style:style style:name="T4" style:family="text">
-   <style:text-properties officeooo:rsid="00f89deb"/>
-  </style:style>
-  <style:style style:name="T5" style:family="text">
-   <style:text-properties officeooo:rsid="00c0900e"/>
-  </style:style>
-  <style:style style:name="T6" style:family="text">
-   <style:text-properties officeooo:rsid="00246e63"/>
-  </style:style>
-  <style:style style:name="T7" style:family="text">
-   <style:text-properties officeooo:rsid="004403ff"/>
-  </style:style>
-  <style:style style:name="T8" style:family="text">
-   <style:text-properties officeooo:rsid="004a5713"/>
-  </style:style>
-  <style:style style:name="T9" style:family="text">
-   <style:text-properties officeooo:rsid="004d105e"/>
-  </style:style>
-  <style:style style:name="T10" style:family="text">
    <style:text-properties officeooo:rsid="00548b8f"/>
   </style:style>
-  <style:style style:name="T11" style:family="text">
-   <style:text-properties style:text-line-through-style="none" style:text-line-through-type="none" officeooo:rsid="00548b8f"/>
-  </style:style>
-  <style:style style:name="T12" style:family="text">
-   <style:text-properties officeooo:rsid="0056ed63"/>
+  <style:style style:name="T2" style:family="text">
+   <style:text-properties officeooo:rsid="005caee4"/>
   </style:style>
   <style:page-layout style:name="pm1">
    <style:page-layout-properties fo:page-width="8.2701in" fo:page-height="11.6902in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.7874in" fo:margin-bottom="0.7874in" fo:margin-left="0.7874in" fo:margin-right="0.7874in" fo:background-color="#000000" style:writing-mode="lr-tb" style:layout-grid-color="#c0c0c0" style:layout-grid-lines="20" style:layout-grid-base-height="0.278in" style:layout-grid-ruby-height="0.139in" style:layout-grid-mode="none" style:layout-grid-ruby-below="false" style:layout-grid-print="false" style:layout-grid-display="false" draw:fill="solid" draw:fill-color="#000000" draw:opacity="100%" style:footnote-max-height="0in" loext:margin-gutter="0in">
@@ -413,45 +294,42 @@
     <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
     <text:sequence-decl text:display-outline-level="0" text:name="Figure"/>
    </text:sequence-decls>
-   <text:p text:style-name="P19"><text:span text:style-name="T10">zorg dat je </text:span>machtwortels<text:span text:style-name="T10"> kunt berekenen</text:span></text:p>
-   <text:p text:style-name="P30">zorg dat je imaginary numbers kunt berekenen</text:p>
-   <text:p text:style-name="P30">maak de achtergronden groot genoeg om niet een probleem te zijn</text:p>
-   <text:p text:style-name="P30">zorg dat je de calculator niet oneindig kan verkleinen of vergroten</text:p>
-   <text:p text:style-name="P30">fix dat je input alleen geleegd wordt na equals, bij een nummer</text:p>
-   <text:p text:style-name="P30"/>
-   <text:p text:style-name="P30">maak een paar themas</text:p>
-   <text:p text:style-name="P30">-desert</text:p>
-   <text:p text:style-name="P30">-sunrise forest</text:p>
-   <text:p text:style-name="P30">-underwater</text:p>
-   <text:p text:style-name="P30">-skyrim</text:p>
-   <text:p text:style-name="P30">-galaxy</text:p>
-   <text:p text:style-name="P30"/>
-   <text:p text:style-name="P31">zorg dat je symbool automatisch () in superscript toevoegt</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31">check elke edit of er een superscript symbol aanwezig is in de input,</text:p>
-   <text:p text:style-name="P31">run through the whole input</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31">*return alle test die in superscript is, door die te concatenaten in 1 string</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P35">maak een functie: makeSuperscript</text:p>
-   <text:p text:style-name="P35">maak een functie: isSuperSuperscript</text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31"><text:tab/>voor iedere value:</text:p>
-   <text:p text:style-name="P31"><text:tab/>als the symbool bracket open is (symbolObject[4])</text:p>
-   <text:p text:style-name="P31"><text:tab/><text:tab/>zo ja, save die index superScriptOpenBrackets[]</text:p>
-   <text:p text:style-name="P31"><text:tab/><text:span text:style-name="T12">maak elke volgende value uppercase</text:span></text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31"><text:tab/>als er een bracketClose in superscript wordt aangetroffen,</text:p>
-   <text:p text:style-name="P32"><text:tab/><text:span text:style-name="T12">haal 1 value van </text:span>superScriptOpenBrackets[]<text:span text:style-name="T12"> af. </text:span></text:p>
-   <text:p text:style-name="P32"><text:span text:style-name="T12"><text:tab/><text:tab/>Als dan:</text:span>superScriptOpenBrackets[]<text:span text:style-name="T12">.length == 1,</text:span></text:p>
-   <text:p text:style-name="P33"><text:tab/><text:tab/>neem de index van het huidige element, neem de index van het vorige <text:tab/><text:tab/>element, splice de content</text:p>
-   <text:p text:style-name="P33"/>
-   <text:p text:style-name="P33"><text:tab/><text:tab/>maak de content SuperScript</text:p>
-   <text:p text:style-name="P33"><text:tab/><text:tab/>plaats de content op de index van haakje openen</text:p>
-   <text:p text:style-name="P33"><text:tab/></text:p>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31"/>
-   <text:p text:style-name="P31"><text:tab/></text:p>
+   <text:p text:style-name="P1"><text:span text:style-name="T1">zorg dat je </text:span>machtwortels<text:span text:style-name="T1"> kunt berekenen</text:span></text:p>
+   <text:p text:style-name="P2">zorg dat je imaginary numbers kunt berekenen</text:p>
+   <text:p text:style-name="P2">maak de achtergronden groot genoeg om niet een probleem te zijn</text:p>
+   <text:p text:style-name="P2">zorg dat je de calculator niet oneindig kan verkleinen of vergroten</text:p>
+   <text:p text:style-name="P2">fix dat je input alleen geleegd wordt na equals, bij een nummer</text:p>
+   <text:p text:style-name="P2"/>
+   <text:p text:style-name="P2">maak een paar themas</text:p>
+   <text:p text:style-name="P2">-desert</text:p>
+   <text:p text:style-name="P2">-sunrise forest</text:p>
+   <text:p text:style-name="P2">-underwater</text:p>
+   <text:p text:style-name="P2">-skyrim</text:p>
+   <text:p text:style-name="P2">-galaxy</text:p>
+   <text:p text:style-name="P2"/>
+   <text:p text:style-name="P3">zorg dat je symbool automatisch () in superscript toevoegt</text:p>
+   <text:p text:style-name="P3"/>
+   <text:p text:style-name="P3">check elke edit of er een superscript symbol aanwezig is in de input,</text:p>
+   <text:p text:style-name="P3">run through the whole input</text:p>
+   <text:p text:style-name="P3"/>
+   <text:p text:style-name="P3">*return alle test die in superscript is, door die te concatenaten in 1 string</text:p>
+   <text:p text:style-name="P3"/>
+   <text:p text:style-name="P4">log: heb een manier waarop je kunt aangeven welke cijfers gebruikt moeten worden voor de log. <text:s/>(staan tussen superscript haakjes)</text:p>
+   <text:p text:style-name="P4"/>
+   <text:p text:style-name="P5">wanneer er superscript haakjes staan, voeg ook een <text:span text:style-name="T2">object</text:span> toe aan het getal</text:p>
+   <text:p text:style-name="P4"/>
+   <text:p text:style-name="P4">zorg ervoor dat de haakjes worden uitgerekend tot 1 getal, die dan tussen haakjes blijft.</text:p>
+   <text:p text:style-name="P4"/>
+   <text:p text:style-name="P6">nlog()</text:p>
+   <text:p text:style-name="P6">Math.log(number, base)</text:p>
+   <text:p text:style-name="P6">log with a variable base</text:p>
+   <text:p text:style-name="P6"/>
+   <text:p text:style-name="P6">ln</text:p>
+   <text:p text:style-name="P6">log with base &quot;e&quot;</text:p>
+   <text:p text:style-name="P6">Math.log(number)</text:p>
+   <text:p text:style-name="P6"/>
+   <text:p text:style-name="P6">10log(number, base)</text:p>
+   <text:p text:style-name="P6"/>
   </office:text>
  </office:body>
 </office:document>
