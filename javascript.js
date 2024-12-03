@@ -304,7 +304,7 @@ let symbolObject = [
         sign: ['¹⁰log'],
         precedence: 4,
         category: 'function',
-        btnTxt: "log",
+        btnTxt: "¹⁰log",
         multiplyWhenNumInFront: 'true',
         placement: line4,
     },
@@ -315,7 +315,6 @@ let symbolObject = [
         precedence: 4,
         category: 'function',
         btnTxt: "ⁿlog",
-        multiplyWhenNumInFront: 'true',
         placement: line4,
     },
 
@@ -904,16 +903,16 @@ function addMultiplication(array, index) {
 }
 
 function deleteValuesFromString(index, amount) {
-    /*
+
     console.log("before: " + userInput)
     console.log("index: " + index)
     console.log("front: " + userInput.slice(0, index))
     console.log("back: " + userInput.slice(index + amount))
-    */
+
     userInput = userInput.slice(0, index) + userInput.slice(index + amount)
     updateString = true
     stringRemovedAmount = amount
-//    console.log(userInput)
+    console.log(userInput)
 }
 
 function checkSymbol(previousValue, value, nextValue, string, index,
@@ -930,6 +929,13 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
     switch (true) {
+        //-- 5 VALUE LENGTH SYMBOLS --
+        case (symbolObject[22].sign.includes(fiveSymbolValue)):
+            //          log base 10
+            deleteValuesFromString(index + 1, 4)
+            return symbolObject[22]
+            break;
+
         //-- 4 VALUE LENGTH SYMBOLS --
         case (symbolObject[15].sign.includes(fourSymbolValue)):
             //          inverse sine
@@ -947,6 +953,12 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             //          inverse tangent
             deleteValuesFromString(index + 1, 3)
             return symbolObject[17]
+            break;
+
+        case (symbolObject[23].sign.includes(fourSymbolValue)):
+            //          log variable base
+            deleteValuesFromString(index + 1, 3)
+            return symbolObject[23]
             break;
 
         //-- 3 VALUE LENGTH SYMBOLS --
@@ -1346,7 +1358,7 @@ function doCalculation(symbol, index, array) {
             break;
 
         case (symbol == symbolObject[20]):
-            //          Pi
+            //          Nth Root
             result = Math.E
 
             array.splice(index, 1, result)
@@ -1354,10 +1366,28 @@ function doCalculation(symbol, index, array) {
             break;
 
         case (symbol == symbolObject[21]):
-            //          Pi
+            //          Log base Eulers number
             result = Math.log(+nextValue)
 
             array.splice(index, 2, result)
+            return array
+            break;
+
+        case (symbol == symbolObject[22]):
+            //          Log base 10
+            result = Math.log(+nextValue) / Math.log(10)
+
+            array.splice(index, 2, result)
+            return array
+            break;
+
+        case (symbol == symbolObject[23]):
+            //          Log variable base
+            console.log(nextValue)
+            console.log(previousValue)
+            result = Math.log(+nextValue) / Math.log(previousValue)
+
+            array.splice(index-1, 3, result)
             return array
             break;
 
