@@ -322,9 +322,6 @@ let symbolObject = [
 
 ]
 
-//console.log(Math.log(nextValue) / Math.log(previousValue))
-console.log(Math.log(100) / Math.log(10))
-
 symbolObject.forEach((prop) => {
     let btn = document.createElement("button")
     if (prop.placement){
@@ -577,7 +574,6 @@ function runAns() {
 }
 
 function clearDisplay() {
-    console.log(userInput)
     userInput = ""
     ans = ""
     updateDisplay()
@@ -737,47 +733,6 @@ function numberOrObject(previousValue, value, nextValue, string, index,
             sixSymbolValue,
         )
     }
-
-    /*
-    let returnValue = ""
-    // check if value is number, returns string "number"
-    if (Number(parseFloat(value)) || value == "." || value == "0") {
-        //        console.log(`value "${value}" is a number`)
-        returnValue = "number"
-    }
-
-    let allowForEach = true
-
-    // check if value is operator, returns array [operator,  arrayIndex()
-    symbolObject.forEach(element => {
-        if (allowForEach) {
-            if (element.sign.includes(value) ||
-                element.sign.includes(twoSymbolValue) ||
-                element.sign.includes(threeSymbolValue) ||
-                element.sign.includes(fourSymbolValue) ||
-                element.sign.includes(fiveSymbolValue) ||
-                element.sign.includes(sixSymbolValue)) {
-                returnValue = checkSymbol(previousValue, value, nextValue, string, index,
-                    twoSymbolValue,
-                    threeSymbolValue,
-                    fourSymbolValue,
-                    fiveSymbolValue,
-                    sixSymbolValue,
-                )
-                allowForEach = false
-            }
-        }
-    })
-
-    //value was not a number nor known operator
-    if (returnValue == "error") {
-        console.log("numberOrOperator error")
-        alert("ERROR: unknown symbol")
-        isError = true
-        returnValue = "error"
-    }
-    return returnValue
-    */
 }
 
 function makeInputArray(previousValue, value, nextValue, string, index,
@@ -822,7 +777,6 @@ function makeInputArray(previousValue, value, nextValue, string, index,
 }
 
 function addToInputArray(item, index) {
-    console.log(index)
     if (typeof index == "undefined"){
         inputArray.push(item)
     }
@@ -833,8 +787,6 @@ function addNegativeNums(array, index){
     let previousElement = inputArray[index-1]
     let currentElement = inputArray[index]
     let nextElement = inputArray[index+1]
-
-    console.log(currentElement)
 
     let minus = symbolObject[1]
 
@@ -903,16 +855,9 @@ function addMultiplication(array, index) {
 }
 
 function deleteValuesFromString(index, amount) {
-
-    console.log("before: " + userInput)
-    console.log("index: " + index)
-    console.log("front: " + userInput.slice(0, index))
-    console.log("back: " + userInput.slice(index + amount))
-
     userInput = userInput.slice(0, index) + userInput.slice(index + amount)
     updateString = true
     stringRemovedAmount = amount
-    console.log(userInput)
 }
 
 function checkSymbol(previousValue, value, nextValue, string, index,
@@ -924,7 +869,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
 ) {
     previousElement = inputArray[inputArray.length - 1]
 
-    alert(userInput)
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
@@ -1160,7 +1104,6 @@ function makeNumbersNegative(array){
         let nextElement = array[i+1]
         if (currentElement == "-"){
             if (isNumber(nextElement)){
-                console.log(currentElement)
                 array.splice(i, 1)
                 array[i] = nextElement * -1
             }
@@ -1280,8 +1223,6 @@ function doCalculation(symbol, index, array) {
                 i++
             }
             result = acc
-            console.log(previousValue)
-            console.log(result)
             array.splice(index - 1, 2, result)
             return array
             break;
@@ -1383,8 +1324,6 @@ function doCalculation(symbol, index, array) {
 
         case (symbol == symbolObject[23]):
             //          Log variable base
-            console.log(nextValue)
-            console.log(previousValue)
             result = Math.log(+nextValue) / Math.log(previousValue)
 
             array.splice(index-1, 3, result)
@@ -1513,9 +1452,6 @@ function resetThemes(){
 }
 
 function changeColors(newColor1, newColor2, newColor3){
-    console.log("color1 " + newColor1)
-    console.log("color2 " + newColor2)
-    console.log("color3 " + newColor3)
 
             color1 = newColor1  
             document.body.style.background = color1
@@ -2258,11 +2194,8 @@ let themes = [
     },*/
 ]
 
-//light purple rgb(138, 35, 247)
-//rgb(196, 222, 125)
-let currentTheme = 1
-//Math.floor(Math.random()*(themes.length))
-console.log(currentTheme)
+let currentTheme = 0
+
 applyTheme(currentTheme)
 
 function updatePixels(){
@@ -2341,8 +2274,9 @@ function applyTheme (themeNumber) {
     updatePixels()
 }
 
-l = themes.length-1
-for (j = 0; j <= l; j++){
+let themeslength = themes.length-1
+
+for (j = 0; j <= themelength; j++){
     const option = document.createElement("option")
     themeSelection.appendChild(option)
     option.textContent = themes[j].name
