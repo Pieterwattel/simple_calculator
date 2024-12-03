@@ -904,9 +904,16 @@ function addMultiplication(array, index) {
 }
 
 function deleteValuesFromString(index, amount) {
+    /*
+    console.log("before: " + userInput)
+    console.log("index: " + index)
+    console.log("front: " + userInput.slice(0, index))
+    console.log("back: " + userInput.slice(index + amount))
+    */
     userInput = userInput.slice(0, index) + userInput.slice(index + amount)
     updateString = true
     stringRemovedAmount = amount
+//    console.log(userInput)
 }
 
 function checkSymbol(previousValue, value, nextValue, string, index,
@@ -917,6 +924,8 @@ function checkSymbol(previousValue, value, nextValue, string, index,
     sixSymbolValue,
 ) {
     previousElement = inputArray[inputArray.length - 1]
+
+    alert(userInput)
 
     // the checks are order by length of the symbols, so:
     //cos() is checked before (), because otherwise it might label the symbol wrongly
@@ -971,12 +980,6 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             return symbolObject[18]
             break;
 
-        case (symbolObject[21].sign.includes(threeSymbolValue)):
-            //          log
-            deleteValuesFromString(index + 1, 2)
-            return symbolObject[12]
-            break;
-
         //-- 2 VALUE LENGTH SYMBOLS --
         case (symbolObject[8].sign.includes(twoSymbolValue)):
             //          any exponent
@@ -985,10 +988,14 @@ function checkSymbol(previousValue, value, nextValue, string, index,
             break;
 
         case (symbolObject[19].sign.includes(twoSymbolValue)):
-            //          ..
-            deleteValuesFromString(index - 1, 1)
+            //          nth root
+            deleteValuesFromString(index+1, 1)
             return symbolObject[19]
 
+        case (symbolObject[21].sign.includes(twoSymbolValue)):
+            //          ln (log base Eulers number)
+            deleteValuesFromString(index+1, 1)
+            return symbolObject[21]
 
         //-- 1 VALUE-LENGTH SYMBOLS --
         case (symbolObject[0].sign.includes(value)):
@@ -1350,7 +1357,7 @@ function doCalculation(symbol, index, array) {
             //          Pi
             result = Math.log(+nextValue)
 
-            array.splice(index, 1, result)
+            array.splice(index, 2, result)
             return array
             break;
 
